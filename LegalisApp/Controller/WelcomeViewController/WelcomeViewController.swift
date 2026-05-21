@@ -2,28 +2,33 @@
 //  WelcomeViewController.swift
 //  LegalisApp
 //
-//  Created by Memo Figueredo on 29/4/26.
+//  Created by Daniel Figueredo on 29/4/26.
 //
 
 import UIKit
 
-class WelcomeViewController: UIViewController {
+class WelcomeViewController: UIViewController, welcomeViewDelegate {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    override func loadView() {
+      let welcomView = WelcomeView()
+      welcomView.delegate = self
+      
+      view = welcomView
     }
+  
+  func clientSignUp() {
+    let vc = ClientsSignUpViewController()
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    vc.modalPresentationStyle = .fullScreen
+    vc.modalTransitionStyle = .coverVertical
+    present(vc, animated: true)
+  }
+  
+  func lawyerSignUp() {
+    let vc = LawyersSignUpViewController()
+    vc.modalTransitionStyle = .flipHorizontal
+    vc.modalPresentationStyle = .fullScreen
+    present(vc, animated: true)
+  }
+  
 }

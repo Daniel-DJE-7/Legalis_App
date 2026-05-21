@@ -13,6 +13,17 @@
 		8D18D06B2FA28B6E0038AB85 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D18D0692FA28B6E0038AB85 /* Main.storyboard */; };
 		8D18D06D2FA28B700038AB85 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D18D06C2FA28B700038AB85 /* Assets.xcassets */; };
 		8D18D0702FA28B700038AB85 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D18D06E2FA28B700038AB85 /* LaunchScreen.storyboard */; };
+		8D18D0962FA2A9CE0038AB85 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D18D0952FA2A9CE0038AB85 /* WelcomeView.swift */; };
+		8D18D0982FA2BBA10038AB85 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D18D0972FA2BBA10038AB85 /* WelcomeViewController.swift */; };
+		8D3944472FAF752700CED997 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3944462FAF752700CED997 /* Utilities.swift */; };
+		8D39444A2FAFAF2B00CED997 /* RegisterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3944492FAFAF2B00CED997 /* RegisterModel.swift */; };
+		8D436B872FBE6A9000429E60 /* NSMutableAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D436B862FBE6A8F00429E60 /* NSMutableAttributedString.swift */; };
+		8D44E45F2FAA9D2B00AC5242 /* welcomeVideo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 8D44E45E2FAA9D2B00AC5242 /* welcomeVideo.mp4 */; };
+		8D44E4612FAAAEFE00AC5242 /* LawyersSignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D44E4602FAAAEFE00AC5242 /* LawyersSignUpView.swift */; };
+		8D44E4632FAAB3F700AC5242 /* LawyersSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D44E4622FAAB3F700AC5242 /* LawyersSignUpViewController.swift */; };
+		8D44E4662FAAB80300AC5242 /* ClientsSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D44E4652FAAB80300AC5242 /* ClientsSignUpViewController.swift */; };
+		8D7497662FB2721A009D6AD7 /* CoreCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7497652FB2721A009D6AD7 /* CoreCollectionViewController.swift */; };
+		8DB540402FA56CEE00D8DB72 /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB5403F2FA56CEE00D8DB72 /* UIView+Layout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +35,17 @@
 		8D18D06C2FA28B700038AB85 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8D18D06F2FA28B700038AB85 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8D18D0712FA28B700038AB85 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8D18D0952FA2A9CE0038AB85 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		8D18D0972FA2BBA10038AB85 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		8D3944462FAF752700CED997 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		8D3944492FAFAF2B00CED997 /* RegisterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterModel.swift; sourceTree = "<group>"; };
+		8D436B862FBE6A8F00429E60 /* NSMutableAttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSMutableAttributedString.swift; sourceTree = "<group>"; };
+		8D44E45E2FAA9D2B00AC5242 /* welcomeVideo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = welcomeVideo.mp4; sourceTree = "<group>"; };
+		8D44E4602FAAAEFE00AC5242 /* LawyersSignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LawyersSignUpView.swift; sourceTree = "<group>"; };
+		8D44E4622FAAB3F700AC5242 /* LawyersSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LawyersSignUpViewController.swift; sourceTree = "<group>"; };
+		8D44E4652FAAB80300AC5242 /* ClientsSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientsSignUpViewController.swift; sourceTree = "<group>"; };
+		8D7497652FB2721A009D6AD7 /* CoreCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreCollectionViewController.swift; sourceTree = "<group>"; };
+		8DB5403F2FA56CEE00D8DB72 /* UIView+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Layout.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +78,13 @@
 		8D18D0622FA28B6E0038AB85 /* LegalisApp */ = {
 			isa = PBXGroup;
 			children = (
+				8D3944452FAF74FA00CED997 /* Utilities */,
+				8D44E45D2FAA9D1100AC5242 /* Videos */,
+				8DB5403D2FA56CB600D8DB72 /* Helpers */,
+				8D18D07C2FA28D200038AB85 /* Network */,
+				8D18D0792FA28C2B0038AB85 /* Controller */,
+				8D18D0782FA28C250038AB85 /* View */,
+				8D18D0772FA28C1E0038AB85 /* Model */,
 				8D18D0632FA28B6E0038AB85 /* AppDelegate.swift */,
 				8D18D0652FA28B6E0038AB85 /* SceneDelegate.swift */,
 				8D18D0672FA28B6E0038AB85 /* ViewController.swift */,
@@ -65,6 +94,306 @@
 				8D18D0712FA28B700038AB85 /* Info.plist */,
 			);
 			path = LegalisApp;
+			sourceTree = "<group>";
+		};
+		8D18D0772FA28C1E0038AB85 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8D3944482FAFAF0000CED997 /* RegisterModel */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8D18D0782FA28C250038AB85 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8D18D0932FA295DA0038AB85 /* PaymentViewCell */,
+				8D18D0912FA292240038AB85 /* NotificationsViewCell */,
+				8D18D08F2FA291EC0038AB85 /* AdvocatesProfileViewCell */,
+				8D18D08D2FA290C30038AB85 /* MyAccountViewCell */,
+				8D18D08B2FA2908A0038AB85 /* AppointmentViewCell */,
+				8D18D0882FA28FF80038AB85 /* ChatsViewCell */,
+				8D18D0872FA28FBF0038AB85 /* FavoritesViewCell */,
+				8D18D0852FA28F930038AB85 /* AdvocatesViewCell */,
+				8D18D0832FA28ED10038AB85 /* HomeViewCell */,
+				8D18D07F2FA28DB40038AB85 /* LoginView */,
+				8D18D07E2FA28DA60038AB85 /* SignUpView */,
+				8D18D07B2FA28C700038AB85 /* WelcomeView */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8D18D0792FA28C2B0038AB85 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8D7497642FB270C6009D6AD7 /* CoreCollectionViewController */,
+				8D18D0922FA295CC0038AB85 /* PaymentViewController */,
+				8D18D0902FA292170038AB85 /* NotificationsVIewController */,
+				8D18D08E2FA291DD0038AB85 /* AdvocatesProfileViewController */,
+				8D18D08C2FA290B80038AB85 /* MyAccountViewController */,
+				8D18D08A2FA290670038AB85 /* AppointmentViewController */,
+				8D18D0892FA290000038AB85 /* ChatsViewController */,
+				8D18D0862FA28FB60038AB85 /* FavoritesViewController */,
+				8D18D0842FA28F7F0038AB85 /* AdvocatesListViewController */,
+				8D18D07A2FA28C630038AB85 /* WelcomeViewController */,
+				8D18D07D2FA28D910038AB85 /* MainTabBarController */,
+				8D18D0822FA28EB50038AB85 /* HomeViewController */,
+				8D18D0802FA28DC50038AB85 /* SingUpViewController */,
+				8D18D0812FA28DD10038AB85 /* LoginViewController */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		8D18D07A2FA28C630038AB85 /* WelcomeViewController */ = {
+			isa = PBXGroup;
+			children = (
+				8D18D0972FA2BBA10038AB85 /* WelcomeViewController.swift */,
+			);
+			path = WelcomeViewController;
+			sourceTree = "<group>";
+		};
+		8D18D07B2FA28C700038AB85 /* WelcomeView */ = {
+			isa = PBXGroup;
+			children = (
+				8D18D0952FA2A9CE0038AB85 /* WelcomeView.swift */,
+			);
+			path = WelcomeView;
+			sourceTree = "<group>";
+		};
+		8D18D07C2FA28D200038AB85 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		8D18D07D2FA28D910038AB85 /* MainTabBarController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = MainTabBarController;
+			sourceTree = "<group>";
+		};
+		8D18D07E2FA28DA60038AB85 /* SignUpView */ = {
+			isa = PBXGroup;
+			children = (
+				8D7497672FB27499009D6AD7 /* Layers */,
+			);
+			path = SignUpView;
+			sourceTree = "<group>";
+		};
+		8D18D07F2FA28DB40038AB85 /* LoginView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = LoginView;
+			sourceTree = "<group>";
+		};
+		8D18D0802FA28DC50038AB85 /* SingUpViewController */ = {
+			isa = PBXGroup;
+			children = (
+				8D44E4622FAAB3F700AC5242 /* LawyersSignUpViewController.swift */,
+				8D44E4652FAAB80300AC5242 /* ClientsSignUpViewController.swift */,
+			);
+			path = SingUpViewController;
+			sourceTree = "<group>";
+		};
+		8D18D0812FA28DD10038AB85 /* LoginViewController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = LoginViewController;
+			sourceTree = "<group>";
+		};
+		8D18D0822FA28EB50038AB85 /* HomeViewController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = HomeViewController;
+			sourceTree = "<group>";
+		};
+		8D18D0832FA28ED10038AB85 /* HomeViewCell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = HomeViewCell;
+			sourceTree = "<group>";
+		};
+		8D18D0842FA28F7F0038AB85 /* AdvocatesListViewController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AdvocatesListViewController;
+			sourceTree = "<group>";
+		};
+		8D18D0852FA28F930038AB85 /* AdvocatesViewCell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AdvocatesViewCell;
+			sourceTree = "<group>";
+		};
+		8D18D0862FA28FB60038AB85 /* FavoritesViewController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = FavoritesViewController;
+			sourceTree = "<group>";
+		};
+		8D18D0872FA28FBF0038AB85 /* FavoritesViewCell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = FavoritesViewCell;
+			sourceTree = "<group>";
+		};
+		8D18D0882FA28FF80038AB85 /* ChatsViewCell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ChatsViewCell;
+			sourceTree = "<group>";
+		};
+		8D18D0892FA290000038AB85 /* ChatsViewController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ChatsViewController;
+			sourceTree = "<group>";
+		};
+		8D18D08A2FA290670038AB85 /* AppointmentViewController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AppointmentViewController;
+			sourceTree = "<group>";
+		};
+		8D18D08B2FA2908A0038AB85 /* AppointmentViewCell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AppointmentViewCell;
+			sourceTree = "<group>";
+		};
+		8D18D08C2FA290B80038AB85 /* MyAccountViewController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = MyAccountViewController;
+			sourceTree = "<group>";
+		};
+		8D18D08D2FA290C30038AB85 /* MyAccountViewCell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = MyAccountViewCell;
+			sourceTree = "<group>";
+		};
+		8D18D08E2FA291DD0038AB85 /* AdvocatesProfileViewController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AdvocatesProfileViewController;
+			sourceTree = "<group>";
+		};
+		8D18D08F2FA291EC0038AB85 /* AdvocatesProfileViewCell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AdvocatesProfileViewCell;
+			sourceTree = "<group>";
+		};
+		8D18D0902FA292170038AB85 /* NotificationsVIewController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = NotificationsVIewController;
+			sourceTree = "<group>";
+		};
+		8D18D0912FA292240038AB85 /* NotificationsViewCell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = NotificationsViewCell;
+			sourceTree = "<group>";
+		};
+		8D18D0922FA295CC0038AB85 /* PaymentViewController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = PaymentViewController;
+			sourceTree = "<group>";
+		};
+		8D18D0932FA295DA0038AB85 /* PaymentViewCell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = PaymentViewCell;
+			sourceTree = "<group>";
+		};
+		8D3944452FAF74FA00CED997 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				8D3944462FAF752700CED997 /* Utilities.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		8D3944482FAFAF0000CED997 /* RegisterModel */ = {
+			isa = PBXGroup;
+			children = (
+				8D3944492FAFAF2B00CED997 /* RegisterModel.swift */,
+			);
+			path = RegisterModel;
+			sourceTree = "<group>";
+		};
+		8D436B852FBE685800429E60 /* NSMutableAttributedString */ = {
+			isa = PBXGroup;
+			children = (
+				8D436B862FBE6A8F00429E60 /* NSMutableAttributedString.swift */,
+			);
+			path = NSMutableAttributedString;
+			sourceTree = "<group>";
+		};
+		8D44E45D2FAA9D1100AC5242 /* Videos */ = {
+			isa = PBXGroup;
+			children = (
+				8D44E45E2FAA9D2B00AC5242 /* welcomeVideo.mp4 */,
+			);
+			path = Videos;
+			sourceTree = "<group>";
+		};
+		8D7497642FB270C6009D6AD7 /* CoreCollectionViewController */ = {
+			isa = PBXGroup;
+			children = (
+				8D7497652FB2721A009D6AD7 /* CoreCollectionViewController.swift */,
+			);
+			path = CoreCollectionViewController;
+			sourceTree = "<group>";
+		};
+		8D7497672FB27499009D6AD7 /* Layers */ = {
+			isa = PBXGroup;
+			children = (
+				8D44E4602FAAAEFE00AC5242 /* LawyersSignUpView.swift */,
+			);
+			path = Layers;
+			sourceTree = "<group>";
+		};
+		8DB5403D2FA56CB600D8DB72 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				8D436B852FBE685800429E60 /* NSMutableAttributedString */,
+				8DB5403E2FA56CCD00D8DB72 /* UIView+Layout */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		8DB5403E2FA56CCD00D8DB72 /* UIView+Layout */ = {
+			isa = PBXGroup;
+			children = (
+				8DB5403F2FA56CEE00D8DB72 /* UIView+Layout.swift */,
+			);
+			path = "UIView+Layout";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,6 +456,7 @@
 			files = (
 				8D18D0702FA28B700038AB85 /* LaunchScreen.storyboard in Resources */,
 				8D18D06D2FA28B700038AB85 /* Assets.xcassets in Resources */,
+				8D44E45F2FAA9D2B00AC5242 /* welcomeVideo.mp4 in Resources */,
 				8D18D06B2FA28B6E0038AB85 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -138,9 +468,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D44E4632FAAB3F700AC5242 /* LawyersSignUpViewController.swift in Sources */,
+				8D436B872FBE6A9000429E60 /* NSMutableAttributedString.swift in Sources */,
+				8D44E4662FAAB80300AC5242 /* ClientsSignUpViewController.swift in Sources */,
 				8D18D0682FA28B6E0038AB85 /* ViewController.swift in Sources */,
+				8D18D0982FA2BBA10038AB85 /* WelcomeViewController.swift in Sources */,
+				8DB540402FA56CEE00D8DB72 /* UIView+Layout.swift in Sources */,
+				8D44E4612FAAAEFE00AC5242 /* LawyersSignUpView.swift in Sources */,
+				8D39444A2FAFAF2B00CED997 /* RegisterModel.swift in Sources */,
 				8D18D0642FA28B6E0038AB85 /* AppDelegate.swift in Sources */,
 				8D18D0662FA28B6E0038AB85 /* SceneDelegate.swift in Sources */,
+				8D7497662FB2721A009D6AD7 /* CoreCollectionViewController.swift in Sources */,
+				8D3944472FAF752700CED997 /* Utilities.swift in Sources */,
+				8D18D0962FA2A9CE0038AB85 /* WelcomeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

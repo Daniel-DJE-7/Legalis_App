@@ -9,6 +9,9 @@ import UIKit
 
 class LawyersSignUpView: UIView {
 
+  var fontFamily: String = "Inter"
+  var fontSize: CGFloat = 12
+  
   let fields: [RegisterModel] = [
     RegisterModel(leftImage: UIImage(systemName: "person"), placeholder: "Nombre Completo", rightImage: nil),
     RegisterModel(leftImage: UIImage(named: "id_card"), placeholder: "Número de documento", rightImage: nil),
@@ -21,8 +24,13 @@ class LawyersSignUpView: UIView {
   
   var textFields: [UITextField] = []
   
+  var onDoneTapped: (() -> Void)?
+  var onCancelTapped: (() -> Void)?
+  
+  //MARK: - PickerViews
   public let sexPickerView = UIPickerView()
   public let practiceTypePickerView = UIPickerView()
+  
   
   
   //MARK: -UI NAV HEADER ELEMENTS
@@ -48,7 +56,6 @@ class LawyersSignUpView: UIView {
     
     return button
   }()
-  
   
   
   //MARK: - UI HEADER ELEMENTS
@@ -91,43 +98,26 @@ class LawyersSignUpView: UIView {
   }()
   
   
-  
-  //MARK: UIBUTTONS ELEMENTS
-  let politicsLabel: UILabel = {
-    let label = UILabel()
-    label.text = "Al registrarse, aceptas nuestros"// falta añadir la y
-    return label
-  }()
-  
-  lazy var termsButton: UIButton = {
-    var config = UIButton.Configuration.plain()
-    config.title = "Términos de servicio"
-    config.baseForegroundColor = .systemBlue
+  //MARK: - HTML TEXT VIEW
+  let htmlTextView: UITextView = {
+    let txtView = UITextView()
+    txtView.isEditable = false
+    txtView.isSelectable = true
+    txtView.isScrollEnabled = false
+    txtView.backgroundColor = .clear
+    txtView.textContainerInset = .zero
+    txtView.textContainer.lineFragmentPadding = 0
+    txtView.textAlignment = .center
+    txtView.translatesAutoresizingMaskIntoConstraints = false
     
-    let button = UIButton(configuration: config)
-    button.widthAnchor.constraint(equalToConstant: 14).isActive = true
-    button.heightAnchor.constraint(equalToConstant: 3).isActive = true
-    button.translatesAutoresizingMaskIntoConstraints = false
-    return button
+    return txtView
   }()
-  
-  lazy var privacyPoliticsButton: UIButton = {
-    var config = UIButton.Configuration.plain()
-    config.title = "Política de privacidad"
-    config.baseForegroundColor = .systemBlue
-    
-    let button = UIButton(configuration: config)
-    button.widthAnchor.constraint(equalToConstant: 14).isActive = true
-    button.heightAnchor.constraint(equalToConstant: 3).isActive = true
-    button.translatesAutoresizingMaskIntoConstraints = false
-    return button
-  }()
-  
   
   override init(frame: CGRect) {
     super.init(frame: frame)
-    //backgroundColor = .red
+    
     setUpFields()
+    
     setUpUI()
   }
   
@@ -154,35 +144,68 @@ class LawyersSignUpView: UIView {
       Utilities.styleTextField(txtField)//agreagmos estilo utilities
       
       
-      //seting secure text entry to the passwordTextfiel
+      //setting secure text entry to the passwordTextfield
       if index == 4 {
         txtField.isSecureTextEntry = true
       }
+      
+      //MARK: - Creating the toolBar For the PickerView
+      let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: safeAreaLayoutGuide.layoutFrame.width, height: 50))
+      
+      //MARK: - Done button for the pickersView
+      let doneBtn = Utilities.createBtnForThePickerView(title: nil, image: UIImage(systemName: "checkmark.square.fill"), target: self, action: #selector(doneCheckBtnTapped), color: #colorLiteral(red: 0.003979303874, green: 0.137050271, blue: 0.2949559987, alpha: 1))
+      
+      let spaceBtn = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+      
+      let cancelBtn = Utilities.createBtnForThePickerView(title: nil, image: UIImage(systemName: "clear.fill"), target: self, action: #selector(cancelClearBtnTapped), color: #colorLiteral(red: 0.7241197066, green: 0.1285783471, blue: 0, alpha: 1))
+      
+      toolBar.setItems([cancelBtn, spaceBtn, doneBtn], animated: false)
+      toolBar.sizeToFit()
+      
       
       //adding the pickerView to the textfield at index 5 and 6
       if index == 5 {
         txtField.tintColor = .clear//hide the cursor of the textfield
         txtField.inputView = sexPickerView
+        txtField.inputAccessoryView = toolBar
       }
       
       if index == 6 {
         txtField.tintColor = .clear//hide the cursor of the textfield
         txtField.inputView = practiceTypePickerView
+        txtField.inputAccessoryView = toolBar
       }
       
       //adding the txtfield to the array of textfield
       textFields.append(txtField)
       
-      let rightIcon = UIImageView(image: field.rightImage?.withRenderingMode(.alwaysTemplate))
-      rightIcon.tintColor = #colorLiteral(red: 0.3645370603, green: 0.3682664633, blue: 0.3890590072, alpha: 1)
-      rightIcon.contentMode = .scaleAspectFit
-      rightIcon.clipsToBounds = true
-      rightIcon.widthAnchor.constraint(equalToConstant: 20).isActive = true
-      rightIcon.heightAnchor.constraint(equalToConstant: 20).isActive = true
-      rightIcon.translatesAutoresizingMaskIntoConstraints = false
+      //MARK: - Configuring right button for the pickerView
+      var configRightBtn = UIButton.Configuration.plain()
+      configRightBtn.baseForegroundColor = #colorLiteral(red: 0.3645370603, green: 0.3682664633, blue: 0.3890590072, alpha: 1)
+      
+      let rightButton = UIButton(configuration: configRightBtn)
+      
+      if let image = field.rightImage?.withRenderingMode(.alwaysTemplate) {
+        rightButton.setImage(image, for: .normal)
+      }
+      
+      rightButton.imageView?.tintColor = #colorLiteral(red: 0.3645370603, green: 0.3682664633, blue: 0.3890590072, alpha: 1)
+      rightButton.imageView?.contentMode = .scaleAspectFit
+      rightButton.imageView?.clipsToBounds = true
+      rightButton.imageView?.translatesAutoresizingMaskIntoConstraints = false
+      rightButton.widthAnchor.constraint(equalToConstant: 20).isActive = true
+      rightButton.heightAnchor.constraint(equalToConstant: 20).isActive = true
+      rightButton.translatesAutoresizingMaskIntoConstraints = false
+      
+      
+      if index == 5 || index == 6 {
+        rightButton.addAction(UIAction(handler: { _ in
+          txtField.becomeFirstResponder()
+        }), for: .touchUpInside)
+      }
       
       //stack icon + placeholder
-      let iPStack = UIStackView(arrangedSubviews: [leftIcon, txtField, rightIcon])
+      let iPStack = UIStackView(arrangedSubviews: [leftIcon, txtField, rightButton])
       iPStack.axis = .horizontal
       iPStack.spacing = 5
       iPStack.alignment = .center
@@ -195,8 +218,7 @@ class LawyersSignUpView: UIView {
     }
   }
   
-  
-  
+
   
   func setUpUI() {
     
@@ -228,27 +250,65 @@ class LawyersSignUpView: UIView {
     headerStack.isLayoutMarginsRelativeArrangement = true
     headerStack.layoutMargins = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 0)
     
+    
     //TextFields StackView
       addSubview(navStack)
       addSubview(headerStack)
       addSubview(textFieldsStack)
+      addSubview(htmlTextView)
+     
     
     NSLayoutConstraint.activate([
-      //nav header
+      //MARK: - nav header
       navStack.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
       navStack.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
       navStack.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
       navStack.heightAnchor.constraint(equalToConstant: 56),
+      
       //header stack
       headerStack.topAnchor.constraint(equalTo: navStack.bottomAnchor, constant:20),
-      //TextFields Stack
+      
+      //MARK: - TextFields Stack
       textFieldsStack.topAnchor.constraint(equalTo: headerStack.bottomAnchor, constant: 30),
       textFieldsStack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
-      textFieldsStack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15)
+      textFieldsStack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15),
+      
+      //MARK: - terms and privacy politics TextView
+      htmlTextView.topAnchor.constraint(equalTo: textFieldsStack.bottomAnchor, constant: 20),
+      htmlTextView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
+      htmlTextView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15)
+      
       
     ])
     
   }
   
- 
+  @objc func doneCheckBtnTapped() {
+    onDoneTapped?()
+  }
+  
+  @objc func cancelClearBtnTapped() {
+    onCancelTapped?()
+  }
+  
+  
+  func sethtmlText(_ htmlString: String, fontFamily: String, size: CGFloat) {
+    self.fontFamily = fontFamily
+    self.fontSize = size
+    
+    guard let data = htmlString.data(using: .utf8) else { return }
+    
+    let options: [NSAttributedString.DocumentReadingOptionKey: Any] = [
+      .documentType: NSAttributedString.DocumentType.html,
+      .characterEncoding: String.Encoding.utf8.rawValue
+    ]
+    
+    if let baseAttributedString = try? NSAttributedString(data: data, options: options, documentAttributes: nil) {
+      let muttableAttributed = NSMutableAttributedString(attributedString: baseAttributedString)
+      
+      muttableAttributed.applyCustomFont(family: fontFamily, size: size)
+      
+      self.htmlTextView.attributedText = muttableAttributed
+    }
+  }
 }
