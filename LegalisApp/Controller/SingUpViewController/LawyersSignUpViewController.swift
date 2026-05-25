@@ -14,7 +14,11 @@ class LawyersSignUpViewController: UIViewController {
   
   private let gendersOptions = ["Masculino", "Femenino"]
   private let practiceType = ["Independiente", "Bufete o Empresa"]
-  let htmlText = "Al registrarte, aceptas nuestros <a href='https://tuapp.com/terminos'>Términos de servicio</a> y </br><a href='https://tuapp.com/privacidad'>Política de privacidad</a>."
+  let htmlText = """
+                <div style="text-align: center;">
+                    Al registrarte, aceptas nuestros <a href='https://tuapp.com/terminos'>Términos de servicio</a> <br> y <a href='https://tuapp.com/privacidad'>Política de privacidad</a>.
+                </div>
+                """
   
   let lawyersSignUpView = LawyersSignUpView()
   
@@ -28,32 +32,32 @@ class LawyersSignUpViewController: UIViewController {
         super.viewDidLoad()
       view.backgroundColor = .systemGray6
       
-      lawyersSignUpView.htmlTextView.delegate = self
       
-      configurePickersViews()
+      configuringDelegatesAndDataSources()
       actionsTextFieldFiveToolBar()
       actionsSixTextFieldToolBar()
-      closeActionButton()
-      configureTextField()
+      closeNavActionButton()
       setHTMLText()
     }
 
-  //MARK: - Picker Views Delegates
-  private func configurePickersViews() {
+  //MARK: - Delegates & Data sources
+  private func configuringDelegatesAndDataSources() {
+    
+    //Pickers view
     lawyersSignUpView.sexPickerView.delegate = self
     lawyersSignUpView.sexPickerView.dataSource = self
     
     lawyersSignUpView.practiceTypePickerView.delegate = self
     lawyersSignUpView.practiceTypePickerView.dataSource = self
-  }
-  
-  
-  //MARK: - assigning manually the delegate to block manual typing
-  func configureTextField() {
     
+    // TextFields to block manual typing
     lawyersSignUpView.textFields[5].delegate = self
     lawyersSignUpView.textFields[6].delegate = self
+    
+    //html delegate
+    lawyersSignUpView.htmlTextView.delegate = self
   }
+  
   
   func actionsTextFieldFiveToolBar() {
     
@@ -84,10 +88,10 @@ class LawyersSignUpViewController: UIViewController {
     
     
   //MARK: - actionButton for close signUp view
-  func closeActionButton() {
-    lawyersSignUpView.closeButton.addAction(UIAction { [weak self] _ in
-       self?.dismiss(animated: true)
-    }, for: .touchUpInside)
+  func closeNavActionButton() {
+    lawyersSignUpView.onCloseNavBtnTapped = { [weak self] in
+      self?.dismiss(animated: true)
+    }
   }
   
   

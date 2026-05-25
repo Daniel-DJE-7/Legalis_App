@@ -58,4 +58,36 @@ class Utilities {
     return UIBarButtonItem(customView: button)
   }
   
+  
+  static func customButtonStyle(_ button: UIButton,
+                                appearance: UIButton.Configuration?,
+                                title: String,
+                                image: UIImage?,
+                                imagePlacement: NSDirectionalRectEdge?,
+                                imagePadding: CGFloat?,
+                                cornerRadius: CGFloat,
+                                color: UIColor,
+                                baseForeground: UIColor,
+                                width: CGFloat,
+                                height: CGFloat,
+                                target: Any?,
+                                action: Selector) {
+   
+    button.configuration = appearance
+    button.configuration?.title = title
+    button.configuration?.image = image
+    button.configuration?.imagePlacement = imagePlacement ?? .leading
+    button.configuration?.imagePadding = imagePadding ?? 0
+    button.layer.cornerRadius = cornerRadius
+    button.backgroundColor = color
+    button.configuration?.baseForegroundColor = baseForeground
+    button.addTarget(target, action: action, for: .touchUpInside)
+    button.widthAnchor.constraint(equalToConstant: width).isActive = true
+    button.heightAnchor.constraint(equalToConstant: height).isActive = true
+    
+    button.translatesAutoresizingMaskIntoConstraints = false
+  }
+  
+
+  
 }

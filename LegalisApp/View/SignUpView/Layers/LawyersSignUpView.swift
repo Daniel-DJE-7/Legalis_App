@@ -26,6 +26,7 @@ class LawyersSignUpView: UIView {
   
   var onDoneTapped: (() -> Void)?
   var onCancelTapped: (() -> Void)?
+  var onCloseNavBtnTapped: (() -> Void)?
   
   //MARK: - PickerViews
   public let sexPickerView = UIPickerView()
@@ -50,7 +51,10 @@ class LawyersSignUpView: UIView {
     config.baseForegroundColor = #colorLiteral(red: 0, green: 0.1370561421, blue: 0.2949633002, alpha: 1)
     
     let button = UIButton(configuration: config)
-    
+    //action
+    button.addAction(UIAction { [weak self] _ in
+      self?.onCloseNavBtnTapped? ()
+    }, for: .touchUpInside)
     
     button.translatesAutoresizingMaskIntoConstraints = false
     
@@ -111,6 +115,26 @@ class LawyersSignUpView: UIView {
     txtView.translatesAutoresizingMaskIntoConstraints = false
     
     return txtView
+  }()
+  
+  
+  //MARK: - signUp button
+  
+  lazy var signUpButton: UIButton = {
+  
+    let button = UIButton(type: .custom)
+    button.configuration = .plain()
+    button.configuration?.title = "Registrarse"
+    button.configuration?.baseForegroundColor = .white
+    button.titleLabel?.font = UIFont(name: "Inter", size: 17)
+    button.titleLabel?.font = .systemFont(ofSize: 17, weight: .semibold)
+    button.backgroundColor = #colorLiteral(red: 0, green: 0.1370561421, blue: 0.2949633002, alpha: 1)
+    button.layer.cornerRadius = 10
+    button.addTarget(self, action: #selector(onSignUpTapped), for: .touchUpInside)
+    button.widthAnchor.constraint(equalToConstant: 342).isActive = true
+    button.heightAnchor.constraint(equalToConstant: 54).isActive = true
+    button.translatesAutoresizingMaskIntoConstraints = false
+    return button
   }()
   
   override init(frame: CGRect) {
@@ -252,10 +276,11 @@ class LawyersSignUpView: UIView {
     
     
     //TextFields StackView
-      addSubview(navStack)
-      addSubview(headerStack)
-      addSubview(textFieldsStack)
-      addSubview(htmlTextView)
+    addSubview(navStack)
+    addSubview(headerStack)
+    addSubview(textFieldsStack)
+    addSubview(htmlTextView)
+    addSubview(signUpButton)
      
     
     NSLayoutConstraint.activate([
@@ -276,11 +301,20 @@ class LawyersSignUpView: UIView {
       //MARK: - terms and privacy politics TextView
       htmlTextView.topAnchor.constraint(equalTo: textFieldsStack.bottomAnchor, constant: 20),
       htmlTextView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
-      htmlTextView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15)
+      htmlTextView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15),
       
-      
+      //MARK: SignUp button
+      signUpButton.topAnchor.constraint(equalTo: htmlTextView.bottomAnchor, constant: 15),
+     // signUpButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+      //signUpButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+      signUpButton.centerXAnchor.constraint(equalTo: centerXAnchor)
     ])
     
+  }
+  
+  
+  func closeNavBtnTapped() {
+    onCloseNavBtnTapped?()
   }
   
   @objc func doneCheckBtnTapped() {
@@ -292,23 +326,32 @@ class LawyersSignUpView: UIView {
   }
   
   
+  
+  
   func sethtmlText(_ htmlString: String, fontFamily: String, size: CGFloat) {
     self.fontFamily = fontFamily
     self.fontSize = size
     
+    //convierte mi texto html en data binario "0010110",
     guard let data = htmlString.data(using: .utf8) else { return }
-    
+    //le decimos a swift como interpretar los datos, se dice: esto es texto html
     let options: [NSAttributedString.DocumentReadingOptionKey: Any] = [
       .documentType: NSAttributedString.DocumentType.html,
-      .characterEncoding: String.Encoding.utf8.rawValue
+      .characterEncoding: String.Encoding.utf8.rawValue//el texto usa codigicacion utf8
     ]
     
+    //toma el html y le aplica estilos
     if let baseAttributedString = try? NSAttributedString(data: data, options: options, documentAttributes: nil) {
       let muttableAttributed = NSMutableAttributedString(attributedString: baseAttributedString)
       
       muttableAttributed.applyCustomFont(family: fontFamily, size: size)
       
+      //mostramos el resultado en pantalla
       self.htmlTextView.attributedText = muttableAttributed
     }
+  }
+  
+ @objc private func onSignUpTapped() {
+    print("You have signed up to legalis")
   }
 }
