@@ -66,7 +66,7 @@ class Utilities {
                                 imagePlacement: NSDirectionalRectEdge?,
                                 imagePadding: CGFloat?,
                                 cornerRadius: CGFloat,
-                                color: UIColor,
+                                backgroundColor: UIColor,
                                 baseForeground: UIColor,
                                 width: CGFloat,
                                 height: CGFloat,
@@ -75,11 +75,13 @@ class Utilities {
    
     button.configuration = appearance
     button.configuration?.title = title
+    button.titleLabel?.font = .systemFont(ofSize: 17, weight: .semibold)
+    button.titleLabel?.font = UIFont(name: "Inter", size: 17)
     button.configuration?.image = image
     button.configuration?.imagePlacement = imagePlacement ?? .leading
     button.configuration?.imagePadding = imagePadding ?? 0
     button.layer.cornerRadius = cornerRadius
-    button.backgroundColor = color
+    button.backgroundColor = backgroundColor
     button.configuration?.baseForegroundColor = baseForeground
     button.addTarget(target, action: action, for: .touchUpInside)
     button.widthAnchor.constraint(equalToConstant: width).isActive = true

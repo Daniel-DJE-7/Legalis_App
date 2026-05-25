@@ -7,8 +7,15 @@
 
 import UIKit
 
+protocol LawyersSignUpViewDelegate: AnyObject {
+  func onDoneBtnPressed()
+  func onCancelBtnPressed()
+}
+
 class LawyersSignUpView: UIView {
 
+  weak var delegate: LawyersSignUpViewDelegate?
+  
   var fontFamily: String = "Inter"
   var fontSize: CGFloat = 12
   
@@ -101,6 +108,33 @@ class LawyersSignUpView: UIView {
     return stack
   }()
   
+  //MARK: - TOOLBARS FOR PICKER VIEWS
+  
+  lazy var toolBarForFiveIndex: UIToolbar = {
+    let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
+    let doneSixBtn = Utilities.createBtnForThePickerView(title: nil, image: UIImage(systemName: "checkmark.square.fill"), target: self, action: #selector(doneCheckBtnTapped), color: #colorLiteral(red: 0.003979303874, green: 0.137050271, blue: 0.2949559987, alpha: 1))
+    let spaceSixBtn = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+    let cancelSixBtn = Utilities.createBtnForThePickerView(title: nil, image: UIImage(systemName: "clear.fill"), target: self, action: #selector(cancelClearBtnTapped), color: #colorLiteral(red: 0.7241197066, green: 0.1285783471, blue: 0, alpha: 1))
+    toolbar.setItems([cancelSixBtn, spaceSixBtn, doneSixBtn], animated: false)
+    toolbar.sizeToFit()
+    
+    return toolbar
+  }()
+  
+  
+  lazy var toolBarForSixIndex: UIToolbar = {
+    let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
+    let doneSixBtn = Utilities.createBtnForThePickerView(title: "Hecho", image: nil, target: self, action: #selector(onDonePressed), color: #colorLiteral(red: 0.003979303874, green: 0.137050271, blue: 0.2949559987, alpha: 1))
+    let spaceSixBtn = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+    let cancelSixBtn = Utilities.createBtnForThePickerView(title: "Cancelar", image: nil, target: self, action: #selector(onCancelPressed), color: #colorLiteral(red: 0.7241197066, green: 0.1285783471, blue: 0, alpha: 1))
+    toolbar.setItems([cancelSixBtn, spaceSixBtn, doneSixBtn], animated: false)
+    toolbar.sizeToFit()
+    
+    return toolbar
+  }()
+  
+  
+
   
   //MARK: - HTML TEXT VIEW
   let htmlTextView: UITextView = {
@@ -120,28 +154,14 @@ class LawyersSignUpView: UIView {
   
   //MARK: - signUp button
   
-  lazy var signUpButton: UIButton = {
+  let signUpButton = UIButton()
   
-    let button = UIButton(type: .custom)
-    button.configuration = .plain()
-    button.configuration?.title = "Registrarse"
-    button.configuration?.baseForegroundColor = .white
-    button.titleLabel?.font = UIFont(name: "Inter", size: 17)
-    button.titleLabel?.font = .systemFont(ofSize: 17, weight: .semibold)
-    button.backgroundColor = #colorLiteral(red: 0, green: 0.1370561421, blue: 0.2949633002, alpha: 1)
-    button.layer.cornerRadius = 10
-    button.addTarget(self, action: #selector(onSignUpTapped), for: .touchUpInside)
-    button.widthAnchor.constraint(equalToConstant: 342).isActive = true
-    button.heightAnchor.constraint(equalToConstant: 54).isActive = true
-    button.translatesAutoresizingMaskIntoConstraints = false
-    return button
-  }()
   
   override init(frame: CGRect) {
     super.init(frame: frame)
     
     setUpFields()
-    
+    setUpSingUpBtn()
     setUpUI()
   }
   
@@ -150,6 +170,7 @@ class LawyersSignUpView: UIView {
   }
   
   func setUpFields() {
+    
     fields.enumerated().forEach { index, field in
       //creating icon
       let leftIcon = UIImageView(image: field.leftImage?.withRenderingMode(.alwaysTemplate))
@@ -173,31 +194,17 @@ class LawyersSignUpView: UIView {
         txtField.isSecureTextEntry = true
       }
       
-      //MARK: - Creating the toolBar For the PickerView
-      let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: safeAreaLayoutGuide.layoutFrame.width, height: 50))
-      
-      //MARK: - Done button for the pickersView
-      let doneBtn = Utilities.createBtnForThePickerView(title: nil, image: UIImage(systemName: "checkmark.square.fill"), target: self, action: #selector(doneCheckBtnTapped), color: #colorLiteral(red: 0.003979303874, green: 0.137050271, blue: 0.2949559987, alpha: 1))
-      
-      let spaceBtn = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-      
-      let cancelBtn = Utilities.createBtnForThePickerView(title: nil, image: UIImage(systemName: "clear.fill"), target: self, action: #selector(cancelClearBtnTapped), color: #colorLiteral(red: 0.7241197066, green: 0.1285783471, blue: 0, alpha: 1))
-      
-      toolBar.setItems([cancelBtn, spaceBtn, doneBtn], animated: false)
-      toolBar.sizeToFit()
-      
-      
       //adding the pickerView to the textfield at index 5 and 6
       if index == 5 {
         txtField.tintColor = .clear//hide the cursor of the textfield
         txtField.inputView = sexPickerView
-        txtField.inputAccessoryView = toolBar
+        txtField.inputAccessoryView = toolBarForFiveIndex
       }
       
       if index == 6 {
         txtField.tintColor = .clear//hide the cursor of the textfield
         txtField.inputView = practiceTypePickerView
-        txtField.inputAccessoryView = toolBar
+        txtField.inputAccessoryView = toolBarForSixIndex
       }
       
       //adding the txtfield to the array of textfield
@@ -243,6 +250,11 @@ class LawyersSignUpView: UIView {
   }
   
 
+  func setUpSingUpBtn() {
+    
+    Utilities.customButtonStyle(signUpButton, appearance: .plain(), title: "Registrarse", image: nil, imagePlacement: nil, imagePadding: nil, cornerRadius: 10, backgroundColor: #colorLiteral(red: 0.003979303874, green: 0.137050271, blue: 0.2949559987, alpha: 1), baseForeground: .white, width: 342, height: 54, target: self, action: #selector(onSignUpTapped))
+  }
+  
   
   func setUpUI() {
     
@@ -313,7 +325,9 @@ class LawyersSignUpView: UIView {
   }
   
   
-  func closeNavBtnTapped() {
+  //MARK: - ACTIONS FOR BUTTONS
+  
+  func closeNavHeaderBtnTapped() {
     onCloseNavBtnTapped?()
   }
   
@@ -325,9 +339,23 @@ class LawyersSignUpView: UIView {
     onCancelTapped?()
   }
   
+  @objc func onDonePressed() {
+    print("done pressed")
+    delegate?.onDoneBtnPressed()
+  }
+  
+  @objc func onCancelPressed() {
+    print("cancel pressed")
+    delegate?.onCancelBtnPressed()
+  }
+  
+ @objc private func onSignUpTapped() {
+    print("You have signed up to legalis")
+  }
   
   
   
+  //MARK: - method to convert my html into a String
   func sethtmlText(_ htmlString: String, fontFamily: String, size: CGFloat) {
     self.fontFamily = fontFamily
     self.fontSize = size
@@ -349,9 +377,5 @@ class LawyersSignUpView: UIView {
       //mostramos el resultado en pantalla
       self.htmlTextView.attributedText = muttableAttributed
     }
-  }
-  
- @objc private func onSignUpTapped() {
-    print("You have signed up to legalis")
   }
 }

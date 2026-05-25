@@ -16,7 +16,7 @@ class LawyersSignUpViewController: UIViewController {
   private let practiceType = ["Independiente", "Bufete o Empresa"]
   let htmlText = """
                 <div style="text-align: center;">
-                    Al registrarte, aceptas nuestros <a href='https://tuapp.com/terminos'>Términos de servicio</a> <br> y <a href='https://tuapp.com/privacidad'>Política de privacidad</a>.
+                    Al registrarte, aceptas nuestros <a href='https://legalis.com.co/terminos'>Términos de servicio</a> <br> y <a href='https:/legalis.com.co/privacidad'>Política de privacidad</a>.
                 </div>
                 """
   
@@ -35,13 +35,13 @@ class LawyersSignUpViewController: UIViewController {
       
       configuringDelegatesAndDataSources()
       actionsTextFieldFiveToolBar()
-      actionsSixTextFieldToolBar()
       closeNavActionButton()
       setHTMLText()
     }
 
   //MARK: - Delegates & Data sources
   private func configuringDelegatesAndDataSources() {
+    lawyersSignUpView.delegate = self
     
     //Pickers view
     lawyersSignUpView.sexPickerView.delegate = self
@@ -71,20 +71,6 @@ class LawyersSignUpViewController: UIViewController {
       
     }
   }
-    
-    
-    func actionsSixTextFieldToolBar() {
-//      lawyersSignUpView.onDoneTapped = { [weak self] in
-//        self?.lawyersSignUpView.textFields[6].endEditing(true)
-//      }
-      
-//      lawyersSignUpView.onCancelTapped = { [weak self] in
-//        self?.lawyersSignUpView.textFields[6].text = nil
-//        self?.lawyersSignUpView.textFields[6].endEditing(true)
-//
-//      }
-    }
-    
     
     
   //MARK: - actionButton for close signUp view
@@ -161,3 +147,17 @@ extension LawyersSignUpViewController: UITextViewDelegate {
   }
 }
 
+
+extension LawyersSignUpViewController: LawyersSignUpViewDelegate {
+  
+  func onDoneBtnPressed() {
+    self.lawyersSignUpView.textFields[6].endEditing(true)
+  }
+  
+  func onCancelBtnPressed() {
+    self.lawyersSignUpView.textFields[6].text = nil
+    self.lawyersSignUpView.textFields[6].endEditing(true)
+  }
+  
+  
+}
