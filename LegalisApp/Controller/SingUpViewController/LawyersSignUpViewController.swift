@@ -12,8 +12,8 @@ import SafariServices
 class LawyersSignUpViewController: UIViewController {
     
   
-  private let gendersOptions = ["Masculino", "Femenino"]
-  private let practiceType = ["Independiente", "Bufete o Empresa"]
+  private let gendersOptions = ["Ninguno","Masculino", "Femenino"]
+  private let practiceType = ["Ninguno","Independiente", "Bufete o Empresa"]
   let htmlText = """
                 <div style="text-align: center;">
                     Al registrarte, aceptas nuestros <a href='https://legalis.com.co/terminos'>Términos de servicio</a> <br> y <a href='https:/legalis.com.co/privacidad'>Política de privacidad</a>.
@@ -57,20 +57,6 @@ class LawyersSignUpViewController: UIViewController {
     //html delegate
     lawyersSignUpView.htmlTextView.delegate = self
   }
-  
-  
-  func actionsTextFieldFiveToolBar() {
-    
-    lawyersSignUpView.onDoneTapped = { [weak self] in
-      self?.lawyersSignUpView.textFields[5].endEditing(true)
-    }
-    
-    lawyersSignUpView.onCancelTapped = { [weak self] in
-      self?.lawyersSignUpView.textFields[5].text = nil
-      self?.lawyersSignUpView.textFields[5].endEditing(true)
-      
-    }
-  }
     
     
   //MARK: - actionButton for close signUp view
@@ -85,6 +71,11 @@ class LawyersSignUpViewController: UIViewController {
     lawyersSignUpView.sethtmlText(htmlText, fontFamily: "Inter", size: 12)
   }
   
+  func extractingCredentials() {
+    //collectiong the password
+    let password = lawyersSignUpView.textFields[4].text ?? ""
+    
+  }
 
 }
 
@@ -137,6 +128,7 @@ extension LawyersSignUpViewController: UITextFieldDelegate {
   }
 }
 
+//MARK: - TextView Delegate
 extension LawyersSignUpViewController: UITextViewDelegate {
   
   func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
@@ -147,17 +139,91 @@ extension LawyersSignUpViewController: UITextViewDelegate {
   }
 }
 
-
+//MARK: - Actions for the toolbars in PickerViews
 extension LawyersSignUpViewController: LawyersSignUpViewDelegate {
   
-  func onDoneBtnPressed() {
+  func actionsTextFieldFiveToolBar() {
+    
+    lawyersSignUpView.onDoneTapped = { [weak self] in
+      self?.lawyersSignUpView.textFields[5].endEditing(true)
+    }
+    
+    lawyersSignUpView.onCancelTapped = { [weak self] in
+      self?.lawyersSignUpView.textFields[5].text = nil
+      self?.lawyersSignUpView.textFields[5].endEditing(true)
+      
+    }
+  }
+  
+  //MARK: - Actions for the 6 pickerView
+  func onDoneBtnSixthIndexPressed() {
     self.lawyersSignUpView.textFields[6].endEditing(true)
   }
   
-  func onCancelBtnPressed() {
+  func onCancelBtnSixIndexPressed() {
     self.lawyersSignUpView.textFields[6].text = nil
     self.lawyersSignUpView.textFields[6].endEditing(true)
   }
+ 
+  //MARK: - SignUp Btn
+  func onSignUpBtnTapped() {
+    //collectiong info of email and password
+    //validation to push to homeViewController
+      //validate that fields "name, document, mobile num, email, password are filled as obligation and they fulfill the format
+      //validate optional field sex and typeOfpractice as optionals, there is not obligation to write them
+    
+  }
   
+  //MARK: - Extracting credentials
+  func extractionOfCredentials() -> ExtractingCredentialsModel {
+    //collectiong info of email and password
+    let name = lawyersSignUpView.textFields[0].text ?? ""
+    let documentNumber = lawyersSignUpView.textFields[1].text ?? ""
+    let mobileNumber = lawyersSignUpView.textFields[2].text ?? ""
+    let email = lawyersSignUpView.textFields[3].text ?? ""
+    let password = lawyersSignUpView.textFields[4].text ?? ""
+    
+    let selectiongOfSex = lawyersSignUpView.sexPickerView.selectedRow(inComponent: 0)
+    var sex: Sex? = nil
+    
+//    switch selectiongOfSex {
+//    case 1:
+//      sex = .male
+//    case 2:
+//      sex = .female
+//    default:
+//      sex = nil
+//    }
+    if selectiongOfSex == 0 {
+      sex = nil
+    } else if selectiongOfSex == 1 {
+      sex = .male
+    } else {
+      sex = .female
+    }
+    
+    let selectionOfpracticeType = lawyersSignUpView.practiceTypePickerView.selectedRow(inComponent: 0)
+    
+    var practiceType: PracticeType? = nil
+    
+    switch selectionOfpracticeType {
+      case 0:
+        practiceType = PracticeType.none
+      case 1:
+        practiceType = .independent
+      case 2:
+        practiceType = .employee
+      default:
+        practiceType = nil
+    }
+    
+   return ExtractingCredentialsModel(name: name,
+                               numberOfDocument: Int64(documentNumber) ?? 0,
+                               mobileNumber: Int64(mobileNumber) ?? 0,
+                               email: email,
+                               password: password,
+                               sex: sex,
+                               practiceType: practiceType)
+  }
   
 }

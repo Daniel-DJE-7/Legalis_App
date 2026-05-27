@@ -90,6 +90,32 @@ class Utilities {
     button.translatesAutoresizingMaskIntoConstraints = false
   }
   
-
+  //MARK: - HTML TextView
+  static func creatingHTMLTextView(_ textView: UITextView) {
+    textView.isEditable = false
+    textView.isSelectable = true
+    textView.isScrollEnabled = false
+    textView.backgroundColor = .clear
+    textView.textContainerInset = .zero
+    textView.textContainer.lineFragmentPadding = 0
+    textView.textAlignment = .center
+    textView.translatesAutoresizingMaskIntoConstraints = false
+  }
+  
+  
+  //MARK: - Validation format for the password TextField
+  static func isPasswordValid(_ password: String) -> Bool {
+    let passwordRegex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$#!%*?&]).{8,}$"
+    
+    let passwordPredicate = NSPredicate(
+      format: "SELF MATCHES %@",
+      passwordRegex
+    )
+    
+    return passwordPredicate.evaluate(with: password)
+  }
+  
+  
+  
   
 }

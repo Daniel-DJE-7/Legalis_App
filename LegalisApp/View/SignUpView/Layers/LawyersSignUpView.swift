@@ -8,8 +8,9 @@
 import UIKit
 
 protocol LawyersSignUpViewDelegate: AnyObject {
-  func onDoneBtnPressed()
-  func onCancelBtnPressed()
+  func onDoneBtnSixthIndexPressed()
+  func onCancelBtnSixIndexPressed()
+  func onSignUpBtnTapped()
 }
 
 class LawyersSignUpView: UIView {
@@ -137,19 +138,21 @@ class LawyersSignUpView: UIView {
 
   
   //MARK: - HTML TEXT VIEW
-  let htmlTextView: UITextView = {
-    let txtView = UITextView()
-    txtView.isEditable = false
-    txtView.isSelectable = true
-    txtView.isScrollEnabled = false
-    txtView.backgroundColor = .clear
-    txtView.textContainerInset = .zero
-    txtView.textContainer.lineFragmentPadding = 0
-    txtView.textAlignment = .center
-    txtView.translatesAutoresizingMaskIntoConstraints = false
-    
-    return txtView
-  }()
+  let htmlTextView = UITextView()
+  
+//  let htmlTextView: UITextView = {
+//    let txtView = UITextView()
+//    txtView.isEditable = false
+//    txtView.isSelectable = true
+//    txtView.isScrollEnabled = false
+//    txtView.backgroundColor = .clear
+//    txtView.textContainerInset = .zero
+//    txtView.textContainer.lineFragmentPadding = 0
+//    txtView.textAlignment = .center
+//    txtView.translatesAutoresizingMaskIntoConstraints = false
+//
+//    return txtView
+//  }()
   
   
   //MARK: - signUp button
@@ -161,6 +164,7 @@ class LawyersSignUpView: UIView {
     super.init(frame: frame)
     
     setUpFields()
+    setUpHTMLTextView()
     setUpSingUpBtn()
     setUpUI()
   }
@@ -249,7 +253,11 @@ class LawyersSignUpView: UIView {
     }
   }
   
-
+  
+  func setUpHTMLTextView() {
+    Utilities.creatingHTMLTextView(htmlTextView)
+  }
+  
   func setUpSingUpBtn() {
     
     Utilities.customButtonStyle(signUpButton, appearance: .plain(), title: "Registrarse", image: nil, imagePlacement: nil, imagePadding: nil, cornerRadius: 10, backgroundColor: #colorLiteral(red: 0.003979303874, green: 0.137050271, blue: 0.2949559987, alpha: 1), baseForeground: .white, width: 342, height: 54, target: self, action: #selector(onSignUpTapped))
@@ -341,12 +349,12 @@ class LawyersSignUpView: UIView {
   
   @objc func onDonePressed() {
     print("done pressed")
-    delegate?.onDoneBtnPressed()
+    delegate?.onDoneBtnSixthIndexPressed()
   }
   
   @objc func onCancelPressed() {
     print("cancel pressed")
-    delegate?.onCancelBtnPressed()
+    delegate?.onCancelBtnSixIndexPressed()
   }
   
  @objc private func onSignUpTapped() {
