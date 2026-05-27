@@ -8,6 +8,12 @@
 import UIKit
 import SafariServices
 
+enum TextFieldValidation {
+  case emptyFields
+  case invalidEmail
+  case invalidPassword
+  case success
+}
 
 class LawyersSignUpViewController: UIViewController {
     
@@ -71,12 +77,9 @@ class LawyersSignUpViewController: UIViewController {
     lawyersSignUpView.sethtmlText(htmlText, fontFamily: "Inter", size: 12)
   }
   
-  func extractingCredentials() {
-    //collectiong the password
-    let password = lawyersSignUpView.textFields[4].text ?? ""
-    
-  }
-
+  
+  
+  
 }
 
 
@@ -167,24 +170,33 @@ extension LawyersSignUpViewController: LawyersSignUpViewDelegate {
  
   //MARK: - SignUp Btn
   func onSignUpBtnTapped() {
-    //collectiong info of email and password
+    //collectiong info of users
     //validation to push to homeViewController
       //validate that fields "name, document, mobile num, email, password are filled as obligation and they fulfill the format
-      //validate optional field sex and typeOfpractice as optionals, there is not obligation to write them
+        //validate that fields are not void
+        //1) validate number of document is a number
+        //2) validate mobile number is numbers
+        //3) validate the email as test@test.com
+        //4) validate the password as min 1 lowercase, 1 uppercase, one number, 1 special character, min 8 characters
+      //validate optional field sex and typeOfpractice as optionals, there is not obligation to select them
     
   }
   
   //MARK: - Extracting credentials
   func extractionOfCredentials() -> ExtractingCredentialsModel {
-    //collectiong info of email and password
+    
+    //collecting info of users
     let name = lawyersSignUpView.textFields[0].text ?? ""
+    
     let documentNumber = lawyersSignUpView.textFields[1].text ?? ""
     let mobileNumber = lawyersSignUpView.textFields[2].text ?? ""
     let email = lawyersSignUpView.textFields[3].text ?? ""
+        
     let password = lawyersSignUpView.textFields[4].text ?? ""
     
     let selectiongOfSex = lawyersSignUpView.sexPickerView.selectedRow(inComponent: 0)
     var sex: Sex? = nil
+    
     
 //    switch selectiongOfSex {
 //    case 1:
@@ -194,6 +206,7 @@ extension LawyersSignUpViewController: LawyersSignUpViewDelegate {
 //    default:
 //      sex = nil
 //    }
+    
     if selectiongOfSex == 0 {
       sex = nil
     } else if selectiongOfSex == 1 {
@@ -218,12 +231,42 @@ extension LawyersSignUpViewController: LawyersSignUpViewDelegate {
     }
     
    return ExtractingCredentialsModel(name: name,
-                               numberOfDocument: Int64(documentNumber) ?? 0,
-                               mobileNumber: Int64(mobileNumber) ?? 0,
-                               email: email,
-                               password: password,
-                               sex: sex,
-                               practiceType: practiceType)
+                                     numberOfDocument: documentNumber,
+                                     mobileNumber: mobileNumber,
+                                     email: email,
+                                     password: password,
+                                     sex: sex,
+                                     practiceType: practiceType)
+  }
+  
+  
+  //MARK: - Validation of credentials
+  func validateCredentials(credentials: ExtractingCredentialsModel) -> TextFieldValidation {
+    
+    let validateEmail = Utilities.isValidEmail(credentials.email)
+    let validatePassword = Utilities.isPasswordValid(credentials.password)
+    let allowedDomains = ["example.com", "test.com"]
+    let emailDomain = credentials.email.split(separator: "@").last!
+    
+    //MARK: - Empty fields
+    
+    if credentials.name.isEmpty && credentials.numberOfDocument.isEmpty && credentials.mobileNumber.isEmpty && credentials.email.isEmpty && credentials.password.isEmpty {
+      return .emptyFields
+    }
+    
+    //MARK: - Email validation
+    if !validateEmail || !allowedDomains.contains(String(emailDomain)) {
+      return .invalidEmail
+    }
+    
+    //MARK: - Password validation
+    if !validatePassword {
+      return .invalidPassword
+    }
+    
+    
+    
+    return .success
   }
   
 }
