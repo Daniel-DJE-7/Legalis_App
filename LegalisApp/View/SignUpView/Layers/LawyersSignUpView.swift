@@ -140,21 +140,6 @@ class LawyersSignUpView: UIView {
   //MARK: - HTML TEXT VIEW
   let htmlTextView = UITextView()
   
-//  let htmlTextView: UITextView = {
-//    let txtView = UITextView()
-//    txtView.isEditable = false
-//    txtView.isSelectable = true
-//    txtView.isScrollEnabled = false
-//    txtView.backgroundColor = .clear
-//    txtView.textContainerInset = .zero
-//    txtView.textContainer.lineFragmentPadding = 0
-//    txtView.textAlignment = .center
-//    txtView.translatesAutoresizingMaskIntoConstraints = false
-//
-//    return txtView
-//  }()
-  
-  
   //MARK: - signUp button
   
   let signUpButton = UIButton()
@@ -173,6 +158,7 @@ class LawyersSignUpView: UIView {
     fatalError("init(coder:) has not been implemented")
   }
   
+  //MARK: - Setting up the fields by index
   func setUpFields() {
     
     fields.enumerated().forEach { index, field in
@@ -185,17 +171,30 @@ class LawyersSignUpView: UIView {
       leftIcon.heightAnchor.constraint(equalToConstant: 20).isActive = true
       leftIcon.translatesAutoresizingMaskIntoConstraints = false
 
-      //set up texfields
+      //creating and setting up the texfields
       let txtField = UITextField()
       txtField.placeholder = field.placeholder
-      //txtField.clearButtonMode = .whileEditing
       txtField.translatesAutoresizingMaskIntoConstraints = false
       Utilities.styleTextField(txtField)//agreagmos estilo utilities
       
       
+      //setting the number's keyboard for txtField at index 1 and 2
+      if index == 1 || index == 2 {
+        txtField.keyboardType = .phonePad
+        txtField.keyboardAppearance = .dark
+      }
+      
+      if index == 3 {
+        txtField.keyboardType = .emailAddress
+      }
+      
       //setting secure text entry to the passwordTextfield
       if index == 4 {
         txtField.isSecureTextEntry = true
+      }
+      
+      if [0,1,2,3,4].contains(index) {
+        txtField.clearButtonMode = .whileEditing
       }
       
       //adding the pickerView to the textfield at index 5 and 6
@@ -358,7 +357,7 @@ class LawyersSignUpView: UIView {
   }
   
  @objc private func onSignUpTapped() {
-    print("You have signed up to legalis")
+   delegate?.onSignUpBtnTapped()
   }
   
   

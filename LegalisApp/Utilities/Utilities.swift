@@ -20,7 +20,6 @@ class Utilities {
     bottomLine.backgroundColor = #colorLiteral(red: 0.9332712293, green: 0.9329634309, blue: 0.9537363648, alpha: 1)
     bottomLine.translatesAutoresizingMaskIntoConstraints = false
     textField.translatesAutoresizingMaskIntoConstraints = false
-    //bottomLine.frame = CGRect(x: 0, y: 0, width: 306, height: Int(Double(0.5)))
     //agregamos bottomLine al textField
     textField.addSubview(bottomLine)
     
@@ -32,7 +31,7 @@ class Utilities {
       bottomLine.leadingAnchor.constraint(equalTo: textField.leadingAnchor),
       bottomLine.trailingAnchor.constraint(equalTo: textField.trailingAnchor),
       bottomLine.bottomAnchor.constraint(equalTo: textField.bottomAnchor),
-      bottomLine.heightAnchor.constraint(equalToConstant: 1.0)//grosor de línea
+      bottomLine.heightAnchor.constraint(equalToConstant: 1.5)//grosor de línea
     ])
   }
   
@@ -102,10 +101,16 @@ class Utilities {
     textView.translatesAutoresizingMaskIntoConstraints = false
   }
   
+  //MARK: - Validation format for the name TextField
+  static func isValidName(_ name: String) -> Bool {
+    let nameRegex = "^[A-Za-z ]{5,100}$"
+    let namePredicate = NSPredicate(format: "SELF MATCHES %@", nameRegex)
+    return namePredicate.evaluate(with: name)
+  }
   
   //MARK: - Validation format for the password TextField
   static func isPasswordValid(_ password: String) -> Bool {
-    let passwordRegex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$#!%*?&]).{8,}$"
+    let passwordRegex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$#!%*?&_\\-]).{8,12}$"
     
     let passwordPredicate = NSPredicate(
       format: "SELF MATCHES %@",
@@ -118,12 +123,20 @@ class Utilities {
   //MARK: - Validation format for the email textfield
   static func isValidEmail(_ email: String) -> Bool {
     
-    let emailRegex = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,64}$"
+    let emailRegex = "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}(\\.[a-z]{2,})?$"
     
     let emailPredicate = NSPredicate(format: "SELF MATCHES[C] %@", emailRegex)
     
     return emailPredicate.evaluate(with: email)
   }
   
+  //MARK: - Validation format for the numbers' textfield (doc and phone)
+  static func isValidNumber(_ number: String) -> Bool {
+    let numberRegex = "^[0-9]{10,20}$"//o -> "\\d{10,20}$"
+   
+    let numberPredicate = NSPredicate(format: "SELF MATCHES[C] %@", numberRegex)
+    
+    return numberPredicate.evaluate(with: number)
+  }
   
 }

@@ -10,8 +10,11 @@ import SafariServices
 
 enum TextFieldValidation {
   case emptyFields
+  case invalidName
   case invalidEmail
   case invalidPassword
+  case invalidNumberOfDocument
+  case invalidNumberOfCellPhone
   case success
 }
 
@@ -179,7 +182,26 @@ extension LawyersSignUpViewController: LawyersSignUpViewDelegate {
         //3) validate the email as test@test.com
         //4) validate the password as min 1 lowercase, 1 uppercase, one number, 1 special character, min 8 characters
       //validate optional field sex and typeOfpractice as optionals, there is not obligation to select them
+    let credentialsExtracted = extractionOfCredentials()
+    let credentialsValidation = validateCredentials(credentials: credentialsExtracted)
     
+    switch credentialsValidation {
+      case .emptyFields:
+        print("empty fields")
+      case .invalidName:
+        print("Invalid name")
+      case .invalidEmail:
+        print("invalid email")
+      case .invalidPassword:
+        print("invalid password")
+      case .invalidNumberOfDocument:
+        print("invalid number of document")
+      case .invalidNumberOfCellPhone:
+        print("invalid mobile number")
+      case.success:
+        print("success")
+      //push to homeviewcontroller
+    }
   }
   
   //MARK: - Extracting credentials
@@ -243,19 +265,26 @@ extension LawyersSignUpViewController: LawyersSignUpViewDelegate {
   //MARK: - Validation of credentials
   func validateCredentials(credentials: ExtractingCredentialsModel) -> TextFieldValidation {
     
+    let validateName = Utilities.isValidName(credentials.name)
     let validateEmail = Utilities.isValidEmail(credentials.email)
     let validatePassword = Utilities.isPasswordValid(credentials.password)
-    let allowedDomains = ["example.com", "test.com"]
-    let emailDomain = credentials.email.split(separator: "@").last!
+    let validateNumberOfDocument = Utilities.isValidNumber(credentials.numberOfDocument)
+    let validateCellphoneNumber = Utilities.isValidNumber(credentials.mobileNumber)
     
     //MARK: - Empty fields
     
-    if credentials.name.isEmpty && credentials.numberOfDocument.isEmpty && credentials.mobileNumber.isEmpty && credentials.email.isEmpty && credentials.password.isEmpty {
+    if credentials.name.isEmpty || credentials.numberOfDocument.isEmpty || credentials.mobileNumber.isEmpty || credentials.email.isEmpty || credentials.password.isEmpty {
       return .emptyFields
     }
     
+    //MARK: - Name validation
+    if !validateName {
+      return .invalidName
+    }
+    
     //MARK: - Email validation
-    if !validateEmail || !allowedDomains.contains(String(emailDomain)) {
+    
+    if !validateEmail {
       return .invalidEmail
     }
     
@@ -264,6 +293,15 @@ extension LawyersSignUpViewController: LawyersSignUpViewDelegate {
       return .invalidPassword
     }
     
+    //MARK: - Number of document validation
+    if !validateNumberOfDocument {
+      return .invalidNumberOfDocument
+    }
+    
+    //MARK: - cellphone number validation
+    if !validateCellphoneNumber {
+      return .invalidNumberOfCellPhone
+    }
     
     
     return .success
