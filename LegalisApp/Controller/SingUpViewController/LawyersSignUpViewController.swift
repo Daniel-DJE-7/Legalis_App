@@ -43,7 +43,7 @@ class LawyersSignUpViewController: UIViewController {
       
       
       configuringDelegatesAndDataSources()
-      actionsTextFieldFiveToolBar()
+      actionsforSelectingSexToolBar()
       closeNavActionButton()
       setHTMLText()
     }
@@ -147,26 +147,78 @@ extension LawyersSignUpViewController: UITextViewDelegate {
 
 //MARK: - Actions for the toolbars in PickerViews
 extension LawyersSignUpViewController: LawyersSignUpViewDelegate {
+  //Name field
+  func onDoneNameBtnPressed() {
+    self.lawyersSignUpView.textFields[0].endEditing(true)
+  }
   
-  func actionsTextFieldFiveToolBar() {
+  
+  func onCancelNameBtnPressed() {
+    self.lawyersSignUpView.textFields[0].text = nil
+    self.lawyersSignUpView.textFields[0].endEditing(true)
+  }
+  
+  //document field
+  func onDoneDocumentBtnTapped() {
+    self.lawyersSignUpView.textFields[1].endEditing(true)
+  }
+  
+  func onCancelDocumentBtnTapped() {
+    self.lawyersSignUpView.textFields[1].text = nil
+    self.lawyersSignUpView.textFields[1].endEditing(true)
+  }
+  
+  //phone number field
+  func onDonePhoneNumberBtnTapped() {
+    self.lawyersSignUpView.textFields[2].endEditing(true)
+  }
+  
+  func onCancelPhoneNumberBtnTapped() {
+    self.lawyersSignUpView.textFields[2].text = nil
+    self.lawyersSignUpView.textFields[2].endEditing(true)
+  }
+  
+  //email field
+  func onDoneEmailBtnTapped() {
+    self.lawyersSignUpView.textFields[3].endEditing(true)
+  }
+  
+  func onCancelEmailBtnTapped() {
+    self.lawyersSignUpView.textFields[3].text = nil
+    self.lawyersSignUpView.textFields[3].endEditing(true)
+  }
+  
+  //password field
+  func onDonePasswordBtnTapped() {
+    self.lawyersSignUpView.textFields[4].endEditing(true)
+  }
+  
+  func onCancelPasswordBtnTapped() {
+    self.lawyersSignUpView.textFields[4].text = nil
+    self.lawyersSignUpView.textFields[4].endEditing(true)
+  }
+  
+  
+  // MARK: - Actions to select sex or gender pickerView
+  func actionsforSelectingSexToolBar() {
     
-    lawyersSignUpView.onDoneTapped = { [weak self] in
+    lawyersSignUpView.onDoneSelectingSexTapped = { [weak self] in
       self?.lawyersSignUpView.textFields[5].endEditing(true)
     }
     
-    lawyersSignUpView.onCancelTapped = { [weak self] in
+    lawyersSignUpView.onCancelSelectingSexTapped = { [weak self] in
       self?.lawyersSignUpView.textFields[5].text = nil
       self?.lawyersSignUpView.textFields[5].endEditing(true)
       
     }
   }
   
-  //MARK: - Actions for the 6 pickerView
-  func onDoneBtnSixthIndexPressed() {
+  //MARK: - Actions for the type Of practice pickerView
+  func onDoneBtnTypeOfPracticePressed() {
     self.lawyersSignUpView.textFields[6].endEditing(true)
   }
   
-  func onCancelBtnSixIndexPressed() {
+  func onCancelBtnTypeOfPracticePressed() {
     self.lawyersSignUpView.textFields[6].text = nil
     self.lawyersSignUpView.textFields[6].endEditing(true)
   }

@@ -57,6 +57,24 @@ class Utilities {
     return UIBarButtonItem(customView: button)
   }
   
+  
+  //MARK: - Custom toolBar
+  static func creatingToolBar(_ toolBar: UIToolbar, target: Any?, doneAction: Selector, cancelAction: Selector) -> UIView {
+    
+    toolBar.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50)
+    
+    
+    let doneBtn = createBtnForThePickerView(title: "Hecho", image: nil, target: target, action: doneAction, color: .systemMint)
+    let spaceBtn = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+    let cancelBtn = createBtnForThePickerView(title: "Cancelar", image: nil, target: target, action: cancelAction, color: .systemPink)
+    
+    toolBar.setItems([cancelBtn, spaceBtn, doneBtn], animated: false)
+    toolBar.sizeToFit()
+    
+    return toolBar
+  }
+  //#colorLiteral(red: 0.003979303874, green: 0.137050271, blue: 0.2949559987, alpha: 1)
+  
   //MARK: - button style
   static func customButtonStyle(_ button: UIButton,
                                 appearance: UIButton.Configuration?,
