@@ -37,7 +37,12 @@ class Utilities {
   
   
   //MARK: - customButton for PickerViews ToolBar
-  static func createBtnForThePickerView(title: String?, image: UIImage?, target: Any?, action: Selector, color: UIColor) -> UIBarButtonItem {
+  static func createBtnForThePickerView(title: String?,
+                                        image: UIImage?,
+                                        target: Any?,
+                                        action: Selector,
+                                        color: UIColor) -> UIBarButtonItem {
+    
     var config = UIButton.Configuration.plain()
     config.image = image
     config.image?.withTintColor(color)
@@ -48,7 +53,6 @@ class Utilities {
     let button = UIButton(configuration: config)
     //button.backgroundColor = color
     button.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-    //button.layer.cornerRadius = 10
     button.clipsToBounds = true
     //button.backgroundColor = #colorLiteral(red: 0.00586497318, green: 0.1180472597, blue: 0.2551576495, alpha: 1)
     button.setTitle(title, for: .normal)
@@ -59,19 +63,21 @@ class Utilities {
   
   
   //MARK: - Custom toolBar
-  static func creatingToolBar(_ toolBar: UIToolbar, target: Any?, doneAction: Selector, cancelAction: Selector) -> UIView {
+  static func creatingToolBar(_ toolBar: UIToolbar,
+                              target: Any?,
+                              doneAction: Selector,
+                              cancelAction: Selector) {
     
     toolBar.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50)
     
     
-    let doneBtn = createBtnForThePickerView(title: "Hecho", image: nil, target: target, action: doneAction, color: .systemMint)
+    let doneBtn = createBtnForThePickerView(title: "Hecho", image: nil, target: target, action: doneAction, color: #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1))
     let spaceBtn = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
     let cancelBtn = createBtnForThePickerView(title: "Cancelar", image: nil, target: target, action: cancelAction, color: .systemPink)
     
     toolBar.setItems([cancelBtn, spaceBtn, doneBtn], animated: false)
     toolBar.sizeToFit()
     
-    return toolBar
   }
   //#colorLiteral(red: 0.003979303874, green: 0.137050271, blue: 0.2949559987, alpha: 1)
   

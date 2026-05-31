@@ -176,8 +176,8 @@ class LawyersSignUpView: UIView {
   override init(frame: CGRect) {
     super.init(frame: frame)
     
+    setUptoolbarsForKeyboardsInfields()
     setUpFields()
-    setUptoolbarsForfields()
     setUpHTMLTextView()
     setUpSingUpBtn()
     setUpUI()
@@ -209,19 +209,19 @@ class LawyersSignUpView: UIView {
       
       switch index {
       case 0:
-        //txtField.resignFirstResponder()
+        
         txtField.inputAccessoryView = toolBarForName
       case 1:
-        txtField.resignFirstResponder()
+       
         txtField.inputAccessoryView = toolBarForDocument
       case 2:
-        txtField.resignFirstResponder()
+        
         txtField.inputAccessoryView = toolbarPhoneNumber
       case 3:
-        txtField.resignFirstResponder()
+        
         txtField.inputAccessoryView = toolbarEmail
       case 4:
-        txtField.resignFirstResponder()
+       
         txtField.inputAccessoryView = toolbarPassword
       default:
         txtField.inputAccessoryView = .none
@@ -303,18 +303,18 @@ class LawyersSignUpView: UIView {
   }
   
   
-  private func setUptoolbarsForfields() {
+  private func setUptoolbarsForKeyboardsInfields() {
     
     //MARK: - name toolbar
-   let nameField = Utilities.creatingToolBar(toolBarForName, target: self, doneAction: #selector(onDoneNamePressed), cancelAction: #selector(onCancelNamePressed))
+   Utilities.creatingToolBar(toolBarForName, target: self, doneAction: #selector(onDoneNamePressed), cancelAction: #selector(onCancelNamePressed))
     
-    let documentField = Utilities.creatingToolBar(toolBarForDocument, target: self, doneAction: #selector(onDoneDocumentTapped), cancelAction: #selector(onCancelDocumentTapped))
+    Utilities.creatingToolBar(toolBarForDocument, target: self, doneAction: #selector(onDoneDocumentTapped), cancelAction: #selector(onCancelDocumentTapped))
     
-    let phoneNumberField = Utilities.creatingToolBar(toolbarPhoneNumber, target: self, doneAction: #selector(onDonePhoneNumberTapped), cancelAction: #selector(onCancelPhoneNumberTapped))
+    Utilities.creatingToolBar(toolbarPhoneNumber, target: self, doneAction: #selector(onDonePhoneNumberTapped), cancelAction: #selector(onCancelPhoneNumberTapped))
     
-    let emailField = Utilities.creatingToolBar(toolbarEmail, target: self, doneAction: #selector(onDoneEmailTapped), cancelAction: #selector(onCancelEmailTapped))
+    Utilities.creatingToolBar(toolbarEmail, target: self, doneAction: #selector(onDoneEmailTapped), cancelAction: #selector(onCancelEmailTapped))
     
-    let passwordField = Utilities.creatingToolBar(toolbarPassword, target: self, doneAction: #selector(onDonePasswordTapped), cancelAction: #selector(onCancelPasswordTapped))
+    Utilities.creatingToolBar(toolbarPassword, target: self, doneAction: #selector(onDonePasswordTapped), cancelAction: #selector(onCancelPasswordTapped))
     
   }
   
