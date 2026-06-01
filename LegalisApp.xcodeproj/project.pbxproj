@@ -23,6 +23,7 @@
 		8D44E4632FAAB3F700AC5242 /* LawyersSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D44E4622FAAB3F700AC5242 /* LawyersSignUpViewController.swift */; };
 		8D44E4662FAAB80300AC5242 /* ClientsSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D44E4652FAAB80300AC5242 /* ClientsSignUpViewController.swift */; };
 		8D7497662FB2721A009D6AD7 /* CoreCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7497652FB2721A009D6AD7 /* CoreCollectionViewController.swift */; };
+		8DA2F9ED2FCE275500E8E324 /* MainTabBarItemNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA2F9EC2FCE275500E8E324 /* MainTabBarItemNavigationViewController.swift */; };
 		8DB540402FA56CEE00D8DB72 /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB5403F2FA56CEE00D8DB72 /* UIView+Layout.swift */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +46,7 @@
 		8D44E4622FAAB3F700AC5242 /* LawyersSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LawyersSignUpViewController.swift; sourceTree = "<group>"; };
 		8D44E4652FAAB80300AC5242 /* ClientsSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientsSignUpViewController.swift; sourceTree = "<group>"; };
 		8D7497652FB2721A009D6AD7 /* CoreCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreCollectionViewController.swift; sourceTree = "<group>"; };
+		8DA2F9EC2FCE275500E8E324 /* MainTabBarItemNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainTabBarItemNavigationViewController.swift; path = ../../../../../../../Downloads/MainTabBarItemNavigationViewController.swift; sourceTree = "<group>"; };
 		8DB5403F2FA56CEE00D8DB72 /* UIView+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Layout.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -170,6 +172,7 @@
 		8D18D07D2FA28D910038AB85 /* MainTabBarController */ = {
 			isa = PBXGroup;
 			children = (
+				8DA2F9EC2FCE275500E8E324 /* MainTabBarItemNavigationViewController.swift */,
 			);
 			path = MainTabBarController;
 			sourceTree = "<group>";
@@ -475,6 +478,7 @@
 				8D18D0982FA2BBA10038AB85 /* WelcomeViewController.swift in Sources */,
 				8DB540402FA56CEE00D8DB72 /* UIView+Layout.swift in Sources */,
 				8D44E4612FAAAEFE00AC5242 /* LawyersSignUpView.swift in Sources */,
+				8DA2F9ED2FCE275500E8E324 /* MainTabBarItemNavigationViewController.swift in Sources */,
 				8D39444A2FAFAF2B00CED997 /* RegisterModel.swift in Sources */,
 				8D18D0642FA28B6E0038AB85 /* AppDelegate.swift in Sources */,
 				8D18D0662FA28B6E0038AB85 /* SceneDelegate.swift in Sources */,
