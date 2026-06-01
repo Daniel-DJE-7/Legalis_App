@@ -18,7 +18,7 @@ enum TextFieldValidation {
   case success
 }
 
-class LawyersSignUpViewController: UIViewController {
+class LawyersSignUpViewController: CoreCollectionViewController {
     
   
   private let gendersOptions = ["Ninguno","Masculino", "Femenino"]
@@ -251,8 +251,14 @@ extension LawyersSignUpViewController: LawyersSignUpViewDelegate {
       case .invalidNumberOfCellPhone:
         print("invalid mobile number")
       case.success:
-        print("success")
-      //push to homeviewcontroller
+      
+      let mainTabBar = MainTabBarItemNavigationController()
+      mainTabBar.selectedViewController = mainTabBar.viewControllers?[0]
+     // mainTabBar.selectedIndex = 0
+      mainTabBar.modalPresentationStyle = .fullScreen
+      mainTabBar.modalTransitionStyle = .crossDissolve
+      present(mainTabBar, animated: true)
+      
     }
   }
   

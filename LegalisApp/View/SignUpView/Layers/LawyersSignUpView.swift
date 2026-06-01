@@ -164,6 +164,7 @@ class LawyersSignUpView: UIView {
     return toolbar
   }()
   
+  let color: UIColor = #colorLiteral(red: 0.9724870324, green: 0.9721793532, blue: 0.9929525256, alpha: 1)
   
   //MARK: - HTML TEXT VIEW
   let htmlTextView = UITextView()
