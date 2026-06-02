@@ -74,13 +74,10 @@ class LawyersSignUpViewController: CoreCollectionViewController {
     }
   }
   
-  
+  //MARK: - Setting the HTML TEXT
   func setHTMLText() {
     lawyersSignUpView.sethtmlText(htmlText, fontFamily: "Inter", size: 12)
   }
-  
-  
-  
   
 }
 
@@ -426,7 +423,6 @@ extension LawyersSignUpViewController: LawyersSignUpViewDelegate {
     if !validateCellphoneNumber {
       return .invalidNumberOfCellPhone
     }
-    
     
     return .success
   }

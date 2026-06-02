@@ -163,6 +163,7 @@ class Utilities {
     return numberPredicate.evaluate(with: number)
   }
   
+  // MARK: - Alerts
   static func creatingAlerts(
     style: UIAlertAction.Style,
     titleAction: String?,
@@ -179,7 +180,6 @@ class Utilities {
         title: titleAction,
         style: style)
       
-      
       action.setValue(
         UIColor.systemPink,
         forKey: "titleTextColor")
@@ -190,6 +190,29 @@ class Utilities {
 
   }
   
+  static func creatingLogoImage(image: UIImageView, img: UIImage, contentMode: UIView.ContentMode) {
+    image.image = img
+    image.contentMode = contentMode
+    image.widthAnchor.constraint(equalToConstant: 113).isActive = true
+    image.heightAnchor.constraint(equalToConstant: 28).isActive = true
+    image.translatesAutoresizingMaskIntoConstraints = false
+  }
+  
+  static func navBarBtn(_ button: UIButton,
+                        appearance: UIButton.Configuration?,
+                        image: UIImage?,
+                        baseforegroundColor: UIColor?,
+                        action: Selector,
+                        target: Any?
+                        ) {
+    
+    button.configuration = appearance
+    button.configuration?.baseForegroundColor = baseforegroundColor
+    button.setImage(image?.withConfiguration(UIImage.SymbolConfiguration(pointSize: 18, weight: .medium)), for: .normal)
+    button.addTarget(target, action: action, for: .touchUpInside)
+    
+    button.translatesAutoresizingMaskIntoConstraints = false
+  }
   
 }
 
