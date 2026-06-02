@@ -20,7 +20,6 @@ enum TextFieldValidation {
 
 class LawyersSignUpViewController: CoreCollectionViewController {
     
-  
   private let gendersOptions = ["Ninguno","Masculino", "Femenino"]
   private let practiceType = ["Ninguno","Independiente", "Bufete o Empresa"]
   let htmlText = """
@@ -239,25 +238,92 @@ extension LawyersSignUpViewController: LawyersSignUpViewDelegate {
     
     switch credentialsValidation {
       case .emptyFields:
-        print("empty fields")
+      
+        let alertEmptyFields = Utilities.creatingAlerts(
+          style: .default,
+          titleAction: "Llenar todos los campos",
+          titleAlert: "ERROR CAMPOS VACÍOS",
+          message: "Tienes campos vacíos. Por favor llena todos los campos.",
+          preferredStyle: .alert)
+      
+        self.present(alertEmptyFields, animated: true)
+      
+        lawyersSignUpView.textFieldsStack.backgroundColor = .systemRed.withAlphaComponent(0.3)
+      
       case .invalidName:
-        print("Invalid name")
+   
+        let alertInvalidName = Utilities.creatingAlerts(
+          style: .default,
+          titleAction: "Volver a intentar",
+          titleAlert: "NOMBRE INCORRECTO",
+          message: "El nombre que escribiste no es válido, por favor intentalo de nuevo.",
+          preferredStyle: .alert)
+      
+        self.present(alertInvalidName, animated: true)
+      
+      //update the field's background to red
+        lawyersSignUpView.textFields[0].backgroundColor = .systemRed.withAlphaComponent(0.3)
+        
+    case .invalidNumberOfDocument:
+        
+      let alertDocument = Utilities.creatingAlerts(
+        style: .default,
+        titleAction: "Volver a escribir",
+        titleAlert: "Nº DE DOCUMENTO INCORRECTO",
+        message: "Nº de documento incorrecto. Por favor, vuelve a intentarlo.",
+        preferredStyle: .alert)
+    
+      self.present(alertDocument, animated: true)
+      
+      lawyersSignUpView.textFields[1].backgroundColor = .systemRed.withAlphaComponent(0.3)
+      
+    case .invalidNumberOfCellPhone:
+        
+      let alertPhoneNumber = Utilities.creatingAlerts(
+        style: .default,
+        titleAction: "Volver a intentar",
+        titleAlert: "NÚMERO DE CELULAR INCORRECTO",
+        message: "El número que escribiste no es válido. Por favor, vuelve a escribirlo.",
+        preferredStyle: .alert)
+    
+      self.present(alertPhoneNumber, animated: true)
+      
+      lawyersSignUpView.textFields[2].backgroundColor = .systemRed.withAlphaComponent(0.3)
+      
       case .invalidEmail:
-        print("invalid email")
+      
+        let alertInvalidEmail = Utilities.creatingAlerts(
+          style: .default,
+          titleAction: "Volver a intentar",
+          titleAlert: "CORREO INVALIDO",
+          message: "Escribiste una dirección de correo no válida. Por favor, vuelve a escribir tu correo.",
+          preferredStyle: .actionSheet)
+      
+        self.present(alertInvalidEmail, animated: true)
+      
+      lawyersSignUpView.textFields[3].backgroundColor = .systemRed.withAlphaComponent(0.3)
+        
       case .invalidPassword:
-        print("invalid password")
-      case .invalidNumberOfDocument:
-        print("invalid number of document")
-      case .invalidNumberOfCellPhone:
-        print("invalid mobile number")
+      
+        let alertInvalidPassword = Utilities.creatingAlerts(
+          style: .default,
+          titleAction: "Volver a escribir contraseña",
+          titleAlert: "CONTRASEÑA INCORRECTA",
+          message: "Tu contraseña no es válida. Asegurate de que tu contraseña tenga por lo menos: \n - 1 letra mayúscula \n - 1 letra minúscula \n - Un número \n - Un símbolo (#-_*%$@?) \n - Mínimo debes escribir 8 caracteres",
+          preferredStyle: .actionSheet)
+        
+        self.present(alertInvalidPassword, animated: true)
+      
+      lawyersSignUpView.textFields[4].backgroundColor = .systemRed.withAlphaComponent(0.3)
+      
       case.success:
       
-      let mainTabBar = MainTabBarItemNavigationController()
-      mainTabBar.selectedViewController = mainTabBar.viewControllers?[0]
-     // mainTabBar.selectedIndex = 0
-      mainTabBar.modalPresentationStyle = .fullScreen
-      mainTabBar.modalTransitionStyle = .crossDissolve
-      present(mainTabBar, animated: true)
+        let mainTabBar = MainTabBarItemNavigationController()
+        mainTabBar.selectedViewController = mainTabBar.viewControllers?[0]
+      // mainTabBar.selectedIndex = 0
+        mainTabBar.modalPresentationStyle = .fullScreen
+        mainTabBar.modalTransitionStyle = .crossDissolve
+        present(mainTabBar, animated: true)
       
     }
   }

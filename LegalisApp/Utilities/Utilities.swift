@@ -134,7 +134,7 @@ class Utilities {
   
   //MARK: - Validation format for the password TextField
   static func isPasswordValid(_ password: String) -> Bool {
-    let passwordRegex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$#!%*?&_\\-]).{8,12}$"
+    let passwordRegex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$#!%*?&_\\-]).{8,}$"
     
     let passwordPredicate = NSPredicate(
       format: "SELF MATCHES %@",
@@ -163,4 +163,33 @@ class Utilities {
     return numberPredicate.evaluate(with: number)
   }
   
+  static func creatingAlerts(
+    style: UIAlertAction.Style,
+    titleAction: String?,
+    titleAlert: String?,
+    message: String?,
+    preferredStyle: UIAlertController.Style) -> UIAlertController {
+    
+      let alert = UIAlertController(
+        title: titleAlert,
+        message: message,
+        preferredStyle: preferredStyle)
+      
+      let action =  UIAlertAction(
+        title: titleAction,
+        style: style)
+      
+      
+      action.setValue(
+        UIColor.systemPink,
+        forKey: "titleTextColor")
+      
+      alert.addAction(action)
+     
+      return alert
+
+  }
+  
+  
 }
+

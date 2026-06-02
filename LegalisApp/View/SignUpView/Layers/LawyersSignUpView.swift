@@ -44,6 +44,7 @@ class LawyersSignUpView: UIView {
   var fontFamily: String = "Inter"
   var fontSize: CGFloat = 12
   
+  
   let fields: [RegisterModel] = [
     RegisterModel(leftImage: UIImage(systemName: "person"), placeholder: "Nombre Completo", rightImage: nil),
     RegisterModel(leftImage: UIImage(named: "id_card"), placeholder: "Número de documento", rightImage: nil),
@@ -122,7 +123,7 @@ class LawyersSignUpView: UIView {
   //MARK: - UI TEXTFIELDS ELEMENTS
 
   //textFields Stack
-  private let textFieldsStack: UIStackView = {
+   var textFieldsStack: UIStackView = {
     let stack = UIStackView()
     stack.axis = .vertical
     stack.spacing = 0
