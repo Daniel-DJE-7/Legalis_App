@@ -190,9 +190,11 @@ class Utilities {
 
   }
   
-  static func creatingLogoImage(image: UIImageView, img: UIImage, contentMode: UIView.ContentMode) {
+  static func creatingLogoImage(image: UIImageView, img: UIImage, contentMode: UIView.ContentMode, clipsToBounds: Bool ,color: UIColor?) {
     image.image = img
     image.contentMode = contentMode
+    image.tintColor = color
+    image.clipsToBounds = clipsToBounds
     image.widthAnchor.constraint(equalToConstant: 113).isActive = true
     image.heightAnchor.constraint(equalToConstant: 28).isActive = true
     image.translatesAutoresizingMaskIntoConstraints = false
@@ -212,6 +214,33 @@ class Utilities {
     button.addTarget(target, action: action, for: .touchUpInside)
     
     button.translatesAutoresizingMaskIntoConstraints = false
+  }
+  
+  static func clientTextFieldStyle(_ textField: UITextField,
+                                   placeholder: String,
+                                   isSecureTextEntry: Bool,
+                                   keyboardAppearance: UIKeyboardAppearance,
+                                   clearButtonMode: UITextField.ViewMode,
+                                   keyboardType: UIKeyboardType,
+                                   inputAccessoryView: UIView?,
+                                   backgroundColor: UIColor?) {
+    
+    textField.borderStyle = .none
+    textField.placeholder = placeholder
+    textField.isSecureTextEntry = isSecureTextEntry
+    textField.keyboardAppearance = keyboardAppearance
+    textField.clearButtonMode = clearButtonMode
+    textField.keyboardType = keyboardType
+    textField.inputAccessoryView = inputAccessoryView
+    textField.backgroundColor = backgroundColor
+    textField.translatesAutoresizingMaskIntoConstraints = false
+   
+    NSLayoutConstraint.activate([
+      textField.heightAnchor.constraint(equalToConstant: 48),
+      textField.widthAnchor.constraint(equalToConstant: 270)
+    ])
+    
+    
   }
   
 }

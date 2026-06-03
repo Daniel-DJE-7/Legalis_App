@@ -18,8 +18,13 @@ class ClientsSignUpViewController: UIViewController {
   
     override func viewDidLoad() {
         super.viewDidLoad()
-      view.backgroundColor = #colorLiteral(red: 0.9921569228, green: 0.9921568036, blue: 0.9921569228, alpha: 1)
-      
+      view.backgroundColor = .systemGray6
+//      for family in UIFont.familyNames {
+//        print(family)
+//        for name in UIFont.fontNames(forFamilyName: family) {
+//          print(name)
+//        }
+//      }
     }
     
   
