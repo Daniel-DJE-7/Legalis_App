@@ -77,12 +77,20 @@ class ClientsSignUpView: UIView {
   let emailTextField = UITextField()
   let passwordTextField = UITextField()
   
-  let divider1 = UIView()
-  let divider2 = UIView()
-  let divider3 = UIView()
-  let divider4 = UIView()
-  let divider5 = UIView()
-  let divider6 = UIView()
+  //dividers
+  let nameDivider = UIView()
+  let documentNumberDivider = UIView()
+  let phoneNumberDivider = UIView()
+  let selectedSexDivider = UIView()
+  let emailDivider = UIView()
+  
+  //left icons
+  let iconNameTxtField = UIImage(systemName: "person")
+  let iconDocumentTxtField = UIImage(named: "id_card")
+  let iconPhoneTxtField = UIImage(systemName: "iphone")
+  let iconGenderTxtField = UIImage(named: "sexIcon")
+  let iconEmailTxtField = UIImage(named: "email")
+  let iconPasswordTxtField = UIImage(systemName: "key.fill")
   
   override init(frame: CGRect) {
     super.init(frame: frame)
@@ -98,17 +106,19 @@ class ClientsSignUpView: UIView {
   //MARK: SET UP UI HEADER NAV ELEMENTS
   private func setUpStylesUIElements() {
   //Logo
-    Utilities.creatingLogoImage(
-      image: logoImage,
-      img: UIImage(named: "logoHorizontal") ?? UIImage(),
+    Utilities.creatingImage(
+      imageView: logoImage,
+      image: UIImage(named: "logoHorizontal") ?? UIImage(),
       contentMode: .scaleAspectFit,
       clipsToBounds: true,
-      color: UIColor(
+      tintColor: UIColor(
         red: 0,
         green: 0.1370561421,
         blue: 0.2949633002,
-        alpha: 1))
-   
+        alpha: 1),
+      width: 113,
+      height: 28)
+   //113 w, 28 h
     //closeNavBtn
     Utilities.navBarBtn(closeNavButton,
                         appearance: .plain(),
@@ -124,23 +134,83 @@ class ClientsSignUpView: UIView {
     //MARK: - Textfields
     
     //nameTextField
-    Utilities.clientTextFieldStyle(nameTextField, placeholder: "Nombre completo", isSecureTextEntry: false, keyboardAppearance: .dark, clearButtonMode: .whileEditing, keyboardType: .alphabet, inputAccessoryView: nil, backgroundColor: .systemRed)
+    Utilities.clientTextFieldStyle(
+      nameTextField,
+      placeholder: "Nombre completo",
+      isSecureTextEntry: false,
+      keyboardAppearance: .dark,
+      clearButtonMode: .whileEditing,
+      keyboardType: .alphabet,
+      inputAccessoryView: nil,
+      backgroundColor: nil,
+      leftIcon: iconNameTxtField)
     
     //documentNumberTextField
-    Utilities.clientTextFieldStyle(documentNumberTextField, placeholder: "Nombre completo", isSecureTextEntry: false, keyboardAppearance: .dark, clearButtonMode: .whileEditing, keyboardType: .alphabet, inputAccessoryView: nil, backgroundColor: .systemBlue)
+    Utilities.clientTextFieldStyle(
+      documentNumberTextField,
+      placeholder: "Número de documento",
+      isSecureTextEntry: false,
+      keyboardAppearance: .dark,
+      clearButtonMode: .whileEditing,
+      keyboardType: .alphabet,
+      inputAccessoryView: nil,
+      backgroundColor: nil,
+      leftIcon: iconDocumentTxtField)
     
     //phoneNumberTextField
-    Utilities.clientTextFieldStyle(phoneNumberTextField, placeholder: "Nombre completo", isSecureTextEntry: false, keyboardAppearance: .dark, clearButtonMode: .whileEditing, keyboardType: .alphabet, inputAccessoryView: nil, backgroundColor: .systemOrange)
+    Utilities.clientTextFieldStyle(
+      phoneNumberTextField,
+      placeholder: "Número de celular",
+      isSecureTextEntry: false,
+      keyboardAppearance: .dark,
+      clearButtonMode: .whileEditing,
+      keyboardType: .alphabet,
+      inputAccessoryView: nil,
+      backgroundColor: nil,
+      leftIcon: iconPhoneTxtField)
     
     //selectSexTextField
-    Utilities.clientTextFieldStyle(selectSexTextField, placeholder: "Nombre completo", isSecureTextEntry: false, keyboardAppearance: .dark, clearButtonMode: .whileEditing, keyboardType: .alphabet, inputAccessoryView: nil, backgroundColor: .purple)
+    Utilities.clientTextFieldStyle(
+      selectSexTextField,
+      placeholder: "seleccione sexo",
+      isSecureTextEntry: false,
+      keyboardAppearance: .dark,
+      clearButtonMode: .whileEditing,
+      keyboardType: .alphabet,
+      inputAccessoryView: nil,
+      backgroundColor: nil,
+      leftIcon: iconGenderTxtField)
     
     //emailTextField
-    Utilities.clientTextFieldStyle(emailTextField, placeholder: "Nombre completo", isSecureTextEntry: false, keyboardAppearance: .dark, clearButtonMode: .whileEditing, keyboardType: .alphabet, inputAccessoryView: nil, backgroundColor: .yellow)
+    Utilities.clientTextFieldStyle(
+      emailTextField,
+      placeholder: "ejemplo@legal.com",
+      isSecureTextEntry: false,
+      keyboardAppearance: .dark,
+      clearButtonMode: .whileEditing,
+      keyboardType: .alphabet,
+      inputAccessoryView: nil,
+      backgroundColor: nil,
+      leftIcon: iconEmailTxtField)
     
     //passwordTextField
-    Utilities.clientTextFieldStyle(passwordTextField, placeholder: "Nombre completo", isSecureTextEntry: false, keyboardAppearance: .dark, clearButtonMode: .whileEditing, keyboardType: .alphabet, inputAccessoryView: nil, backgroundColor: .systemCyan)
+    Utilities.clientTextFieldStyle(
+      passwordTextField,
+      placeholder: "Contraseña",
+      isSecureTextEntry: false,
+      keyboardAppearance: .dark,
+      clearButtonMode: .whileEditing,
+      keyboardType: .alphabet,
+      inputAccessoryView: nil,
+      backgroundColor: nil,
+      leftIcon: iconPasswordTxtField)
     
+    //MARK: - Dividers
+    Utilities.divider(nameDivider, backgroundColor: .systemGray6, height: 1.5)
+    Utilities.divider(documentNumberDivider, backgroundColor: .systemGray6, height: 1.5)
+    Utilities.divider(phoneNumberDivider, backgroundColor: .systemGray6, height: 1.5)
+    Utilities.divider(selectedSexDivider, backgroundColor: .systemGray6, height: 1.5)
+    Utilities.divider(emailDivider, backgroundColor: .systemGray6, height: 1.5)
    
   }
   
@@ -171,57 +241,63 @@ class ClientsSignUpView: UIView {
     headerLabelStack.layoutMargins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
     headerLabelStack.isLayoutMarginsRelativeArrangement = true
     
-    //HEADER AND FIELDS STACKVIEW
-    let fieldsStack = UIStackView(arrangedSubviews: [
+    //FIELDS STACKVIEWS
+    
+    let nameStack = UIStackView(arrangedSubviews: [
       nameTextField,
-      divider1,
+      nameDivider
+    ])
+    nameStack.axis = .vertical
+    
+    
+    let docNumStack = UIStackView(arrangedSubviews: [
       documentNumberTextField,
-      divider2,
+      documentNumberDivider
+    ])
+    docNumStack.axis = .vertical
+    
+    let phoneNumStack = UIStackView(arrangedSubviews: [
       phoneNumberTextField,
-      divider3,
+      phoneNumberDivider
+    ])
+    phoneNumStack.axis = .vertical
+    
+    let genderStack = UIStackView(arrangedSubviews: [
       selectSexTextField,
-      divider4,
+      selectedSexDivider
+    ])
+    genderStack.axis = .vertical
+    
+    let emailStack = UIStackView(arrangedSubviews: [
       emailTextField,
-      divider5,
+      emailDivider
+    ])
+    emailStack.axis = .vertical
+    
+ 
+    let fieldsGlobalStack = UIStackView(arrangedSubviews: [
+      nameStack,
+      docNumStack,
+      phoneNumStack,
+      genderStack,
+      emailStack,
       passwordTextField
     ])
-    fieldsStack.axis = .vertical
-    fieldsStack.spacing = 2
-    fieldsStack.alignment = .fill
-    fieldsStack.backgroundColor = .white
-    fieldsStack.layer.cornerRadius = 10
-    divider1.backgroundColor = .black
-    divider2.backgroundColor = .black
-    divider3.backgroundColor = .black
-    divider4.backgroundColor = .black
-    divider5.backgroundColor = .black
-    
-    fieldsStack.isLayoutMarginsRelativeArrangement = true
-    fieldsStack.layoutMargins = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
-    fieldsStack.translatesAutoresizingMaskIntoConstraints = false
-    divider1.translatesAutoresizingMaskIntoConstraints = false
-    divider2.translatesAutoresizingMaskIntoConstraints = false
-    divider3.translatesAutoresizingMaskIntoConstraints = false
-    divider4.translatesAutoresizingMaskIntoConstraints = false
-    divider5.translatesAutoresizingMaskIntoConstraints = false
+    fieldsGlobalStack.axis = .vertical
+    fieldsGlobalStack.spacing = 0
+    fieldsGlobalStack.alignment = .fill
+    fieldsGlobalStack.distribution = .fillEqually
+    fieldsGlobalStack.backgroundColor = .white
+    fieldsGlobalStack.layer.cornerRadius = 10
 
-    divider1.heightAnchor.constraint(equalToConstant: 2).isActive = true
-    divider2.heightAnchor.constraint(equalToConstant: 2).isActive = true
-    divider3.heightAnchor.constraint(equalToConstant: 2).isActive = true
-    divider4.heightAnchor.constraint(equalToConstant: 2).isActive = true
-    divider5.heightAnchor.constraint(equalToConstant: 2).isActive = true
-   
-    fieldsStack.addArrangedSubview(divider1)
-    fieldsStack.addArrangedSubview(divider2)
-    fieldsStack.addArrangedSubview(divider3)
-    fieldsStack.addArrangedSubview(divider4)
-    fieldsStack.addArrangedSubview(divider5)
-    
-    
+    fieldsGlobalStack.isLayoutMarginsRelativeArrangement = true
+    fieldsGlobalStack.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    fieldsGlobalStack.translatesAutoresizingMaskIntoConstraints = false
+
     addSubview(headerNavStack)
     addSubview(headerLabelStack)
     addSubview(headerSectionFormLabel)
-    addSubview(fieldsStack)
+    addSubview(fieldsGlobalStack)
     
     
   
@@ -240,11 +316,11 @@ class ClientsSignUpView: UIView {
       headerSectionFormLabel.topAnchor.constraint(equalTo: headerLabelStack.bottomAnchor, constant: 25),
       headerSectionFormLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
       
-      //field Stack
-      fieldsStack.topAnchor.constraint(equalTo: headerSectionFormLabel.bottomAnchor,constant: 8),
-      fieldsStack.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 15),
-      fieldsStack.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -15)
-      
+      //fields global Stack
+      fieldsGlobalStack.topAnchor.constraint(equalTo: headerSectionFormLabel.bottomAnchor,constant: 8),
+      fieldsGlobalStack.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 15),
+      fieldsGlobalStack.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -15),
+      fieldsGlobalStack.heightAnchor.constraint(equalToConstant: 292)
     ])
   }
   

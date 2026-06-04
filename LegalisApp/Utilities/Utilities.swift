@@ -190,14 +190,20 @@ class Utilities {
 
   }
   
-  static func creatingLogoImage(image: UIImageView, img: UIImage, contentMode: UIView.ContentMode, clipsToBounds: Bool ,color: UIColor?) {
-    image.image = img
-    image.contentMode = contentMode
-    image.tintColor = color
-    image.clipsToBounds = clipsToBounds
-    image.widthAnchor.constraint(equalToConstant: 113).isActive = true
-    image.heightAnchor.constraint(equalToConstant: 28).isActive = true
-    image.translatesAutoresizingMaskIntoConstraints = false
+  static func creatingImage(imageView: UIImageView,
+                                image: UIImage,
+                                contentMode: UIView.ContentMode,
+                                clipsToBounds: Bool,
+                                tintColor: UIColor?,
+                                width: CGFloat,
+                                height: CGFloat) {
+    imageView.image = image
+    imageView.contentMode = contentMode
+    imageView.tintColor = tintColor
+    imageView.clipsToBounds = clipsToBounds
+    imageView.widthAnchor.constraint(equalToConstant: width).isActive = true
+    imageView.heightAnchor.constraint(equalToConstant: height).isActive = true
+    imageView.translatesAutoresizingMaskIntoConstraints = false
   }
   
   static func navBarBtn(_ button: UIButton,
@@ -216,6 +222,7 @@ class Utilities {
     button.translatesAutoresizingMaskIntoConstraints = false
   }
   
+  //Clients view TextField + left Icon
   static func clientTextFieldStyle(_ textField: UITextField,
                                    placeholder: String,
                                    isSecureTextEntry: Bool,
@@ -223,7 +230,8 @@ class Utilities {
                                    clearButtonMode: UITextField.ViewMode,
                                    keyboardType: UIKeyboardType,
                                    inputAccessoryView: UIView?,
-                                   backgroundColor: UIColor?) {
+                                   backgroundColor: UIColor?,
+                                   leftIcon: UIImage?) {
     
     textField.borderStyle = .none
     textField.placeholder = placeholder
@@ -235,12 +243,32 @@ class Utilities {
     textField.backgroundColor = backgroundColor
     textField.translatesAutoresizingMaskIntoConstraints = false
    
+    //container to contain the left icon
+    let container = UIView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+    let leftIcon = UIImageView(image: leftIcon)
+    leftIcon.tintColor = #colorLiteral(red: 0.2939614058, green: 0.2977539897, blue: 0.314393878, alpha: 1)
+    leftIcon.frame = CGRect(x: 10, y: 10, width: 20, height: 20)
+    
+    
+    container.addSubview(leftIcon)
+    textField.leftView = container//added de container an img to txtfield
+    textField.leftViewMode = .always
+    //UIImageView(image: "", highlightedImage: "")
+    
     NSLayoutConstraint.activate([
-      textField.heightAnchor.constraint(equalToConstant: 48),
-      textField.widthAnchor.constraint(equalToConstant: 270)
+      textField.heightAnchor.constraint(equalToConstant: 23),
+      //textField.widthAnchor.constraint(equalToConstant: 245)
+      
     ])
-    
-    
+  }
+  
+  static func divider(_ divider: UIView,
+                      backgroundColor: UIColor,
+                      height: CGFloat) {
+   
+    divider.backgroundColor = backgroundColor
+    divider.heightAnchor.constraint(equalToConstant: height).isActive = true
+    divider.translatesAutoresizingMaskIntoConstraints = false
   }
   
 }
