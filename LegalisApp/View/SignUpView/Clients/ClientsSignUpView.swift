@@ -7,8 +7,16 @@
 
 import UIKit
 
-class ClientsSignUpView: UIView {
+protocol ClientsSignUpViewDelegate: AnyObject {
+  func onCloseNavBtnTapped()
+}
 
+
+class ClientsSignUpView: UIView {
+  
+  //MARK: - Delegate
+  weak var delegate: ClientsSignUpViewDelegate?
+  
   //MARK: - NAV HEADER UI ELEMENTS
   private let logoImage = UIImageView()
   lazy var closeNavButton = UIButton()
@@ -243,7 +251,7 @@ class ClientsSignUpView: UIView {
   //MARK: - ACTIONS
   
   @objc func onCloseNavClientBtnTapped() {
-    print("button is working well")
+    delegate?.onCloseNavBtnTapped()
   }
   
 }

@@ -25,8 +25,22 @@ class ClientsSignUpViewController: UIViewController {
 //          print(name)
 //        }
 //      }
+      configureDelegatesAndDataSource()
     }
     
+  private func configureDelegatesAndDataSource() {
+    //close nav btn delegate
+    clientsSignUpView.delegate = self
+  }
   
 
+}
+
+extension ClientsSignUpViewController: ClientsSignUpViewDelegate {
+  
+  func onCloseNavBtnTapped() {
+    self.dismiss(animated: true)
+  }
+  
+  
 }
