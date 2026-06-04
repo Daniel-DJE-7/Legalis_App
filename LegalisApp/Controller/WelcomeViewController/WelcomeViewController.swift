@@ -16,6 +16,16 @@ class WelcomeViewController: UIViewController, welcomeViewDelegate {
       view = welcomView
     }
   
+  override func viewDidLoad() {
+    super.viewDidLoad()
+//          for family in UIFont.familyNames {
+//            print(family)
+//            for name in UIFont.fontNames(forFamilyName: family) {
+//              print(name)
+//            }
+//          }
+  }
+  
   func clientSignUp() {
     let vc = ClientsSignUpViewController()
     

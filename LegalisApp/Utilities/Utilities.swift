@@ -244,10 +244,10 @@ class Utilities {
     textField.translatesAutoresizingMaskIntoConstraints = false
    
     //container to contain the left icon
-    let container = UIView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
-    let leftIcon = UIImageView(image: leftIcon)
+    let container = UIView(frame: CGRect(x: 0, y: 0, width: 60, height: 26))
+    let leftIcon = UIImageView(image: leftIcon?.withConfiguration(UIImage.SymbolConfiguration(pointSize: 20, weight: .medium)))
     leftIcon.tintColor = #colorLiteral(red: 0.2939614058, green: 0.2977539897, blue: 0.314393878, alpha: 1)
-    leftIcon.frame = CGRect(x: 10, y: 10, width: 20, height: 20)
+    leftIcon.frame = CGRect(x: 16, y: 2, width: 20, height: 20)
     
     
     container.addSubview(leftIcon)
@@ -256,7 +256,7 @@ class Utilities {
     //UIImageView(image: "", highlightedImage: "")
     
     NSLayoutConstraint.activate([
-      textField.heightAnchor.constraint(equalToConstant: 23),
+      textField.heightAnchor.constraint(equalToConstant: 48),
       //textField.widthAnchor.constraint(equalToConstant: 245)
       
     ])

@@ -83,14 +83,15 @@ class ClientsSignUpView: UIView {
   let phoneNumberDivider = UIView()
   let selectedSexDivider = UIView()
   let emailDivider = UIView()
+  let passwordDivider = UIView()
   
   //left icons
-  let iconNameTxtField = UIImage(systemName: "person")
-  let iconDocumentTxtField = UIImage(named: "id_card")
+  let iconNameTxtField = UIImage(systemName: "person.crop.square")
+  let iconDocumentTxtField = UIImage(systemName: "person.text.rectangle.fill")
   let iconPhoneTxtField = UIImage(systemName: "iphone")
   let iconGenderTxtField = UIImage(named: "sexIcon")
-  let iconEmailTxtField = UIImage(named: "email")
-  let iconPasswordTxtField = UIImage(systemName: "key.fill")
+  let iconEmailTxtField = UIImage(systemName: "envelope")
+  let iconPasswordTxtField = UIImage(systemName: "key.viewfinder")
   
   override init(frame: CGRect) {
     super.init(frame: frame)
@@ -207,10 +208,17 @@ class ClientsSignUpView: UIView {
     
     //MARK: - Dividers
     Utilities.divider(nameDivider, backgroundColor: .systemGray6, height: 1.5)
+    nameDivider.translatesAutoresizingMaskIntoConstraints = false
     Utilities.divider(documentNumberDivider, backgroundColor: .systemGray6, height: 1.5)
+    documentNumberDivider.translatesAutoresizingMaskIntoConstraints = false
     Utilities.divider(phoneNumberDivider, backgroundColor: .systemGray6, height: 1.5)
+    phoneNumberDivider.translatesAutoresizingMaskIntoConstraints = false
     Utilities.divider(selectedSexDivider, backgroundColor: .systemGray6, height: 1.5)
+    selectedSexDivider.translatesAutoresizingMaskIntoConstraints = false
     Utilities.divider(emailDivider, backgroundColor: .systemGray6, height: 1.5)
+    emailDivider.translatesAutoresizingMaskIntoConstraints = false
+    Utilities.divider(passwordDivider, backgroundColor: .systemGray6, height: 1.5)
+    passwordDivider.translatesAutoresizingMaskIntoConstraints = false
    
   }
   
@@ -248,6 +256,8 @@ class ClientsSignUpView: UIView {
       nameDivider
     ])
     nameStack.axis = .vertical
+    nameStack.alignment = .fill
+    nameStack.translatesAutoresizingMaskIntoConstraints = false
     
     
     let docNumStack = UIStackView(arrangedSubviews: [
@@ -255,25 +265,40 @@ class ClientsSignUpView: UIView {
       documentNumberDivider
     ])
     docNumStack.axis = .vertical
+    docNumStack.alignment = .fill
+    docNumStack.translatesAutoresizingMaskIntoConstraints = false
     
     let phoneNumStack = UIStackView(arrangedSubviews: [
       phoneNumberTextField,
       phoneNumberDivider
     ])
     phoneNumStack.axis = .vertical
+    phoneNumStack.alignment = .fill
+    phoneNumStack.translatesAutoresizingMaskIntoConstraints = false
     
     let genderStack = UIStackView(arrangedSubviews: [
       selectSexTextField,
       selectedSexDivider
     ])
     genderStack.axis = .vertical
+    genderStack.alignment = .fill
+    genderStack.translatesAutoresizingMaskIntoConstraints = false
     
     let emailStack = UIStackView(arrangedSubviews: [
       emailTextField,
       emailDivider
     ])
     emailStack.axis = .vertical
+    emailStack.alignment = .fill
+    emailStack.translatesAutoresizingMaskIntoConstraints = false
     
+    let passwordStack = UIStackView(arrangedSubviews: [
+    passwordTextField,
+    passwordDivider
+    ])
+    passwordStack.axis = .vertical
+    passwordStack.alignment = .fill
+    passwordStack.translatesAutoresizingMaskIntoConstraints = false
  
     let fieldsGlobalStack = UIStackView(arrangedSubviews: [
       nameStack,
@@ -281,17 +306,16 @@ class ClientsSignUpView: UIView {
       phoneNumStack,
       genderStack,
       emailStack,
-      passwordTextField
+      passwordStack
     ])
     fieldsGlobalStack.axis = .vertical
+    fieldsGlobalStack.distribution = .equalCentering
     fieldsGlobalStack.spacing = 0
-    fieldsGlobalStack.alignment = .fill
-    fieldsGlobalStack.distribution = .fillEqually
     fieldsGlobalStack.backgroundColor = .white
     fieldsGlobalStack.layer.cornerRadius = 10
 
-    fieldsGlobalStack.isLayoutMarginsRelativeArrangement = true
-    fieldsGlobalStack.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    //fieldsGlobalStack.isLayoutMarginsRelativeArrangement = true
+    //fieldsGlobalStack.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     fieldsGlobalStack.translatesAutoresizingMaskIntoConstraints = false
 
     addSubview(headerNavStack)
@@ -320,7 +344,7 @@ class ClientsSignUpView: UIView {
       fieldsGlobalStack.topAnchor.constraint(equalTo: headerSectionFormLabel.bottomAnchor,constant: 8),
       fieldsGlobalStack.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 15),
       fieldsGlobalStack.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -15),
-      fieldsGlobalStack.heightAnchor.constraint(equalToConstant: 292)
+      fieldsGlobalStack.heightAnchor.constraint(equalToConstant: 320)
     ])
   }
   
