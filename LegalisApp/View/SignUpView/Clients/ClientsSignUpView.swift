@@ -79,19 +79,28 @@ class ClientsSignUpView: UIView {
   
   //dividers
   let nameDivider = UIView()
-  let documentNumberDivider = UIView()
+  let idDocumentDivider = UIView()
   let phoneNumberDivider = UIView()
-  let selectedSexDivider = UIView()
+  let SexDivider = UIView()
   let emailDivider = UIView()
   let passwordDivider = UIView()
   
   //left icons
-  let iconNameTxtField = UIImage(systemName: "person.crop.square")
-  let iconDocumentTxtField = UIImage(systemName: "person.text.rectangle.fill")
-  let iconPhoneTxtField = UIImage(systemName: "iphone")
-  let iconGenderTxtField = UIImage(named: "sexIcon")
-  let iconEmailTxtField = UIImage(systemName: "envelope")
-  let iconPasswordTxtField = UIImage(systemName: "key.viewfinder")
+  let iconNameTxtField = UIImageView()
+  let iconDocumentTxtField = UIImageView()
+  let iconPhoneTxtField = UIImageView()
+  let iconGenderTxtField = UIImageView()
+  let iconEmailTxtField = UIImageView()
+  let iconPasswordTxtField = UIImageView()
+  /*
+   let iconNameTxtField = UIImage(systemName: "person.crop.square")
+   let iconDocumentTxtField = UIImage(systemName: "person.text.rectangle.fill")
+   let iconPhoneTxtField = UIImage(systemName: "iphone")
+   let iconGenderTxtField = UIImage(named: "sexIcon")
+   let iconEmailTxtField = UIImage(systemName: "envelope")
+   let iconPasswordTxtField = UIImage(systemName: "key.viewfinder")
+   */
+  
   
   override init(frame: CGRect) {
     super.init(frame: frame)
@@ -119,7 +128,7 @@ class ClientsSignUpView: UIView {
         alpha: 1),
       width: 113,
       height: 28)
-   //113 w, 28 h
+   
     //closeNavBtn
     Utilities.navBarBtn(closeNavButton,
                         appearance: .plain(),
@@ -144,7 +153,7 @@ class ClientsSignUpView: UIView {
       keyboardType: .alphabet,
       inputAccessoryView: nil,
       backgroundColor: nil,
-      leftIcon: iconNameTxtField)
+      leftIcon: nil)
     
     //documentNumberTextField
     Utilities.clientTextFieldStyle(
@@ -156,7 +165,7 @@ class ClientsSignUpView: UIView {
       keyboardType: .alphabet,
       inputAccessoryView: nil,
       backgroundColor: nil,
-      leftIcon: iconDocumentTxtField)
+      leftIcon: nil)
     
     //phoneNumberTextField
     Utilities.clientTextFieldStyle(
@@ -168,19 +177,19 @@ class ClientsSignUpView: UIView {
       keyboardType: .alphabet,
       inputAccessoryView: nil,
       backgroundColor: nil,
-      leftIcon: iconPhoneTxtField)
+      leftIcon: nil)
     
     //selectSexTextField
     Utilities.clientTextFieldStyle(
       selectSexTextField,
-      placeholder: "seleccione sexo",
+      placeholder: "Seleccione sexo",
       isSecureTextEntry: false,
       keyboardAppearance: .dark,
       clearButtonMode: .whileEditing,
       keyboardType: .alphabet,
       inputAccessoryView: nil,
       backgroundColor: nil,
-      leftIcon: iconGenderTxtField)
+      leftIcon: nil)
     
     //emailTextField
     Utilities.clientTextFieldStyle(
@@ -192,7 +201,7 @@ class ClientsSignUpView: UIView {
       keyboardType: .alphabet,
       inputAccessoryView: nil,
       backgroundColor: nil,
-      leftIcon: iconEmailTxtField)
+      leftIcon: nil)
     
     //passwordTextField
     Utilities.clientTextFieldStyle(
@@ -204,19 +213,45 @@ class ClientsSignUpView: UIView {
       keyboardType: .alphabet,
       inputAccessoryView: nil,
       backgroundColor: nil,
-      leftIcon: iconPasswordTxtField)
+      leftIcon: nil)
+    
+    //MARK: - ICON IMAGE OF TEXTFIELD
+    
+    //name icon txt field
+    Utilities.creatingImage(imageView: iconNameTxtField, image: UIImage(systemName: "person.crop.square")?.withRenderingMode(.alwaysTemplate) ?? UIImage(), contentMode: .scaleAspectFit, clipsToBounds: true, tintColor: UIColor(red: 0.2939614058, green: 0.2977539897, blue: 0.314393878, alpha: 1), width: 20, height: 20)
+   
+    //document id icon textfield
+    Utilities.creatingImage(imageView: iconDocumentTxtField, image: UIImage(systemName: "person.text.rectangle.fill")?.withRenderingMode(.alwaysTemplate) ?? UIImage(), contentMode: .scaleAspectFit, clipsToBounds: true, tintColor: UIColor(red: 0.2939614058, green: 0.2977539897, blue: 0.314393878, alpha: 1), width: 20, height: 20)
+    
+    //phone number icon txtfield
+    Utilities.creatingImage(imageView: iconPhoneTxtField, image: UIImage(systemName: "iphone")?.withRenderingMode(.alwaysTemplate) ?? UIImage(), contentMode: .scaleAspectFit, clipsToBounds: true, tintColor: UIColor(red: 0.2939614058, green: 0.2977539897, blue: 0.314393878, alpha: 1), width: 20, height: 20)
+    
+    //gender icon txt field
+    Utilities.creatingImage(imageView: iconGenderTxtField, image: UIImage(named: "sexIcon")?.withRenderingMode(.alwaysTemplate) ?? UIImage(), contentMode: .scaleAspectFit, clipsToBounds: true, tintColor: UIColor(red: 0.2939614058, green: 0.2977539897, blue: 0.314393878, alpha: 1), width: 20, height: 20)
+    
+    //email icon txtfield
+    Utilities.creatingImage(imageView: iconEmailTxtField, image: UIImage(systemName: "envelope")?.withRenderingMode(.alwaysTemplate) ?? UIImage(), contentMode: .scaleAspectFit, clipsToBounds: true, tintColor: UIColor(red: 0.2939614058, green: 0.2977539897, blue: 0.314393878, alpha: 1), width: 20, height: 20)
+    
+    //password Icon txt field
+    Utilities.creatingImage(imageView: iconPasswordTxtField, image: UIImage(systemName: "key.viewfinder")?.withRenderingMode(.alwaysTemplate) ?? UIImage(), contentMode: .scaleAspectFit, clipsToBounds: true, tintColor: UIColor(red: 0.2939614058, green: 0.2977539897, blue: 0.314393878, alpha: 1), width: 20, height: 20)
+
     
     //MARK: - Dividers
     Utilities.divider(nameDivider, backgroundColor: .systemGray6, height: 1.5)
     nameDivider.translatesAutoresizingMaskIntoConstraints = false
-    Utilities.divider(documentNumberDivider, backgroundColor: .systemGray6, height: 1.5)
-    documentNumberDivider.translatesAutoresizingMaskIntoConstraints = false
+    
+    Utilities.divider(idDocumentDivider, backgroundColor: .systemGray6, height: 1.5)
+    idDocumentDivider.translatesAutoresizingMaskIntoConstraints = false
+    
     Utilities.divider(phoneNumberDivider, backgroundColor: .systemGray6, height: 1.5)
     phoneNumberDivider.translatesAutoresizingMaskIntoConstraints = false
-    Utilities.divider(selectedSexDivider, backgroundColor: .systemGray6, height: 1.5)
-    selectedSexDivider.translatesAutoresizingMaskIntoConstraints = false
+   
+    Utilities.divider(SexDivider, backgroundColor: .systemGray6, height: 1.5)
+    SexDivider.translatesAutoresizingMaskIntoConstraints = false
+    
     Utilities.divider(emailDivider, backgroundColor: .systemGray6, height: 1.5)
     emailDivider.translatesAutoresizingMaskIntoConstraints = false
+    
     Utilities.divider(passwordDivider, backgroundColor: .systemGray6, height: 1.5)
     passwordDivider.translatesAutoresizingMaskIntoConstraints = false
    
@@ -224,7 +259,7 @@ class ClientsSignUpView: UIView {
   
   
   private func setUpUI() {
-    //HEADER NAV STACKVIEW
+    //MARK: - HEADER NAV STACKVIEW
     let headerNavStack = UIStackView(arrangedSubviews: [
       logoImage, closeNavButton
     ])
@@ -237,7 +272,7 @@ class ClientsSignUpView: UIView {
     headerNavStack.isLayoutMarginsRelativeArrangement = true
     headerNavStack.layoutMargins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
     
-    //HEADER LABEL STACKVIEW
+    //MARK: - HEADER LABEL STACKVIEW
     let headerLabelStack = UIStackView(arrangedSubviews: [
       createAccountLabel, messageLabel
     ])
@@ -249,73 +284,152 @@ class ClientsSignUpView: UIView {
     headerLabelStack.layoutMargins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
     headerLabelStack.isLayoutMarginsRelativeArrangement = true
     
-    //FIELDS STACKVIEWS
+    //MARK: - FIELDS STACKVIEWS
     
+    //name config
     let nameStack = UIStackView(arrangedSubviews: [
+      iconNameTxtField,
       nameTextField,
+      
+    ])
+    nameStack.axis = .horizontal
+    nameStack.alignment = .center
+    nameStack.spacing = 12
+    nameStack.isLayoutMarginsRelativeArrangement = true
+    nameStack.layoutMargins = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 5)
+    nameStack.translatesAutoresizingMaskIntoConstraints = false
+   
+    let nameStackDivider = UIStackView(arrangedSubviews: [
+      nameStack,
       nameDivider
     ])
-    nameStack.axis = .vertical
-    nameStack.alignment = .fill
-    nameStack.translatesAutoresizingMaskIntoConstraints = false
+    nameStackDivider.axis = .vertical
+    nameStackDivider.alignment = .fill
+    nameStackDivider.translatesAutoresizingMaskIntoConstraints = false
     
-    
+    //Id document config
     let docNumStack = UIStackView(arrangedSubviews: [
+      iconDocumentTxtField,
       documentNumberTextField,
-      documentNumberDivider
+     
     ])
-    docNumStack.axis = .vertical
-    docNumStack.alignment = .fill
+    docNumStack.axis = .horizontal
+    docNumStack.alignment = .center
+    docNumStack.spacing = 12
+    docNumStack.isLayoutMarginsRelativeArrangement = true
+    docNumStack.layoutMargins = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 5)
     docNumStack.translatesAutoresizingMaskIntoConstraints = false
     
-    let phoneNumStack = UIStackView(arrangedSubviews: [
-      phoneNumberTextField,
-      phoneNumberDivider
+    let documentStackDivider = UIStackView(arrangedSubviews: [
+      docNumStack,
+      idDocumentDivider
     ])
-    phoneNumStack.axis = .vertical
-    phoneNumStack.alignment = .fill
+    documentStackDivider.axis = .vertical
+    documentStackDivider.alignment = .fill
+    documentStackDivider.translatesAutoresizingMaskIntoConstraints = false
+    
+    //phon number config
+    let phoneNumStack = UIStackView(arrangedSubviews: [
+      iconPhoneTxtField,
+      phoneNumberTextField
+    
+    ])
+    phoneNumStack.axis = .horizontal
+    phoneNumStack.alignment = .center
+    phoneNumStack.spacing = 12
+    phoneNumStack.isLayoutMarginsRelativeArrangement = true
+    phoneNumStack.layoutMargins = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 5)
     phoneNumStack.translatesAutoresizingMaskIntoConstraints = false
     
-    let genderStack = UIStackView(arrangedSubviews: [
-      selectSexTextField,
-      selectedSexDivider
+    
+    let phoneStackDivider = UIStackView(arrangedSubviews: [
+      phoneNumStack,
+      phoneNumberDivider
     ])
-    genderStack.axis = .vertical
-    genderStack.alignment = .fill
+    phoneStackDivider.axis = .vertical
+    phoneStackDivider.alignment = .fill
+    phoneStackDivider.translatesAutoresizingMaskIntoConstraints = false
+    
+    
+    //gender tf config
+    let genderStack = UIStackView(arrangedSubviews: [
+      iconGenderTxtField,
+      selectSexTextField
+   
+    ])
+    genderStack.axis = .horizontal
+    genderStack.alignment = .center
+    genderStack.spacing = 12
+    genderStack.isLayoutMarginsRelativeArrangement = true
+    genderStack.layoutMargins = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 5)
     genderStack.translatesAutoresizingMaskIntoConstraints = false
     
-    let emailStack = UIStackView(arrangedSubviews: [
-      emailTextField,
-      emailDivider
+    let genderStackDivider = UIStackView(arrangedSubviews: [
+      genderStack,
+      SexDivider
     ])
-    emailStack.axis = .vertical
-    emailStack.alignment = .fill
+    genderStackDivider.axis = .vertical
+    genderStackDivider.alignment = .fill
+    genderStackDivider.translatesAutoresizingMaskIntoConstraints = false
+    
+    //Email config
+    let emailStack = UIStackView(arrangedSubviews: [
+      iconEmailTxtField,
+      emailTextField
+     
+    ])
+    emailStack.axis = .horizontal
+    emailStack.alignment = .center
+    emailStack.spacing = 12
+    emailStack.isLayoutMarginsRelativeArrangement = true
+    emailStack.layoutMargins = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 5)
     emailStack.translatesAutoresizingMaskIntoConstraints = false
     
-    let passwordStack = UIStackView(arrangedSubviews: [
-    passwordTextField,
-    passwordDivider
+    let emailStackDivider = UIStackView(arrangedSubviews: [
+      emailStack,
+      emailDivider
     ])
-    passwordStack.axis = .vertical
-    passwordStack.alignment = .fill
+    emailStackDivider.axis = .vertical
+    emailStackDivider.alignment = .fill
+    emailStackDivider.translatesAutoresizingMaskIntoConstraints = false
+    
+    //password config
+    let passwordStack = UIStackView(arrangedSubviews: [
+      iconPasswordTxtField,
+      passwordTextField
+   
+    ])
+    passwordStack.axis = .horizontal
+    passwordStack.alignment = .center
+    passwordStack.spacing = 12
+    passwordStack.isLayoutMarginsRelativeArrangement = true
+    passwordStack.layoutMargins = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 5)
     passwordStack.translatesAutoresizingMaskIntoConstraints = false
  
-    let fieldsGlobalStack = UIStackView(arrangedSubviews: [
-      nameStack,
-      docNumStack,
-      phoneNumStack,
-      genderStack,
-      emailStack,
-      passwordStack
+    let passwordStackDivider = UIStackView(arrangedSubviews: [
+      passwordStack,
+      passwordDivider
     ])
+    passwordStackDivider.axis = .vertical
+    passwordStackDivider.alignment = .fill
+    passwordStackDivider.translatesAutoresizingMaskIntoConstraints = false
+    
+    
+    //global stack of textFields
+    let fieldsGlobalStack = UIStackView(arrangedSubviews: [
+      nameStackDivider,
+      documentStackDivider,
+      phoneStackDivider,
+      genderStackDivider,
+      emailStackDivider,
+      passwordStackDivider
+    ])
+  
     fieldsGlobalStack.axis = .vertical
-    fieldsGlobalStack.distribution = .equalCentering
+    fieldsGlobalStack.distribution = .fillEqually
     fieldsGlobalStack.spacing = 0
     fieldsGlobalStack.backgroundColor = .white
     fieldsGlobalStack.layer.cornerRadius = 10
-
-    //fieldsGlobalStack.isLayoutMarginsRelativeArrangement = true
-    //fieldsGlobalStack.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     fieldsGlobalStack.translatesAutoresizingMaskIntoConstraints = false
 
     addSubview(headerNavStack)

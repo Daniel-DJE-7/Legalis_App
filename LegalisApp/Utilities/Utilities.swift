@@ -250,9 +250,9 @@ class Utilities {
     leftIcon.frame = CGRect(x: 16, y: 2, width: 20, height: 20)
     
     
-    container.addSubview(leftIcon)
-    textField.leftView = container//added de container an img to txtfield
-    textField.leftViewMode = .always
+   // container.addSubview(leftIcon)
+   // textField.leftView = container//added de container an img to txtfield
+   // textField.leftViewMode = .always
     //UIImageView(image: "", highlightedImage: "")
     
     NSLayoutConstraint.activate([
