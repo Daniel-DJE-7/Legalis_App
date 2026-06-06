@@ -227,8 +227,8 @@ class Utilities {
                                    placeholder: String,
                                    isSecureTextEntry: Bool,
                                    keyboardAppearance: UIKeyboardAppearance,
-                                   clearButtonMode: UITextField.ViewMode,
-                                   keyboardType: UIKeyboardType,
+                                   clearButtonMode: UITextField.ViewMode?,
+                                   keyboardType: UIKeyboardType?,
                                    inputAccessoryView: UIView?,
                                    backgroundColor: UIColor?,
                                    leftIcon: UIImage?) {
@@ -237,14 +237,14 @@ class Utilities {
     textField.placeholder = placeholder
     textField.isSecureTextEntry = isSecureTextEntry
     textField.keyboardAppearance = keyboardAppearance
-    textField.clearButtonMode = clearButtonMode
-    textField.keyboardType = keyboardType
+    textField.clearButtonMode = clearButtonMode ?? .never
+    textField.keyboardType = keyboardType ?? .default
     textField.inputAccessoryView = inputAccessoryView
     textField.backgroundColor = backgroundColor
     textField.translatesAutoresizingMaskIntoConstraints = false
    
     //container to contain the left icon
-    let container = UIView(frame: CGRect(x: 0, y: 0, width: 60, height: 26))
+    //let container = UIView(frame: CGRect(x: 0, y: 0, width: 60, height: 26))
     let leftIcon = UIImageView(image: leftIcon?.withConfiguration(UIImage.SymbolConfiguration(pointSize: 20, weight: .medium)))
     leftIcon.tintColor = #colorLiteral(red: 0.2939614058, green: 0.2977539897, blue: 0.314393878, alpha: 1)
     leftIcon.frame = CGRect(x: 16, y: 2, width: 20, height: 20)

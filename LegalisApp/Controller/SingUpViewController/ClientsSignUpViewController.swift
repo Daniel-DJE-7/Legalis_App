@@ -43,4 +43,17 @@ extension ClientsSignUpViewController: ClientsSignUpViewDelegate {
   }
   
   
+  func onDoneNameBtnTapped() {
+    self.clientsSignUpView.nameTextField.endEditing(true)
+  }
+  
+  func onCancelNameBtnTapped() {
+    self.clientsSignUpView.nameTextField.text = nil
+    self.clientsSignUpView.nameTextField.endEditing(true)
+  }
+  
+  
+
+  
+  
 }

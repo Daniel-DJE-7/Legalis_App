@@ -9,6 +9,8 @@ import UIKit
 
 protocol ClientsSignUpViewDelegate: AnyObject {
   func onCloseNavBtnTapped()
+  func onDoneNameBtnTapped()
+  func onCancelNameBtnTapped()
 }
 
 
@@ -71,7 +73,7 @@ class ClientsSignUpView: UIView {
   //MARK: - Textfields
   
   let nameTextField = UITextField()
-  let documentNumberTextField = UITextField()
+  let idDocumentTextField = UITextField()
   let phoneNumberTextField = UITextField()
   let selectSexTextField = UITextField()
   let emailTextField = UITextField()
@@ -101,10 +103,19 @@ class ClientsSignUpView: UIView {
    let iconPasswordTxtField = UIImage(systemName: "key.viewfinder")
    */
   
+  // toolbars for the keyboards
+  let nameToolBar = UIToolbar()
+  let idDocumentToolBar = UIToolbar()
+  let phoneToolBar = UIToolbar()
+  let sexToolBar = UIToolbar()
+  let emailToolBar = UIToolbar()
+  let passwordToolBar = UIToolbar()
+  
   
   override init(frame: CGRect) {
     super.init(frame: frame)
     
+    setUpToolBarsForTextFields()
     setUpStylesUIElements()
     setUpUI()
   }
@@ -150,20 +161,20 @@ class ClientsSignUpView: UIView {
       isSecureTextEntry: false,
       keyboardAppearance: .dark,
       clearButtonMode: .whileEditing,
-      keyboardType: .alphabet,
-      inputAccessoryView: nil,
+      keyboardType: .default,
+      inputAccessoryView: nameToolBar,
       backgroundColor: nil,
       leftIcon: nil)
     
     //documentNumberTextField
     Utilities.clientTextFieldStyle(
-      documentNumberTextField,
+      idDocumentTextField,
       placeholder: "Número de documento",
       isSecureTextEntry: false,
       keyboardAppearance: .dark,
       clearButtonMode: .whileEditing,
-      keyboardType: .alphabet,
-      inputAccessoryView: nil,
+      keyboardType: .numberPad,
+      inputAccessoryView: idDocumentToolBar,
       backgroundColor: nil,
       leftIcon: nil)
     
@@ -174,8 +185,8 @@ class ClientsSignUpView: UIView {
       isSecureTextEntry: false,
       keyboardAppearance: .dark,
       clearButtonMode: .whileEditing,
-      keyboardType: .alphabet,
-      inputAccessoryView: nil,
+      keyboardType: .asciiCapableNumberPad,
+      inputAccessoryView: phoneToolBar,
       backgroundColor: nil,
       leftIcon: nil)
     
@@ -185,8 +196,8 @@ class ClientsSignUpView: UIView {
       placeholder: "Seleccione sexo",
       isSecureTextEntry: false,
       keyboardAppearance: .dark,
-      clearButtonMode: .whileEditing,
-      keyboardType: .alphabet,
+      clearButtonMode: nil,
+      keyboardType: nil,
       inputAccessoryView: nil,
       backgroundColor: nil,
       leftIcon: nil)
@@ -198,8 +209,8 @@ class ClientsSignUpView: UIView {
       isSecureTextEntry: false,
       keyboardAppearance: .dark,
       clearButtonMode: .whileEditing,
-      keyboardType: .alphabet,
-      inputAccessoryView: nil,
+      keyboardType: .emailAddress,
+      inputAccessoryView: emailToolBar,
       backgroundColor: nil,
       leftIcon: nil)
     
@@ -210,21 +221,56 @@ class ClientsSignUpView: UIView {
       isSecureTextEntry: false,
       keyboardAppearance: .dark,
       clearButtonMode: .whileEditing,
-      keyboardType: .alphabet,
-      inputAccessoryView: nil,
+      keyboardType: .default,
+      inputAccessoryView: passwordToolBar,
       backgroundColor: nil,
       leftIcon: nil)
     
     //MARK: - ICON IMAGE OF TEXTFIELD
     
     //name icon txt field
-    Utilities.creatingImage(imageView: iconNameTxtField, image: UIImage(systemName: "person.crop.square")?.withRenderingMode(.alwaysTemplate) ?? UIImage(), contentMode: .scaleAspectFit, clipsToBounds: true, tintColor: UIColor(red: 0.2939614058, green: 0.2977539897, blue: 0.314393878, alpha: 1), width: 20, height: 20)
+    Utilities.creatingImage(
+      imageView: iconNameTxtField,
+      image: UIImage(
+        systemName: "person.crop.square")?.withRenderingMode(.alwaysTemplate) ?? UIImage(),
+      contentMode: .scaleAspectFit,
+      clipsToBounds: true,
+      tintColor: UIColor(
+        red: 0.2939614058,
+        green: 0.2977539897,
+        blue: 0.314393878,
+        alpha: 1),
+      width: 20,
+      height: 20)
    
     //document id icon textfield
-    Utilities.creatingImage(imageView: iconDocumentTxtField, image: UIImage(systemName: "person.text.rectangle.fill")?.withRenderingMode(.alwaysTemplate) ?? UIImage(), contentMode: .scaleAspectFit, clipsToBounds: true, tintColor: UIColor(red: 0.2939614058, green: 0.2977539897, blue: 0.314393878, alpha: 1), width: 20, height: 20)
+    Utilities.creatingImage(
+      imageView: iconDocumentTxtField,
+      image: UIImage(
+        systemName: "person.text.rectangle.fill")?.withRenderingMode(.alwaysTemplate) ?? UIImage(),
+      contentMode: .scaleAspectFit,
+      clipsToBounds: true,
+      tintColor: UIColor(
+        red: 0.2939614058,
+        green: 0.2977539897,
+        blue: 0.314393878,
+        alpha: 1),
+      width: 20,
+      height: 20)
     
     //phone number icon txtfield
-    Utilities.creatingImage(imageView: iconPhoneTxtField, image: UIImage(systemName: "iphone")?.withRenderingMode(.alwaysTemplate) ?? UIImage(), contentMode: .scaleAspectFit, clipsToBounds: true, tintColor: UIColor(red: 0.2939614058, green: 0.2977539897, blue: 0.314393878, alpha: 1), width: 20, height: 20)
+    Utilities.creatingImage(
+      imageView: iconPhoneTxtField,
+      image: UIImage(systemName: "iphone")?.withRenderingMode(.alwaysTemplate) ?? UIImage(),
+      contentMode: .scaleAspectFit,
+      clipsToBounds: true,
+      tintColor: UIColor(
+        red: 0.2939614058,
+        green: 0.2977539897,
+        blue: 0.314393878,
+        alpha: 1),
+      width: 20,
+      height: 20)
     
     //gender icon txt field
     Utilities.creatingImage(imageView: iconGenderTxtField, image: UIImage(named: "sexIcon")?.withRenderingMode(.alwaysTemplate) ?? UIImage(), contentMode: .scaleAspectFit, clipsToBounds: true, tintColor: UIColor(red: 0.2939614058, green: 0.2977539897, blue: 0.314393878, alpha: 1), width: 20, height: 20)
@@ -255,6 +301,15 @@ class ClientsSignUpView: UIView {
     Utilities.divider(passwordDivider, backgroundColor: .systemGray6, height: 1.5)
     passwordDivider.translatesAutoresizingMaskIntoConstraints = false
    
+    
+    
+    
+  }
+  
+  //MARK: ToolBars
+  private func setUpToolBarsForTextFields() {
+    //name txtField + toolbar
+    Utilities.creatingToolBar(nameToolBar, target: self, doneAction: #selector(onDoneNametapped), cancelAction: #selector(onCancelNameTapped))
   }
   
   
@@ -310,7 +365,7 @@ class ClientsSignUpView: UIView {
     //Id document config
     let docNumStack = UIStackView(arrangedSubviews: [
       iconDocumentTxtField,
-      documentNumberTextField,
+      idDocumentTextField,
      
     ])
     docNumStack.axis = .horizontal
@@ -430,6 +485,7 @@ class ClientsSignUpView: UIView {
     fieldsGlobalStack.spacing = 0
     fieldsGlobalStack.backgroundColor = .white
     fieldsGlobalStack.layer.cornerRadius = 10
+    fieldsGlobalStack.clipsToBounds = true
     fieldsGlobalStack.translatesAutoresizingMaskIntoConstraints = false
 
     addSubview(headerNavStack)
@@ -463,9 +519,18 @@ class ClientsSignUpView: UIView {
   }
   
   //MARK: - ACTIONS
-  
+  //NAV CLOSE BTN ACTION
   @objc func onCloseNavClientBtnTapped() {
     delegate?.onCloseNavBtnTapped()
+  }
+  
+  //NAME TOOLBAR ACTIONS
+  @objc func onDoneNametapped(){
+    delegate?.onDoneNameBtnTapped()
+  }
+  
+  @objc func onCancelNameTapped() {
+    delegate?.onCancelNameBtnTapped()
   }
   
 }
