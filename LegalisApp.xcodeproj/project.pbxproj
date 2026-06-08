@@ -86,6 +86,7 @@
 		8DA2F9EF2FCE2D2500E8E324 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA2F9EE2FCE2D2500E8E324 /* HomeViewController.swift */; };
 		8DB540402FA56CEE00D8DB72 /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB5403F2FA56CEE00D8DB72 /* UIView+Layout.swift */; };
 		8DC8A4C12FD7199F005AD39C /* iOSDropDown in Frameworks */ = {isa = PBXBuildFile; productRef = 8DC8A4C02FD7199F005AD39C /* iOSDropDown */; };
+		8DC8A4C32FD746AA005AD39C /* HTMLText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC8A4C22FD746AA005AD39C /* HTMLText.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -169,6 +170,7 @@
 		8DA2F9EC2FCE275500E8E324 /* MainTabBarItemNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainTabBarItemNavigationViewController.swift; path = ../../../../../../../Downloads/MainTabBarItemNavigationViewController.swift; sourceTree = "<group>"; };
 		8DA2F9EE2FCE2D2500E8E324 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		8DB5403F2FA56CEE00D8DB72 /* UIView+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Layout.swift"; sourceTree = "<group>"; };
+		8DC8A4C22FD746AA005AD39C /* HTMLText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTMLText.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -470,6 +472,7 @@
 			isa = PBXGroup;
 			children = (
 				8D3944462FAF752700CED997 /* Utilities.swift */,
+				8DC8A4C22FD746AA005AD39C /* HTMLText.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -770,6 +773,7 @@
 				8D39444A2FAFAF2B00CED997 /* RegisterModel.swift in Sources */,
 				8D18D0642FA28B6E0038AB85 /* AppDelegate.swift in Sources */,
 				8D18D0662FA28B6E0038AB85 /* SceneDelegate.swift in Sources */,
+				8DC8A4C32FD746AA005AD39C /* HTMLText.swift in Sources */,
 				8D7497662FB2721A009D6AD7 /* CoreCollectionViewController.swift in Sources */,
 				8D3944472FAF752700CED997 /* Utilities.swift in Sources */,
 				8D18D0962FA2A9CE0038AB85 /* WelcomeView.swift in Sources */,

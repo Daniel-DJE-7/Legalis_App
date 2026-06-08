@@ -91,7 +91,7 @@ class Utilities {
                                 cornerRadius: CGFloat,
                                 backgroundColor: UIColor,
                                 baseForeground: UIColor,
-                                width: CGFloat,
+                                width: CGFloat?,
                                 height: CGFloat,
                                 target: Any?,
                                 action: Selector) {
@@ -107,7 +107,7 @@ class Utilities {
     button.backgroundColor = backgroundColor
     button.configuration?.baseForegroundColor = baseForeground
     button.addTarget(target, action: action, for: .touchUpInside)
-    button.widthAnchor.constraint(equalToConstant: width).isActive = true
+    button.widthAnchor.constraint(equalToConstant: width ?? 0).isActive = true
     button.heightAnchor.constraint(equalToConstant: height).isActive = true
     
     button.translatesAutoresizingMaskIntoConstraints = false

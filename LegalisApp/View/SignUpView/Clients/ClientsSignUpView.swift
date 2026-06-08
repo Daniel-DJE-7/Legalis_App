@@ -133,12 +133,30 @@ class ClientsSignUpView: UIView {
     return dropDown
   }()
   
+  let htmlHelper = HTMLText()
+  let htmlTextView = UITextView()
+  let htmlText = """
+                <div style="text-align: left;">
+                    Acepto los <a href='https://legalis.com.co/terminos'>términos de servicio</a> y la <a href='https:/legalis.com.co/privacidad'>política de <br> privacidad</a>.
+                </div>
+                """
+  
+  lazy var signUpButton = UIButton()
+  
+  //MARK: - FOOTER UI ELEMENTS
+  //Checkbox
+  private lazy var checkboxBtn = UIButton(type: .custom)
+  
   override init(frame: CGRect) {
     super.init(frame: frame)
     
     setUpToolBarsForTextFields()
     setUpStylesUIElements()
     setUpSexDropDownBtn()
+    setUpCheckBox()
+    setUpTextView()
+    setUpHTMLText()
+    setUpSignUpBtn()
     setUpUI()
   }
   
@@ -376,9 +394,48 @@ class ClientsSignUpView: UIView {
     sexDropDownBtn.checkMarkEnabled = true
     sexDropDownBtn.isSearchEnable = false
     sexDropDownBtn.font = UIFont(name: "Inter-Regular", size: 16)
+  }
+  
+  private func setUpCheckBox() {
+    checkboxBtn.setImage(UIImage(systemName: "square"), for: .normal)
+    checkboxBtn.setImage(UIImage(systemName: "square.fill"), for: .selected)
+    checkboxBtn.addTarget(self, action: #selector(toogleCheckbox(_ :)), for: .touchUpInside)
+    checkboxBtn.tintColor = #colorLiteral(red: 0.001187827205, green: 0.1258176565, blue: 0.2670794427, alpha: 1)
     
   }
   
+  private func setUpTextView() {
+    Utilities.creatingHTMLTextView(htmlTextView)
+  }
+  
+  private func setUpHTMLText() {
+    if let attributted = htmlHelper.setHTMLText(htmlText) {
+      self.htmlTextView.attributedText = attributted
+      htmlTextView.translatesAutoresizingMaskIntoConstraints = false
+    }
+  }
+  
+  private func setUpSignUpBtn() {
+    Utilities.customButtonStyle(signUpButton,
+                                appearance: .plain(),
+                                title: "Registrarse",
+                                image: nil,
+                                imagePlacement: nil,
+                                imagePadding: nil,
+                                cornerRadius: 10,
+                                backgroundColor: UIColor(
+                                  red: 0.003979303874,
+                                  green: 0.137050271,
+                                  blue: 0.2949559987,
+                                  alpha: 1),
+                                baseForeground: .white,
+                                width: 358,
+                                height: 48,
+                                target: self,
+                                action: #selector(diptapSignUpBtn))
+    signUpButton.translatesAutoresizingMaskIntoConstraints = false
+    
+  }
   
   private func setUpUI() {
     //MARK: - HEADER NAV STACKVIEW
@@ -556,14 +613,26 @@ class ClientsSignUpView: UIView {
     fieldsGlobalStack.layer.shadowOpacity = 0.8
     fieldsGlobalStack.clipsToBounds = true
     fieldsGlobalStack.translatesAutoresizingMaskIntoConstraints = false
-
+    
+    //Terms and privacy politics
+    let termsStack = UIStackView(arrangedSubviews: [
+      checkboxBtn,
+      htmlTextView
+    ])
+    termsStack.axis = .horizontal
+    termsStack.spacing = 10
+    termsStack.alignment = .leading
+    termsStack.isLayoutMarginsRelativeArrangement = true
+    termsStack.layoutMargins = UIEdgeInsets(top: 0, left: 17, bottom: 0, right: 20)
+    termsStack.translatesAutoresizingMaskIntoConstraints = false
+    
     addSubview(headerNavStack)
     addSubview(headerLabelStack)
     addSubview(headerSectionFormLabel)
     addSubview(fieldsGlobalStack)
+    addSubview(termsStack)
+    addSubview(signUpButton)
     
-    
-  
     //MARK: - Constraints
     NSLayoutConstraint.activate([
       //HeaderNavStack
@@ -583,7 +652,20 @@ class ClientsSignUpView: UIView {
       fieldsGlobalStack.topAnchor.constraint(equalTo: headerSectionFormLabel.bottomAnchor,constant: 8),
       fieldsGlobalStack.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 15),
       fieldsGlobalStack.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -15),
-      fieldsGlobalStack.heightAnchor.constraint(equalToConstant: 320)
+      fieldsGlobalStack.heightAnchor.constraint(equalToConstant: 320),
+      
+      //TermsStack
+      termsStack.topAnchor.constraint(equalTo: fieldsGlobalStack.bottomAnchor, constant: 30),
+      termsStack.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 15),
+      termsStack.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -15),
+      
+      
+      //SignUpBtn
+      signUpButton.topAnchor.constraint(equalTo: termsStack.bottomAnchor, constant: 16),
+//      signUpButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+//      signUpButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
+      signUpButton.centerXAnchor.constraint(equalTo: centerXAnchor)
+      
     ])
   }
   
@@ -632,6 +714,14 @@ class ClientsSignUpView: UIView {
   
   @objc func diptapOnCancelPasswordTap() {
     delegate?.onCancelPasswordBtnTapped()
+  }
+  
+  @objc func toogleCheckbox(_ sender: UIButton) {
+    sender.isSelected.toggle()
+  }
+  
+  @objc func diptapSignUpBtn() {
+    print("btn is working")
   }
   
 }

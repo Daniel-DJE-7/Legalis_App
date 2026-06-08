@@ -22,11 +22,6 @@ class LawyersSignUpViewController: CoreCollectionViewController {
     
   private let gendersOptions = ["Ninguno","Masculino", "Femenino"]
   private let practiceType = ["Ninguno","Independiente", "Bufete o Empresa"]
-  let htmlText = """
-                <div style="text-align: center;">
-                    Al registrarte, aceptas nuestros <a href='https://legalis.com.co/terminos'>Términos de servicio</a> <br> y <a href='https:/legalis.com.co/privacidad'>Política de privacidad</a>.
-                </div>
-                """
   
   let lawyersSignUpView = LawyersSignUpView()
   
@@ -44,7 +39,6 @@ class LawyersSignUpViewController: CoreCollectionViewController {
       configuringDelegatesAndDataSources()
       actionsforSelectingSexToolBar()
       closeNavActionButton()
-      setHTMLText()
     }
 
   //MARK: - Delegates & Data sources
@@ -72,11 +66,6 @@ class LawyersSignUpViewController: CoreCollectionViewController {
     lawyersSignUpView.onCloseNavBtnTapped = { [weak self] in
       self?.dismiss(animated: true)
     }
-  }
-  
-  //MARK: - Setting the HTML TEXT
-  func setHTMLText() {
-    lawyersSignUpView.sethtmlText(htmlText, fontFamily: "Inter", size: 12)
   }
   
 }
