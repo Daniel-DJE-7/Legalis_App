@@ -37,12 +37,13 @@ class ClientsSignUpViewController: UIViewController {
 }
 
 extension ClientsSignUpViewController: ClientsSignUpViewDelegate {
-  
+
+  //CLOSE NAVBAR BUTTON
   func onCloseNavBtnTapped() {
     self.dismiss(animated: true)
   }
   
-  
+  //NAME FIELD TOOLBAR ACTIONS
   func onDoneNameBtnTapped() {
     self.clientsSignUpView.nameTextField.endEditing(true)
   }
@@ -52,7 +53,45 @@ extension ClientsSignUpViewController: ClientsSignUpViewDelegate {
     self.clientsSignUpView.nameTextField.endEditing(true)
   }
   
+  //DOCUMENT FIELD TOOLBAR ACTIONS
+  func onDoneDocumentBtnTapped() {
+    clientsSignUpView.idDocumentTextField.endEditing(true)
+  }
   
+  func onCancelDocumentBtnTapped() {
+    clientsSignUpView.idDocumentTextField.text = nil
+    clientsSignUpView.idDocumentTextField.endEditing(true)
+  }
+  
+  //PHONE FIELD TOOLBAR ACTIONS
+  func onDonePhoneBtnTapped() {
+    clientsSignUpView.phoneNumberTextField.endEditing(true)
+  }
+  
+  func onCancelPhoneBtnTapped() {
+    clientsSignUpView.phoneNumberTextField.text = nil
+    clientsSignUpView.phoneNumberTextField.endEditing(true)
+  }
+  
+  //EMAIL FIELD TOOLBAR ACTIONS
+  func onDoneEmailBtnTapped() {
+    clientsSignUpView.emailTextField.endEditing(true)
+  }
+  
+  func onCancelEmailBtnTapped() {
+    clientsSignUpView.emailTextField.text = nil
+    clientsSignUpView.emailTextField.endEditing(true)
+  }
+  
+  //PASSWORD FIELD TOOLBAR ACTIONS
+  func onDonePasswordBtnTapped() {
+    clientsSignUpView.passwordTextField.endEditing(true)
+  }
+  
+  func onCancelPasswordBtnTapped() {
+    clientsSignUpView.passwordTextField.text = nil
+    clientsSignUpView.passwordTextField.endEditing(true)
+  }
 
   
   

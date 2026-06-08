@@ -6,11 +6,20 @@
 //
 
 import UIKit
+import iOSDropDown
 
 protocol ClientsSignUpViewDelegate: AnyObject {
   func onCloseNavBtnTapped()
   func onDoneNameBtnTapped()
   func onCancelNameBtnTapped()
+  func onDoneDocumentBtnTapped()
+  func onCancelDocumentBtnTapped()
+  func onDonePhoneBtnTapped()
+  func onCancelPhoneBtnTapped()
+  func onDoneEmailBtnTapped()
+  func onCancelEmailBtnTapped()
+  func onDonePasswordBtnTapped()
+  func onCancelPasswordBtnTapped()
 }
 
 
@@ -75,7 +84,6 @@ class ClientsSignUpView: UIView {
   let nameTextField = UITextField()
   let idDocumentTextField = UITextField()
   let phoneNumberTextField = UITextField()
-  let selectSexTextField = UITextField()
   let emailTextField = UITextField()
   let passwordTextField = UITextField()
   
@@ -111,12 +119,26 @@ class ClientsSignUpView: UIView {
   let emailToolBar = UIToolbar()
   let passwordToolBar = UIToolbar()
   
+  //MARK: DROP DOWN BUTTON OPTIONS
+  lazy var sexDropDownBtn: DropDown = {
+    let dropDown = DropDown()
+    dropDown.placeholder = "Seleccione sexo"
+    
+    dropDown.optionArray = ["Ninguno","Masculino", "Femenino"]
+    
+    dropDown.didSelect { (selectedText, index, id) in
+      print("Seleccionado \(selectedText)")
+    }
+    
+    return dropDown
+  }()
   
   override init(frame: CGRect) {
     super.init(frame: frame)
     
     setUpToolBarsForTextFields()
     setUpStylesUIElements()
+    setUpSexDropDownBtn()
     setUpUI()
   }
   
@@ -190,18 +212,6 @@ class ClientsSignUpView: UIView {
       backgroundColor: nil,
       leftIcon: nil)
     
-    //selectSexTextField
-    Utilities.clientTextFieldStyle(
-      selectSexTextField,
-      placeholder: "Seleccione sexo",
-      isSecureTextEntry: false,
-      keyboardAppearance: .dark,
-      clearButtonMode: nil,
-      keyboardType: nil,
-      inputAccessoryView: nil,
-      backgroundColor: nil,
-      leftIcon: nil)
-    
     //emailTextField
     Utilities.clientTextFieldStyle(
       emailTextField,
@@ -272,14 +282,47 @@ class ClientsSignUpView: UIView {
       width: 20,
       height: 20)
     
-    //gender icon txt field
-    Utilities.creatingImage(imageView: iconGenderTxtField, image: UIImage(named: "sexIcon")?.withRenderingMode(.alwaysTemplate) ?? UIImage(), contentMode: .scaleAspectFit, clipsToBounds: true, tintColor: UIColor(red: 0.2939614058, green: 0.2977539897, blue: 0.314393878, alpha: 1), width: 20, height: 20)
+    //gender icon row
+    Utilities.creatingImage(
+      imageView: iconGenderTxtField,
+      image: UIImage(named: "sexIcon")?.withRenderingMode(.alwaysTemplate) ?? UIImage(),
+      contentMode: .scaleAspectFit,
+      clipsToBounds: true,
+      tintColor: UIColor(
+        red: 0.2939614058,
+        green: 0.2977539897,
+        blue: 0.314393878,
+        alpha: 1),
+      width: 20,
+      height: 20)
     
     //email icon txtfield
-    Utilities.creatingImage(imageView: iconEmailTxtField, image: UIImage(systemName: "envelope")?.withRenderingMode(.alwaysTemplate) ?? UIImage(), contentMode: .scaleAspectFit, clipsToBounds: true, tintColor: UIColor(red: 0.2939614058, green: 0.2977539897, blue: 0.314393878, alpha: 1), width: 20, height: 20)
+    Utilities.creatingImage(
+      imageView: iconEmailTxtField,
+      image: UIImage(systemName: "envelope")?.withRenderingMode(.alwaysTemplate) ?? UIImage(),
+      contentMode: .scaleAspectFit,
+      clipsToBounds: true,
+      tintColor: UIColor(
+        red: 0.2939614058,
+        green: 0.2977539897,
+        blue: 0.314393878,
+        alpha: 1),
+      width: 20,
+      height: 20)
     
     //password Icon txt field
-    Utilities.creatingImage(imageView: iconPasswordTxtField, image: UIImage(systemName: "key.viewfinder")?.withRenderingMode(.alwaysTemplate) ?? UIImage(), contentMode: .scaleAspectFit, clipsToBounds: true, tintColor: UIColor(red: 0.2939614058, green: 0.2977539897, blue: 0.314393878, alpha: 1), width: 20, height: 20)
+    Utilities.creatingImage(
+      imageView: iconPasswordTxtField,
+      image: UIImage(systemName: "key.viewfinder")?.withRenderingMode(.alwaysTemplate) ?? UIImage(),
+      contentMode: .scaleAspectFit,
+      clipsToBounds: true,
+      tintColor: UIColor(
+        red: 0.2939614058,
+        green: 0.2977539897,
+        blue: 0.314393878,
+        alpha: 1),
+      width: 20,
+      height: 20)
 
     
     //MARK: - Dividers
@@ -300,9 +343,6 @@ class ClientsSignUpView: UIView {
     
     Utilities.divider(passwordDivider, backgroundColor: .systemGray6, height: 1.5)
     passwordDivider.translatesAutoresizingMaskIntoConstraints = false
-   
-    
-    
     
   }
   
@@ -310,6 +350,33 @@ class ClientsSignUpView: UIView {
   private func setUpToolBarsForTextFields() {
     //name txtField + toolbar
     Utilities.creatingToolBar(nameToolBar, target: self, doneAction: #selector(onDoneNametapped), cancelAction: #selector(onCancelNameTapped))
+    
+    //document txtField + toolbar
+    
+    Utilities.creatingToolBar(idDocumentToolBar, target: self, doneAction: #selector(diptapDoneDocumentTap), cancelAction: #selector(diptapOnCancelDocumentTap))
+    
+    //phone txtField + toolbar
+    
+    Utilities.creatingToolBar(phoneToolBar, target: self, doneAction: #selector(diptapDonePhoneTap), cancelAction: #selector(diptapOnCancelPhoneTap))
+    
+    //email txtField + toolbar
+    
+    Utilities.creatingToolBar(emailToolBar, target: self, doneAction: #selector(diptapDoneEmailTap), cancelAction: #selector(diptapOnCancelEmailTap))
+    
+    //password txtField + toolbar
+    
+    Utilities.creatingToolBar(passwordToolBar, target: self, doneAction: #selector(diptapDonePasswordTap), cancelAction: #selector(diptapOnCancelPasswordTap))
+  }
+  
+  //MARK: - Config of sex dropDownBtn
+  private func setUpSexDropDownBtn() {
+    sexDropDownBtn.textColor = .black
+    sexDropDownBtn.selectedRowColor = .systemGray6
+    sexDropDownBtn.arrowColor = #colorLiteral(red: 0.414726615, green: 0.4421422184, blue: 0.5004041791, alpha: 1)
+    sexDropDownBtn.checkMarkEnabled = true
+    sexDropDownBtn.isSearchEnable = false
+    sexDropDownBtn.font = UIFont(name: "Inter-Regular", size: 16)
+    
   }
   
   
@@ -409,14 +476,14 @@ class ClientsSignUpView: UIView {
     //gender tf config
     let genderStack = UIStackView(arrangedSubviews: [
       iconGenderTxtField,
-      selectSexTextField
+      sexDropDownBtn
    
     ])
     genderStack.axis = .horizontal
     genderStack.alignment = .center
     genderStack.spacing = 12
     genderStack.isLayoutMarginsRelativeArrangement = true
-    genderStack.layoutMargins = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 5)
+    genderStack.layoutMargins = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 20)
     genderStack.translatesAutoresizingMaskIntoConstraints = false
     
     let genderStackDivider = UIStackView(arrangedSubviews: [
@@ -485,6 +552,8 @@ class ClientsSignUpView: UIView {
     fieldsGlobalStack.spacing = 0
     fieldsGlobalStack.backgroundColor = .white
     fieldsGlobalStack.layer.cornerRadius = 10
+    fieldsGlobalStack.layer.shadowColor = UIColor.darkGray.cgColor
+    fieldsGlobalStack.layer.shadowOpacity = 0.8
     fieldsGlobalStack.clipsToBounds = true
     fieldsGlobalStack.translatesAutoresizingMaskIntoConstraints = false
 
@@ -531,6 +600,38 @@ class ClientsSignUpView: UIView {
   
   @objc func onCancelNameTapped() {
     delegate?.onCancelNameBtnTapped()
+  }
+  
+  @objc func  diptapDoneDocumentTap() {
+    delegate?.onDoneDocumentBtnTapped()
+  }
+  
+  @objc func diptapOnCancelDocumentTap() {
+    delegate?.onCancelDocumentBtnTapped()
+  }
+  
+  @objc func diptapDonePhoneTap() {
+    delegate?.onDonePhoneBtnTapped()
+  }
+  
+  @objc func diptapOnCancelPhoneTap() {
+    delegate?.onCancelPhoneBtnTapped()
+  }
+ 
+  @objc func diptapDoneEmailTap() {
+    delegate?.onDoneEmailBtnTapped()
+  }
+  
+  @objc func diptapOnCancelEmailTap() {
+    delegate?.onCancelEmailBtnTapped()
+  }
+  
+  @objc func diptapDonePasswordTap() {
+    delegate?.onDonePasswordBtnTapped()
+  }
+  
+  @objc func diptapOnCancelPasswordTap() {
+    delegate?.onCancelPasswordBtnTapped()
   }
   
 }

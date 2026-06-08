@@ -98,8 +98,8 @@ class Utilities {
    
     button.configuration = appearance
     button.configuration?.title = title
+    button.titleLabel?.font = UIFont(name: "Inter-Regular_Bold", size: 17)
     button.titleLabel?.font = .systemFont(ofSize: 17, weight: .semibold)
-    button.titleLabel?.font = UIFont(name: "Inter", size: 17)
     button.configuration?.image = image
     button.configuration?.imagePlacement = imagePlacement ?? .leading
     button.configuration?.imagePadding = imagePadding ?? 0
