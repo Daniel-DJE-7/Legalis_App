@@ -2,7 +2,7 @@
 //  NSMutableAttributedString.swift
 //  LegalisApp
 //
-//  Created by Memo Figueredo on 20/5/26.
+//  Created by Daniel Figueredo on 20/5/26.
 //
 
 import UIKit

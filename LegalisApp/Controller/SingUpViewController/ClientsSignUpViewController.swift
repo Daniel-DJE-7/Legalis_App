@@ -2,10 +2,11 @@
 //  ClientsSignUpViewController.swift
 //  LegalisApp
 //
-//  Created by Memo Figueredo on 5/5/26.
+//  Created by Daniel Figueredo on 5/5/26.
 //
 
 import UIKit
+import SafariServices
 
 class ClientsSignUpViewController: UIViewController {
 
@@ -31,6 +32,9 @@ class ClientsSignUpViewController: UIViewController {
   private func configureDelegatesAndDataSource() {
     //close nav btn delegate
     clientsSignUpView.delegate = self
+    
+    //html delegate
+    clientsSignUpView.htmlTextView.delegate = self
   }
   
 
@@ -93,6 +97,40 @@ extension ClientsSignUpViewController: ClientsSignUpViewDelegate {
     clientsSignUpView.passwordTextField.endEditing(true)
   }
 
+  //SIGN UP BTN
+  func onSignUpBtnPressed(accepted: Bool, with userType: UserType) {
+    if accepted && userType == .client {
+      let mainTabBar = MainTabBarItemNavigationController()
+      mainTabBar.updateUserType(.client)
+      mainTabBar.modalPresentationStyle = .fullScreen
+      mainTabBar.modalTransitionStyle = .crossDissolve
+      present(mainTabBar, animated: true)
+    } else {
+      
+      let acceptTermsAlert = Utilities.creatingAlerts(
+        style: .default,
+        titleAction: "Activar términos y condiciones",
+        titleAlert: "ERROR, ACEPTAR TÉRMINOS",
+        message: "Debes aceptar los términos y condiciones para poder ingresar.",
+        preferredStyle: .alert)
+      
+      self.present(acceptTermsAlert, animated: true)
+    }
+  }
   
   
+}
+
+extension ClientsSignUpViewController: UITextViewDelegate {
+  
+  func textView(_ textView: UITextView,
+                shouldInteractWith URL: URL,
+                in characterRange: NSRange,
+                interaction: UITextItemInteraction) -> Bool {
+   
+    let safariVC = SFSafariViewController(url: URL)
+    present(safariVC, animated: true)
+    
+    return false
+  }
 }

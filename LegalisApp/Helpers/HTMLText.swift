@@ -2,7 +2,7 @@
 //  HTMLText.swift
 //  LegalisApp
 //
-//  Created by Memo Figueredo on 8/6/26.
+//  Created by Daniel Figueredo on 8/6/26.
 //
 
 import UIKit

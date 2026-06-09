@@ -20,6 +20,7 @@ protocol ClientsSignUpViewDelegate: AnyObject {
   func onCancelEmailBtnTapped()
   func onDonePasswordBtnTapped()
   func onCancelPasswordBtnTapped()
+  func onSignUpBtnPressed(accepted: Bool, with userType: UserType)
 }
 
 
@@ -48,7 +49,10 @@ class ClientsSignUpView: UIView {
   
   private let messageLabel: UILabel = {
     let label = UILabel()
-    label.text = "Complete sus datos para el registro legal."
+    label.text = """
+                  Complete sus datos para el registro legal y haz \n
+                  parte de la red jurídica más prestigiosa del país.
+                 """
     label.textColor = #colorLiteral(red: 0.3645370603, green: 0.3682664633, blue: 0.3890590072, alpha: 1)
     label.textAlignment = .left
     label.font = .systemFont(ofSize: 15, weight: .regular)
@@ -401,6 +405,7 @@ class ClientsSignUpView: UIView {
     checkboxBtn.setImage(UIImage(systemName: "checkmark.square.fill"), for: .selected)
     checkboxBtn.addTarget(self, action: #selector(toogleCheckbox(_ :)), for: .touchUpInside)
     checkboxBtn.tintColor = #colorLiteral(red: 0.001187827205, green: 0.1258176565, blue: 0.2670794427, alpha: 1)
+    checkboxBtn.translatesAutoresizingMaskIntoConstraints = false
     
   }
   
@@ -624,12 +629,26 @@ class ClientsSignUpView: UIView {
     termsStack.layoutMargins = UIEdgeInsets(top: 0, left: 17, bottom: 0, right: 20)
     termsStack.translatesAutoresizingMaskIntoConstraints = false
     
+    let wholeFooterStack = UIStackView(arrangedSubviews: [
+      termsStack,
+      signUpButton
+    ])
+    wholeFooterStack.axis = .vertical
+    wholeFooterStack.alignment = .center
+    wholeFooterStack.spacing = 5
+    wholeFooterStack.distribution = .fill
+    wholeFooterStack.backgroundColor = .white
+    wholeFooterStack.isLayoutMarginsRelativeArrangement = true
+    wholeFooterStack.layoutMargins = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
+    wholeFooterStack.translatesAutoresizingMaskIntoConstraints = false
+    
     addSubview(headerNavStack)
     addSubview(headerLabelStack)
     addSubview(headerSectionFormLabel)
     addSubview(fieldsGlobalStack)
-    addSubview(termsStack)
-    addSubview(signUpButton)
+    //addSubview(termsStack)
+    //addSubview(signUpButton)
+    addSubview(wholeFooterStack)
     
     //MARK: - Constraints
     NSLayoutConstraint.activate([
@@ -653,16 +672,20 @@ class ClientsSignUpView: UIView {
       fieldsGlobalStack.heightAnchor.constraint(equalToConstant: 320),
       
       //TermsStack
-      termsStack.topAnchor.constraint(equalTo: fieldsGlobalStack.bottomAnchor, constant: 30),
-      termsStack.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 15),
-      termsStack.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -15),
+     // termsStack.topAnchor.constraint(equalTo: fieldsGlobalStack.bottomAnchor, constant: 30),
+     // termsStack.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 15),
+     // termsStack.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -15),
       
+      wholeFooterStack.topAnchor.constraint(equalTo: fieldsGlobalStack.bottomAnchor, constant: 30),
+      wholeFooterStack.leadingAnchor.constraint(equalTo: leadingAnchor),
+      wholeFooterStack.trailingAnchor.constraint(equalTo: trailingAnchor),
+      wholeFooterStack.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -20)
       
       //SignUpBtn
-      signUpButton.topAnchor.constraint(equalTo: termsStack.bottomAnchor, constant: 16),
+      //signUpButton.topAnchor.constraint(equalTo: termsStack.bottomAnchor, constant: 16),
 //      signUpButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
 //      signUpButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
-      signUpButton.centerXAnchor.constraint(equalTo: centerXAnchor)
+      //signUpButton.centerXAnchor.constraint(equalTo: centerXAnchor)
       
     ])
   }
@@ -719,8 +742,21 @@ class ClientsSignUpView: UIView {
     sender.isSelected.toggle()
   }
   
+  //MARK: - SignUpBtn
   @objc func diptapSignUpBtn() {
+      
     print("btn is working")
+    
+    //poner una alerta cuando el usuario no acepto los terminos
+    /*
+     si usario seleccionó térms {
+     recibir el evento del checbox
+     entonces mandalo al homeView
+     } else {
+     muestra la alerta: "para ingresar debes aceptar los terms"
+     }
+     */
+    delegate?.onSignUpBtnPressed(accepted: checkboxBtn.isSelected, with: .client)
   }
   
 }

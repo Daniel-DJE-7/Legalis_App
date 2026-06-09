@@ -34,7 +34,7 @@ protocol LawyersSignUpViewDelegate: AnyObject {
   func onCancelBtnTypeOfPracticePressed()
   
   //SignUpBtn
-  func onSignUpBtnTapped()
+  func onSignUpBtnTapped(with userType: UserType)
 }
 
 class LawyersSignUpView: UIView {
@@ -499,7 +499,7 @@ class LawyersSignUpView: UIView {
   
   //MARK: - SignUp btn
  @objc private func onSignUpTapped() {
-   delegate?.onSignUpBtnTapped()
+   delegate?.onSignUpBtnTapped(with: .lawyer)
   }
     
   //MARK: - Setting the HTML TEXT
