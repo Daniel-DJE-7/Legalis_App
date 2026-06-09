@@ -472,7 +472,6 @@
 			isa = PBXGroup;
 			children = (
 				8D3944462FAF752700CED997 /* Utilities.swift */,
-				8DC8A4C22FD746AA005AD39C /* HTMLText.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -610,6 +609,7 @@
 		8DB5403D2FA56CB600D8DB72 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				8DC8A4C22FD746AA005AD39C /* HTMLText.swift */,
 				8D436B852FBE685800429E60 /* NSMutableAttributedString */,
 				8DB5403E2FA56CCD00D8DB72 /* UIView+Layout */,
 			);

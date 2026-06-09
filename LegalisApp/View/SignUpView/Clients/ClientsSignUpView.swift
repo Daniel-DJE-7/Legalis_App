@@ -246,7 +246,7 @@ class ClientsSignUpView: UIView {
     Utilities.clientTextFieldStyle(
       passwordTextField,
       placeholder: "Contraseña",
-      isSecureTextEntry: false,
+      isSecureTextEntry: true,
       keyboardAppearance: .dark,
       clearButtonMode: .whileEditing,
       keyboardType: .default,
@@ -275,7 +275,7 @@ class ClientsSignUpView: UIView {
     Utilities.creatingImage(
       imageView: iconDocumentTxtField,
       image: UIImage(
-        systemName: "person.text.rectangle.fill")?.withRenderingMode(.alwaysTemplate) ?? UIImage(),
+        systemName: "person.text.rectangle")?.withRenderingMode(.alwaysTemplate) ?? UIImage(),
       contentMode: .scaleAspectFit,
       clipsToBounds: true,
       tintColor: UIColor(
@@ -398,7 +398,7 @@ class ClientsSignUpView: UIView {
   
   private func setUpCheckBox() {
     checkboxBtn.setImage(UIImage(systemName: "square"), for: .normal)
-    checkboxBtn.setImage(UIImage(systemName: "square.fill"), for: .selected)
+    checkboxBtn.setImage(UIImage(systemName: "checkmark.square.fill"), for: .selected)
     checkboxBtn.addTarget(self, action: #selector(toogleCheckbox(_ :)), for: .touchUpInside)
     checkboxBtn.tintColor = #colorLiteral(red: 0.001187827205, green: 0.1258176565, blue: 0.2670794427, alpha: 1)
     
@@ -449,7 +449,7 @@ class ClientsSignUpView: UIView {
     headerNavStack.layer.shadowColor = #colorLiteral(red: 0.8855352998, green: 0.9093011022, blue: 0.942697525, alpha: 1)
     headerNavStack.translatesAutoresizingMaskIntoConstraints = false
     headerNavStack.isLayoutMarginsRelativeArrangement = true
-    headerNavStack.layoutMargins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+    headerNavStack.layoutMargins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 12)
     
     //MARK: - HEADER LABEL STACKVIEW
     let headerLabelStack = UIStackView(arrangedSubviews: [
@@ -534,7 +534,6 @@ class ClientsSignUpView: UIView {
     let genderStack = UIStackView(arrangedSubviews: [
       iconGenderTxtField,
       sexDropDownBtn
-   
     ])
     genderStack.axis = .horizontal
     genderStack.alignment = .center
@@ -555,7 +554,6 @@ class ClientsSignUpView: UIView {
     let emailStack = UIStackView(arrangedSubviews: [
       iconEmailTxtField,
       emailTextField
-     
     ])
     emailStack.axis = .horizontal
     emailStack.alignment = .center
@@ -597,11 +595,11 @@ class ClientsSignUpView: UIView {
     //global stack of textFields
     let fieldsGlobalStack = UIStackView(arrangedSubviews: [
       nameStackDivider,
+      emailStackDivider,
+      passwordStackDivider,
       documentStackDivider,
       phoneStackDivider,
-      genderStackDivider,
-      emailStackDivider,
-      passwordStackDivider
+      genderStackDivider
     ])
   
     fieldsGlobalStack.axis = .vertical
