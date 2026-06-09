@@ -714,6 +714,7 @@ class ClientsSignUpView: UIView {
     delegate?.onCancelPasswordBtnTapped()
   }
   
+  //MARK: toogle of check box
   @objc func toogleCheckbox(_ sender: UIButton) {
     sender.isSelected.toggle()
   }

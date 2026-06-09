@@ -82,6 +82,7 @@
 		8D6063B22FD0D48600E36252 /* Inter.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8D6063782FD0D48500E36252 /* Inter.ttf */; };
 		8D6063B32FD0D48600E36252 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8D6063792FD0D48500E36252 /* README.txt */; };
 		8D7497662FB2721A009D6AD7 /* CoreCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7497652FB2721A009D6AD7 /* CoreCollectionViewController.swift */; };
+		8D7A5E7B2FD862E700ACD94A /* RegexParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7A5E7A2FD862E700ACD94A /* RegexParameters.swift */; };
 		8DA2F9ED2FCE275500E8E324 /* MainTabBarItemNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA2F9EC2FCE275500E8E324 /* MainTabBarItemNavigationViewController.swift */; };
 		8DA2F9EF2FCE2D2500E8E324 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA2F9EE2FCE2D2500E8E324 /* HomeViewController.swift */; };
 		8DB540402FA56CEE00D8DB72 /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB5403F2FA56CEE00D8DB72 /* UIView+Layout.swift */; };
@@ -167,6 +168,7 @@
 		8D6063782FD0D48500E36252 /* Inter.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Inter.ttf; sourceTree = "<group>"; };
 		8D6063792FD0D48500E36252 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		8D7497652FB2721A009D6AD7 /* CoreCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreCollectionViewController.swift; sourceTree = "<group>"; };
+		8D7A5E7A2FD862E700ACD94A /* RegexParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexParameters.swift; sourceTree = "<group>"; };
 		8DA2F9EC2FCE275500E8E324 /* MainTabBarItemNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainTabBarItemNavigationViewController.swift; path = ../../../../../../../Downloads/MainTabBarItemNavigationViewController.swift; sourceTree = "<group>"; };
 		8DA2F9EE2FCE2D2500E8E324 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		8DB5403F2FA56CEE00D8DB72 /* UIView+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Layout.swift"; sourceTree = "<group>"; };
@@ -612,6 +614,7 @@
 				8DC8A4C22FD746AA005AD39C /* HTMLText.swift */,
 				8D436B852FBE685800429E60 /* NSMutableAttributedString */,
 				8DB5403E2FA56CCD00D8DB72 /* UIView+Layout */,
+				8D7A5E7A2FD862E700ACD94A /* RegexParameters.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -767,6 +770,7 @@
 				8D18D0982FA2BBA10038AB85 /* WelcomeViewController.swift in Sources */,
 				8D0C89DF2FCF933200B8C306 /* ClientsSignUpView.swift in Sources */,
 				8DA2F9EF2FCE2D2500E8E324 /* HomeViewController.swift in Sources */,
+				8D7A5E7B2FD862E700ACD94A /* RegexParameters.swift in Sources */,
 				8DB540402FA56CEE00D8DB72 /* UIView+Layout.swift in Sources */,
 				8D44E4612FAAAEFE00AC5242 /* LawyersSignUpView.swift in Sources */,
 				8DA2F9ED2FCE275500E8E324 /* MainTabBarItemNavigationViewController.swift in Sources */,

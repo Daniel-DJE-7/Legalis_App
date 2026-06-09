@@ -228,7 +228,7 @@ extension LawyersSignUpViewController: LawyersSignUpViewDelegate {
         let alertEmptyFields = Utilities.creatingAlerts(
           style: .default,
           titleAction: "Llenar todos los campos",
-          titleAlert: "ERROR CAMPOS VACÍOS",
+          titleAlert: "ERROR, CAMPOS VACÍOS",
           message: "Tienes campos vacíos. Por favor llena todos los campos.",
           preferredStyle: .alert)
       
@@ -375,11 +375,11 @@ extension LawyersSignUpViewController: LawyersSignUpViewDelegate {
   //MARK: - Validation of credentials
   func validateCredentials(credentials: ExtractingCredentialsModel) -> TextFieldValidation {
     
-    let validateName = Utilities.isValidName(credentials.name)
-    let validateEmail = Utilities.isValidEmail(credentials.email)
-    let validatePassword = Utilities.isPasswordValid(credentials.password)
-    let validateNumberOfDocument = Utilities.isValidNumber(credentials.numberOfDocument)
-    let validateCellphoneNumber = Utilities.isValidNumber(credentials.mobileNumber)
+    let validateName = RegexParameters.isValidName(credentials.name)
+    let validateEmail = RegexParameters.isValidEmail(credentials.email)
+    let validatePassword = RegexParameters.isPasswordValid(credentials.password)
+    let validateNumberOfDocument = RegexParameters.isValidNumber(credentials.numberOfDocument)
+    let validateCellphoneNumber = RegexParameters.isValidNumber(credentials.mobileNumber)
     
     //MARK: - Empty fields
     
