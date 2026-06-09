@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RegexParameters {
+class RegexParametersValidation {
   
   //MARK: - Validation format for the name TextField
   static func isValidName(_ name: String) -> Bool {

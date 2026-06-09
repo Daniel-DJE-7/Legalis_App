@@ -375,11 +375,11 @@ extension LawyersSignUpViewController: LawyersSignUpViewDelegate {
   //MARK: - Validation of credentials
   func validateCredentials(credentials: ExtractingCredentialsModel) -> TextFieldValidation {
     
-    let validateName = RegexParameters.isValidName(credentials.name)
-    let validateEmail = RegexParameters.isValidEmail(credentials.email)
-    let validatePassword = RegexParameters.isPasswordValid(credentials.password)
-    let validateNumberOfDocument = RegexParameters.isValidNumber(credentials.numberOfDocument)
-    let validateCellphoneNumber = RegexParameters.isValidNumber(credentials.mobileNumber)
+    let validateName = RegexParametersValidation.isValidName(credentials.name)
+    let validateEmail = RegexParametersValidation.isValidEmail(credentials.email)
+    let validatePassword = RegexParametersValidation.isPasswordValid(credentials.password)
+    let validateNumberOfDocument = RegexParametersValidation.isValidNumber(credentials.numberOfDocument)
+    let validateCellphoneNumber = RegexParametersValidation.isValidNumber(credentials.mobileNumber)
     
     //MARK: - Empty fields
     
