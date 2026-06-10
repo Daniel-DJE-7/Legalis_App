@@ -84,11 +84,11 @@
 		8D7497662FB2721A009D6AD7 /* CoreCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7497652FB2721A009D6AD7 /* CoreCollectionViewController.swift */; };
 		8D7A5E7B2FD862E700ACD94A /* RegexParametersValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7A5E7A2FD862E700ACD94A /* RegexParametersValidation.swift */; };
 		8D7A5E7D2FD87BCB00ACD94A /* HomeClientCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7A5E7C2FD87BCB00ACD94A /* HomeClientCollectionViewController.swift */; };
-		8DA2F9ED2FCE275500E8E324 /* MainTabBarItemNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA2F9EC2FCE275500E8E324 /* MainTabBarItemNavigationViewController.swift */; };
 		8DA2F9EF2FCE2D2500E8E324 /* HomeLawyerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA2F9EE2FCE2D2500E8E324 /* HomeLawyerViewController.swift */; };
 		8DB540402FA56CEE00D8DB72 /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB5403F2FA56CEE00D8DB72 /* UIView+Layout.swift */; };
 		8DC8A4C12FD7199F005AD39C /* iOSDropDown in Frameworks */ = {isa = PBXBuildFile; productRef = 8DC8A4C02FD7199F005AD39C /* iOSDropDown */; };
 		8DC8A4C32FD746AA005AD39C /* HTMLText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC8A4C22FD746AA005AD39C /* HTMLText.swift */; };
+		8DEB0AFE2FD9ADC800873DB2 /* MainTabBarItemNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEB0AFD2FD9ADC800873DB2 /* MainTabBarItemNavigationViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -171,10 +171,10 @@
 		8D7497652FB2721A009D6AD7 /* CoreCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreCollectionViewController.swift; sourceTree = "<group>"; };
 		8D7A5E7A2FD862E700ACD94A /* RegexParametersValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexParametersValidation.swift; sourceTree = "<group>"; };
 		8D7A5E7C2FD87BCB00ACD94A /* HomeClientCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeClientCollectionViewController.swift; sourceTree = "<group>"; };
-		8DA2F9EC2FCE275500E8E324 /* MainTabBarItemNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainTabBarItemNavigationViewController.swift; path = ../../../../../../../Downloads/MainTabBarItemNavigationViewController.swift; sourceTree = "<group>"; };
 		8DA2F9EE2FCE2D2500E8E324 /* HomeLawyerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeLawyerViewController.swift; sourceTree = "<group>"; };
 		8DB5403F2FA56CEE00D8DB72 /* UIView+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Layout.swift"; sourceTree = "<group>"; };
 		8DC8A4C22FD746AA005AD39C /* HTMLText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTMLText.swift; sourceTree = "<group>"; };
+		8DEB0AFD2FD9ADC800873DB2 /* MainTabBarItemNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarItemNavigationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -308,7 +308,7 @@
 		8D18D07D2FA28D910038AB85 /* MainTabBarController */ = {
 			isa = PBXGroup;
 			children = (
-				8DA2F9EC2FCE275500E8E324 /* MainTabBarItemNavigationViewController.swift */,
+				8DEB0AFD2FD9ADC800873DB2 /* MainTabBarItemNavigationViewController.swift */,
 			);
 			path = MainTabBarController;
 			sourceTree = "<group>";
@@ -768,6 +768,7 @@
 			files = (
 				8D44E4632FAAB3F700AC5242 /* LawyersSignUpViewController.swift in Sources */,
 				8D436B872FBE6A9000429E60 /* NSMutableAttributedString.swift in Sources */,
+				8DEB0AFE2FD9ADC800873DB2 /* MainTabBarItemNavigationViewController.swift in Sources */,
 				8D44E4662FAAB80300AC5242 /* ClientsSignUpViewController.swift in Sources */,
 				8D18D0682FA28B6E0038AB85 /* ViewController.swift in Sources */,
 				8D18D0982FA2BBA10038AB85 /* WelcomeViewController.swift in Sources */,
@@ -776,7 +777,6 @@
 				8D7A5E7B2FD862E700ACD94A /* RegexParametersValidation.swift in Sources */,
 				8DB540402FA56CEE00D8DB72 /* UIView+Layout.swift in Sources */,
 				8D44E4612FAAAEFE00AC5242 /* LawyersSignUpView.swift in Sources */,
-				8DA2F9ED2FCE275500E8E324 /* MainTabBarItemNavigationViewController.swift in Sources */,
 				8D39444A2FAFAF2B00CED997 /* RegisterModel.swift in Sources */,
 				8D7A5E7D2FD87BCB00ACD94A /* HomeClientCollectionViewController.swift in Sources */,
 				8D18D0642FA28B6E0038AB85 /* AppDelegate.swift in Sources */,
