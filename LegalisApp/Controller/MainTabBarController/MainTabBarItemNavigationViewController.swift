@@ -25,6 +25,7 @@ class MainTabBarItemNavigationController: UITabBarController {
   fileprivate func creatingTabBarController(
     _ viewController: UIViewController,
     image: UIImage?,
+    selectedImage: UIImage?,
     navTabBarItemtitle: String?,
     navHeaderTitle: String?,
     largeTitle: Bool,
@@ -35,7 +36,9 @@ class MainTabBarItemNavigationController: UITabBarController {
       //large title
       navBarItemController.navigationBar.prefersLargeTitles = largeTitle
       navBarItemController.tabBarItem.image = image
+      navBarItemController.tabBarItem.selectedImage = selectedImage?.withRenderingMode(.alwaysOriginal)
       navBarItemController.tabBarItem.title = navTabBarItemtitle//title for navTabBar to bottom
+      
       
       viewController.navigationItem.title = navHeaderTitle//title for navBar header
       viewController.view.backgroundColor = controllerBackgroundcolor
@@ -61,7 +64,8 @@ class MainTabBarItemNavigationController: UITabBarController {
       viewControllers = [
           creatingTabBarController(
               homeViewController,
-              image: UIImage(named: "homeSymbol"),
+              image: UIImage(named: "homeSymbolGray"),
+             selectedImage: UIImage(named: "HomeSymbolBlue"),
               navTabBarItemtitle: "Home",
               navHeaderTitle: nil,
               largeTitle: false,
