@@ -28,8 +28,8 @@ class MainTabBarItemNavigationController: UITabBarController {
     selectedImage: UIImage?,
     navTabBarItemtitle: String?,
     navHeaderTitle: String?,
-    largeTitle: Bool,
-    controllerBackgroundcolor: UIColor) -> UIViewController {
+    largeTitle: Bool
+    ) -> UIViewController {
     
       let navBarItemController = UINavigationController(rootViewController: viewController)
       
@@ -40,38 +40,27 @@ class MainTabBarItemNavigationController: UITabBarController {
       navBarItemController.tabBarItem.title = navTabBarItemtitle//title for navTabBar to bottom
       
       
-      viewController.navigationItem.title = navHeaderTitle//title for navBar header
-      viewController.view.backgroundColor = controllerBackgroundcolor
+      //navBarItemController.tabBarController?.tabBar.barTintColor = #colorLiteral(red: 0.9372549057, green: 0.3490196168, blue: 0.1921568662, alpha: 1)
+      //tabBar.tintColor = #colorLiteral(red: 0.001550899004, green: 0.1220162287, blue: 0.2591198385, alpha: 1)
       
+      
+      viewController.navigationItem.title = navHeaderTitle//title for navBar header
+     
       return navBarItemController
   }
   
   func userTypeModuls() {
 
-      let homeViewController: UIViewController
-
       switch typeViewController {
-      case .lawyer:
-          homeViewController = HomeLawyerViewController()
+        case .lawyer:
+          viewControllers = configureLawyersModuls()
 
-      case .client:
-          homeViewController = HomeClientCollectionViewController()
+        case .client:
+            viewControllers = configureClientModuls()
 
-      case .none:
-          homeViewController = UIViewController()
+        case .none:
+            viewControllers = []
       }
-
-      viewControllers = [
-          creatingTabBarController(
-              homeViewController,
-              image: UIImage(named: "homeSymbolGray"),
-             selectedImage: UIImage(named: "HomeSymbolBlue"),
-              navTabBarItemtitle: "Home",
-              navHeaderTitle: nil,
-              largeTitle: false,
-              controllerBackgroundcolor: #colorLiteral(red: 0.9724870324, green: 0.9721793532, blue: 0.9929525256, alpha: 1)
-          )
-      ]
   }
   
   func updateUserType(_ type: UserType) {
@@ -79,7 +68,45 @@ class MainTabBarItemNavigationController: UITabBarController {
       userTypeModuls()
   }
   
+  
+  func configureLawyersModuls() -> [UIViewController] {
+    
+     return [
+        creatingTabBarController(
+            HomeLawyerViewController(),
+            image: UIImage(named: "homeSymbolGray"),
+           selectedImage: UIImage(named: "HomeSymbolBlue"),
+            navTabBarItemtitle: "Inicio",
+            navHeaderTitle: nil,
+            largeTitle: false
+        )
+    ]
   }
+  
+  func configureClientModuls() -> [UIViewController] {
+    
+    return [
+        creatingTabBarController(
+            HomeClientCollectionViewController(),
+            image: UIImage(named: "homeSymbolGray"),
+           selectedImage: UIImage(named: "HomeSymbolBlue"),
+            navTabBarItemtitle: "Inicio",
+            navHeaderTitle: nil,
+            largeTitle: false
+        ),
+        
+        creatingTabBarController(
+          ChatsCollectionViewController(),
+          image: UIImage(named: "chatGrey"),
+          selectedImage: UIImage(named: "chatsBlue"),
+          navTabBarItemtitle: "Chats",
+          navHeaderTitle: nil,
+          largeTitle: false)
+    ]
+    
+  }
+  
+}
   
 
 //Abelardo Pineda

@@ -89,6 +89,7 @@
 		8DC8A4C12FD7199F005AD39C /* iOSDropDown in Frameworks */ = {isa = PBXBuildFile; productRef = 8DC8A4C02FD7199F005AD39C /* iOSDropDown */; };
 		8DC8A4C32FD746AA005AD39C /* HTMLText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC8A4C22FD746AA005AD39C /* HTMLText.swift */; };
 		8DEB0AFE2FD9ADC800873DB2 /* MainTabBarItemNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEB0AFD2FD9ADC800873DB2 /* MainTabBarItemNavigationViewController.swift */; };
+		8DEB0B002FD9DBC700873DB2 /* ChatsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEB0AFF2FD9DBC700873DB2 /* ChatsCollectionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -175,6 +176,7 @@
 		8DB5403F2FA56CEE00D8DB72 /* UIView+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Layout.swift"; sourceTree = "<group>"; };
 		8DC8A4C22FD746AA005AD39C /* HTMLText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTMLText.swift; sourceTree = "<group>"; };
 		8DEB0AFD2FD9ADC800873DB2 /* MainTabBarItemNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarItemNavigationViewController.swift; sourceTree = "<group>"; };
+		8DEB0AFF2FD9DBC700873DB2 /* ChatsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsCollectionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -399,6 +401,7 @@
 		8D18D0892FA290000038AB85 /* ChatsViewController */ = {
 			isa = PBXGroup;
 			children = (
+				8DEB0AFF2FD9DBC700873DB2 /* ChatsCollectionViewController.swift */,
 			);
 			path = ChatsViewController;
 			sourceTree = "<group>";
@@ -774,6 +777,7 @@
 				8D18D0982FA2BBA10038AB85 /* WelcomeViewController.swift in Sources */,
 				8D0C89DF2FCF933200B8C306 /* ClientsSignUpView.swift in Sources */,
 				8DA2F9EF2FCE2D2500E8E324 /* HomeLawyerViewController.swift in Sources */,
+				8DEB0B002FD9DBC700873DB2 /* ChatsCollectionViewController.swift in Sources */,
 				8D7A5E7B2FD862E700ACD94A /* RegexParametersValidation.swift in Sources */,
 				8DB540402FA56CEE00D8DB72 /* UIView+Layout.swift in Sources */,
 				8D44E4612FAAAEFE00AC5242 /* LawyersSignUpView.swift in Sources */,
