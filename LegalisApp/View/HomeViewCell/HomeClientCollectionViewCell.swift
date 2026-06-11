@@ -15,8 +15,9 @@ class HomeClientCollectionViewCell: UICollectionViewCell {
     let label = UILabel()
     label.textAlignment = .left
     label.numberOfLines = 0
+    label.translatesAutoresizingMaskIntoConstraints = false
 
-    let text = "Bienvenido de nuevo, /n Hola, Usuario"
+    let text = "Bienvenido de nuevo, \n Hola, Usuario"
     
     let attributedString = NSMutableAttributedString(string: text)
     
@@ -34,17 +35,52 @@ class HomeClientCollectionViewCell: UICollectionViewCell {
       .font : UIFont(name: "Inter-Regular_Bold", size: 34) as Any
     ], range: cheersRange)
     
+    label.attributedText = attributedString
+    
     return label
   }()
   
+  let appointmentImage = UIImageView()
   
   override init(frame: CGRect) {
     super.init(frame: frame)
+    setUpUIElements()
+    setUpUI()
+    
   }
   
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
+  
+  func setUpUIElements() {
+  
+    appointmentImage.image = UIImage(named: "appointmentSection")
+    appointmentImage.contentMode = .scaleAspectFill
+    appointmentImage.clipsToBounds = true
+    appointmentImage.translatesAutoresizingMaskIntoConstraints = false
+  }
+
+  func setUpUI() {
+    
+
+    contentView.addSubview(cheersLabel)
+    contentView.addSubview(appointmentImage)
+ 
+    
+    NSLayoutConstraint.activate([
+      cheersLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
+      cheersLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
+      cheersLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15),
+      
+      appointmentImage.topAnchor.constraint(equalTo: cheersLabel.bottomAnchor, constant: 15),
+      appointmentImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
+      appointmentImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15),
+      appointmentImage.heightAnchor.constraint(equalToConstant: 160)
+
+    ])
+  }
+  
   
   
 }

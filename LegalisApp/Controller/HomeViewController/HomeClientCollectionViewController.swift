@@ -16,12 +16,16 @@ class HomeClientCollectionViewController: CoreCollectionViewController {
 
   private let titleSecondSection = "ESPECIALIDADES"
   
+  var categories: [categoriesModel] = []
+  
+  
     override func viewDidLoad() {
         super.viewDidLoad()
-      
+      collectionView.backgroundColor = .systemGray6
       configureNavBar()
       registerCells()
       configLayout()
+      configureItemsInCells()
       
     }
   
@@ -30,12 +34,28 @@ class HomeClientCollectionViewController: CoreCollectionViewController {
     collectionView.frame = view.bounds
   }
   
+  //MARK: - Array of cells
+  func configureItemsInCells() {
+    categories = [
+      categoriesModel(leftIcon: UIImage(named: "maso"), name: "Derecho civil"),
+      categoriesModel(leftIcon: UIImage(named: "criminalLaw"), name: "Derecho penal"),
+      categoriesModel(leftIcon: UIImage(named: "laborLaw"), name: "Derecho Laboral"),
+      categoriesModel(leftIcon: UIImage(named: "commercialLaw"), name: "Derecho Comercial"),
+      categoriesModel(leftIcon: UIImage(named: "familyLaw"), name: "Derecho de Familia"),
+      categoriesModel(leftIcon: UIImage(named: "administrativeLaw"), name: "Derecho Administrativo"),
+      categoriesModel(leftIcon: UIImage(named: "constitutionalLaw"), name: "Derecho Constitucional"),
+      categoriesModel(leftIcon: UIImage(named: "environmentalLaw"), name: "Derecho Ambiental"),
+      categoriesModel(leftIcon: UIImage(named: "technologyLaw"), name: "Derecho Digital"),
+      categoriesModel(leftIcon: UIImage(named: "intellectualPropertyLaw"), name: "Propiedad Intelectual"),
+    ]
+  }
+  
   //MARK: - Register cells
   func registerCells() {
     //first Section
-    collectionView.register(TestClass.self, forCellWithReuseIdentifier: TestClass.identifier)
+    collectionView.register(HomeClientCollectionViewCell.self, forCellWithReuseIdentifier: HomeClientCollectionViewCell.identifier)
     //Second section
-    collectionView.register(TestClass2.self, forCellWithReuseIdentifier: TestClass2.identifier)
+    collectionView.register(LawCategoriesCollectionViewCell.self, forCellWithReuseIdentifier: LawCategoriesCollectionViewCell.identifier)
     //Header of second Section
     collectionView.register(
       HeaderSecondSectionCollectionViewCell.self,
@@ -103,7 +123,7 @@ class HomeClientCollectionViewController: CoreCollectionViewController {
         let firstItem = NSCollectionLayoutItem(
           layoutSize: NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1),
-            heightDimension: .absolute(300))
+            heightDimension: .estimated(280))
         )
         
         //group
@@ -115,6 +135,8 @@ class HomeClientCollectionViewController: CoreCollectionViewController {
         
         //Section
         let firstSection = NSCollectionLayoutSection(group: firstGroup)
+      
+      firstSection.interGroupSpacing = 10
         return firstSection
         
       //MARK: second section
@@ -123,20 +145,21 @@ class HomeClientCollectionViewController: CoreCollectionViewController {
         let secondItem = NSCollectionLayoutItem(
           layoutSize: NSCollectionLayoutSize(
           widthDimension: .fractionalWidth(1),
-          heightDimension: .estimated(44 * 23))
+          heightDimension: .estimated(44))
         )
-      secondItem.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 1, trailing: 0)
         
         //group
         let secondGroup = NSCollectionLayoutGroup.vertical(
           layoutSize: secondItem.layoutSize,
           subitem: secondItem,
-          count: 23
+          count: 1
         )
-      
+      secondGroup.contentInsets = .init(top: 0, leading: 20, bottom: 0, trailing: 20)
         //section
         let secondSection = NSCollectionLayoutSection(group: secondGroup)
-           secondSection.boundarySupplementaryItems = header
+          secondSection.interGroupSpacing = 2
+          secondSection.boundarySupplementaryItems = header
+      
         return secondSection
         
       //MARK: - Default section
@@ -170,7 +193,7 @@ class HomeClientCollectionViewController: CoreCollectionViewController {
 
 }
 
-
+// MARK: - PROTOCOL COLLECTION VIEW DELEGATE
 extension HomeClientCollectionViewController: UICollectionViewDelegateFlowLayout {
   
   //MARK: - Number of section
@@ -188,7 +211,7 @@ extension HomeClientCollectionViewController: UICollectionViewDelegateFlowLayout
     case .detailsOfappoinment:
       return 1
     case .categories:
-      return 23
+      return 10//22
     }
   }
   
@@ -203,17 +226,19 @@ extension HomeClientCollectionViewController: UICollectionViewDelegateFlowLayout
     switch section {
       case .detailsOfappoinment:
       
-      guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TestClass.identifier, for: indexPath) as? TestClass else {
+      guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeClientCollectionViewCell.identifier, for: indexPath) as? HomeClientCollectionViewCell else {
         return UICollectionViewCell()
       }
-      cell.backgroundColor = .orange
+      
       return cell
       
       case .categories:
       
-      guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TestClass.identifier, for: indexPath) as? TestClass else { return UICollectionViewCell()
+      guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LawCategoriesCollectionViewCell.identifier, for: indexPath) as? LawCategoriesCollectionViewCell else { return UICollectionViewCell()
       }
-      cell.backgroundColor = .blue
+      cell.layer.cornerRadius = 10
+      cell.backgroundColor = .white
+      cell.configure(categories: categories[indexPath.row])
       return cell
     }
   }

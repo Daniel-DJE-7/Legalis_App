@@ -16,7 +16,7 @@ class HeaderSecondSectionCollectionViewCell: UICollectionViewCell {
     let label = UILabel()
     label.textAlignment = .left
     
-    let text = "ESPECIALIDADES"
+    let text = "a"
     
     let attributedString = NSAttributedString(
       string: text,
@@ -38,6 +38,11 @@ class HeaderSecondSectionCollectionViewCell: UICollectionViewCell {
     
     addSubview(headerSecondSection)
     headerSecondSection.frame = CGRect(x: 16, y: 0, width: 326, height: 18)
+    
+    NSLayoutConstraint.activate([
+      headerSecondSection.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 23)
+    ])
+    
   }
   
   required init?(coder: NSCoder) {
