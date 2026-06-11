@@ -7,6 +7,10 @@
 
 import UIKit
 
+enum SectionType: Int, CaseIterable {
+  case detailsOfappoinment
+  case categories
+}
 
 class HomeClientCollectionViewController: CoreCollectionViewController {
 
@@ -26,7 +30,9 @@ class HomeClientCollectionViewController: CoreCollectionViewController {
   
   //MARK: - Register cells
   func registerCells() {
-    collectionView.register(TestClass.self, forCellWithReuseIdentifier: "cell")
+    collectionView.register(TestClass.self, forCellWithReuseIdentifier: TestClass.identifier)
+    
+    collectionView.register(TestClass2.self, forCellWithReuseIdentifier: TestClass2.identifier)
   }
   
   //MARK: - Configuration of NAVBAR
@@ -88,7 +94,7 @@ class HomeClientCollectionViewController: CoreCollectionViewController {
         //item
         let firstItem = NSCollectionLayoutItem(
           layoutSize: NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(0.9),
+            widthDimension: .fractionalWidth(1),
             heightDimension: .absolute(250))
         )
         
@@ -108,7 +114,7 @@ class HomeClientCollectionViewController: CoreCollectionViewController {
         //item
         let secondItem = NSCollectionLayoutItem(
           layoutSize: NSCollectionLayoutSize(
-          widthDimension: .fractionalWidth(0.9),
+          widthDimension: .fractionalWidth(1),
           heightDimension: .absolute(475))
         )
         
@@ -119,7 +125,7 @@ class HomeClientCollectionViewController: CoreCollectionViewController {
         
         //section
         let secondSection = NSCollectionLayoutSection(group: secondGroup)
-            secondSection.boundarySupplementaryItems = header
+           // secondSection.boundarySupplementaryItems = header
         return secondSection
         
       //MARK: - Default section
@@ -153,11 +159,70 @@ class HomeClientCollectionViewController: CoreCollectionViewController {
 
 }
 
+
+extension HomeClientCollectionViewController: UICollectionViewDelegateFlowLayout {
+  
+  //MARK: - Number of section
+  override func numberOfSections(in collectionView: UICollectionView) -> Int {
+    return SectionType.allCases.count
+  }
+  
+  //MARK: - Number of items (cells) in section
+  override func collectionView(_ collectionView: UICollectionView,
+                               numberOfItemsInSection section: Int) -> Int {
+    
+    guard let section = SectionType(rawValue: section) else { return 0 }
+    
+    switch section {
+    case .detailsOfappoinment:
+      return 1
+    case .categories:
+      return 1
+    }
+  }
+  
+  //MARK: - Creating cells
+  override func collectionView(_ collectionView: UICollectionView,
+                               cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    
+    guard let section = SectionType(rawValue: indexPath.section) else {
+      return UICollectionViewCell()
+    }
+     
+    switch section {
+      case .detailsOfappoinment:
+      
+      guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TestClass.identifier, for: indexPath) as? TestClass else {
+        return UICollectionViewCell()
+      }
+      cell.backgroundColor = .orange
+      return cell
+      
+      case .categories:
+      
+      guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TestClass.identifier, for: indexPath) as? TestClass else { return UICollectionViewCell()
+      }
+      cell.backgroundColor = .blue
+      return cell
+      
+    }
+    
+  }
+  
+  
+}
+
+
+
+
+
 class TestClass: UICollectionViewCell {
   static let identifier = "testClass"
 }
 
-
+class TestClass2: UICollectionViewCell {
+  static let identifier = "testClass2"
+}
 //diagramar las celdas con colores
 //hacer header de second section
 //aprender sobre la distribucion de la stackView
