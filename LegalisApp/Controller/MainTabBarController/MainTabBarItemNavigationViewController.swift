@@ -38,10 +38,10 @@ class MainTabBarItemNavigationController: UITabBarController {
       navBarItemController.tabBarItem.image = image
       navBarItemController.tabBarItem.selectedImage = selectedImage?.withRenderingMode(.alwaysOriginal)
       navBarItemController.tabBarItem.title = navTabBarItemtitle//title for navTabBar to bottom
+      navBarItemController.navigationBar.backgroundColor = #colorLiteral(red: 0.9489575028, green: 0.9486498237, blue: 0.9694228768, alpha: 1)
       
-      
-      //navBarItemController.tabBarController?.tabBar.barTintColor = #colorLiteral(red: 0.9372549057, green: 0.3490196168, blue: 0.1921568662, alpha: 1)
-      //tabBar.tintColor = #colorLiteral(red: 0.001550899004, green: 0.1220162287, blue: 0.2591198385, alpha: 1)
+      //navBarItemController.tabBarController?.tabBar.backgroundColor = #colorLiteral(red: 0.9372549057, green: 0.3490196168, blue: 0.1921568662, alpha: 1)
+      tabBar.tintColor = #colorLiteral(red: 0.001550899004, green: 0.1220162287, blue: 0.2591198385, alpha: 1)
       
       
       viewController.navigationItem.title = navHeaderTitle//title for navBar header
