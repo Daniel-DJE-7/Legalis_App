@@ -2,7 +2,7 @@
 //  LawyersSignUpViewController.swift
 //  LegalisApp
 //
-//  Created by Memo Figueredo on 5/5/26.
+//  Created by Daniel Figueredo on 5/5/26.
 //
 
 import UIKit
@@ -22,11 +22,6 @@ class LawyersSignUpViewController: CoreCollectionViewController {
     
   private let gendersOptions = ["Ninguno","Masculino", "Femenino"]
   private let practiceType = ["Ninguno","Independiente", "Bufete o Empresa"]
-  let htmlText = """
-                <div style="text-align: center;">
-                    Al registrarte, aceptas nuestros <a href='https://legalis.com.co/terminos'>Términos de servicio</a> <br> y <a href='https:/legalis.com.co/privacidad'>Política de privacidad</a>.
-                </div>
-                """
   
   let lawyersSignUpView = LawyersSignUpView()
   
@@ -44,7 +39,6 @@ class LawyersSignUpViewController: CoreCollectionViewController {
       configuringDelegatesAndDataSources()
       actionsforSelectingSexToolBar()
       closeNavActionButton()
-      setHTMLText()
     }
 
   //MARK: - Delegates & Data sources
@@ -72,11 +66,6 @@ class LawyersSignUpViewController: CoreCollectionViewController {
     lawyersSignUpView.onCloseNavBtnTapped = { [weak self] in
       self?.dismiss(animated: true)
     }
-  }
-  
-  //MARK: - Setting the HTML TEXT
-  func setHTMLText() {
-    lawyersSignUpView.sethtmlText(htmlText, fontFamily: "Inter", size: 12)
   }
   
 }
@@ -133,7 +122,11 @@ extension LawyersSignUpViewController: UITextFieldDelegate {
 //MARK: - TextView Delegate
 extension LawyersSignUpViewController: UITextViewDelegate {
   
-  func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+  func textView(_ textView: UITextView,
+                shouldInteractWith URL: URL,
+                in characterRange: NSRange,
+                interaction: UITextItemInteraction) -> Bool {
+   
     let safariVC = SFSafariViewController(url: URL)
     present(safariVC, animated: true)
     
@@ -220,7 +213,7 @@ extension LawyersSignUpViewController: LawyersSignUpViewDelegate {
   }
  
   //MARK: - SignUp Btn
-  func onSignUpBtnTapped() {
+  func onSignUpBtnTapped(with userType: UserType) {
     //collectiong info of users
     //validation to push to homeViewController
       //validate that fields "name, document, mobile num, email, password are filled as obligation and they fulfill the format
@@ -239,7 +232,7 @@ extension LawyersSignUpViewController: LawyersSignUpViewDelegate {
         let alertEmptyFields = Utilities.creatingAlerts(
           style: .default,
           titleAction: "Llenar todos los campos",
-          titleAlert: "ERROR CAMPOS VACÍOS",
+          titleAlert: "ERROR, CAMPOS VACÍOS",
           message: "Tienes campos vacíos. Por favor llena todos los campos.",
           preferredStyle: .alert)
       
@@ -306,24 +299,34 @@ extension LawyersSignUpViewController: LawyersSignUpViewDelegate {
           style: .default,
           titleAction: "Volver a escribir contraseña",
           titleAlert: "CONTRASEÑA INCORRECTA",
-          message: "Tu contraseña no es válida. Asegurate de que tu contraseña tenga por lo menos: \n - 1 letra mayúscula \n - 1 letra minúscula \n - Un número \n - Un símbolo (#-_*%$@?) \n - Mínimo debes escribir 8 caracteres",
+          message: """
+                   Tu contraseña no es válida. Asegurate de que tu contraseña tenga por lo menos: \n
+                   - 1 letra mayúscula \n
+                   - 1 letra minúscula \n
+                   - Un número \n
+                   - Un símbolo (#-_*%$@?) \n
+                   - Mínimo debes escribir 8 caracteres
+                   """,
           preferredStyle: .actionSheet)
         
         self.present(alertInvalidPassword, animated: true)
       
       lawyersSignUpView.textFields[4].backgroundColor = .systemRed.withAlphaComponent(0.3)
       
-      case.success:
+      case .success:
       
+      if userType == .lawyer {
+        
         let mainTabBar = MainTabBarItemNavigationController()
-        mainTabBar.selectedViewController = mainTabBar.viewControllers?[0]
-      // mainTabBar.selectedIndex = 0
+       // mainTabBar.selectedViewController = mainTabBar.viewControllers?[0]
+        // mainTabBar.selectedIndex = 0
+        mainTabBar.updateUserType(.lawyer)
         mainTabBar.modalPresentationStyle = .fullScreen
         mainTabBar.modalTransitionStyle = .crossDissolve
         present(mainTabBar, animated: true)
-      
-    }
-  }
+      }
+    }//switch end
+  }//func onSignUp end
   
   //MARK: - Extracting credentials
   func extractionOfCredentials() -> ExtractingCredentialsModel {
@@ -386,11 +389,11 @@ extension LawyersSignUpViewController: LawyersSignUpViewDelegate {
   //MARK: - Validation of credentials
   func validateCredentials(credentials: ExtractingCredentialsModel) -> TextFieldValidation {
     
-    let validateName = Utilities.isValidName(credentials.name)
-    let validateEmail = Utilities.isValidEmail(credentials.email)
-    let validatePassword = Utilities.isPasswordValid(credentials.password)
-    let validateNumberOfDocument = Utilities.isValidNumber(credentials.numberOfDocument)
-    let validateCellphoneNumber = Utilities.isValidNumber(credentials.mobileNumber)
+    let validateName = RegexParametersValidation.isValidName(credentials.name)
+    let validateEmail = RegexParametersValidation.isValidEmail(credentials.email)
+    let validatePassword = RegexParametersValidation.isPasswordValid(credentials.password)
+    let validateNumberOfDocument = RegexParametersValidation.isValidNumber(credentials.numberOfDocument)
+    let validateCellphoneNumber = RegexParametersValidation.isValidNumber(credentials.mobileNumber)
     
     //MARK: - Empty fields
     

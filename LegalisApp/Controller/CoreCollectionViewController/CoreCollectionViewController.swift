@@ -2,12 +2,10 @@
 //  CoreCollectionViewController.swift
 //  LegalisApp
 //
-//  Created by Memo Figueredo on 11/5/26.
+//  Created by Daniel Figueredo on 11/5/26.
 //
 
 import UIKit
-
-
 
 class CoreCollectionViewController: UICollectionViewController {
 
