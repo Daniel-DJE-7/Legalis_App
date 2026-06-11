@@ -2,7 +2,7 @@
 //  Utilities.swift
 //  LegalisApp
 //
-//  Created by Memo Figueredo on 9/5/26.
+//  Created by Daniel Figueredo on 9/5/26.
 //
 
 import Foundation
@@ -91,15 +91,15 @@ class Utilities {
                                 cornerRadius: CGFloat,
                                 backgroundColor: UIColor,
                                 baseForeground: UIColor,
-                                width: CGFloat,
+                                width: CGFloat?,
                                 height: CGFloat,
                                 target: Any?,
                                 action: Selector) {
    
     button.configuration = appearance
     button.configuration?.title = title
+    button.titleLabel?.font = UIFont(name: "Inter-Regular_Bold", size: 17)
     button.titleLabel?.font = .systemFont(ofSize: 17, weight: .semibold)
-    button.titleLabel?.font = UIFont(name: "Inter", size: 17)
     button.configuration?.image = image
     button.configuration?.imagePlacement = imagePlacement ?? .leading
     button.configuration?.imagePadding = imagePadding ?? 0
@@ -107,7 +107,7 @@ class Utilities {
     button.backgroundColor = backgroundColor
     button.configuration?.baseForegroundColor = baseForeground
     button.addTarget(target, action: action, for: .touchUpInside)
-    button.widthAnchor.constraint(equalToConstant: width).isActive = true
+    button.widthAnchor.constraint(equalToConstant: width ?? 0).isActive = true
     button.heightAnchor.constraint(equalToConstant: height).isActive = true
     
     button.translatesAutoresizingMaskIntoConstraints = false
@@ -123,44 +123,6 @@ class Utilities {
     textView.textContainer.lineFragmentPadding = 0
     textView.textAlignment = .center
     textView.translatesAutoresizingMaskIntoConstraints = false
-  }
-  
-  //MARK: - Validation format for the name TextField
-  static func isValidName(_ name: String) -> Bool {
-    let nameRegex = "^[A-Za-z ]{5,100}$"
-    let namePredicate = NSPredicate(format: "SELF MATCHES %@", nameRegex)
-    return namePredicate.evaluate(with: name)
-  }
-  
-  //MARK: - Validation format for the password TextField
-  static func isPasswordValid(_ password: String) -> Bool {
-    let passwordRegex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$#!%*?&_\\-]).{8,}$"
-    
-    let passwordPredicate = NSPredicate(
-      format: "SELF MATCHES %@",
-      passwordRegex
-    )
-    
-    return passwordPredicate.evaluate(with: password)
-  }
-  
-  //MARK: - Validation format for the email textfield
-  static func isValidEmail(_ email: String) -> Bool {
-    
-    let emailRegex = "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}(\\.[a-z]{2,})?$"
-    
-    let emailPredicate = NSPredicate(format: "SELF MATCHES[C] %@", emailRegex)
-    
-    return emailPredicate.evaluate(with: email)
-  }
-  
-  //MARK: - Validation format for the numbers' textfield (doc and phone)
-  static func isValidNumber(_ number: String) -> Bool {
-    let numberRegex = "^[0-9]{10,20}$"//o -> "\\d{10,20}$"
-   
-    let numberPredicate = NSPredicate(format: "SELF MATCHES[C] %@", numberRegex)
-    
-    return numberPredicate.evaluate(with: number)
   }
   
   // MARK: - Alerts
@@ -190,12 +152,20 @@ class Utilities {
 
   }
   
-  static func creatingLogoImage(image: UIImageView, img: UIImage, contentMode: UIView.ContentMode) {
-    image.image = img
-    image.contentMode = contentMode
-    image.widthAnchor.constraint(equalToConstant: 113).isActive = true
-    image.heightAnchor.constraint(equalToConstant: 28).isActive = true
-    image.translatesAutoresizingMaskIntoConstraints = false
+  static func creatingImage(imageView: UIImageView,
+                                image: UIImage,
+                                contentMode: UIView.ContentMode,
+                                clipsToBounds: Bool,
+                                tintColor: UIColor?,
+                                width: CGFloat,
+                                height: CGFloat) {
+    imageView.image = image
+    imageView.contentMode = contentMode
+    imageView.tintColor = tintColor
+    imageView.clipsToBounds = clipsToBounds
+    imageView.widthAnchor.constraint(equalToConstant: width).isActive = true
+    imageView.heightAnchor.constraint(equalToConstant: height).isActive = true
+    imageView.translatesAutoresizingMaskIntoConstraints = false
   }
   
   static func navBarBtn(_ button: UIButton,
@@ -212,6 +182,55 @@ class Utilities {
     button.addTarget(target, action: action, for: .touchUpInside)
     
     button.translatesAutoresizingMaskIntoConstraints = false
+  }
+  
+  //Clients view TextField + left Icon
+  static func clientTextFieldStyle(_ textField: UITextField,
+                                   placeholder: String,
+                                   isSecureTextEntry: Bool,
+                                   keyboardAppearance: UIKeyboardAppearance,
+                                   clearButtonMode: UITextField.ViewMode?,
+                                   keyboardType: UIKeyboardType?,
+                                   inputAccessoryView: UIView?,
+                                   backgroundColor: UIColor?,
+                                   leftIcon: UIImage?) {
+    
+    textField.borderStyle = .none
+    textField.placeholder = placeholder
+    textField.isSecureTextEntry = isSecureTextEntry
+    textField.keyboardAppearance = keyboardAppearance
+    textField.clearButtonMode = clearButtonMode ?? .never
+    textField.keyboardType = keyboardType ?? .default
+    textField.inputAccessoryView = inputAccessoryView
+    textField.backgroundColor = backgroundColor
+    textField.translatesAutoresizingMaskIntoConstraints = false
+   
+    //container to contain the left icon
+    //let container = UIView(frame: CGRect(x: 0, y: 0, width: 60, height: 26))
+    let leftIcon = UIImageView(image: leftIcon?.withConfiguration(UIImage.SymbolConfiguration(pointSize: 20, weight: .medium)))
+    leftIcon.tintColor = #colorLiteral(red: 0.2939614058, green: 0.2977539897, blue: 0.314393878, alpha: 1)
+    leftIcon.frame = CGRect(x: 16, y: 2, width: 20, height: 20)
+    
+    
+   // container.addSubview(leftIcon)
+   // textField.leftView = container//added de container an img to txtfield
+   // textField.leftViewMode = .always
+    //UIImageView(image: "", highlightedImage: "")
+    
+    NSLayoutConstraint.activate([
+      textField.heightAnchor.constraint(equalToConstant: 48),
+      //textField.widthAnchor.constraint(equalToConstant: 245)
+      
+    ])
+  }
+  
+  static func divider(_ divider: UIView,
+                      backgroundColor: UIColor,
+                      height: CGFloat) {
+   
+    divider.backgroundColor = backgroundColor
+    divider.heightAnchor.constraint(equalToConstant: height).isActive = true
+    divider.translatesAutoresizingMaskIntoConstraints = false
   }
   
 }

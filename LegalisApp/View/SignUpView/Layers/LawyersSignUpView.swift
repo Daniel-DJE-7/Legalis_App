@@ -34,7 +34,7 @@ protocol LawyersSignUpViewDelegate: AnyObject {
   func onCancelBtnTypeOfPracticePressed()
   
   //SignUpBtn
-  func onSignUpBtnTapped()
+  func onSignUpBtnTapped(with userType: UserType)
 }
 
 class LawyersSignUpView: UIView {
@@ -54,6 +54,14 @@ class LawyersSignUpView: UIView {
     RegisterModel(leftImage: UIImage(named: "sexIcon"), placeholder: "Seleccione sexo", rightImage: UIImage(systemName: "chevron.down")),
     RegisterModel(leftImage: UIImage(named: "work_work_symbol"), placeholder: "Independiente o Dependiente", rightImage: UIImage(systemName: "chevron.down"))
   ]
+  
+  let htmlHelper = HTMLText()
+  
+  let htmlText = """
+                <div style="text-align: center;">
+                    Al registrarte, aceptas nuestros <a href='https://legalis.com.co/terminos'>Términos de servicio</a> <br> y <a href='https:/legalis.com.co/privacidad'>Política de privacidad</a>.
+                </div>
+                """
   
   var textFields: [UITextField] = []
   
@@ -181,6 +189,7 @@ class LawyersSignUpView: UIView {
     setUptoolbarsForKeyboardsInfields()
     setUpFields()
     setUpHTMLTextView()
+    setHTMLText()
     setUpSingUpBtn()
     setUpUI()
   }
@@ -326,7 +335,24 @@ class LawyersSignUpView: UIView {
   
   func setUpSingUpBtn() {
     
-    Utilities.customButtonStyle(signUpButton, appearance: .plain(), title: "Registrarse", image: nil, imagePlacement: nil, imagePadding: nil, cornerRadius: 10, backgroundColor: #colorLiteral(red: 0.003979303874, green: 0.137050271, blue: 0.2949559987, alpha: 1), baseForeground: .white, width: 342, height: 54, target: self, action: #selector(onSignUpTapped))
+    Utilities.customButtonStyle(signUpButton,
+                                appearance: .plain(),
+                                title: "Registrarse",
+                                
+                                image: nil,
+                                imagePlacement: nil,
+                                imagePadding: nil,
+                                cornerRadius: 10,
+                                backgroundColor: #colorLiteral(
+                                  red: 0.003979303874,
+                                  green: 0.137050271,
+                                  blue: 0.2949559987,
+                                  alpha: 1),
+                                baseForeground: .white,
+                                width: 342,
+                                height: 54,
+                                target: self,
+                                action: #selector(onSignUpTapped))
   }
   
   
@@ -473,30 +499,14 @@ class LawyersSignUpView: UIView {
   
   //MARK: - SignUp btn
  @objc private func onSignUpTapped() {
-   delegate?.onSignUpBtnTapped()
+   delegate?.onSignUpBtnTapped(with: .lawyer)
   }
-  
-  //MARK: - method to convert my html into a String
-  func sethtmlText(_ htmlString: String, fontFamily: String, size: CGFloat) {
-    self.fontFamily = fontFamily
-    self.fontSize = size
     
-    //convierte mi texto html en data binario "0010110",
-    guard let data = htmlString.data(using: .utf8) else { return }
-    //le decimos a swift como interpretar los datos, se dice: esto es texto html
-    let options: [NSAttributedString.DocumentReadingOptionKey: Any] = [
-      .documentType: NSAttributedString.DocumentType.html,
-      .characterEncoding: String.Encoding.utf8.rawValue//el texto usa codigicacion utf8
-    ]
-    
-    //toma el html y le aplica estilos
-    if let baseAttributedString = try? NSAttributedString(data: data, options: options, documentAttributes: nil) {
-      let muttableAttributed = NSMutableAttributedString(attributedString: baseAttributedString)
-      
-      muttableAttributed.applyCustomFont(family: fontFamily, size: size)
-      
-      //mostramos el resultado en pantalla
-      self.htmlTextView.attributedText = muttableAttributed
+  //MARK: - Setting the HTML TEXT
+  func setHTMLText() {
+    if let attributed = htmlHelper.setHTMLText(htmlText) {
+      self.htmlTextView.attributedText = attributed
     }
   }
+
 }

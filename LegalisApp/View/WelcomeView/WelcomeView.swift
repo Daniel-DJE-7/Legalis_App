@@ -46,9 +46,9 @@ class WelcomeView: UIView {
       let label = UILabel()
       label.text = "Para ofrecerte la mejor experiencia legal personalizada."
       label.textColor = .white
-      label.font = .systemFont(ofSize: 12, weight: .regular)
-    label.font = UIFont(name: "Inter", size: 12)
-      label.textAlignment = .center
+      label.font = .systemFont(ofSize: 15, weight: .regular)
+      label.font = UIFont(name: "Inter-Regular_SemiBold", size: 15)
+      label.textAlignment = .left
       label.numberOfLines = 0
       return label
   }()

@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  LegalisApp
 //
-//  Created by Memo Figueredo on 29/4/26.
+//  Created by Daniel Figueredo on 29/4/26.
 //
 
 import UIKit
