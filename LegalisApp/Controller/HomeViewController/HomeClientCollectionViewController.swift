@@ -14,6 +14,8 @@ enum SectionType: Int, CaseIterable {
 
 class HomeClientCollectionViewController: CoreCollectionViewController {
 
+  private let titleSecondSection = "ESPECIALIDADES"
+  
     override func viewDidLoad() {
         super.viewDidLoad()
       
@@ -30,9 +32,15 @@ class HomeClientCollectionViewController: CoreCollectionViewController {
   
   //MARK: - Register cells
   func registerCells() {
+    //first Section
     collectionView.register(TestClass.self, forCellWithReuseIdentifier: TestClass.identifier)
-    
+    //Second section
     collectionView.register(TestClass2.self, forCellWithReuseIdentifier: TestClass2.identifier)
+    //Header of second Section
+    collectionView.register(
+      HeaderSecondSectionCollectionViewCell.self,
+      forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+      withReuseIdentifier: HeaderSecondSectionCollectionViewCell.identifier)
   }
   
   //MARK: - Configuration of NAVBAR
@@ -95,7 +103,7 @@ class HomeClientCollectionViewController: CoreCollectionViewController {
         let firstItem = NSCollectionLayoutItem(
           layoutSize: NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1),
-            heightDimension: .absolute(250))
+            heightDimension: .absolute(300))
         )
         
         //group
@@ -115,17 +123,20 @@ class HomeClientCollectionViewController: CoreCollectionViewController {
         let secondItem = NSCollectionLayoutItem(
           layoutSize: NSCollectionLayoutSize(
           widthDimension: .fractionalWidth(1),
-          heightDimension: .absolute(475))
+          heightDimension: .estimated(44 * 23))
         )
+      secondItem.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 1, trailing: 0)
         
         //group
         let secondGroup = NSCollectionLayoutGroup.vertical(
           layoutSize: secondItem.layoutSize,
-          subitems: [secondItem])
-        
+          subitem: secondItem,
+          count: 23
+        )
+      
         //section
         let secondSection = NSCollectionLayoutSection(group: secondGroup)
-           // secondSection.boundarySupplementaryItems = header
+           secondSection.boundarySupplementaryItems = header
         return secondSection
         
       //MARK: - Default section
@@ -141,7 +152,7 @@ class HomeClientCollectionViewController: CoreCollectionViewController {
         let defaultGroup = NSCollectionLayoutGroup.vertical(
           layoutSize: defautltItem.layoutSize,
           subitem: defautltItem,
-          count: 1
+          count: 23
         )
         //section
         let defaultSection = NSCollectionLayoutSection(group: defaultGroup)
@@ -177,7 +188,7 @@ extension HomeClientCollectionViewController: UICollectionViewDelegateFlowLayout
     case .detailsOfappoinment:
       return 1
     case .categories:
-      return 1
+      return 23
     }
   }
   
@@ -204,13 +215,25 @@ extension HomeClientCollectionViewController: UICollectionViewDelegateFlowLayout
       }
       cell.backgroundColor = .blue
       return cell
-      
     }
+  }
+  
+  override func collectionView(_ collectionView: UICollectionView,
+                               viewForSupplementaryElementOfKind kind: String,
+                               at indexPath: IndexPath) -> UICollectionReusableView {
     
+    guard let header = collectionView.dequeueReusableSupplementaryView(
+      ofKind: kind,
+      withReuseIdentifier: HeaderSecondSectionCollectionViewCell.identifier,
+      for: indexPath) as? HeaderSecondSectionCollectionViewCell, kind == UICollectionView.elementKindSectionHeader else {
+      return UICollectionReusableView()
+    }
+    header.configure(with: titleSecondSection)
+    return header
   }
   
   
-}
+}//Extension end
 
 
 
