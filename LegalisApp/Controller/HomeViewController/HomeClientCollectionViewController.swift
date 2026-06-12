@@ -17,7 +17,7 @@ class HomeClientCollectionViewController: CoreCollectionViewController {
   private let titleSecondSection = "ESPECIALIDADES"
   
   var categories: [categoriesModel] = []
-  
+  let rightImage = "chevronGray"
   
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +36,7 @@ class HomeClientCollectionViewController: CoreCollectionViewController {
   
   //MARK: - Array of cells
   func configureItemsInCells() {
+    
     categories = [
       categoriesModel(leftIcon: UIImage(named: "maso"), name: "Derecho civil"),
       categoriesModel(leftIcon: UIImage(named: "criminalLaw"), name: "Derecho penal"),
@@ -47,7 +48,21 @@ class HomeClientCollectionViewController: CoreCollectionViewController {
       categoriesModel(leftIcon: UIImage(named: "environmentalLaw"), name: "Derecho Ambiental"),
       categoriesModel(leftIcon: UIImage(named: "technologyLaw"), name: "Derecho Digital"),
       categoriesModel(leftIcon: UIImage(named: "intellectualPropertyLaw"), name: "Propiedad Intelectual"),
+      categoriesModel(leftIcon: UIImage(named: "balanceLaw"), name: "DDHH Y DIH")
+      ,
+      categoriesModel(leftIcon: UIImage(named: "transportLaw"), name: "Derecho del Transporte"),
+      categoriesModel(leftIcon: UIImage(named: "fintechLaw"), name: "Derecho FINTECH y Bursátil")
+      ,
+      categoriesModel(leftIcon: UIImage(named: "economicLaw"), name: "Derecho Económico"),
+      categoriesModel(leftIcon: UIImage(named: "administrativeLaw"), name: "Derecho público")
+      ,
+      categoriesModel(leftIcon: UIImage(named: "medicalLaw"), name: "Derecho Médico"),
+      categoriesModel(leftIcon: UIImage(named: "directions_boat_directions_boat_symbol"), name: "Derecho Aduanero")
+      ,
+      categoriesModel(leftIcon: UIImage(named: "securityLaw"), name: "Derecho de seguros"),
+      categoriesModel(leftIcon: UIImage(named: "socialSecurityLaw"), name: "Derecho de seguridad social")
     ]
+    
   }
   
   //MARK: - Register cells
@@ -211,7 +226,7 @@ extension HomeClientCollectionViewController: UICollectionViewDelegateFlowLayout
     case .detailsOfappoinment:
       return 1
     case .categories:
-      return 10//22
+      return 19
     }
   }
   
@@ -236,7 +251,7 @@ extension HomeClientCollectionViewController: UICollectionViewDelegateFlowLayout
       
       guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LawCategoriesCollectionViewCell.identifier, for: indexPath) as? LawCategoriesCollectionViewCell else { return UICollectionViewCell()
       }
-      cell.layer.cornerRadius = 10
+      
       cell.backgroundColor = .white
       cell.configure(categories: categories[indexPath.row])
       return cell

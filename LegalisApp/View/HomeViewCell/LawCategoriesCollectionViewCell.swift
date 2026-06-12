@@ -20,7 +20,7 @@ class LawCategoriesCollectionViewCell: UICollectionViewCell {
   override init(frame: CGRect) {
     super.init(frame: frame)
     
-    setuUpUI()
+    setUpUI()
   }
   
   required init?(coder: NSCoder) {
@@ -39,30 +39,33 @@ class LawCategoriesCollectionViewCell: UICollectionViewCell {
     categoriesName.textColor = #colorLiteral(red: 0.1017038003, green: 0.1096047685, blue: 0.1221101061, alpha: 1)
     
     //rightIcon
-    rightIcon.tintColor = .systemGray2
-    rightIcon.clipsToBounds = true
-    rightIcon.contentMode = .scaleAspectFit
+    Utilities.creatingImage(imageView: rightIcon,
+                            image: UIImage(systemName: "chevron.right") ?? UIImage(),
+                            contentMode: .scaleAspectFit,
+                            clipsToBounds: true,
+                            tintColor: UIColor.systemGray6,
+                            width: 20,
+                            height: 20)
+    
     rightIcon.translatesAutoresizingMaskIntoConstraints = false
     
   }
   
-  func setuUpUI() {
+  func setUpUI() {
     
     let categoriesStack = UIStackView(arrangedSubviews: [
       leftIcon,
       categoriesName,
-      spacer,
-      rightIcon
     ])
     categoriesStack.axis = .horizontal
     categoriesStack.spacing = 5
     categoriesStack.isLayoutMarginsRelativeArrangement = true
-    categoriesStack.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+    categoriesStack.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 1)
     categoriesStack.layer.masksToBounds = true
     categoriesStack.translatesAutoresizingMaskIntoConstraints = false
     
     contentView.addSubview(categoriesStack)
-    
+    contentView.addSubview(rightIcon)
     
     NSLayoutConstraint.activate([
       //leftIcon
@@ -70,13 +73,8 @@ class LawCategoriesCollectionViewCell: UICollectionViewCell {
       leftIcon.heightAnchor.constraint(equalToConstant: 20),
       
       //rightIcon
-      rightIcon.widthAnchor.constraint(equalToConstant: 20),
-      rightIcon.heightAnchor.constraint(equalToConstant: 20),
-      
-      //spacer
-      spacer.widthAnchor.constraint(equalToConstant: 120),
-      
-      //categoriesStack
+      //rightIcon.widthAnchor.constraint(equalToConstant: 20),
+      // rightIcon.heightAnchor.constraint(equalToConstant: 20),
       
       
   
@@ -86,7 +84,7 @@ class LawCategoriesCollectionViewCell: UICollectionViewCell {
   func configure(categories: categoriesModel) {
     leftIcon.image = categories.leftIcon
     categoriesName.text = categories.name
-    rightIcon.image = categories.rightIcon
+    //rightIcon.image = categories.rightIcon
   }
   
 }

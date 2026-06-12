@@ -11,36 +11,39 @@ class HomeClientCollectionViewCell: UICollectionViewCell {
    
   static let identifier = "HomeClientCollectionViewCell"
   
-  private let cheersLabel: UILabel = {
+  private let welcomeLabel: UILabel = {
     let label = UILabel()
+    label.text = "Bienvenido de nuevo,"
+    label.font = UIFont(name: "Inter-regular", size: 15)
+    label.textColor = #colorLiteral(red: 0.3645370603, green: 0.3682664633, blue: 0.3890590072, alpha: 1)
     label.textAlignment = .left
     label.numberOfLines = 0
     label.translatesAutoresizingMaskIntoConstraints = false
-
-    let text = "Bienvenido de nuevo, \n Hola, Usuario"
-    
-    let attributedString = NSMutableAttributedString(string: text)
-    
-    let welcomeRange = (text as NSString).range(of: "Bienvenido de nuevo,")
-    
-    attributedString.addAttributes([
-      .foregroundColor : #colorLiteral(red: 0.3645370603, green: 0.3682664633, blue: 0.3890590072, alpha: 1),
-      .font : UIFont(name: "Inter-regular", size: 15) as Any
-    ], range: welcomeRange)
-    
-    let cheersRange = (text as NSString).range(of: "Hola, Usuario")
-    
-    attributedString.addAttributes([
-      .foregroundColor : #colorLiteral(red: 0.1017038003, green: 0.1096047685, blue: 0.1221101061, alpha: 1),
-      .font : UIFont(name: "Inter-Regular_Bold", size: 34) as Any
-    ], range: cheersRange)
-    
-    label.attributedText = attributedString
-    
+    return label
+  }()
+  
+  private let helloLabel: UILabel = {
+    let label = UILabel()
+    label.text = "Hola,"
+    label.textAlignment = .left
+    label.font = UIFont(name: "Inter-Regular_Bold", size: 34)
+    label.textColor = #colorLiteral(red: 0.1017038003, green: 0.1096047685, blue: 0.1221101061, alpha: 1)
+    label.translatesAutoresizingMaskIntoConstraints = false
+    return label
+  }()
+  
+  private let usernameLabel: UILabel = {
+    let label = UILabel()
+    label.text = "Usuario"
+    label.textAlignment = .left
+    label.font = UIFont(name: "Inter-Regular_Bold", size: 34)
+    label.textColor = #colorLiteral(red: 0.1017038003, green: 0.1096047685, blue: 0.1221101061, alpha: 1)
+    label.translatesAutoresizingMaskIntoConstraints = false
     return label
   }()
   
   let appointmentImage = UIImageView()
+  
   
   override init(frame: CGRect) {
     super.init(frame: frame)
@@ -63,19 +66,37 @@ class HomeClientCollectionViewCell: UICollectionViewCell {
 
   func setUpUI() {
     
+    let userCheersStack = UIStackView(arrangedSubviews: [
+      helloLabel,
+      usernameLabel
+    ])
+    userCheersStack.axis = .horizontal
+    userCheersStack.spacing = 1
+    userCheersStack.translatesAutoresizingMaskIntoConstraints = false
+    
+    contentView.addSubview(welcomeLabel)
+    contentView.addSubview(userCheersStack)
 
-    contentView.addSubview(cheersLabel)
     contentView.addSubview(appointmentImage)
  
     
     NSLayoutConstraint.activate([
-      cheersLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
-      cheersLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
-      cheersLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15),
+      //welcomeLabel
+      welcomeLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
+      welcomeLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
+      welcomeLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15),
       
-      appointmentImage.topAnchor.constraint(equalTo: cheersLabel.bottomAnchor, constant: 15),
+      //Hello label
+      helloLabel.widthAnchor.constraint(equalToConstant: 85),
+      userCheersStack.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor),
+      userCheersStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+      userCheersStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15),
+      
+      //appointment image
+      appointmentImage.topAnchor.constraint(equalTo: userCheersStack.bottomAnchor, constant: 15),
       appointmentImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
       appointmentImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15),
+      appointmentImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -15),
       appointmentImage.heightAnchor.constraint(equalToConstant: 160)
 
     ])
