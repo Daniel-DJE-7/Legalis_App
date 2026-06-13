@@ -14,12 +14,18 @@ enum SectionType: Int, CaseIterable {
 
 class HomeClientCollectionViewController: CoreCollectionViewController {
 
+  private let titleSecondSection = "ESPECIALIDADES"
+  
+  var categories: [categoriesModel] = []
+  let rightImage = "chevronGray"
+  
     override func viewDidLoad() {
         super.viewDidLoad()
-      
+      collectionView.backgroundColor = .systemGray6
       configureNavBar()
       registerCells()
       configLayout()
+      configureItemsInCells()
       
     }
   
@@ -28,11 +34,48 @@ class HomeClientCollectionViewController: CoreCollectionViewController {
     collectionView.frame = view.bounds
   }
   
+  //MARK: - Array of cells
+  func configureItemsInCells() {
+    
+    categories = [
+      categoriesModel(leftIcon: UIImage(named: "maso"), name: "Derecho civil"),
+      categoriesModel(leftIcon: UIImage(named: "criminalLaw"), name: "Derecho penal"),
+      categoriesModel(leftIcon: UIImage(named: "laborLaw"), name: "Derecho Laboral"),
+      categoriesModel(leftIcon: UIImage(named: "commercialLaw"), name: "Derecho Comercial"),
+      categoriesModel(leftIcon: UIImage(named: "familyLaw"), name: "Derecho de Familia"),
+      categoriesModel(leftIcon: UIImage(named: "administrativeLaw"), name: "Derecho Administrativo"),
+      categoriesModel(leftIcon: UIImage(named: "constitutionalLaw"), name: "Derecho Constitucional"),
+      categoriesModel(leftIcon: UIImage(named: "environmentalLaw"), name: "Derecho Ambiental"),
+      categoriesModel(leftIcon: UIImage(named: "technologyLaw"), name: "Derecho Digital"),
+      categoriesModel(leftIcon: UIImage(named: "intellectualPropertyLaw"), name: "Propiedad Intelectual"),
+      categoriesModel(leftIcon: UIImage(named: "balanceLaw"), name: "DDHH Y DIH")
+      ,
+      categoriesModel(leftIcon: UIImage(named: "transportLaw"), name: "Derecho del Transporte"),
+      categoriesModel(leftIcon: UIImage(named: "fintechLaw"), name: "Derecho FINTECH y Bursátil")
+      ,
+      categoriesModel(leftIcon: UIImage(named: "economicLaw"), name: "Derecho Económico"),
+      categoriesModel(leftIcon: UIImage(named: "administrativeLaw"), name: "Derecho público")
+      ,
+      categoriesModel(leftIcon: UIImage(named: "medicalLaw"), name: "Derecho Médico"),
+      categoriesModel(leftIcon: UIImage(named: "directions_boat_directions_boat_symbol"), name: "Derecho Aduanero")
+      ,
+      categoriesModel(leftIcon: UIImage(named: "securityLaw"), name: "Derecho de seguros"),
+      categoriesModel(leftIcon: UIImage(named: "socialSecurityLaw"), name: "Derecho de seguridad social")
+    ]
+    
+  }
+  
   //MARK: - Register cells
   func registerCells() {
-    collectionView.register(TestClass.self, forCellWithReuseIdentifier: TestClass.identifier)
-    
-    collectionView.register(TestClass2.self, forCellWithReuseIdentifier: TestClass2.identifier)
+    //first Section
+    collectionView.register(HomeClientCollectionViewCell.self, forCellWithReuseIdentifier: HomeClientCollectionViewCell.identifier)
+    //Second section
+    collectionView.register(LawCategoriesCollectionViewCell.self, forCellWithReuseIdentifier: LawCategoriesCollectionViewCell.identifier)
+    //Header of second Section
+    collectionView.register(
+      HeaderSecondSectionCollectionViewCell.self,
+      forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+      withReuseIdentifier: HeaderSecondSectionCollectionViewCell.identifier)
   }
   
   //MARK: - Configuration of NAVBAR
@@ -95,7 +138,7 @@ class HomeClientCollectionViewController: CoreCollectionViewController {
         let firstItem = NSCollectionLayoutItem(
           layoutSize: NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1),
-            heightDimension: .absolute(250))
+            heightDimension: .estimated(280))
         )
         
         //group
@@ -107,6 +150,8 @@ class HomeClientCollectionViewController: CoreCollectionViewController {
         
         //Section
         let firstSection = NSCollectionLayoutSection(group: firstGroup)
+      
+      firstSection.interGroupSpacing = 10
         return firstSection
         
       //MARK: second section
@@ -115,17 +160,21 @@ class HomeClientCollectionViewController: CoreCollectionViewController {
         let secondItem = NSCollectionLayoutItem(
           layoutSize: NSCollectionLayoutSize(
           widthDimension: .fractionalWidth(1),
-          heightDimension: .absolute(475))
+          heightDimension: .estimated(44))
         )
         
         //group
         let secondGroup = NSCollectionLayoutGroup.vertical(
           layoutSize: secondItem.layoutSize,
-          subitems: [secondItem])
-        
+          subitem: secondItem,
+          count: 1
+        )
+      secondGroup.contentInsets = .init(top: 0, leading: 20, bottom: 0, trailing: 20)
         //section
         let secondSection = NSCollectionLayoutSection(group: secondGroup)
-           // secondSection.boundarySupplementaryItems = header
+          secondSection.interGroupSpacing = 2
+          secondSection.boundarySupplementaryItems = header
+      
         return secondSection
         
       //MARK: - Default section
@@ -141,7 +190,7 @@ class HomeClientCollectionViewController: CoreCollectionViewController {
         let defaultGroup = NSCollectionLayoutGroup.vertical(
           layoutSize: defautltItem.layoutSize,
           subitem: defautltItem,
-          count: 1
+          count: 23
         )
         //section
         let defaultSection = NSCollectionLayoutSection(group: defaultGroup)
@@ -159,7 +208,7 @@ class HomeClientCollectionViewController: CoreCollectionViewController {
 
 }
 
-
+// MARK: - PROTOCOL COLLECTION VIEW DELEGATE
 extension HomeClientCollectionViewController: UICollectionViewDelegateFlowLayout {
   
   //MARK: - Number of section
@@ -177,7 +226,7 @@ extension HomeClientCollectionViewController: UICollectionViewDelegateFlowLayout
     case .detailsOfappoinment:
       return 1
     case .categories:
-      return 1
+      return 19
     }
   }
   
@@ -192,25 +241,46 @@ extension HomeClientCollectionViewController: UICollectionViewDelegateFlowLayout
     switch section {
       case .detailsOfappoinment:
       
-      guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TestClass.identifier, for: indexPath) as? TestClass else {
+      guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeClientCollectionViewCell.identifier, for: indexPath) as? HomeClientCollectionViewCell else {
         return UICollectionViewCell()
       }
-      cell.backgroundColor = .orange
+      
       return cell
       
       case .categories:
       
-      guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TestClass.identifier, for: indexPath) as? TestClass else { return UICollectionViewCell()
+      guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LawCategoriesCollectionViewCell.identifier, for: indexPath) as? LawCategoriesCollectionViewCell else { return UICollectionViewCell()
       }
-      cell.backgroundColor = .blue
-      return cell
       
+      cell.backgroundColor = .white
+      cell.configure(categories: categories[indexPath.row])
+      return cell
     }
+  }
+  
+  override func collectionView(_ collectionView: UICollectionView,
+                               viewForSupplementaryElementOfKind kind: String,
+                               at indexPath: IndexPath) -> UICollectionReusableView {
     
+    guard let header = collectionView.dequeueReusableSupplementaryView(
+      ofKind: kind,
+      withReuseIdentifier: HeaderSecondSectionCollectionViewCell.identifier,
+      for: indexPath) as? HeaderSecondSectionCollectionViewCell, kind == UICollectionView.elementKindSectionHeader else {
+      return UICollectionReusableView()
+    }
+    header.configure(with: titleSecondSection)
+    return header
   }
   
   
-}
+  override func collectionView(_ collectionView: UICollectionView,
+                               didSelectItemAt indexPath: IndexPath) {
+    let vc = LawyersCategoriesListCollectionViewController()
+    vc.categories = categories[indexPath.row]
+    self.navigationController?.pushViewController(vc, animated: true)
+  }
+  
+}//Extension end
 
 
 
