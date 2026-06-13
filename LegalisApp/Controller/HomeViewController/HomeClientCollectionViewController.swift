@@ -273,6 +273,13 @@ extension HomeClientCollectionViewController: UICollectionViewDelegateFlowLayout
   }
   
   
+  override func collectionView(_ collectionView: UICollectionView,
+                               didSelectItemAt indexPath: IndexPath) {
+    let vc = LawyersCategoriesListCollectionViewController()
+    vc.categories = categories[indexPath.row]
+    self.navigationController?.pushViewController(vc, animated: true)
+  }
+  
 }//Extension end
 
 

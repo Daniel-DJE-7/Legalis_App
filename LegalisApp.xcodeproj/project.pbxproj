@@ -88,6 +88,7 @@
 		8D844CCA2FDB3BAB007E5B5F /* LawCategoriesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D844CC92FDB3BAB007E5B5F /* LawCategoriesCollectionViewCell.swift */; };
 		8D844CCD2FDB5F2D007E5B5F /* CategoriesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D844CCC2FDB5F2D007E5B5F /* CategoriesModel.swift */; };
 		8DA2F9EF2FCE2D2500E8E324 /* HomeLawyerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA2F9EE2FCE2D2500E8E324 /* HomeLawyerViewController.swift */; };
+		8DA748C72FDDC156002E2096 /* LawyersCategoriesListCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA748C62FDDC156002E2096 /* LawyersCategoriesListCollectionViewController.swift */; };
 		8DB540402FA56CEE00D8DB72 /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB5403F2FA56CEE00D8DB72 /* UIView+Layout.swift */; };
 		8DB701422FDB104E0068E552 /* HeaderSecondSectionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB701412FDB104E0068E552 /* HeaderSecondSectionCollectionViewCell.swift */; };
 		8DC8A4C12FD7199F005AD39C /* iOSDropDown in Frameworks */ = {isa = PBXBuildFile; productRef = 8DC8A4C02FD7199F005AD39C /* iOSDropDown */; };
@@ -180,6 +181,7 @@
 		8D844CC92FDB3BAB007E5B5F /* LawCategoriesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LawCategoriesCollectionViewCell.swift; sourceTree = "<group>"; };
 		8D844CCC2FDB5F2D007E5B5F /* CategoriesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesModel.swift; sourceTree = "<group>"; };
 		8DA2F9EE2FCE2D2500E8E324 /* HomeLawyerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeLawyerViewController.swift; sourceTree = "<group>"; };
+		8DA748C62FDDC156002E2096 /* LawyersCategoriesListCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LawyersCategoriesListCollectionViewController.swift; sourceTree = "<group>"; };
 		8DB5403F2FA56CEE00D8DB72 /* UIView+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Layout.swift"; sourceTree = "<group>"; };
 		8DB701412FDB104E0068E552 /* HeaderSecondSectionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderSecondSectionCollectionViewCell.swift; sourceTree = "<group>"; };
 		8DC8A4C22FD746AA005AD39C /* HTMLText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTMLText.swift; sourceTree = "<group>"; };
@@ -283,7 +285,7 @@
 				8D18D08A2FA290670038AB85 /* AppointmentViewController */,
 				8D18D0892FA290000038AB85 /* ChatsViewController */,
 				8D18D0862FA28FB60038AB85 /* FavoritesViewController */,
-				8D18D0842FA28F7F0038AB85 /* AdvocatesListViewController */,
+				8D18D0842FA28F7F0038AB85 /* LawyersListViewController */,
 				8D18D07A2FA28C630038AB85 /* WelcomeViewController */,
 				8D18D07D2FA28D910038AB85 /* MainTabBarController */,
 				8D18D0822FA28EB50038AB85 /* HomeViewController */,
@@ -375,11 +377,12 @@
 			path = HomeViewCell;
 			sourceTree = "<group>";
 		};
-		8D18D0842FA28F7F0038AB85 /* AdvocatesListViewController */ = {
+		8D18D0842FA28F7F0038AB85 /* LawyersListViewController */ = {
 			isa = PBXGroup;
 			children = (
+				8DA748C62FDDC156002E2096 /* LawyersCategoriesListCollectionViewController.swift */,
 			);
-			path = AdvocatesListViewController;
+			path = LawyersListViewController;
 			sourceTree = "<group>";
 		};
 		8D18D0852FA28F930038AB85 /* AdvocatesViewCell */ = {
@@ -804,6 +807,7 @@
 				8D44E4612FAAAEFE00AC5242 /* LawyersSignUpView.swift in Sources */,
 				8D39444A2FAFAF2B00CED997 /* RegisterModel.swift in Sources */,
 				8D7A5E7D2FD87BCB00ACD94A /* HomeClientCollectionViewController.swift in Sources */,
+				8DA748C72FDDC156002E2096 /* LawyersCategoriesListCollectionViewController.swift in Sources */,
 				8D844CCD2FDB5F2D007E5B5F /* CategoriesModel.swift in Sources */,
 				8D18D0642FA28B6E0038AB85 /* AppDelegate.swift in Sources */,
 				8D18D0662FA28B6E0038AB85 /* SceneDelegate.swift in Sources */,

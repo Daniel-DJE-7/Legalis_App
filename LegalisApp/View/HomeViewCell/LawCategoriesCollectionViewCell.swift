@@ -40,12 +40,12 @@ class LawCategoriesCollectionViewCell: UICollectionViewCell {
     
     //rightIcon
     Utilities.creatingImage(imageView: rightIcon,
-                            image: UIImage(systemName: "chevron.right") ?? UIImage(),
+                            image: UIImage(systemName: "") ?? UIImage(),
                             contentMode: .scaleAspectFit,
                             clipsToBounds: true,
                             tintColor: UIColor.systemGray6,
-                            width: 20,
-                            height: 20)
+                            width: 10,
+                            height: 10)
     
     rightIcon.translatesAutoresizingMaskIntoConstraints = false
     
@@ -59,22 +59,22 @@ class LawCategoriesCollectionViewCell: UICollectionViewCell {
     ])
     categoriesStack.axis = .horizontal
     categoriesStack.spacing = 5
+    categoriesStack.alignment = .leading
     categoriesStack.isLayoutMarginsRelativeArrangement = true
-    categoriesStack.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 1)
-    categoriesStack.layer.masksToBounds = true
+    categoriesStack.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 0)
+    categoriesStack.contentMode = .scaleAspectFill
     categoriesStack.translatesAutoresizingMaskIntoConstraints = false
+  
     
+
     contentView.addSubview(categoriesStack)
-    contentView.addSubview(rightIcon)
     
     NSLayoutConstraint.activate([
       //leftIcon
       leftIcon.widthAnchor.constraint(equalToConstant: 20),
       leftIcon.heightAnchor.constraint(equalToConstant: 20),
       
-      //rightIcon
-      //rightIcon.widthAnchor.constraint(equalToConstant: 20),
-      // rightIcon.heightAnchor.constraint(equalToConstant: 20),
+      categoriesStack.widthAnchor.constraint(equalToConstant: 330),
       
       
   

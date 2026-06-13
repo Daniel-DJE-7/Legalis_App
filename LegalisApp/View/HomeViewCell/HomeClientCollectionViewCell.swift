@@ -48,7 +48,7 @@ class HomeClientCollectionViewCell: UICollectionViewCell {
     let label = UILabel()
     label.text = "PRÓXIMA CITA"
     label.textAlignment = .left
-    label.backgroundColor = .black.withAlphaComponent(0.5)
+    label.backgroundColor = #colorLiteral(red: 0.8321695924, green: 0.985483706, blue: 0.4733308554, alpha: 0.3301176362)
     label.layer.cornerRadius = 4
     label.textColor = .white
     label.font = UIFont(name: "Inter-Regular_Bold", size: 10)
