@@ -44,6 +44,51 @@ class HomeClientCollectionViewCell: UICollectionViewCell {
   
   let appointmentImage = UIImageView()
   
+  let nextAppointmentLabel: UILabel = {
+    let label = UILabel()
+    label.text = "PRÓXIMA CITA"
+    label.textAlignment = .left
+    label.backgroundColor = .black.withAlphaComponent(0.5)
+    label.layer.cornerRadius = 4
+    label.textColor = .white
+    label.font = UIFont(name: "Inter-Regular_Bold", size: 10)
+    label.translatesAutoresizingMaskIntoConstraints = false
+    
+    return label
+  }()
+  
+  let consultationAppointmentLabel: UILabel = {
+    let label = UILabel()
+    label.text = "Consulta:"
+    label.textAlignment = .left
+    label.textColor = .white
+    label.font = UIFont(name: "Inter-Regular_SemiBold", size: 17)
+    label.widthAnchor.constraint(equalToConstant: 90).isActive = true
+    label.translatesAutoresizingMaskIntoConstraints = false
+      
+      return label
+  }()
+  
+  let lawTypeLabel: UILabel = {
+    let label = UILabel()
+    label.text = "Derecho civil"
+    label.textColor = .white
+    label.font = UIFont(name: "Inter-Regular_SemiBold", size: 17)
+    label.translatesAutoresizingMaskIntoConstraints = false
+      
+    return label
+  }()
+  
+  let dateAppointmentLabel: UILabel = {
+    let label = UILabel()
+    label.text = "Mañana a las 10:30 AM"
+    label.textColor = #colorLiteral(red: 0.9999999404, green: 0.9999999404, blue: 1, alpha: 1)
+    label.font = UIFont(name: "Inter", size: 12)
+    label.translatesAutoresizingMaskIntoConstraints = false
+      
+    return label
+  }()
+  
   
   override init(frame: CGRect) {
     super.init(frame: frame)
@@ -74,6 +119,31 @@ class HomeClientCollectionViewCell: UICollectionViewCell {
     userCheersStack.spacing = 1
     userCheersStack.translatesAutoresizingMaskIntoConstraints = false
     
+    let consultingStack = UIStackView(arrangedSubviews: [
+      consultationAppointmentLabel,
+      lawTypeLabel
+    ])
+    consultingStack.axis = .horizontal
+    consultingStack.spacing = 1
+    
+    let detailsAppointmentStack = UIStackView(arrangedSubviews: [
+      consultingStack,
+      dateAppointmentLabel
+    ])
+    detailsAppointmentStack.axis = .vertical
+    detailsAppointmentStack.spacing = 1
+    
+    
+    let wholeStack = UIStackView(arrangedSubviews: [
+      nextAppointmentLabel,
+      detailsAppointmentStack
+    ])
+    wholeStack.axis = .vertical
+    wholeStack.isLayoutMarginsRelativeArrangement = true
+    wholeStack.layoutMargins = UIEdgeInsets(top: 75, left: 20, bottom: 20, right: 20)
+    wholeStack.translatesAutoresizingMaskIntoConstraints = false
+    
+    appointmentImage.addSubview(wholeStack)
     contentView.addSubview(welcomeLabel)
     contentView.addSubview(userCheersStack)
 
@@ -97,7 +167,7 @@ class HomeClientCollectionViewCell: UICollectionViewCell {
       appointmentImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
       appointmentImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15),
       appointmentImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -15),
-      appointmentImage.heightAnchor.constraint(equalToConstant: 160)
+      appointmentImage.heightAnchor.constraint(equalToConstant: 160),
 
     ])
   }
