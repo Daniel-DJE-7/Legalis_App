@@ -157,14 +157,14 @@ class Utilities {
                                 contentMode: UIView.ContentMode,
                                 clipsToBounds: Bool,
                                 tintColor: UIColor?,
-                                width: CGFloat?,
-                                height: CGFloat?) {
+                                width: CGFloat,
+                                height: CGFloat) {
     imageView.image = image
     imageView.contentMode = contentMode
     imageView.tintColor = tintColor
     imageView.clipsToBounds = clipsToBounds
-    imageView.widthAnchor.constraint(equalToConstant: width ?? 0).isActive = true
-    imageView.heightAnchor.constraint(equalToConstant: height ?? 0).isActive = true
+    imageView.widthAnchor.constraint(equalToConstant: width).isActive = true
+    imageView.heightAnchor.constraint(equalToConstant: height).isActive = true
     imageView.translatesAutoresizingMaskIntoConstraints = false
   }
   
