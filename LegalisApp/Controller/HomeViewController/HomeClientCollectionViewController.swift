@@ -38,8 +38,8 @@ class HomeClientCollectionViewController: CoreCollectionViewController {
   func configureItemsInCells() {
     
     categories = [
-      categoriesModel(leftIcon: UIImage(named: "maso"), name: "Derecho civil"),
-      categoriesModel(leftIcon: UIImage(named: "criminalLaw"), name: "Derecho penal"),
+      categoriesModel(leftIcon: UIImage(named: "maso"), name: "Derecho Civil"),
+      categoriesModel(leftIcon: UIImage(named: "criminalLaw"), name: "Derecho Penal"),
       categoriesModel(leftIcon: UIImage(named: "laborLaw"), name: "Derecho Laboral"),
       categoriesModel(leftIcon: UIImage(named: "commercialLaw"), name: "Derecho Comercial"),
       categoriesModel(leftIcon: UIImage(named: "familyLaw"), name: "Derecho de Familia"),
@@ -275,21 +275,13 @@ extension HomeClientCollectionViewController: UICollectionViewDelegateFlowLayout
   
   override func collectionView(_ collectionView: UICollectionView,
                                didSelectItemAt indexPath: IndexPath) {
+    let categories = categories[indexPath.row]
     let vc = LawyersCategoriesListCollectionViewController()
-    vc.categories = categories[indexPath.row]
+    //vc.navigationItem.title = categories.name
+    vc.categories = categories
+    
     self.navigationController?.pushViewController(vc, animated: true)
   }
   
 }//Extension end
 
-
-
-
-
-class TestClass: UICollectionViewCell {
-  static let identifier = "testClass"
-}
-
-class TestClass2: UICollectionViewCell {
-  static let identifier = "testClass2"
-}
