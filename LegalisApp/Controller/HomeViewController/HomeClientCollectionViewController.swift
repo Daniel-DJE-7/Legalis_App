@@ -48,7 +48,7 @@ class HomeClientCollectionViewController: CoreCollectionViewController {
       categoriesModel(leftIcon: UIImage(named: "environmentalLaw"), name: "Derecho Ambiental"),
       categoriesModel(leftIcon: UIImage(named: "technologyLaw"), name: "Derecho Digital"),
       categoriesModel(leftIcon: UIImage(named: "intellectualPropertyLaw"), name: "Propiedad Intelectual"),
-      categoriesModel(leftIcon: UIImage(named: "balanceLaw"), name: "DDHH Y DIH")
+      categoriesModel(leftIcon: UIImage(named: "balance"), name: "DDHH Y DIH")
       ,
       categoriesModel(leftIcon: UIImage(named: "transportLaw"), name: "Derecho del Transporte"),
       categoriesModel(leftIcon: UIImage(named: "fintechLaw"), name: "Derecho FINTECH y Bursátil")
@@ -57,7 +57,7 @@ class HomeClientCollectionViewController: CoreCollectionViewController {
       categoriesModel(leftIcon: UIImage(named: "administrativeLaw"), name: "Derecho público")
       ,
       categoriesModel(leftIcon: UIImage(named: "medicalLaw"), name: "Derecho Médico"),
-      categoriesModel(leftIcon: UIImage(named: "directions_boat_directions_boat_symbol"), name: "Derecho Aduanero")
+      categoriesModel(leftIcon: UIImage(named: "customsLaw"), name: "Derecho Aduanero")
       ,
       categoriesModel(leftIcon: UIImage(named: "securityLaw"), name: "Derecho de seguros"),
       categoriesModel(leftIcon: UIImage(named: "socialSecurityLaw"), name: "Derecho de seguridad social")
@@ -293,7 +293,3 @@ class TestClass: UICollectionViewCell {
 class TestClass2: UICollectionViewCell {
   static let identifier = "testClass2"
 }
-//diagramar las celdas con colores
-//hacer header de second section
-//aprender sobre la distribucion de la stackView
-//averiguar porque no cambia el color del TabBar background

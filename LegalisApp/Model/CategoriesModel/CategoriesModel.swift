@@ -10,5 +10,4 @@ import UIKit
 struct categoriesModel {
   let leftIcon: UIImage?
   let name: String
-  //let rightIcon: UIImage?
 }
