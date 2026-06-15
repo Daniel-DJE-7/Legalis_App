@@ -2,7 +2,7 @@
 //  LawCategoriesCollectionViewCell.swift
 //  LegalisApp
 //
-//  Created by Memo Figueredo on 11/6/26.
+//  Created by Daniel Figueredo on 11/6/26.
 //
 
 import UIKit
@@ -13,9 +13,19 @@ class LawCategoriesCollectionViewCell: UICollectionViewCell {
   
   private let leftIcon = UIImageView()
   private let categoriesName = UILabel()
-  private let rightIcon = UIImageView()
-  let categoriesDivider = UIView()
-  let spacer = UIView()
+  private let rightIcon:  UIImageView = {
+    let img = UIImageView()
+    img.image = UIImage(systemName: "chevron.right")
+    img.tintColor = .systemGray4
+    img.clipsToBounds = true
+    img.contentMode = .scaleAspectFit
+    img.widthAnchor.constraint(equalToConstant: 20).isActive = true
+    img.heightAnchor.constraint(equalToConstant: 20).isActive = true
+    img.translatesAutoresizingMaskIntoConstraints = false
+    
+    return img
+  }()
+  
   
   override init(frame: CGRect) {
     super.init(frame: frame)
@@ -28,7 +38,6 @@ class LawCategoriesCollectionViewCell: UICollectionViewCell {
   }
   
   private func setUpDivider() {
-    Utilities.divider(categoriesDivider, backgroundColor: .systemGray6, height: 1)
     
     //leftIcon
     leftIcon.clipsToBounds = true
@@ -37,18 +46,7 @@ class LawCategoriesCollectionViewCell: UICollectionViewCell {
     
     //categoriesName
     categoriesName.textColor = #colorLiteral(red: 0.1017038003, green: 0.1096047685, blue: 0.1221101061, alpha: 1)
-    
-    //rightIcon
-    Utilities.creatingImage(imageView: rightIcon,
-                            image: UIImage(systemName: "") ?? UIImage(),
-                            contentMode: .scaleAspectFit,
-                            clipsToBounds: true,
-                            tintColor: UIColor.systemGray6,
-                            width: 10,
-                            height: 10)
-    
-    rightIcon.translatesAutoresizingMaskIntoConstraints = false
-    
+    categoriesName.translatesAutoresizingMaskIntoConstraints = false
   }
   
   func setUpUI() {
@@ -56,26 +54,25 @@ class LawCategoriesCollectionViewCell: UICollectionViewCell {
     let categoriesStack = UIStackView(arrangedSubviews: [
       leftIcon,
       categoriesName,
+      rightIcon
     ])
     categoriesStack.axis = .horizontal
-    categoriesStack.spacing = 5
+    categoriesStack.spacing = 10
     categoriesStack.alignment = .leading
     categoriesStack.isLayoutMarginsRelativeArrangement = true
-    categoriesStack.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 0)
+    categoriesStack.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 5)
     categoriesStack.contentMode = .scaleAspectFill
     categoriesStack.translatesAutoresizingMaskIntoConstraints = false
-  
-    
 
     contentView.addSubview(categoriesStack)
+  
     
     NSLayoutConstraint.activate([
       //leftIcon
       leftIcon.widthAnchor.constraint(equalToConstant: 20),
       leftIcon.heightAnchor.constraint(equalToConstant: 20),
       
-      categoriesStack.widthAnchor.constraint(equalToConstant: 330),
-      
+     categoriesStack.widthAnchor.constraint(equalToConstant: 350),
       
   
     ])
@@ -84,7 +81,6 @@ class LawCategoriesCollectionViewCell: UICollectionViewCell {
   func configure(categories: categoriesModel) {
     leftIcon.image = categories.leftIcon
     categoriesName.text = categories.name
-    //rightIcon.image = categories.rightIcon
   }
   
 }
