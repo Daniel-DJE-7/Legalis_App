@@ -36,8 +36,12 @@ class LawyersCategoriesListCollectionViewController: CoreCollectionViewControlle
   
   //MARK: - REGISTER CELLS
   func registerCells() {
+    //firstSection
     collectionView.register(LawyersListCollectionViewCell.self, forCellWithReuseIdentifier: LawyersListCollectionViewCell.identifier)
+    //Second section
     collectionView.register(TextClass2.self, forCellWithReuseIdentifier: TextClass2.identifier)
+    //header btn section
+    collectionView.register(FilterSectionCollectionViewCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: FilterSectionCollectionViewCell.identifier)
   }
 
   //MARK: - LAYOUT OF COLLECTION VIEW
@@ -51,6 +55,17 @@ class LawyersCategoriesListCollectionViewController: CoreCollectionViewControlle
   
   func createSectionLayout(section: Int) -> NSCollectionLayoutSection {
     
+    let header = [
+      NSCollectionLayoutBoundarySupplementaryItem(
+        layoutSize: NSCollectionLayoutSize(
+          widthDimension: .fractionalWidth(1),
+          heightDimension: .absolute(54)
+        ),
+        elementKind: UICollectionView.elementKindSectionHeader,
+        alignment: .topLeading
+      )
+    ]
+    
     switch section {
     //MARK: - first section
     case 0:
@@ -58,7 +73,7 @@ class LawyersCategoriesListCollectionViewController: CoreCollectionViewControlle
       let firstItem = NSCollectionLayoutItem(
         layoutSize: NSCollectionLayoutSize(
           widthDimension: .fractionalWidth(1),
-          heightDimension: .estimated(200)
+          heightDimension: .estimated(135)
         )
       )
       
@@ -84,6 +99,7 @@ class LawyersCategoriesListCollectionViewController: CoreCollectionViewControlle
       )
       
       let secondSection = NSCollectionLayoutSection(group: secondGroup)
+          secondSection.boundarySupplementaryItems = header
       return secondSection
       
       //MARK: - Default section
@@ -159,6 +175,17 @@ extension LawyersCategoriesListCollectionViewController: UICollectionViewDelegat
       
     }//end switch
     
+  }//end cell ofr Item
+  
+  override func collectionView(_ collectionView: UICollectionView,
+                               viewForSupplementaryElementOfKind kind: String,
+                               at indexPath: IndexPath) -> UICollectionReusableView {
+    
+    guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: FilterSectionCollectionViewCell.identifier, for: indexPath) as? FilterSectionCollectionViewCell, kind == UICollectionView.elementKindSectionHeader else {
+      return UICollectionReusableView()
+    }
+    
+    return header
     
   }
   

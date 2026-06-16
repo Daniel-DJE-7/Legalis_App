@@ -17,7 +17,6 @@ class LawyersListCollectionViewCell: UICollectionViewCell {
     label.font = UIFont(name: "Inter-Regular_Bold", size: 34)
     label.numberOfLines = 0
     label.lineBreakMode = .byClipping
-    label.backgroundColor = .red
     label.textColor = #colorLiteral(red: 0.1017038003, green: 0.1096047685, blue: 0.1221101061, alpha: 1)
     label.textAlignment = .left
     label.translatesAutoresizingMaskIntoConstraints = false
@@ -64,7 +63,7 @@ class LawyersListCollectionViewCell: UICollectionViewCell {
     
     NSLayoutConstraint.activate([
       categoryName.widthAnchor.constraint(equalToConstant: 352),
-      categoryName.heightAnchor.constraint(equalToConstant: 82)
+      //categoryName.heightAnchor.constraint(equalToConstant: 82)
     ])
    
   }

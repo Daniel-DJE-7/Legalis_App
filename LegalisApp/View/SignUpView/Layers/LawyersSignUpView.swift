@@ -343,6 +343,7 @@ class LawyersSignUpView: UIView {
                                 imagePlacement: nil,
                                 imagePadding: nil,
                                 cornerRadius: 10,
+                                cornerStyle: nil,
                                 backgroundColor: #colorLiteral(
                                   red: 0.003979303874,
                                   green: 0.137050271,

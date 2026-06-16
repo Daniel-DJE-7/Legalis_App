@@ -89,6 +89,7 @@ class Utilities {
                                 imagePlacement: NSDirectionalRectEdge?,
                                 imagePadding: CGFloat?,
                                 cornerRadius: CGFloat,
+                                cornerStyle: UIButton.Configuration.CornerStyle?,
                                 backgroundColor: UIColor,
                                 baseForeground: UIColor,
                                 width: CGFloat?,
@@ -98,6 +99,7 @@ class Utilities {
    
     button.configuration = appearance
     button.configuration?.title = title
+    button.configuration?.cornerStyle = cornerStyle ?? .large
     button.titleLabel?.font = UIFont(name: "Inter-Regular_Bold", size: 17)
     button.titleLabel?.font = .systemFont(ofSize: 17, weight: .semibold)
     button.configuration?.image = image
