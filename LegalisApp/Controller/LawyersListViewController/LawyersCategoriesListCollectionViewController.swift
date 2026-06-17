@@ -34,6 +34,11 @@ class LawyersCategoriesListCollectionViewController: CoreCollectionViewControlle
   }
   
   
+  //Delegates and DataSource
+  func configureDelegates() {
+    
+  }
+  
   //MARK: - REGISTER CELLS
   func registerCells() {
     //firstSection
@@ -184,13 +189,32 @@ extension LawyersCategoriesListCollectionViewController: UICollectionViewDelegat
     guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: FilterSectionCollectionViewCell.identifier, for: indexPath) as? FilterSectionCollectionViewCell, kind == UICollectionView.elementKindSectionHeader else {
       return UICollectionReusableView()
     }
-    
+//    header.delegate = self
     return header
     
   }
   
   
 }//end extension
+
+
+extension LawyersCategoriesListCollectionViewController: FilterSectionCollectionViewCellDelegate {
+  
+  func onFilterLawyerListBtnTapped(_ filter: LawyersFilter) {
+    
+    switch filter {
+    case .all:
+      print("all")
+    case .available:
+      print("available")
+    case .topRated:
+      print("top rated")
+    
+    }
+    collectionView.reloadSections(IndexSet(integer: 1))
+  }
+  
+}
 
 
 class TestClass1: UICollectionViewCell {

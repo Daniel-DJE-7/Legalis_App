@@ -7,149 +7,64 @@
 
 import UIKit
 
+protocol FilterSectionCollectionViewCellDelegate: AnyObject {
+  func onFilterLawyerListBtnTapped(_ filter: LawyersFilter)
+}
+
 class FilterSectionCollectionViewCell: UICollectionReusableView {
     
   static let identifier = "FilterSectionCollectionViewCell"
+  weak var delegate: FilterSectionCollectionViewCellDelegate?
   
-  lazy var allLawyersBtn = UIButton()
-  lazy var availableBtn = UIButton()
-  lazy var topRatedBtn = UIButton()
+  
   
   override init(frame: CGRect) {
     super.init(frame: frame)
-    setUpUI()
-    setUpBtnTitles()
+    createSegmentedControl()
   }
   
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
   
-  func setUpUI() {
-    Utilities.customButtonStyle(
-      allLawyersBtn,
-      appearance: .plain(),
-      title: "Todos",
-      image: nil,
-      imagePlacement: nil,
-      imagePadding: nil,
-      cornerRadius: 15,
-      cornerStyle: .capsule,
-      backgroundColor: .white,
-      baseForeground: #colorLiteral(red: 0.262216866,
-                                    green: 0.2779523134,
-                                    blue: 0.3071090579,
-                                    alpha: 1),
-      width: 67.28,
-      height: 30,
-      target: self,
-      action: #selector(onAllLayersBtnPressed))
-    
-    allLawyersBtn.layer.borderColor = #colorLiteral(red: 0.7682896852, green: 0.7757481933, blue: 0.817332685, alpha: 1)
-    allLawyersBtn.layer.borderWidth = 1
-    
-    
-    Utilities.customButtonStyle(
-      availableBtn,
-      appearance: .plain(),
-      title: "Disponibles hoy",
-      image: nil,
-      imagePlacement: nil,
-      imagePadding: nil,
-      cornerRadius: 15,
-      cornerStyle: .capsule,
-      backgroundColor: .white,
-      baseForeground: #colorLiteral(red: 0.262216866,
-                                    green: 0.2779523134,
-                                    blue: 0.3071090579,
-                                    alpha: 1),
-      width: 125.36,
-      height: 30,
-      target: self,
-      action: #selector(onAvailableLawyersBtnPressed))
-    availableBtn.layer.borderColor = #colorLiteral(red: 0.7682896852, green: 0.7757481933, blue: 0.817332685, alpha: 1)
-    availableBtn.layer.borderWidth = 1
-    
-    Utilities.customButtonStyle(
-      topRatedBtn,
-      appearance: .plain(),
-      title: "Mejor valorados",
-      image: nil,
-      imagePlacement: nil,
-      imagePadding: nil,
-      cornerRadius: 15,
-      cornerStyle: .capsule,
-      backgroundColor: .white,
-      baseForeground: #colorLiteral(red: 0.262216866,
-                                    green: 0.2779523134,
-                                    blue: 0.3071090579,
-                                    alpha: 1),
-      width: 126.55,
-      height: 30,
-      target: self,
-      action: #selector(onTopRatedBtnPressed))
-    
-    topRatedBtn.layer.borderColor = #colorLiteral(red: 0.7682896852, green: 0.7757481933, blue: 0.817332685, alpha: 1)
-    topRatedBtn.layer.borderWidth = 1
-    
-    allLawyersBtn.translatesAutoresizingMaskIntoConstraints = false
-    availableBtn.translatesAutoresizingMaskIntoConstraints = false
-    topRatedBtn.translatesAutoresizingMaskIntoConstraints = false
-    
-    
-    let filterBtnStack = UIStackView(arrangedSubviews: [
-      allLawyersBtn,
-      availableBtn,
-      topRatedBtn
-    ])
-    filterBtnStack.axis = .horizontal
-    filterBtnStack.spacing = 8
-    filterBtnStack.alignment = .leading
-    filterBtnStack.isLayoutMarginsRelativeArrangement = true
-    filterBtnStack.layoutMargins = UIEdgeInsets(top: 16, left: 16, bottom: 24, right: 16)
-    filterBtnStack.translatesAutoresizingMaskIntoConstraints = false
-    
-    addSubview(filterBtnStack)
-    
-  }
-  
-  
-  private func setUpBtnTitles() {
-    var container = AttributeContainer()
-    container.font = UIFont(name: "Inter-Regular_Medium", size: 12) ?? UIFont(name: "Inter", size: 10)
-    
-    allLawyersBtn.configuration?.attributedTitle = AttributedString(
+  func createSegmentedControl() {
+    let items = [
       "Todos",
-      attributes: container
-    )
-
-    availableBtn.configuration?.attributedTitle = AttributedString(
       "Disponibles hoy",
-      attributes: container
-    )
+      "Mejor valorados"
+    ]
     
-    topRatedBtn.configuration?.attributedTitle = AttributedString(
-        "Mejor valorados",
-        attributes: container
-    )
+    let segmentedControl = UISegmentedControl(items: items)
+    
+    segmentedControl.addTarget(self,
+                               action: #selector(onFilterLawyers(_:)),
+                               for: .valueChanged)
+    segmentedControl.selectedSegmentIndex = 0
+    segmentedControl.selectedSegmentTintColor = #colorLiteral(red: 0, green: 0.1370561421, blue: 0.2949633002, alpha: 1)
+    segmentedControl.translatesAutoresizingMaskIntoConstraints = false
+    segmentedControl.backgroundColor = .white
+    segmentedControl.layer.borderColor = #colorLiteral(red: 0.7682896852, green: 0.7757481933, blue: 0.817332685, alpha: 1)
+    segmentedControl.layer.borderWidth = 1.5
+    
+    segmentedControl.setTitleTextAttributes([ .foregroundColor : #colorLiteral(red: 0.5043179121, green: 0.7661390446, blue: 1, alpha: 1)], for: .selected)
+    segmentedControl.setTitleTextAttributes([.foregroundColor : #colorLiteral(red: 0.262216866, green: 0.2779523134, blue: 0.3071090579, alpha: 1)], for: .normal)
     
     
+    addSubview(segmentedControl)
     
+    NSLayoutConstraint.activate([
+      segmentedControl.topAnchor.constraint(equalTo: topAnchor),
+      segmentedControl.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
+      segmentedControl.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15),
+      segmentedControl.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -24)
+    ])
     
   }
   
-  // MARK: - ACTIONS
-  @objc func onAllLayersBtnPressed() {
-    print("All lawyers is working")
+  @objc func onFilterLawyers(_ segmentedControl: UISegmentedControl) {
+    
+    guard let filter = LawyersFilter(rawValue: segmentedControl.selectedSegmentIndex) else { return }
+    
+    delegate?.onFilterLawyerListBtnTapped(filter)
+    }
   }
-  
-  @objc func onAvailableLawyersBtnPressed() {
-    print("Available lawyers is working")
-  }
- 
-  @objc func onTopRatedBtnPressed() {
-    print("Top Rated lawyers is working")
-  }
-  
-  
-}
