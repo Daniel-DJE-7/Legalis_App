@@ -14,7 +14,8 @@ enum SectionLawyersList: Int, CaseIterable {
 
 class LawyersCategoriesListCollectionViewController: CoreCollectionViewController {
 
-   var categories: categoriesModel?
+  var categories: CategoriesModel?
+  var lawyersCard: [LawyersCardsModel] = []
   
     
   override func viewDidLoad() {
@@ -25,6 +26,7 @@ class LawyersCategoriesListCollectionViewController: CoreCollectionViewControlle
     //configNavBar()
     registerCells()
     configureLayout()
+    configureItemsInCells()
     }
 
   override func viewDidLayoutSubviews() {
@@ -35,17 +37,23 @@ class LawyersCategoriesListCollectionViewController: CoreCollectionViewControlle
   
   
   //Delegates and DataSource
-  func configureDelegates() {
-    
+  func configureItemsInCells() {
+    lawyersCard = [
+      LawyersCardsModel(profileImage: UIImage(named: "abog"), name: "Abelardo de la Espriella", qualification: "4.5"),
+      LawyersCardsModel(profileImage: UIImage(named: "abog"), name: "Matha Perez", qualification: "4.0"),
+      LawyersCardsModel(profileImage: UIImage(named: "abog"), name: "James Rodriguez", qualification: "4.9"),
+      LawyersCardsModel(profileImage: UIImage(named: "abog"), name: "Omar Rueda", qualification: "4.6"),
+      
+    ]
   }
   
   //MARK: - REGISTER CELLS
   func registerCells() {
-    //firstSection
+    //Header Section
+    collectionView.register(LawyersListHeaderCollectionViewCell.self, forCellWithReuseIdentifier: LawyersListHeaderCollectionViewCell.identifier)
+    //cards List section
     collectionView.register(LawyersListCollectionViewCell.self, forCellWithReuseIdentifier: LawyersListCollectionViewCell.identifier)
-    //Second section
-    collectionView.register(TextClass2.self, forCellWithReuseIdentifier: TextClass2.identifier)
-    //header btn section
+    //Header segementedControl btns section
     collectionView.register(FilterSectionCollectionViewCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: FilterSectionCollectionViewCell.identifier)
   }
 
@@ -81,30 +89,34 @@ class LawyersCategoriesListCollectionViewController: CoreCollectionViewControlle
           heightDimension: .estimated(135)
         )
       )
-      
+      //second gruop
       let firstGroup = NSCollectionLayoutGroup.vertical(
         layoutSize: firstItem.layoutSize,
         subitems: [firstItem])
       
+      //second section
       let firstSection = NSCollectionLayoutSection(group: firstGroup)
       return firstSection
       
     case 1:
-      //first Item
+      //second Item
       let secondItem = NSCollectionLayoutItem(
         layoutSize: NSCollectionLayoutSize(
           widthDimension: .fractionalWidth(1),
-          heightDimension: .absolute(1344)
+          heightDimension: .absolute(420)
         )
       )
-      
+      //second group
       let secondGroup = NSCollectionLayoutGroup.vertical(
         layoutSize: secondItem.layoutSize,
         subitems: [secondItem]
       )
-      
+      //secondGroup.interItemSpacing = .fixed(15)
+      secondGroup.contentInsets = .init(top: 0, leading: 15, bottom: 0, trailing: 15)
+      //second section
       let secondSection = NSCollectionLayoutSection(group: secondGroup)
           secondSection.boundarySupplementaryItems = header
+          secondSection.interGroupSpacing = 20
       return secondSection
       
       //MARK: - Default section
@@ -149,7 +161,7 @@ extension LawyersCategoriesListCollectionViewController: UICollectionViewDelegat
     case .firstSection:
       return 1
     case .secondSection:
-      return 1
+      return 4
     }
   }
   
@@ -161,7 +173,7 @@ extension LawyersCategoriesListCollectionViewController: UICollectionViewDelegat
     }
     switch section {
     case .firstSection:
-      guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LawyersListCollectionViewCell.identifier, for: indexPath) as? LawyersListCollectionViewCell else {
+      guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LawyersListHeaderCollectionViewCell.identifier, for: indexPath) as? LawyersListHeaderCollectionViewCell else {
         return UICollectionViewCell()
       }
       //aqui pasamos el titulo de cada categoria al label
@@ -172,10 +184,17 @@ extension LawyersCategoriesListCollectionViewController: UICollectionViewDelegat
         return cell
       
     case .secondSection:
-      guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TextClass2.identifier, for: indexPath) as? TextClass2 else {
+      guard let cell = collectionView.dequeueReusableCell(
+        withReuseIdentifier: LawyersListCollectionViewCell.identifier,
+        for: indexPath) as? LawyersListCollectionViewCell else {
       return UICollectionViewCell()
       }
-        cell.backgroundColor = .purple
+        
+      let cards = lawyersCard[indexPath.row]
+     
+      
+      cell.configure(with: cards, and: categories)
+      
         return cell
       
     }//end switch
@@ -217,10 +236,10 @@ extension LawyersCategoriesListCollectionViewController: FilterSectionCollection
 }
 
 
-class TestClass1: UICollectionViewCell {
-  static let identifier = "testClass"
-}
-
-class TextClass2: UICollectionViewCell {
-  static let identifier = "testClass2"
-}
+//class TestClass1: UICollectionViewCell {
+//  static let identifier = "testClass"
+//}
+//
+//class TextClass2: UICollectionViewCell {
+//  static let identifier = "testClass2"
+//}

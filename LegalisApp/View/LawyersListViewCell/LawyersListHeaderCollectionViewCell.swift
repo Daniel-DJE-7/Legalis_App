@@ -1,5 +1,5 @@
 //
-//  LawyersListCollectionViewCell.swift
+//  LawyersListHeaderCollectionViewCell.swift
 //  LegalisApp
 //
 //  Created by Daniel Figueredo on 15/6/26.
@@ -7,9 +7,9 @@
 
 import UIKit
 
-class LawyersListCollectionViewCell: UICollectionViewCell {
+class LawyersListHeaderCollectionViewCell: UICollectionViewCell {
   
-  static let identifier = "LawyersListCollectionViewCell"
+  static let identifier = "LawyersListHeaderCollectionViewCell"
   
   
   private let categoryName: UILabel = {
@@ -69,7 +69,7 @@ class LawyersListCollectionViewCell: UICollectionViewCell {
   }
   
   
-  func configure(with category: categoriesModel) {
+  func configure(with category: CategoriesModel) {
     categoryName.text = category.name
   }
   

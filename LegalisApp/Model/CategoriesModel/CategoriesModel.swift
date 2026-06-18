@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct categoriesModel {
+struct CategoriesModel {
   let leftIcon: UIImage?
   let name: String
 }

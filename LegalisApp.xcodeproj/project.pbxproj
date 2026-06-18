@@ -90,12 +90,14 @@
 		8D887EBB2FE2ED3600C7E40D /* LawyersFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D887EBA2FE2ED3600C7E40D /* LawyersFilter.swift */; };
 		8DA2ADF12FE19EAF00F88BC5 /* FilterSectionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA2ADF02FE19EAF00F88BC5 /* FilterSectionCollectionViewCell.swift */; };
 		8DA2F9EF2FCE2D2500E8E324 /* HomeLawyerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA2F9EE2FCE2D2500E8E324 /* HomeLawyerViewController.swift */; };
-		8DA577642FE05D6D000EC1C4 /* LawyersListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA577632FE05D6D000EC1C4 /* LawyersListCollectionViewCell.swift */; };
+		8DA577642FE05D6D000EC1C4 /* LawyersListHeaderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA577632FE05D6D000EC1C4 /* LawyersListHeaderCollectionViewCell.swift */; };
 		8DA748C72FDDC156002E2096 /* LawyersCategoriesListCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA748C62FDDC156002E2096 /* LawyersCategoriesListCollectionViewController.swift */; };
 		8DB540402FA56CEE00D8DB72 /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB5403F2FA56CEE00D8DB72 /* UIView+Layout.swift */; };
 		8DB701422FDB104E0068E552 /* HeaderSecondSectionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB701412FDB104E0068E552 /* HeaderSecondSectionCollectionViewCell.swift */; };
 		8DC8A4C12FD7199F005AD39C /* iOSDropDown in Frameworks */ = {isa = PBXBuildFile; productRef = 8DC8A4C02FD7199F005AD39C /* iOSDropDown */; };
 		8DC8A4C32FD746AA005AD39C /* HTMLText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC8A4C22FD746AA005AD39C /* HTMLText.swift */; };
+		8DE9898C2FE43D39001973E3 /* LawyersListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE9898B2FE43D39001973E3 /* LawyersListCollectionViewCell.swift */; };
+		8DE9898F2FE451ED001973E3 /* LawyerCardsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE9898E2FE451ED001973E3 /* LawyerCardsModel.swift */; };
 		8DEB0AFE2FD9ADC800873DB2 /* MainTabBarItemNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEB0AFD2FD9ADC800873DB2 /* MainTabBarItemNavigationViewController.swift */; };
 		8DEB0B002FD9DBC700873DB2 /* ChatsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEB0AFF2FD9DBC700873DB2 /* ChatsCollectionViewController.swift */; };
 /* End PBXBuildFile section */
@@ -186,11 +188,13 @@
 		8D887EBA2FE2ED3600C7E40D /* LawyersFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LawyersFilter.swift; sourceTree = "<group>"; };
 		8DA2ADF02FE19EAF00F88BC5 /* FilterSectionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSectionCollectionViewCell.swift; sourceTree = "<group>"; };
 		8DA2F9EE2FCE2D2500E8E324 /* HomeLawyerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeLawyerViewController.swift; sourceTree = "<group>"; };
-		8DA577632FE05D6D000EC1C4 /* LawyersListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LawyersListCollectionViewCell.swift; sourceTree = "<group>"; };
+		8DA577632FE05D6D000EC1C4 /* LawyersListHeaderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LawyersListHeaderCollectionViewCell.swift; sourceTree = "<group>"; };
 		8DA748C62FDDC156002E2096 /* LawyersCategoriesListCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LawyersCategoriesListCollectionViewController.swift; sourceTree = "<group>"; };
 		8DB5403F2FA56CEE00D8DB72 /* UIView+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Layout.swift"; sourceTree = "<group>"; };
 		8DB701412FDB104E0068E552 /* HeaderSecondSectionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderSecondSectionCollectionViewCell.swift; sourceTree = "<group>"; };
 		8DC8A4C22FD746AA005AD39C /* HTMLText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTMLText.swift; sourceTree = "<group>"; };
+		8DE9898B2FE43D39001973E3 /* LawyersListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LawyersListCollectionViewCell.swift; sourceTree = "<group>"; };
+		8DE9898E2FE451ED001973E3 /* LawyerCardsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LawyerCardsModel.swift; sourceTree = "<group>"; };
 		8DEB0AFD2FD9ADC800873DB2 /* MainTabBarItemNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarItemNavigationViewController.swift; sourceTree = "<group>"; };
 		8DEB0AFF2FD9DBC700873DB2 /* ChatsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsCollectionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -255,6 +259,7 @@
 		8D18D0772FA28C1E0038AB85 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8DE9898D2FE451CA001973E3 /* LawyersCards */,
 				8D844CCB2FDB5F13007E5B5F /* CategoriesModel */,
 				8D3944482FAFAF0000CED997 /* RegisterModel */,
 			);
@@ -264,6 +269,7 @@
 		8D18D0782FA28C250038AB85 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				8DE9898B2FE43D39001973E3 /* LawyersListCollectionViewCell.swift */,
 				8DA2ADF02FE19EAF00F88BC5 /* FilterSectionCollectionViewCell.swift */,
 				8D18D0932FA295DA0038AB85 /* PaymentViewCell */,
 				8D18D0912FA292240038AB85 /* NotificationsViewCell */,
@@ -395,7 +401,7 @@
 		8D18D0852FA28F930038AB85 /* LawyersListViewCell */ = {
 			isa = PBXGroup;
 			children = (
-				8DA577632FE05D6D000EC1C4 /* LawyersListCollectionViewCell.swift */,
+				8DA577632FE05D6D000EC1C4 /* LawyersListHeaderCollectionViewCell.swift */,
 			);
 			path = LawyersListViewCell;
 			sourceTree = "<group>";
@@ -665,6 +671,14 @@
 			path = "UIView+Layout";
 			sourceTree = "<group>";
 		};
+		8DE9898D2FE451CA001973E3 /* LawyersCards */ = {
+			isa = PBXGroup;
+			children = (
+				8DE9898E2FE451ED001973E3 /* LawyerCardsModel.swift */,
+			);
+			path = LawyersCards;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -802,11 +816,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D44E4632FAAB3F700AC5242 /* LawyersSignUpViewController.swift in Sources */,
+				8DE9898F2FE451ED001973E3 /* LawyerCardsModel.swift in Sources */,
 				8D436B872FBE6A9000429E60 /* NSMutableAttributedString.swift in Sources */,
 				8DA2ADF12FE19EAF00F88BC5 /* FilterSectionCollectionViewCell.swift in Sources */,
 				8DEB0AFE2FD9ADC800873DB2 /* MainTabBarItemNavigationViewController.swift in Sources */,
 				8DB701422FDB104E0068E552 /* HeaderSecondSectionCollectionViewCell.swift in Sources */,
-				8DA577642FE05D6D000EC1C4 /* LawyersListCollectionViewCell.swift in Sources */,
+				8DA577642FE05D6D000EC1C4 /* LawyersListHeaderCollectionViewCell.swift in Sources */,
 				8D44E4662FAAB80300AC5242 /* ClientsSignUpViewController.swift in Sources */,
 				8D18D0682FA28B6E0038AB85 /* ViewController.swift in Sources */,
 				8D18D0982FA2BBA10038AB85 /* WelcomeViewController.swift in Sources */,
@@ -825,6 +840,7 @@
 				8DC8A4C32FD746AA005AD39C /* HTMLText.swift in Sources */,
 				8D8153412FD9FA6C002F8A06 /* HomeClientCollectionViewCell.swift in Sources */,
 				8D887EBB2FE2ED3600C7E40D /* LawyersFilter.swift in Sources */,
+				8DE9898C2FE43D39001973E3 /* LawyersListCollectionViewCell.swift in Sources */,
 				8D7497662FB2721A009D6AD7 /* CoreCollectionViewController.swift in Sources */,
 				8D3944472FAF752700CED997 /* Utilities.swift in Sources */,
 				8D844CCA2FDB3BAB007E5B5F /* LawCategoriesCollectionViewCell.swift in Sources */,

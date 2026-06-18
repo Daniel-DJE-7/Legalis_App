@@ -78,7 +78,7 @@ class LawCategoriesCollectionViewCell: UICollectionViewCell {
     ])
   }
   
-  func configure(categories: categoriesModel) {
+  func configure(categories: CategoriesModel) {
     leftIcon.image = categories.leftIcon
     categoriesName.text = categories.name
   }

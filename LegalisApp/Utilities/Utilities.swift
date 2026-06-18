@@ -109,7 +109,9 @@ class Utilities {
     button.backgroundColor = backgroundColor
     button.configuration?.baseForegroundColor = baseForeground
     button.addTarget(target, action: action, for: .touchUpInside)
-    button.widthAnchor.constraint(equalToConstant: width ?? 0).isActive = true
+    if let width = width {
+            button.widthAnchor.constraint(equalToConstant: width).isActive = true
+        }
     button.heightAnchor.constraint(equalToConstant: height).isActive = true
     
     button.translatesAutoresizingMaskIntoConstraints = false

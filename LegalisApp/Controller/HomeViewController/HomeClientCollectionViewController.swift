@@ -16,7 +16,7 @@ class HomeClientCollectionViewController: CoreCollectionViewController {
 
   private let titleSecondSection = "ESPECIALIDADES"
   
-  var categories: [categoriesModel] = []
+  var categories: [CategoriesModel] = []
   let rightImage = "chevronGray"
   
     override func viewDidLoad() {
@@ -38,29 +38,29 @@ class HomeClientCollectionViewController: CoreCollectionViewController {
   func configureItemsInCells() {
     
     categories = [
-      categoriesModel(leftIcon: UIImage(named: "maso"), name: "Derecho Civil"),
-      categoriesModel(leftIcon: UIImage(named: "criminalLaw"), name: "Derecho Penal"),
-      categoriesModel(leftIcon: UIImage(named: "laborLaw"), name: "Derecho Laboral"),
-      categoriesModel(leftIcon: UIImage(named: "commercialLaw"), name: "Derecho Comercial"),
-      categoriesModel(leftIcon: UIImage(named: "familyLaw"), name: "Derecho de Familia"),
-      categoriesModel(leftIcon: UIImage(named: "administrativeLaw"), name: "Derecho Administrativo"),
-      categoriesModel(leftIcon: UIImage(named: "constitutionalLaw"), name: "Derecho Constitucional"),
-      categoriesModel(leftIcon: UIImage(named: "environmentalLaw"), name: "Derecho Ambiental"),
-      categoriesModel(leftIcon: UIImage(named: "technologyLaw"), name: "Derecho Digital"),
-      categoriesModel(leftIcon: UIImage(named: "intellectualPropertyLaw"), name: "Propiedad Intelectual"),
-      categoriesModel(leftIcon: UIImage(named: "balance"), name: "DDHH Y DIH")
+      CategoriesModel(leftIcon: UIImage(named: "maso"), name: "Derecho Civil"),
+      CategoriesModel(leftIcon: UIImage(named: "criminalLaw"), name: "Derecho Penal"),
+      CategoriesModel(leftIcon: UIImage(named: "laborLaw"), name: "Derecho Laboral"),
+      CategoriesModel(leftIcon: UIImage(named: "commercialLaw"), name: "Derecho Comercial"),
+      CategoriesModel(leftIcon: UIImage(named: "familyLaw"), name: "Derecho de Familia"),
+      CategoriesModel(leftIcon: UIImage(named: "administrativeLaw"), name: "Derecho Administrativo"),
+      CategoriesModel(leftIcon: UIImage(named: "constitutionalLaw"), name: "Derecho Constitucional"),
+      CategoriesModel(leftIcon: UIImage(named: "environmentalLaw"), name: "Derecho Ambiental"),
+      CategoriesModel(leftIcon: UIImage(named: "technologyLaw"), name: "Derecho Digital"),
+      CategoriesModel(leftIcon: UIImage(named: "intellectualPropertyLaw"), name: "Propiedad Intelectual"),
+      CategoriesModel(leftIcon: UIImage(named: "balance"), name: "DDHH Y DIH")
       ,
-      categoriesModel(leftIcon: UIImage(named: "transportLaw"), name: "Derecho del Transporte"),
-      categoriesModel(leftIcon: UIImage(named: "fintechLaw"), name: "Derecho FINTECH y Bursátil")
+      CategoriesModel(leftIcon: UIImage(named: "transportLaw"), name: "Derecho del Transporte"),
+      CategoriesModel(leftIcon: UIImage(named: "fintechLaw"), name: "Derecho FINTECH y Bursátil")
       ,
-      categoriesModel(leftIcon: UIImage(named: "economicLaw"), name: "Derecho Económico"),
-      categoriesModel(leftIcon: UIImage(named: "administrativeLaw"), name: "Derecho público")
+      CategoriesModel(leftIcon: UIImage(named: "economicLaw"), name: "Derecho Económico"),
+      CategoriesModel(leftIcon: UIImage(named: "administrativeLaw"), name: "Derecho público")
       ,
-      categoriesModel(leftIcon: UIImage(named: "medicalLaw"), name: "Derecho Médico"),
-      categoriesModel(leftIcon: UIImage(named: "customsLaw"), name: "Derecho Aduanero")
+      CategoriesModel(leftIcon: UIImage(named: "medicalLaw"), name: "Derecho Médico"),
+      CategoriesModel(leftIcon: UIImage(named: "customsLaw"), name: "Derecho Aduanero")
       ,
-      categoriesModel(leftIcon: UIImage(named: "securityLaw"), name: "Derecho de seguros"),
-      categoriesModel(leftIcon: UIImage(named: "socialSecurityLaw"), name: "Derecho de seguridad social")
+      CategoriesModel(leftIcon: UIImage(named: "securityLaw"), name: "Derecho de seguros"),
+      CategoriesModel(leftIcon: UIImage(named: "socialSecurityLaw"), name: "Derecho de seguridad social")
     ]
     
   }
