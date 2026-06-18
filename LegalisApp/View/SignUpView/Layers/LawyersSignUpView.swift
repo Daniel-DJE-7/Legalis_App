@@ -153,6 +153,7 @@ class LawyersSignUpView: UIView {
   lazy var toolBarForSelectSex: UIToolbar = {
     let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
     let doneSixBtn = Utilities.createBtnForThePickerView(title: nil, image: UIImage(systemName: "checkmark.square.fill"), target: self, action: #selector(doneSelectingSexCheckBtnTapped), color: #colorLiteral(red: 0.003979303874, green: 0.137050271, blue: 0.2949559987, alpha: 1))
+    doneSixBtn.accessibilityIdentifier = "sexPickerCheckButton"
     let spaceSixBtn = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
     let cancelSixBtn = Utilities.createBtnForThePickerView(title: nil, image: UIImage(systemName: "clear.fill"), target: self, action: #selector(oncancelSelectingSexClearBtnTapped), color: #colorLiteral(red: 0.7241197066, green: 0.1285783471, blue: 0, alpha: 1))
     toolbar.setItems([cancelSixBtn, spaceSixBtn, doneSixBtn], animated: false)
@@ -260,6 +261,7 @@ class LawyersSignUpView: UIView {
       
       //adding the pickerView to the textfield at index 5 and 6
       if index == 5 {
+        txtField.accessibilityIdentifier = "sexTextField"
         txtField.tintColor = .clear//hide the cursor of the textfield
         txtField.inputView = sexPickerView
         txtField.inputAccessoryView = toolBarForSelectSex
@@ -358,6 +360,7 @@ class LawyersSignUpView: UIView {
   
   
   func setUpUI() {
+    sexPickerView.accessibilityIdentifier = "sexPickerView"
     
     //NavStack (logo + closeButton)
     let navStack = UIStackView(arrangedSubviews: [

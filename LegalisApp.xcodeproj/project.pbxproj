@@ -88,6 +88,9 @@
 		8D844CCA2FDB3BAB007E5B5F /* LawCategoriesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D844CC92FDB3BAB007E5B5F /* LawCategoriesCollectionViewCell.swift */; };
 		8D844CCD2FDB5F2D007E5B5F /* CategoriesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D844CCC2FDB5F2D007E5B5F /* CategoriesModel.swift */; };
 		8D887EBB2FE2ED3600C7E40D /* LawyersFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D887EBA2FE2ED3600C7E40D /* LawyersFilter.swift */; };
+		8D9C4E932FE4A8B0008F4C3D /* LegalisAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9C4E922FE4A8B0008F4C3D /* LegalisAppUITests.swift */; };
+		8D9C4E952FE4A8B0008F4C3D /* LegalisAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9C4E942FE4A8B0008F4C3D /* LegalisAppUITestsLaunchTests.swift */; };
+		8D9C4E9F2FE4AA0B008F4C3D /* LawyersSignUpViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9C4E9E2FE4AA0B008F4C3D /* LawyersSignUpViewTest.swift */; };
 		8DA2ADF12FE19EAF00F88BC5 /* FilterSectionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA2ADF02FE19EAF00F88BC5 /* FilterSectionCollectionViewCell.swift */; };
 		8DA2F9EF2FCE2D2500E8E324 /* HomeLawyerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA2F9EE2FCE2D2500E8E324 /* HomeLawyerViewController.swift */; };
 		8DA577642FE05D6D000EC1C4 /* LawyersListHeaderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA577632FE05D6D000EC1C4 /* LawyersListHeaderCollectionViewCell.swift */; };
@@ -101,6 +104,16 @@
 		8DEB0AFE2FD9ADC800873DB2 /* MainTabBarItemNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEB0AFD2FD9ADC800873DB2 /* MainTabBarItemNavigationViewController.swift */; };
 		8DEB0B002FD9DBC700873DB2 /* ChatsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEB0AFF2FD9DBC700873DB2 /* ChatsCollectionViewController.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8D9C4E962FE4A8B0008F4C3D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8D18D0582FA28B6E0038AB85 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8D18D05F2FA28B6E0038AB85;
+			remoteInfo = LegalisApp;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		8D0C89DE2FCF933200B8C306 /* ClientsSignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientsSignUpView.swift; sourceTree = "<group>"; };
@@ -186,6 +199,10 @@
 		8D844CC92FDB3BAB007E5B5F /* LawCategoriesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LawCategoriesCollectionViewCell.swift; sourceTree = "<group>"; };
 		8D844CCC2FDB5F2D007E5B5F /* CategoriesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesModel.swift; sourceTree = "<group>"; };
 		8D887EBA2FE2ED3600C7E40D /* LawyersFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LawyersFilter.swift; sourceTree = "<group>"; };
+		8D9C4E902FE4A8B0008F4C3D /* LegalisAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LegalisAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D9C4E922FE4A8B0008F4C3D /* LegalisAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalisAppUITests.swift; sourceTree = "<group>"; };
+		8D9C4E942FE4A8B0008F4C3D /* LegalisAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalisAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		8D9C4E9E2FE4AA0B008F4C3D /* LawyersSignUpViewTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LawyersSignUpViewTest.swift; sourceTree = "<group>"; };
 		8DA2ADF02FE19EAF00F88BC5 /* FilterSectionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSectionCollectionViewCell.swift; sourceTree = "<group>"; };
 		8DA2F9EE2FCE2D2500E8E324 /* HomeLawyerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeLawyerViewController.swift; sourceTree = "<group>"; };
 		8DA577632FE05D6D000EC1C4 /* LawyersListHeaderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LawyersListHeaderCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -208,6 +225,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8D9C4E8D2FE4A8B0008F4C3D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -223,6 +247,7 @@
 			isa = PBXGroup;
 			children = (
 				8D18D0622FA28B6E0038AB85 /* LegalisApp */,
+				8D9C4E912FE4A8B0008F4C3D /* LegalisAppUITests */,
 				8D18D0612FA28B6E0038AB85 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -231,6 +256,7 @@
 			isa = PBXGroup;
 			children = (
 				8D18D0602FA28B6E0038AB85 /* LegalisApp.app */,
+				8D9C4E902FE4A8B0008F4C3D /* LegalisAppUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -651,6 +677,40 @@
 			path = CategoriesModel;
 			sourceTree = "<group>";
 		};
+		8D9C4E912FE4A8B0008F4C3D /* LegalisAppUITests */ = {
+			isa = PBXGroup;
+			children = (
+				8D9C4E9C2FE4A9D2008F4C3D /* View */,
+				8D9C4E9B2FE4A9C1008F4C3D /* Controllers */,
+				8D9C4E922FE4A8B0008F4C3D /* LegalisAppUITests.swift */,
+				8D9C4E942FE4A8B0008F4C3D /* LegalisAppUITestsLaunchTests.swift */,
+			);
+			path = LegalisAppUITests;
+			sourceTree = "<group>";
+		};
+		8D9C4E9B2FE4A9C1008F4C3D /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		8D9C4E9C2FE4A9D2008F4C3D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8D9C4E9D2FE4A9D8008F4C3D /* LawyerSignUpView */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8D9C4E9D2FE4A9D8008F4C3D /* LawyerSignUpView */ = {
+			isa = PBXGroup;
+			children = (
+				8D9C4E9E2FE4AA0B008F4C3D /* LawyersSignUpViewTest.swift */,
+			);
+			path = LawyerSignUpView;
+			sourceTree = "<group>";
+		};
 		8DB5403D2FA56CB600D8DB72 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -702,6 +762,24 @@
 			productReference = 8D18D0602FA28B6E0038AB85 /* LegalisApp.app */;
 			productType = "com.apple.product-type.application";
 		};
+		8D9C4E8F2FE4A8B0008F4C3D /* LegalisAppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8D9C4E9A2FE4A8B0008F4C3D /* Build configuration list for PBXNativeTarget "LegalisAppUITests" */;
+			buildPhases = (
+				8D9C4E8C2FE4A8B0008F4C3D /* Sources */,
+				8D9C4E8D2FE4A8B0008F4C3D /* Frameworks */,
+				8D9C4E8E2FE4A8B0008F4C3D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8D9C4E972FE4A8B0008F4C3D /* PBXTargetDependency */,
+			);
+			name = LegalisAppUITests;
+			productName = LegalisAppUITests;
+			productReference = 8D9C4E902FE4A8B0008F4C3D /* LegalisAppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -714,6 +792,10 @@
 				TargetAttributes = {
 					8D18D05F2FA28B6E0038AB85 = {
 						CreatedOnToolsVersion = 14.2;
+					};
+					8D9C4E8F2FE4A8B0008F4C3D = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = 8D18D05F2FA28B6E0038AB85;
 					};
 				};
 			};
@@ -734,6 +816,7 @@
 			projectRoot = "";
 			targets = (
 				8D18D05F2FA28B6E0038AB85 /* LegalisApp */,
+				8D9C4E8F2FE4A8B0008F4C3D /* LegalisAppUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -808,6 +891,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8D9C4E8E2FE4A8B0008F4C3D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -848,7 +938,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8D9C4E8C2FE4A8B0008F4C3D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D9C4E9F2FE4AA0B008F4C3D /* LawyersSignUpViewTest.swift in Sources */,
+				8D9C4E952FE4A8B0008F4C3D /* LegalisAppUITestsLaunchTests.swift in Sources */,
+				8D9C4E932FE4A8B0008F4C3D /* LegalisAppUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8D9C4E972FE4A8B0008F4C3D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8D18D05F2FA28B6E0038AB85 /* LegalisApp */;
+			targetProxy = 8D9C4E962FE4A8B0008F4C3D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		8D18D0692FA28B6E0038AB85 /* Main.storyboard */ = {
@@ -1040,6 +1148,40 @@
 			};
 			name = Release;
 		};
+		8D9C4E982FE4A8B0008F4C3D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = S52ZRS44GD;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.daniel.LegalisAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = LegalisApp;
+			};
+			name = Debug;
+		};
+		8D9C4E992FE4A8B0008F4C3D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = S52ZRS44GD;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.daniel.LegalisAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = LegalisApp;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1057,6 +1199,15 @@
 			buildConfigurations = (
 				8D18D0752FA28B700038AB85 /* Debug */,
 				8D18D0762FA28B700038AB85 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8D9C4E9A2FE4A8B0008F4C3D /* Build configuration list for PBXNativeTarget "LegalisAppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8D9C4E982FE4A8B0008F4C3D /* Debug */,
+				8D9C4E992FE4A8B0008F4C3D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
