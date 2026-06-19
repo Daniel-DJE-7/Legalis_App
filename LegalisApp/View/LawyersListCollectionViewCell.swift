@@ -168,7 +168,7 @@ class LawyersListCollectionViewCell: UICollectionViewCell {
     
     NSLayoutConstraint.activate([
 
-      globalStack.topAnchor.constraint(equalTo: contentView.topAnchor),
+      globalStack.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 25),
       globalStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
       globalStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
       globalStack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),

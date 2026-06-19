@@ -30,7 +30,7 @@ class LawyersCategoriesListCollectionViewController: CoreCollectionViewControlle
     }
 
   override func viewDidLayoutSubviews() {
-    super.viewDidLoad()
+    super.viewDidLayoutSubviews()
     collectionView.frame = view.bounds
    
   }
