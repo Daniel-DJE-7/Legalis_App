@@ -428,6 +428,7 @@ class ClientsSignUpView: UIView {
                                 imagePlacement: nil,
                                 imagePadding: nil,
                                 cornerRadius: 10,
+                                cornerStyle: nil,
                                 backgroundColor: UIColor(
                                   red: 0.003979303874,
                                   green: 0.137050271,
