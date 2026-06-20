@@ -10,9 +10,12 @@ import UIKit
 
 class ProfileLawyerCollectionViewController: CoreCollectionViewController {
 
+ 
+  var personalInformation: LawyersPersonalProfile?
+  
     override func viewDidLoad() {
         super.viewDidLoad()
-
+      collectionView.backgroundColor = .orange
     }
 
    
