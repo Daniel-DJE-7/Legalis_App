@@ -7,8 +7,14 @@
 
 import UIKit
 
+protocol LawyersListCollectionViewCellDelegate: AnyObject {
+  func DipTapWatchLawyerProfile()
+}
+
 class LawyersListCollectionViewCell: UICollectionViewCell {
-    
+  
+  weak var delegate: LawyersListCollectionViewCellDelegate?
+  
   static let identifier = "LawyersListCollectionViewCell"
   
   // lawyer image
@@ -199,6 +205,8 @@ class LawyersListCollectionViewCell: UICollectionViewCell {
   }
   
   @objc func onProfileBtnTapped() {
+    
+    delegate?.DipTapWatchLawyerProfile()
     print("You want to see the profile of the lawyer")
   }
   

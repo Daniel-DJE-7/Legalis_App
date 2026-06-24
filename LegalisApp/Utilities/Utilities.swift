@@ -90,10 +90,10 @@ class Utilities {
                                 imagePadding: CGFloat?,
                                 cornerRadius: CGFloat,
                                 cornerStyle: UIButton.Configuration.CornerStyle?,
-                                backgroundColor: UIColor,
+                                backgroundColor: UIColor?,
                                 baseForeground: UIColor,
                                 width: CGFloat?,
-                                height: CGFloat,
+                                height: CGFloat?,
                                 target: Any?,
                                 action: Selector) {
    
@@ -106,14 +106,15 @@ class Utilities {
     button.configuration?.imagePlacement = imagePlacement ?? .leading
     button.configuration?.imagePadding = imagePadding ?? 0
     button.layer.cornerRadius = cornerRadius
-    button.backgroundColor = backgroundColor
+    button.backgroundColor = backgroundColor ?? .systemBackground
     button.configuration?.baseForegroundColor = baseForeground
     button.addTarget(target, action: action, for: .touchUpInside)
     if let width = width {
             button.widthAnchor.constraint(equalToConstant: width).isActive = true
         }
-    button.heightAnchor.constraint(equalToConstant: height).isActive = true
-    
+    if let height = height {
+      button.heightAnchor.constraint(equalToConstant: height).isActive = true
+    }
     button.translatesAutoresizingMaskIntoConstraints = false
   }
   
