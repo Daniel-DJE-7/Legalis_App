@@ -12,7 +12,7 @@ enum SectionTypeProfile: Int, CaseIterable {
   case professionalDescription = 1
   case contactPrice = 2
   case reviewsAndRatings = 3
-  case appointment = 4
+  case appointmentBtn = 4
 }
 
 class ProfileLawyerCollectionViewController: CoreCollectionViewController {
@@ -217,7 +217,7 @@ extension ProfileLawyerCollectionViewController: UICollectionViewDelegateFlowLay
       return 1
     case .reviewsAndRatings:
       return 2
-    case .appointment:
+    case .appointmentBtn:
       return 1
     }
   }
@@ -258,10 +258,11 @@ extension ProfileLawyerCollectionViewController: UICollectionViewDelegateFlowLay
       cell.backgroundColor = .white
       return cell
       
-    case .appointment:
+    case .appointmentBtn:
       guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AppointmentActionCollectionViewCell.identifier, for: indexPath) as? AppointmentActionCollectionViewCell else {
         return UICollectionViewCell()
       }
+      cell.delegate = self
       cell.backgroundColor = .white
       return cell
       
@@ -305,5 +306,15 @@ extension ProfileLawyerCollectionViewController: UICollectionViewDelegateFlowLay
     default: return UICollectionReusableView()
     }
   }
+  
+}
+
+extension ProfileLawyerCollectionViewController: AppointmentActionCollectionViewCellDelegate {
+  
+  func onAppointmentBtnTapped() {
+    let vc = AppointmentScheduleCollectionViewController()
+    navigationController?.pushViewController(vc, animated: true)
+  }
+  
   
 }

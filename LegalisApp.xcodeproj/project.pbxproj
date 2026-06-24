@@ -19,6 +19,10 @@
 		8D3944472FAF752700CED997 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3944462FAF752700CED997 /* Utilities.swift */; };
 		8D39444A2FAFAF2B00CED997 /* RegisterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3944492FAFAF2B00CED997 /* RegisterModel.swift */; };
 		8D3960E42FEC2C0100ECE276 /* HeaderSectionsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3960E32FEC2C0100ECE276 /* HeaderSectionsCollectionViewCell.swift */; };
+		8D3960E62FEC6E0700ECE276 /* AppointmentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3960E52FEC6E0700ECE276 /* AppointmentCollectionViewCell.swift */; };
+		8D3960E82FEC6E6F00ECE276 /* AppointmentCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3960E72FEC6E6F00ECE276 /* AppointmentCollectionViewController.swift */; };
+		8D3960EA2FEC94DB00ECE276 /* CalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3960E92FEC94DB00ECE276 /* CalendarCollectionViewCell.swift */; };
+		8D3960EE2FEC960300ECE276 /* AppointmentScheduleCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3960ED2FEC960300ECE276 /* AppointmentScheduleCollectionViewController.swift */; };
 		8D419C712FEAE0B900FDCDDB /* RatingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D419C702FEAE0B900FDCDDB /* RatingCollectionViewCell.swift */; };
 		8D436B872FBE6A9000429E60 /* NSMutableAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D436B862FBE6A8F00429E60 /* NSMutableAttributedString.swift */; };
 		8D44E45F2FAA9D2B00AC5242 /* welcomeVideo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 8D44E45E2FAA9D2B00AC5242 /* welcomeVideo.mp4 */; };
@@ -138,6 +142,10 @@
 		8D3944462FAF752700CED997 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		8D3944492FAFAF2B00CED997 /* RegisterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterModel.swift; sourceTree = "<group>"; };
 		8D3960E32FEC2C0100ECE276 /* HeaderSectionsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderSectionsCollectionViewCell.swift; sourceTree = "<group>"; };
+		8D3960E52FEC6E0700ECE276 /* AppointmentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentCollectionViewCell.swift; sourceTree = "<group>"; };
+		8D3960E72FEC6E6F00ECE276 /* AppointmentCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentCollectionViewController.swift; sourceTree = "<group>"; };
+		8D3960E92FEC94DB00ECE276 /* CalendarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCollectionViewCell.swift; sourceTree = "<group>"; };
+		8D3960ED2FEC960300ECE276 /* AppointmentScheduleCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentScheduleCollectionViewController.swift; sourceTree = "<group>"; };
 		8D419C702FEAE0B900FDCDDB /* RatingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingCollectionViewCell.swift; sourceTree = "<group>"; };
 		8D436B862FBE6A8F00429E60 /* NSMutableAttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSMutableAttributedString.swift; sourceTree = "<group>"; };
 		8D44E45E2FAA9D2B00AC5242 /* welcomeVideo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = welcomeVideo.mp4; sourceTree = "<group>"; };
@@ -311,6 +319,7 @@
 		8D18D0782FA28C250038AB85 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				8D3960E92FEC94DB00ECE276 /* CalendarCollectionViewCell.swift */,
 				8DE9898B2FE43D39001973E3 /* LawyersListCollectionViewCell.swift */,
 				8DA2ADF02FE19EAF00F88BC5 /* FilterSectionCollectionViewCell.swift */,
 				8D18D0932FA295DA0038AB85 /* PaymentViewCell */,
@@ -332,6 +341,7 @@
 		8D18D0792FA28C2B0038AB85 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				8D18D07D2FA28D910038AB85 /* MainTabBarController */,
 				8D7497642FB270C6009D6AD7 /* CoreCollectionViewController */,
 				8D18D0922FA295CC0038AB85 /* PaymentViewController */,
 				8D18D0902FA292170038AB85 /* NotificationsVIewController */,
@@ -342,7 +352,6 @@
 				8D18D0862FA28FB60038AB85 /* FavoritesViewController */,
 				8D18D0842FA28F7F0038AB85 /* LawyersListViewController */,
 				8D18D07A2FA28C630038AB85 /* WelcomeViewController */,
-				8D18D07D2FA28D910038AB85 /* MainTabBarController */,
 				8D18D0822FA28EB50038AB85 /* HomeViewController */,
 				8D18D0802FA28DC50038AB85 /* SingUpViewController */,
 				8D18D0812FA28DD10038AB85 /* LoginViewController */,
@@ -481,6 +490,8 @@
 		8D18D08A2FA290670038AB85 /* AppointmentViewController */ = {
 			isa = PBXGroup;
 			children = (
+				8D3960EC2FEC959000ECE276 /* AppointmentScheduleController */,
+				8D3960E72FEC6E6F00ECE276 /* AppointmentCollectionViewController.swift */,
 			);
 			path = AppointmentViewController;
 			sourceTree = "<group>";
@@ -488,6 +499,7 @@
 		8D18D08B2FA2908A0038AB85 /* AppointmentViewCell */ = {
 			isa = PBXGroup;
 			children = (
+				8D3960E52FEC6E0700ECE276 /* AppointmentCollectionViewCell.swift */,
 			);
 			path = AppointmentViewCell;
 			sourceTree = "<group>";
@@ -569,6 +581,14 @@
 				8D3944492FAFAF2B00CED997 /* RegisterModel.swift */,
 			);
 			path = RegisterModel;
+			sourceTree = "<group>";
+		};
+		8D3960EC2FEC959000ECE276 /* AppointmentScheduleController */ = {
+			isa = PBXGroup;
+			children = (
+				8D3960ED2FEC960300ECE276 /* AppointmentScheduleCollectionViewController.swift */,
+			);
+			path = AppointmentScheduleController;
 			sourceTree = "<group>";
 		};
 		8D436B852FBE685800429E60 /* NSMutableAttributedString */ = {
@@ -935,6 +955,8 @@
 				8D436B872FBE6A9000429E60 /* NSMutableAttributedString.swift in Sources */,
 				8DA2ADF12FE19EAF00F88BC5 /* FilterSectionCollectionViewCell.swift in Sources */,
 				8D419C712FEAE0B900FDCDDB /* RatingCollectionViewCell.swift in Sources */,
+				8D3960E82FEC6E6F00ECE276 /* AppointmentCollectionViewController.swift in Sources */,
+				8D3960EA2FEC94DB00ECE276 /* CalendarCollectionViewCell.swift in Sources */,
 				8DB4B3A12FE9C99D00F744CA /* DescriptionCollectionViewCell.swift in Sources */,
 				8DEB0AFE2FD9ADC800873DB2 /* MainTabBarItemNavigationViewController.swift in Sources */,
 				8DB701422FDB104E0068E552 /* HeaderSecondSectionCollectionViewCell.swift in Sources */,
@@ -948,6 +970,7 @@
 				8DEB0B002FD9DBC700873DB2 /* ChatsCollectionViewController.swift in Sources */,
 				8D7A5E7B2FD862E700ACD94A /* RegexParametersValidation.swift in Sources */,
 				8DB540402FA56CEE00D8DB72 /* UIView+Layout.swift in Sources */,
+				8D3960E62FEC6E0700ECE276 /* AppointmentCollectionViewCell.swift in Sources */,
 				8D44E4612FAAAEFE00AC5242 /* LawyersSignUpView.swift in Sources */,
 				8D39444A2FAFAF2B00CED997 /* RegisterModel.swift in Sources */,
 				8D7A5E7D2FD87BCB00ACD94A /* HomeClientCollectionViewController.swift in Sources */,
@@ -957,6 +980,7 @@
 				8DB4B3A32FE9F25900F744CA /* ProfileDataCollectionViewCell.swift in Sources */,
 				8D859F902FE5E074004AA443 /* ProfileLawyerCollectionViewController.swift in Sources */,
 				8D3960E42FEC2C0100ECE276 /* HeaderSectionsCollectionViewCell.swift in Sources */,
+				8D3960EE2FEC960300ECE276 /* AppointmentScheduleCollectionViewController.swift in Sources */,
 				8D18D0662FA28B6E0038AB85 /* SceneDelegate.swift in Sources */,
 				8DC8A4C32FD746AA005AD39C /* HTMLText.swift in Sources */,
 				8D8153412FD9FA6C002F8A06 /* HomeClientCollectionViewCell.swift in Sources */,
