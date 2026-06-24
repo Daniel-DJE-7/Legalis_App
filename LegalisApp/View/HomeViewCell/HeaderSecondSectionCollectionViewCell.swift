@@ -12,7 +12,7 @@ class HeaderSecondSectionCollectionViewCell: UICollectionViewCell {
   static let identifier = "HeaderSecondSectionCollectionViewCell"
   
   //Header label of second section
-  private let headerSecondSection: UILabel = {
+   let headerSecondSection: UILabel = {
     let label = UILabel()
     label.textAlignment = .left
     

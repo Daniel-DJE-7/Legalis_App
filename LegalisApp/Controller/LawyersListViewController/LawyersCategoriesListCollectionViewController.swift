@@ -192,10 +192,10 @@ extension LawyersCategoriesListCollectionViewController: UICollectionViewDelegat
         
       let cards = lawyersCard[indexPath.row]
      
-      
+      cell.delegate = self
       cell.configure(with: cards, and: categories)
       
-        return cell
+      return cell
       
     }//end switch
     
@@ -212,7 +212,6 @@ extension LawyersCategoriesListCollectionViewController: UICollectionViewDelegat
     return header
     
   }
-  
   
 }//end extension
 
@@ -232,6 +231,18 @@ extension LawyersCategoriesListCollectionViewController: FilterSectionCollection
     }
     collectionView.reloadSections(IndexSet(integer: 1))
   }
+  
+}
+
+extension LawyersCategoriesListCollectionViewController: LawyersListCollectionViewCellDelegate {
+  
+  func DipTapWatchLawyerProfile() {
+    let vc = ProfileLawyerCollectionViewController()
+    navigationController?.modalTransitionStyle = .crossDissolve
+    navigationController?.pushViewController(vc, animated: true)
+  }
+  
+  
   
 }
 

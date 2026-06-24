@@ -13,4 +13,9 @@ struct LawyersCardsModel {
   var qualification: String?
 }
 
-
+struct LawyersPersonalProfile {
+  let card: LawyersCardsModel?
+  let description: String
+  let email: String
+  let price: String
+}
