@@ -11,13 +11,31 @@ enum SectionTypeAppointment: Int, CaseIterable {
   case calendar = 0
   case hours = 1
   case modality = 2
+  case continueBtn = 3
 }
 
 class AppointmentScheduleCollectionViewController: CoreCollectionViewController {
 
+  var selectedDate: DateComponents?
+  
+  let hours: [String] = [
+    "8:30 AM",
+    "9:30 AM",
+    "10:30 AM",
+    "11:30 AM",
+    "1:30 AM",
+    "2:30 AM",
+    "3:30 AM",
+    "4:30 AM"
+  ]
+  
     override func viewDidLoad() {
         super.viewDidLoad()
       collectionView.backgroundColor = .systemGray6
+      navigationItem.title = "Citas"
+      navigationController?.navigationBar.prefersLargeTitles = true
+      navigationItem.largeTitleDisplayMode = .always
+      navigationController?.navigationBar.topItem?.backButtonTitle = "Volver"
       registerCells()
       configureLayout()
     }
@@ -29,6 +47,12 @@ class AppointmentScheduleCollectionViewController: CoreCollectionViewController 
   
   private func registerCells() {
     collectionView.register(CalendarCollectionViewCell.self, forCellWithReuseIdentifier: CalendarCollectionViewCell.identifier)
+    
+    collectionView.register(HoursCollectionViewCell.self, forCellWithReuseIdentifier: HoursCollectionViewCell.identifier)
+    
+    collectionView.register(ModalityCollectionViewCell.self, forCellWithReuseIdentifier: ModalityCollectionViewCell.identifier)
+    
+    collectionView.register(ContinueButtonCollectionViewCell.self, forCellWithReuseIdentifier: ContinueButtonCollectionViewCell.identifier)
   }
   
   private func configureLayout() {
@@ -56,7 +80,7 @@ class AppointmentScheduleCollectionViewController: CoreCollectionViewController 
       let firstItem = NSCollectionLayoutItem(
         layoutSize: NSCollectionLayoutSize(
           widthDimension: .fractionalWidth(1),
-          heightDimension: .estimated(500)
+          heightDimension: .estimated(350)
         )
       )
     //firstGroup
@@ -64,8 +88,11 @@ class AppointmentScheduleCollectionViewController: CoreCollectionViewController 
         layoutSize: firstItem.layoutSize,
         subitems: [firstItem]
       )
+      
     //firstSection
       let firstSection = NSCollectionLayoutSection(group: firstGroup)
+
+      firstSection.contentInsets = NSDirectionalEdgeInsets(top: 15, leading: 17, bottom: 15, trailing: 0)
       return firstSection
       
       
@@ -75,16 +102,38 @@ class AppointmentScheduleCollectionViewController: CoreCollectionViewController 
         let secondItem = NSCollectionLayoutItem(
           layoutSize: NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1),
-            heightDimension: .estimated(500)
+            heightDimension: .absolute(45)
           )
         )
+      secondItem.contentInsets = NSDirectionalEdgeInsets(top: 2, leading: 3, bottom: 2, trailing: 3)
+      
       //secondGroup
-        let secondGroup = NSCollectionLayoutGroup.horizontal(
-          layoutSize: secondItem.layoutSize,
-          subitems: [secondItem]
+      
+        let secondVerticalGroup = NSCollectionLayoutGroup.vertical(
+          layoutSize: NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .absolute(45)
+          ),
+          subitem: secondItem,
+          count: 1
         )
+      
+//      secondVerticalGroup.contentInsets = .init(top: 0, leading: 17, bottom: 0, trailing: 16)
+      
+      let secondHorizontalGroup = NSCollectionLayoutGroup.horizontal(
+        layoutSize: NSCollectionLayoutSize(
+          widthDimension: .fractionalWidth(1),
+          heightDimension: .absolute(45)
+        ),
+        subitem: secondVerticalGroup,
+        count: 3
+      )
+      secondHorizontalGroup.contentInsets = .init(top: 0, leading: 17, bottom: 0, trailing: 16)
+      
       //secondSection
-        let secondSection = NSCollectionLayoutSection(group: secondGroup)
+        let secondSection = NSCollectionLayoutSection(group: secondHorizontalGroup)
+            secondSection.interGroupSpacing = 5
+       
         return secondSection
       
     //MARK: - MODALITY SECTION
@@ -93,17 +142,41 @@ class AppointmentScheduleCollectionViewController: CoreCollectionViewController 
         let thirdItem = NSCollectionLayoutItem(
           layoutSize: NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1),
-            heightDimension: .estimated(500)
+            heightDimension: .estimated(105)
           )
         )
+      
       //thirdGroup
         let thirdGroup = NSCollectionLayoutGroup.horizontal(
           layoutSize: thirdItem.layoutSize,
-          subitems: [thirdItem]
+          subitem: thirdItem,
+          count: 1
         )
+      
+      thirdGroup.interItemSpacing = .fixed(5)
       //thirdSection
         let thirdSection = NSCollectionLayoutSection(group: thirdGroup)
+      thirdSection.contentInsets = .init(top: 16, leading: 17, bottom: 16, trailing: 16)
         return thirdSection
+      
+    //MARK: - btn
+    case 3:
+      let fourthtItem = NSCollectionLayoutItem(
+        layoutSize: NSCollectionLayoutSize(
+          widthDimension: .fractionalWidth(1),
+          heightDimension: .absolute(54)
+        )
+      )
+      //group
+      let fourhtGroup = NSCollectionLayoutGroup.vertical(
+        layoutSize: fourthtItem.layoutSize,
+        subitems: [fourthtItem]
+      )
+      fourhtGroup.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16)
+      //section
+      let fourthSection = NSCollectionLayoutSection(group: fourhtGroup)
+          
+      return fourthSection
       
     //MARK: - DEFAULT SECTION
     default:
@@ -141,9 +214,64 @@ extension AppointmentScheduleCollectionViewController: UICollectionViewDelegateF
     case .calendar:
       return 1
     case .hours:
-      return 1
+      return 8
     case .modality:
+      return 1
+    case .continueBtn:
       return 1
     }
   }
+  
+  override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    guard let section = SectionTypeAppointment(rawValue: indexPath.section) else {
+      return UICollectionViewCell()
+    }
+    switch section {
+    case .calendar:
+      guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CalendarCollectionViewCell.identifier, for: indexPath) as? CalendarCollectionViewCell else {
+        return UICollectionViewCell()
+      }
+      cell.delegate = self
+      
+      return cell
+      
+    case .hours:
+      guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HoursCollectionViewCell.identifier, for: indexPath) as? HoursCollectionViewCell else {
+        return UICollectionViewCell()
+      }
+      cell.layer.cornerRadius = 8
+      cell.layer.borderColor = #colorLiteral(red: 0.7212437391, green: 0.7287658453, blue: 0.7661984563, alpha: 1)
+      cell.layer.borderWidth = 1
+      cell.backgroundColor = .white
+      cell.hourLabel.text = hours[indexPath.item]
+      return cell
+      
+    case .modality:
+      
+      guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ModalityCollectionViewCell.identifier, for: indexPath) as? ModalityCollectionViewCell else {
+        return UICollectionViewCell()
+      }
+      
+      return cell
+    
+    case .continueBtn:
+      guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ContinueButtonCollectionViewCell.identifier, for: indexPath) as? ContinueButtonCollectionViewCell else {
+        return UICollectionViewCell()
+      }
+
+      return cell
+    }
+  }
+}
+
+extension AppointmentScheduleCollectionViewController: CalendarCollectionViewCellDelegate {
+  
+  func calendar(cell: CalendarCollectionViewCell, didSelect date: DateComponents?) {
+    print(date)
+  }
+}
+
+
+class testing2: UICollectionViewCell {
+  static let identifier = "testing2"
 }

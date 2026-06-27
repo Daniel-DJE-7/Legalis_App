@@ -84,7 +84,7 @@ class Utilities {
   //MARK: - button style
   static func customButtonStyle(_ button: UIButton,
                                 appearance: UIButton.Configuration?,
-                                title: String,
+                                title: String?,
                                 image: UIImage?,
                                 imagePlacement: NSDirectionalRectEdge?,
                                 imagePadding: CGFloat?,
@@ -98,7 +98,7 @@ class Utilities {
                                 action: Selector) {
    
     button.configuration = appearance
-    button.configuration?.title = title
+    button.configuration?.title = title ?? ""
     button.configuration?.cornerStyle = cornerStyle ?? .large
     button.titleLabel?.font = UIFont(name: "Inter-Regular_Bold", size: 17)
     button.titleLabel?.font = .systemFont(ofSize: 17, weight: .semibold)

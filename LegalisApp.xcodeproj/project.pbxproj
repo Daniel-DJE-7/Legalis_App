@@ -23,6 +23,8 @@
 		8D3960E82FEC6E6F00ECE276 /* AppointmentCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3960E72FEC6E6F00ECE276 /* AppointmentCollectionViewController.swift */; };
 		8D3960EA2FEC94DB00ECE276 /* CalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3960E92FEC94DB00ECE276 /* CalendarCollectionViewCell.swift */; };
 		8D3960EE2FEC960300ECE276 /* AppointmentScheduleCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3960ED2FEC960300ECE276 /* AppointmentScheduleCollectionViewController.swift */; };
+		8D40DFE42FEF2D98009373A9 /* ModalityCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D40DFE32FEF2D98009373A9 /* ModalityCollectionViewCell.swift */; };
+		8D40DFE62FEF4FEC009373A9 /* ContinueButtonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D40DFE52FEF4FEC009373A9 /* ContinueButtonCollectionViewCell.swift */; };
 		8D419C712FEAE0B900FDCDDB /* RatingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D419C702FEAE0B900FDCDDB /* RatingCollectionViewCell.swift */; };
 		8D436B872FBE6A9000429E60 /* NSMutableAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D436B862FBE6A8F00429E60 /* NSMutableAttributedString.swift */; };
 		8D44E45F2FAA9D2B00AC5242 /* welcomeVideo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 8D44E45E2FAA9D2B00AC5242 /* welcomeVideo.mp4 */; };
@@ -98,6 +100,7 @@
 		8D859F902FE5E074004AA443 /* ProfileLawyerCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D859F8F2FE5E074004AA443 /* ProfileLawyerCollectionViewController.swift */; };
 		8D859F922FE5E1BF004AA443 /* ProfileLawyersCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D859F912FE5E1BF004AA443 /* ProfileLawyersCollectionViewCell.swift */; };
 		8D887EBB2FE2ED3600C7E40D /* LawyersFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D887EBA2FE2ED3600C7E40D /* LawyersFilter.swift */; };
+		8D8D3E512FEDDDF60021BFE0 /* HoursCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8D3E502FEDDDF60021BFE0 /* HoursCollectionViewCell.swift */; };
 		8D9C4E932FE4A8B0008F4C3D /* LegalisAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9C4E922FE4A8B0008F4C3D /* LegalisAppUITests.swift */; };
 		8D9C4E952FE4A8B0008F4C3D /* LegalisAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9C4E942FE4A8B0008F4C3D /* LegalisAppUITestsLaunchTests.swift */; };
 		8D9C4E9F2FE4AA0B008F4C3D /* LawyersSignUpViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9C4E9E2FE4AA0B008F4C3D /* LawyersSignUpViewTest.swift */; };
@@ -146,6 +149,8 @@
 		8D3960E72FEC6E6F00ECE276 /* AppointmentCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentCollectionViewController.swift; sourceTree = "<group>"; };
 		8D3960E92FEC94DB00ECE276 /* CalendarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCollectionViewCell.swift; sourceTree = "<group>"; };
 		8D3960ED2FEC960300ECE276 /* AppointmentScheduleCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentScheduleCollectionViewController.swift; sourceTree = "<group>"; };
+		8D40DFE32FEF2D98009373A9 /* ModalityCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalityCollectionViewCell.swift; sourceTree = "<group>"; };
+		8D40DFE52FEF4FEC009373A9 /* ContinueButtonCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinueButtonCollectionViewCell.swift; sourceTree = "<group>"; };
 		8D419C702FEAE0B900FDCDDB /* RatingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingCollectionViewCell.swift; sourceTree = "<group>"; };
 		8D436B862FBE6A8F00429E60 /* NSMutableAttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSMutableAttributedString.swift; sourceTree = "<group>"; };
 		8D44E45E2FAA9D2B00AC5242 /* welcomeVideo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = welcomeVideo.mp4; sourceTree = "<group>"; };
@@ -221,6 +226,7 @@
 		8D859F8F2FE5E074004AA443 /* ProfileLawyerCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileLawyerCollectionViewController.swift; sourceTree = "<group>"; };
 		8D859F912FE5E1BF004AA443 /* ProfileLawyersCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileLawyersCollectionViewCell.swift; sourceTree = "<group>"; };
 		8D887EBA2FE2ED3600C7E40D /* LawyersFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LawyersFilter.swift; sourceTree = "<group>"; };
+		8D8D3E502FEDDDF60021BFE0 /* HoursCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoursCollectionViewCell.swift; sourceTree = "<group>"; };
 		8D9C4E902FE4A8B0008F4C3D /* LegalisAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LegalisAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D9C4E922FE4A8B0008F4C3D /* LegalisAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalisAppUITests.swift; sourceTree = "<group>"; };
 		8D9C4E942FE4A8B0008F4C3D /* LegalisAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalisAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -500,6 +506,9 @@
 			isa = PBXGroup;
 			children = (
 				8D3960E52FEC6E0700ECE276 /* AppointmentCollectionViewCell.swift */,
+				8D8D3E502FEDDDF60021BFE0 /* HoursCollectionViewCell.swift */,
+				8D40DFE32FEF2D98009373A9 /* ModalityCollectionViewCell.swift */,
+				8D40DFE52FEF4FEC009373A9 /* ContinueButtonCollectionViewCell.swift */,
 			);
 			path = AppointmentViewCell;
 			sourceTree = "<group>";
@@ -958,14 +967,17 @@
 				8D3960E82FEC6E6F00ECE276 /* AppointmentCollectionViewController.swift in Sources */,
 				8D3960EA2FEC94DB00ECE276 /* CalendarCollectionViewCell.swift in Sources */,
 				8DB4B3A12FE9C99D00F744CA /* DescriptionCollectionViewCell.swift in Sources */,
+				8D40DFE62FEF4FEC009373A9 /* ContinueButtonCollectionViewCell.swift in Sources */,
 				8DEB0AFE2FD9ADC800873DB2 /* MainTabBarItemNavigationViewController.swift in Sources */,
 				8DB701422FDB104E0068E552 /* HeaderSecondSectionCollectionViewCell.swift in Sources */,
 				8D50D2472FEB4077005040D4 /* AppointmentActionCollectionViewCell.swift in Sources */,
 				8DA577642FE05D6D000EC1C4 /* LawyersListHeaderCollectionViewCell.swift in Sources */,
 				8D44E4662FAAB80300AC5242 /* ClientsSignUpViewController.swift in Sources */,
 				8D18D0682FA28B6E0038AB85 /* ViewController.swift in Sources */,
+				8D8D3E512FEDDDF60021BFE0 /* HoursCollectionViewCell.swift in Sources */,
 				8D18D0982FA2BBA10038AB85 /* WelcomeViewController.swift in Sources */,
 				8D0C89DF2FCF933200B8C306 /* ClientsSignUpView.swift in Sources */,
+				8D40DFE42FEF2D98009373A9 /* ModalityCollectionViewCell.swift in Sources */,
 				8DA2F9EF2FCE2D2500E8E324 /* HomeLawyerViewController.swift in Sources */,
 				8DEB0B002FD9DBC700873DB2 /* ChatsCollectionViewController.swift in Sources */,
 				8D7A5E7B2FD862E700ACD94A /* RegexParametersValidation.swift in Sources */,
