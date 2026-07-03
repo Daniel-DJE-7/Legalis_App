@@ -23,10 +23,10 @@ class AppointmentScheduleCollectionViewController: CoreCollectionViewController 
     "9:30 AM",
     "10:30 AM",
     "11:30 AM",
-    "1:30 AM",
-    "2:30 AM",
-    "3:30 AM",
-    "4:30 AM"
+    "1:30 PM",
+    "2:30 PM",
+    "3:30 PM",
+    "4:30 PM"
   ]
   
     override func viewDidLoad() {
@@ -258,10 +258,12 @@ extension AppointmentScheduleCollectionViewController: UICollectionViewDelegateF
       guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ContinueButtonCollectionViewCell.identifier, for: indexPath) as? ContinueButtonCollectionViewCell else {
         return UICollectionViewCell()
       }
-
+      cell.delegate = self
       return cell
     }
   }
+  
+  
 }
 
 extension AppointmentScheduleCollectionViewController: CalendarCollectionViewCellDelegate {
@@ -272,6 +274,25 @@ extension AppointmentScheduleCollectionViewController: CalendarCollectionViewCel
 }
 
 
-class testing2: UICollectionViewCell {
-  static let identifier = "testing2"
+extension AppointmentScheduleCollectionViewController: ContinueButtonCollectionViewCellDelegate {
+ 
+  func onContinueBtnTapped() {
+    let vc = PaymentSummaryCollectionViewController()
+    let nav = UINavigationController(rootViewController: vc)
+    
+    nav.modalPresentationStyle = .pageSheet
+    //get the sheet
+    if let sheet = nav.sheetPresentationController{
+      sheet.detents = [.custom { context in
+        return context.maximumDetentValue * 0.8}
+      ]
+      sheet.prefersScrollingExpandsWhenScrolledToEdge = true
+      sheet.prefersGrabberVisible = true
+      sheet.preferredCornerRadius = 30
+    }
+    
+    navigationController?.present(nav, animated: true)
+  }
+  
+  
 }

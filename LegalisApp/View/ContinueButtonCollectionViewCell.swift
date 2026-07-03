@@ -7,9 +7,14 @@
 
 import UIKit
 
+protocol ContinueButtonCollectionViewCellDelegate: AnyObject {
+  func onContinueBtnTapped()
+}
+
 class ContinueButtonCollectionViewCell: UICollectionViewCell {
     
   static let identifier = "ContinueButtonCollectionViewCell"
+  weak var delegate: ContinueButtonCollectionViewCellDelegate?
   
   let continueBtn = UIButton()
   
@@ -38,7 +43,7 @@ class ContinueButtonCollectionViewCell: UICollectionViewCell {
                                 width: nil,
                                 height: 54,
                                 target: self,
-                                action: #selector(dipTapModalityAppointment))
+                                action: #selector(dipTapContinueBtn))
     continueBtn.translatesAutoresizingMaskIntoConstraints = false
     
   }
@@ -55,8 +60,9 @@ class ContinueButtonCollectionViewCell: UICollectionViewCell {
     ])
   }
   
-  @objc func dipTapModalityAppointment() {
-    print("ok")
+  @objc func dipTapContinueBtn() {
+    delegate?.onContinueBtnTapped()
+    print("hola")
   }
   
 }

@@ -93,6 +93,9 @@
 		8D7497662FB2721A009D6AD7 /* CoreCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7497652FB2721A009D6AD7 /* CoreCollectionViewController.swift */; };
 		8D7A5E7B2FD862E700ACD94A /* RegexParametersValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7A5E7A2FD862E700ACD94A /* RegexParametersValidation.swift */; };
 		8D7A5E7D2FD87BCB00ACD94A /* HomeClientCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7A5E7C2FD87BCB00ACD94A /* HomeClientCollectionViewController.swift */; };
+		8D7FF2592FF585B000B53B87 /* PaymentHeaderMethodCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7FF2582FF585B000B53B87 /* PaymentHeaderMethodCollectionViewCell.swift */; };
+		8D7FF25B2FF5861100B53B87 /* PaymentMethodCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7FF25A2FF5861100B53B87 /* PaymentMethodCollectionViewController.swift */; };
+		8D7FF25D2FF58F9900B53B87 /* MethodCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7FF25C2FF58F9900B53B87 /* MethodCollectionViewCell.swift */; };
 		8D8153412FD9FA6C002F8A06 /* HomeClientCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8153402FD9FA6C002F8A06 /* HomeClientCollectionViewCell.swift */; };
 		8D844CCA2FDB3BAB007E5B5F /* LawCategoriesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D844CC92FDB3BAB007E5B5F /* LawCategoriesCollectionViewCell.swift */; };
 		8D844CCD2FDB5F2D007E5B5F /* CategoriesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D844CCC2FDB5F2D007E5B5F /* CategoriesModel.swift */; };
@@ -101,6 +104,10 @@
 		8D859F922FE5E1BF004AA443 /* ProfileLawyersCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D859F912FE5E1BF004AA443 /* ProfileLawyersCollectionViewCell.swift */; };
 		8D887EBB2FE2ED3600C7E40D /* LawyersFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D887EBA2FE2ED3600C7E40D /* LawyersFilter.swift */; };
 		8D8D3E512FEDDDF60021BFE0 /* HoursCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8D3E502FEDDDF60021BFE0 /* HoursCollectionViewCell.swift */; };
+		8D94643C2FF6BF6100284A20 /* PaymentButtonsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D94643B2FF6BF6100284A20 /* PaymentButtonsCollectionViewCell.swift */; };
+		8D94643E2FF6F34000284A20 /* CardDetailsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D94643D2FF6F34000284A20 /* CardDetailsCollectionViewController.swift */; };
+		8D9464402FF6F3E600284A20 /* SuccessAppointmentCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D94643F2FF6F3E600284A20 /* SuccessAppointmentCollectionViewController.swift */; };
+		8D9651012FF41AB500EB9D09 /* PaymentSummaryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9651002FF41AB500EB9D09 /* PaymentSummaryCollectionViewCell.swift */; };
 		8D9C4E932FE4A8B0008F4C3D /* LegalisAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9C4E922FE4A8B0008F4C3D /* LegalisAppUITests.swift */; };
 		8D9C4E952FE4A8B0008F4C3D /* LegalisAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9C4E942FE4A8B0008F4C3D /* LegalisAppUITestsLaunchTests.swift */; };
 		8D9C4E9F2FE4AA0B008F4C3D /* LawyersSignUpViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9C4E9E2FE4AA0B008F4C3D /* LawyersSignUpViewTest.swift */; };
@@ -108,6 +115,8 @@
 		8DA2F9EF2FCE2D2500E8E324 /* HomeLawyerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA2F9EE2FCE2D2500E8E324 /* HomeLawyerViewController.swift */; };
 		8DA577642FE05D6D000EC1C4 /* LawyersListHeaderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA577632FE05D6D000EC1C4 /* LawyersListHeaderCollectionViewCell.swift */; };
 		8DA748C72FDDC156002E2096 /* LawyersCategoriesListCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA748C62FDDC156002E2096 /* LawyersCategoriesListCollectionViewController.swift */; };
+		8DB159202FF2BCD100EC6B14 /* PaymentHeaderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB1591F2FF2BCD100EC6B14 /* PaymentHeaderCollectionViewCell.swift */; };
+		8DB159222FF2BDA700EC6B14 /* PaymentSummaryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB159212FF2BDA700EC6B14 /* PaymentSummaryCollectionViewController.swift */; };
 		8DB4B3A12FE9C99D00F744CA /* DescriptionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB4B3A02FE9C99D00F744CA /* DescriptionCollectionViewCell.swift */; };
 		8DB4B3A32FE9F25900F744CA /* ProfileDataCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB4B3A22FE9F25900F744CA /* ProfileDataCollectionViewCell.swift */; };
 		8DB540402FA56CEE00D8DB72 /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB5403F2FA56CEE00D8DB72 /* UIView+Layout.swift */; };
@@ -219,6 +228,9 @@
 		8D7497652FB2721A009D6AD7 /* CoreCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreCollectionViewController.swift; sourceTree = "<group>"; };
 		8D7A5E7A2FD862E700ACD94A /* RegexParametersValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexParametersValidation.swift; sourceTree = "<group>"; };
 		8D7A5E7C2FD87BCB00ACD94A /* HomeClientCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeClientCollectionViewController.swift; sourceTree = "<group>"; };
+		8D7FF2582FF585B000B53B87 /* PaymentHeaderMethodCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentHeaderMethodCollectionViewCell.swift; sourceTree = "<group>"; };
+		8D7FF25A2FF5861100B53B87 /* PaymentMethodCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodCollectionViewController.swift; sourceTree = "<group>"; };
+		8D7FF25C2FF58F9900B53B87 /* MethodCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MethodCollectionViewCell.swift; sourceTree = "<group>"; };
 		8D8153402FD9FA6C002F8A06 /* HomeClientCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeClientCollectionViewCell.swift; sourceTree = "<group>"; };
 		8D844CC92FDB3BAB007E5B5F /* LawCategoriesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LawCategoriesCollectionViewCell.swift; sourceTree = "<group>"; };
 		8D844CCC2FDB5F2D007E5B5F /* CategoriesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesModel.swift; sourceTree = "<group>"; };
@@ -227,6 +239,10 @@
 		8D859F912FE5E1BF004AA443 /* ProfileLawyersCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileLawyersCollectionViewCell.swift; sourceTree = "<group>"; };
 		8D887EBA2FE2ED3600C7E40D /* LawyersFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LawyersFilter.swift; sourceTree = "<group>"; };
 		8D8D3E502FEDDDF60021BFE0 /* HoursCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoursCollectionViewCell.swift; sourceTree = "<group>"; };
+		8D94643B2FF6BF6100284A20 /* PaymentButtonsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentButtonsCollectionViewCell.swift; sourceTree = "<group>"; };
+		8D94643D2FF6F34000284A20 /* CardDetailsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailsCollectionViewController.swift; sourceTree = "<group>"; };
+		8D94643F2FF6F3E600284A20 /* SuccessAppointmentCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessAppointmentCollectionViewController.swift; sourceTree = "<group>"; };
+		8D9651002FF41AB500EB9D09 /* PaymentSummaryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentSummaryCollectionViewCell.swift; sourceTree = "<group>"; };
 		8D9C4E902FE4A8B0008F4C3D /* LegalisAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LegalisAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D9C4E922FE4A8B0008F4C3D /* LegalisAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalisAppUITests.swift; sourceTree = "<group>"; };
 		8D9C4E942FE4A8B0008F4C3D /* LegalisAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalisAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -235,6 +251,8 @@
 		8DA2F9EE2FCE2D2500E8E324 /* HomeLawyerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeLawyerViewController.swift; sourceTree = "<group>"; };
 		8DA577632FE05D6D000EC1C4 /* LawyersListHeaderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LawyersListHeaderCollectionViewCell.swift; sourceTree = "<group>"; };
 		8DA748C62FDDC156002E2096 /* LawyersCategoriesListCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LawyersCategoriesListCollectionViewController.swift; sourceTree = "<group>"; };
+		8DB1591F2FF2BCD100EC6B14 /* PaymentHeaderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentHeaderCollectionViewCell.swift; sourceTree = "<group>"; };
+		8DB159212FF2BDA700EC6B14 /* PaymentSummaryCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentSummaryCollectionViewController.swift; sourceTree = "<group>"; };
 		8DB4B3A02FE9C99D00F744CA /* DescriptionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionCollectionViewCell.swift; sourceTree = "<group>"; };
 		8DB4B3A22FE9F25900F744CA /* ProfileDataCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDataCollectionViewCell.swift; sourceTree = "<group>"; };
 		8DB5403F2FA56CEE00D8DB72 /* UIView+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Layout.swift"; sourceTree = "<group>"; };
@@ -325,6 +343,7 @@
 		8D18D0782FA28C250038AB85 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				8D40DFE52FEF4FEC009373A9 /* ContinueButtonCollectionViewCell.swift */,
 				8D3960E92FEC94DB00ECE276 /* CalendarCollectionViewCell.swift */,
 				8DE9898B2FE43D39001973E3 /* LawyersListCollectionViewCell.swift */,
 				8DA2ADF02FE19EAF00F88BC5 /* FilterSectionCollectionViewCell.swift */,
@@ -508,7 +527,6 @@
 				8D3960E52FEC6E0700ECE276 /* AppointmentCollectionViewCell.swift */,
 				8D8D3E502FEDDDF60021BFE0 /* HoursCollectionViewCell.swift */,
 				8D40DFE32FEF2D98009373A9 /* ModalityCollectionViewCell.swift */,
-				8D40DFE52FEF4FEC009373A9 /* ContinueButtonCollectionViewCell.swift */,
 			);
 			path = AppointmentViewCell;
 			sourceTree = "<group>";
@@ -565,6 +583,10 @@
 		8D18D0922FA295CC0038AB85 /* PaymentViewController */ = {
 			isa = PBXGroup;
 			children = (
+				8DB159212FF2BDA700EC6B14 /* PaymentSummaryCollectionViewController.swift */,
+				8D7FF25A2FF5861100B53B87 /* PaymentMethodCollectionViewController.swift */,
+				8D94643D2FF6F34000284A20 /* CardDetailsCollectionViewController.swift */,
+				8D94643F2FF6F3E600284A20 /* SuccessAppointmentCollectionViewController.swift */,
 			);
 			path = PaymentViewController;
 			sourceTree = "<group>";
@@ -572,6 +594,11 @@
 		8D18D0932FA295DA0038AB85 /* PaymentViewCell */ = {
 			isa = PBXGroup;
 			children = (
+				8DB1591F2FF2BCD100EC6B14 /* PaymentHeaderCollectionViewCell.swift */,
+				8D9651002FF41AB500EB9D09 /* PaymentSummaryCollectionViewCell.swift */,
+				8D7FF2582FF585B000B53B87 /* PaymentHeaderMethodCollectionViewCell.swift */,
+				8D7FF25C2FF58F9900B53B87 /* MethodCollectionViewCell.swift */,
+				8D94643B2FF6BF6100284A20 /* PaymentButtonsCollectionViewCell.swift */,
 			);
 			path = PaymentViewCell;
 			sourceTree = "<group>";
@@ -971,18 +998,23 @@
 				8DEB0AFE2FD9ADC800873DB2 /* MainTabBarItemNavigationViewController.swift in Sources */,
 				8DB701422FDB104E0068E552 /* HeaderSecondSectionCollectionViewCell.swift in Sources */,
 				8D50D2472FEB4077005040D4 /* AppointmentActionCollectionViewCell.swift in Sources */,
+				8DB159202FF2BCD100EC6B14 /* PaymentHeaderCollectionViewCell.swift in Sources */,
 				8DA577642FE05D6D000EC1C4 /* LawyersListHeaderCollectionViewCell.swift in Sources */,
 				8D44E4662FAAB80300AC5242 /* ClientsSignUpViewController.swift in Sources */,
 				8D18D0682FA28B6E0038AB85 /* ViewController.swift in Sources */,
 				8D8D3E512FEDDDF60021BFE0 /* HoursCollectionViewCell.swift in Sources */,
 				8D18D0982FA2BBA10038AB85 /* WelcomeViewController.swift in Sources */,
 				8D0C89DF2FCF933200B8C306 /* ClientsSignUpView.swift in Sources */,
+				8D9651012FF41AB500EB9D09 /* PaymentSummaryCollectionViewCell.swift in Sources */,
 				8D40DFE42FEF2D98009373A9 /* ModalityCollectionViewCell.swift in Sources */,
 				8DA2F9EF2FCE2D2500E8E324 /* HomeLawyerViewController.swift in Sources */,
 				8DEB0B002FD9DBC700873DB2 /* ChatsCollectionViewController.swift in Sources */,
+				8D7FF25D2FF58F9900B53B87 /* MethodCollectionViewCell.swift in Sources */,
 				8D7A5E7B2FD862E700ACD94A /* RegexParametersValidation.swift in Sources */,
+				8D7FF2592FF585B000B53B87 /* PaymentHeaderMethodCollectionViewCell.swift in Sources */,
 				8DB540402FA56CEE00D8DB72 /* UIView+Layout.swift in Sources */,
 				8D3960E62FEC6E0700ECE276 /* AppointmentCollectionViewCell.swift in Sources */,
+				8DB159222FF2BDA700EC6B14 /* PaymentSummaryCollectionViewController.swift in Sources */,
 				8D44E4612FAAAEFE00AC5242 /* LawyersSignUpView.swift in Sources */,
 				8D39444A2FAFAF2B00CED997 /* RegisterModel.swift in Sources */,
 				8D7A5E7D2FD87BCB00ACD94A /* HomeClientCollectionViewController.swift in Sources */,
@@ -990,6 +1022,7 @@
 				8D844CCD2FDB5F2D007E5B5F /* CategoriesModel.swift in Sources */,
 				8D18D0642FA28B6E0038AB85 /* AppDelegate.swift in Sources */,
 				8DB4B3A32FE9F25900F744CA /* ProfileDataCollectionViewCell.swift in Sources */,
+				8D7FF25B2FF5861100B53B87 /* PaymentMethodCollectionViewController.swift in Sources */,
 				8D859F902FE5E074004AA443 /* ProfileLawyerCollectionViewController.swift in Sources */,
 				8D3960E42FEC2C0100ECE276 /* HeaderSectionsCollectionViewCell.swift in Sources */,
 				8D3960EE2FEC960300ECE276 /* AppointmentScheduleCollectionViewController.swift in Sources */,
@@ -997,11 +1030,14 @@
 				8DC8A4C32FD746AA005AD39C /* HTMLText.swift in Sources */,
 				8D8153412FD9FA6C002F8A06 /* HomeClientCollectionViewCell.swift in Sources */,
 				8D887EBB2FE2ED3600C7E40D /* LawyersFilter.swift in Sources */,
+				8D94643C2FF6BF6100284A20 /* PaymentButtonsCollectionViewCell.swift in Sources */,
 				8DE9898C2FE43D39001973E3 /* LawyersListCollectionViewCell.swift in Sources */,
 				8D7497662FB2721A009D6AD7 /* CoreCollectionViewController.swift in Sources */,
+				8D94643E2FF6F34000284A20 /* CardDetailsCollectionViewController.swift in Sources */,
 				8D859F922FE5E1BF004AA443 /* ProfileLawyersCollectionViewCell.swift in Sources */,
 				8D3944472FAF752700CED997 /* Utilities.swift in Sources */,
 				8D844CCA2FDB3BAB007E5B5F /* LawCategoriesCollectionViewCell.swift in Sources */,
+				8D9464402FF6F3E600284A20 /* SuccessAppointmentCollectionViewController.swift in Sources */,
 				8D18D0962FA2A9CE0038AB85 /* WelcomeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
