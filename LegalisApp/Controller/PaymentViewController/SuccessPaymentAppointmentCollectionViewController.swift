@@ -9,11 +9,11 @@ import UIKit
 
 
 
-class SuccessAppointmentCollectionViewController: CoreCollectionViewController {
+class SuccessPaymentAppointmentCollectionViewController: CoreCollectionViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    collectionView.backgroundColor = .systemCyan
+    collectionView.backgroundColor = .systemGray6
   }
   
   override func viewDidLayoutSubviews() {

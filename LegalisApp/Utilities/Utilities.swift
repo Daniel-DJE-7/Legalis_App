@@ -10,6 +10,8 @@ import UIKit
 
 class Utilities {
   
+  let titleBtn = "Continuar"
+  
   //MARK: - func of textFields' styles
   static func styleTextField(_ textField: UITextField) {
     //removing borders

@@ -32,7 +32,7 @@ class ContinueButtonCollectionViewCell: UICollectionViewCell {
   private func setUpBtn() {
     Utilities.customButtonStyle(continueBtn,
                                 appearance: .plain(),
-                                title: "Continuar",
+                                title: "",
                                 image: nil,
                                 imagePlacement: nil,
                                 imagePadding: nil,
@@ -63,6 +63,10 @@ class ContinueButtonCollectionViewCell: UICollectionViewCell {
   @objc func dipTapContinueBtn() {
     delegate?.onContinueBtnTapped()
     print("hola")
+  }
+  
+  func configure(with title: String) {
+    continueBtn.configuration?.title = title
   }
   
 }

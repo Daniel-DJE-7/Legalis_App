@@ -11,9 +11,8 @@ class PaymentHeaderCollectionViewCell: UICollectionViewCell {
     
   static let identifier = "PaymentHeaderCollectionViewCell"
   
-  private let categoryName: UILabel = {
+  private let titleHeader: UILabel = {
     let label = UILabel()
-    label.text = "Resumen del pago"
     label.font = UIFont(name: "Inter-Regular_Bold", size: 34)
     label.numberOfLines = 0
     label.lineBreakMode = .byClipping
@@ -23,11 +22,10 @@ class PaymentHeaderCollectionViewCell: UICollectionViewCell {
     return label
   }()
   
-  private let categoryDescriptionLabel: UILabel = {
+  private let descriptionPageLabel: UILabel = {
     let label = UILabel()
-    label.text = "Confirma los detalles de tu contratación"
     label.textColor = #colorLiteral(red: 0.3645370603, green: 0.3682664633, blue: 0.3890590072, alpha: 1)
-    label.numberOfLines = 1
+    label.numberOfLines = 0
     label.textAlignment = .left
     label.font = UIFont(name: "Inter-Regular", size: 15)
     label.translatesAutoresizingMaskIntoConstraints = false
@@ -48,8 +46,8 @@ class PaymentHeaderCollectionViewCell: UICollectionViewCell {
   func setUpUI() {
     
     let headerStack = UIStackView(arrangedSubviews: [
-      categoryName,
-      categoryDescriptionLabel
+      titleHeader,
+      descriptionPageLabel
     ])
     headerStack.axis = .vertical
     headerStack.alignment = .leading
@@ -62,9 +60,14 @@ class PaymentHeaderCollectionViewCell: UICollectionViewCell {
     contentView.addSubview(headerStack)
     
     NSLayoutConstraint.activate([
-      categoryName.widthAnchor.constraint(equalToConstant: 352),
+      titleHeader.widthAnchor.constraint(equalToConstant: 352),
     ])
    
+  }
+  
+  func configure(with title: String, and subtitle: String) {
+    titleHeader.text = title
+    descriptionPageLabel.text = subtitle
   }
   
 }

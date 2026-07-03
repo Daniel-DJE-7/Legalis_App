@@ -302,7 +302,7 @@ extension PaymentMethodCollectionViewController: PaymentButtonsCollectionViewCel
   }
   
   func onPhysicalPaymentPressed() {
-    let vc = SuccessAppointmentCollectionViewController()
+    let vc = SuccessPaymentAppointmentCollectionViewController()
     
     navigationController?.pushViewController(vc, animated: true)
   }

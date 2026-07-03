@@ -258,6 +258,7 @@ extension AppointmentScheduleCollectionViewController: UICollectionViewDelegateF
       guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ContinueButtonCollectionViewCell.identifier, for: indexPath) as? ContinueButtonCollectionViewCell else {
         return UICollectionViewCell()
       }
+      cell.configure(with: Utilities().titleBtn)
       cell.delegate = self
       return cell
     }

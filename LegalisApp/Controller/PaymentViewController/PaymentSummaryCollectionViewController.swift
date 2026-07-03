@@ -15,6 +15,10 @@ private enum SectionSummaryPayment: Int, CaseIterable {
 
 class PaymentSummaryCollectionViewController: CoreCollectionViewController {
 
+  
+  private let titleHeader: String = "Resumen del pago"
+  private let descriptionPage: String = "Confirma los detalles de tu contratación"
+  
     override func viewDidLoad() {
         super.viewDidLoad()
       collectionView.backgroundColor = .systemGray6
@@ -214,7 +218,7 @@ extension PaymentSummaryCollectionViewController: UICollectionViewDelegateFlowLa
       guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PaymentHeaderCollectionViewCell.identifier, for: indexPath) as? PaymentHeaderCollectionViewCell else {
         return UICollectionViewCell()
       }
-      
+      cell.configure(with: titleHeader, and: descriptionPage)
       return cell
    
     case .paymentSummary:
@@ -228,9 +232,12 @@ extension PaymentSummaryCollectionViewController: UICollectionViewDelegateFlowLa
       return cell
     
     case .continueBtn:
-      guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ContinueButtonCollectionViewCell.identifier, for: indexPath) as? ContinueButtonCollectionViewCell else {
+      guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ContinueButtonCollectionViewCell.identifier,
+                                                          for: indexPath) as? ContinueButtonCollectionViewCell else {
         return UICollectionViewCell()
       }
+      
+      cell.configure(with: Utilities().titleBtn)
       cell.delegate = self
       return cell
     }
