@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8D04F9A12FFBFF550029A37D /* SuccessCheckPointCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D04F9A02FFBFF550029A37D /* SuccessCheckPointCollectionViewCell.swift */; };
+		8D04F9A32FFBFFB40029A37D /* AppointmentDetailsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D04F9A22FFBFFB40029A37D /* AppointmentDetailsCollectionViewCell.swift */; };
+		8D04F9A52FFC00220029A37D /* AnotherConsultsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D04F9A42FFC00220029A37D /* AnotherConsultsCollectionViewCell.swift */; };
 		8D0C89DF2FCF933200B8C306 /* ClientsSignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0C89DE2FCF933200B8C306 /* ClientsSignUpView.swift */; };
 		8D18D0642FA28B6E0038AB85 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D18D0632FA28B6E0038AB85 /* AppDelegate.swift */; };
 		8D18D0662FA28B6E0038AB85 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D18D0652FA28B6E0038AB85 /* SceneDelegate.swift */; };
@@ -141,6 +144,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8D04F9A02FFBFF550029A37D /* SuccessCheckPointCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessCheckPointCollectionViewCell.swift; sourceTree = "<group>"; };
+		8D04F9A22FFBFFB40029A37D /* AppointmentDetailsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentDetailsCollectionViewCell.swift; sourceTree = "<group>"; };
+		8D04F9A42FFC00220029A37D /* AnotherConsultsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnotherConsultsCollectionViewCell.swift; sourceTree = "<group>"; };
 		8D0C89DE2FCF933200B8C306 /* ClientsSignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientsSignUpView.swift; sourceTree = "<group>"; };
 		8D18D0602FA28B6E0038AB85 /* LegalisApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LegalisApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D18D0632FA28B6E0038AB85 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -602,6 +608,9 @@
 				8D7FF25C2FF58F9900B53B87 /* MethodCollectionViewCell.swift */,
 				8D94643B2FF6BF6100284A20 /* PaymentButtonsCollectionViewCell.swift */,
 				8D496CC82FF818AE004AD901 /* CardDetailsCollectionViewCell.swift */,
+				8D04F9A02FFBFF550029A37D /* SuccessCheckPointCollectionViewCell.swift */,
+				8D04F9A22FFBFFB40029A37D /* AppointmentDetailsCollectionViewCell.swift */,
+				8D04F9A42FFC00220029A37D /* AnotherConsultsCollectionViewCell.swift */,
 			);
 			path = PaymentViewCell;
 			sourceTree = "<group>";
@@ -998,6 +1007,8 @@
 				8D3960EA2FEC94DB00ECE276 /* CalendarCollectionViewCell.swift in Sources */,
 				8DB4B3A12FE9C99D00F744CA /* DescriptionCollectionViewCell.swift in Sources */,
 				8D40DFE62FEF4FEC009373A9 /* ContinueButtonCollectionViewCell.swift in Sources */,
+				8D04F9A32FFBFFB40029A37D /* AppointmentDetailsCollectionViewCell.swift in Sources */,
+				8D04F9A52FFC00220029A37D /* AnotherConsultsCollectionViewCell.swift in Sources */,
 				8DEB0AFE2FD9ADC800873DB2 /* MainTabBarItemNavigationViewController.swift in Sources */,
 				8DB701422FDB104E0068E552 /* HeaderSecondSectionCollectionViewCell.swift in Sources */,
 				8D50D2472FEB4077005040D4 /* AppointmentActionCollectionViewCell.swift in Sources */,
@@ -1008,6 +1019,7 @@
 				8D496CC92FF818AE004AD901 /* CardDetailsCollectionViewCell.swift in Sources */,
 				8D8D3E512FEDDDF60021BFE0 /* HoursCollectionViewCell.swift in Sources */,
 				8D18D0982FA2BBA10038AB85 /* WelcomeViewController.swift in Sources */,
+				8D04F9A12FFBFF550029A37D /* SuccessCheckPointCollectionViewCell.swift in Sources */,
 				8D0C89DF2FCF933200B8C306 /* ClientsSignUpView.swift in Sources */,
 				8D9651012FF41AB500EB9D09 /* PaymentSummaryCollectionViewCell.swift in Sources */,
 				8D40DFE42FEF2D98009373A9 /* ModalityCollectionViewCell.swift in Sources */,
