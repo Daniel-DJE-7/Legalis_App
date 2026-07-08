@@ -10,6 +10,7 @@ import UIKit
 class AnotherConsultsCollectionViewCell: UICollectionViewCell {
     
   static let identifier = "AnotherConsultsCollectionViewCell"
+  weak var delegate: ContinueButtonCollectionViewCellDelegate?
   
   let downloadVoucher = UIButton()
   let myConsultsBtn = UIButton()
@@ -91,6 +92,6 @@ class AnotherConsultsCollectionViewCell: UICollectionViewCell {
   }
   
   @objc func dipTapOtherConsultsTapped() {
-    print("These are your consults")
+    delegate?.onContinueBtnTapped()
   }
 }

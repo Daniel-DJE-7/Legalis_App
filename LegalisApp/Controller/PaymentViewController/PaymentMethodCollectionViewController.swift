@@ -288,17 +288,17 @@ extension PaymentMethodCollectionViewController: PaymentButtonsCollectionViewCel
   func onVirtualPaymentPressed() {
     
     let vc = CardDetailsCollectionViewController()
-    let nav = UINavigationController(rootViewController: vc)
-    
-    nav.modalPresentationStyle = .fullScreen
-    if let sheet = nav.sheetPresentationController {
-      sheet.detents = [.custom { context in
-        return context.maximumDetentValue * 1 }
-      ]
-      sheet.prefersGrabberVisible = true
-    }
-    
-    navigationController?.present(nav, animated: true)
+//    let nav = UINavigationController(rootViewController: vc)
+//
+//    nav.modalPresentationStyle = .fullScreen
+//    if let sheet = nav.sheetPresentationController {
+//      sheet.detents = [.custom { context in
+//        return context.maximumDetentValue * 1 }
+//      ]
+//      sheet.prefersGrabberVisible = true
+//    }
+//
+    navigationController?.pushViewController(vc, animated: true)
   }
   
   func onPhysicalPaymentPressed() {

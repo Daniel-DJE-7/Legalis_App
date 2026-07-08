@@ -13,7 +13,7 @@ class AppointmentCollectionViewController: CoreCollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+      
       
     }
 

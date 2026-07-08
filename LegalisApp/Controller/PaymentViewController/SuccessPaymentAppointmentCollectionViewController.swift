@@ -42,22 +42,7 @@ class SuccessPaymentAppointmentCollectionViewController: CoreCollectionViewContr
     
     navigationController?.navigationBar.prefersLargeTitles = false
     navigationController?.navigationBar.topItem?.backButtonTitle = nil
-    
-    //Back Btn
-    let backBtnIcon = UIImage(systemName: "arrow.backward")
-    
-    let backBtn = UIBarButtonItem(image: backBtnIcon,
-                                  style: .plain,
-                                  target: self,
-                                  action: #selector(backBtnTapped))
-   
-    backBtn.tintColor = UIColor(
-      red: 0,
-      green: 0.1063321754,
-      blue: 0.2393084168,
-      alpha: 1)
-   
-    navigationItem.leftBarButtonItem = backBtn
+    navigationItem.hidesBackButton = true
   
   }
   
@@ -218,7 +203,4 @@ extension SuccessPaymentAppointmentCollectionViewController: UICollectionViewDel
       return cell
     }
   }
-  
- 
-  
 }
