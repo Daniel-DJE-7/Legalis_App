@@ -104,8 +104,17 @@ class MainTabBarItemNavigationController: UITabBarController {
           image: UIImage(named: "chatGrey"),
           selectedImage: UIImage(named: "chatsBlue"),
           navTabBarItemtitle: "Chats",
-          navHeaderTitle: nil,
+          navHeaderTitle: "Chats",
           largeTitle: false
+        ),
+        
+        creatingTabBarController(
+          AppointmentCollectionViewController(),
+          image: UIImage(named: "calendarGray"),
+          selectedImage: UIImage(named: "calendarBlue"),
+          navTabBarItemtitle: "Citas",
+          navHeaderTitle: "Citas",
+          largeTitle: true
         ),
         
         creatingTabBarController(

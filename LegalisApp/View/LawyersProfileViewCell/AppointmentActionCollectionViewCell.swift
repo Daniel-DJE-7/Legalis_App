@@ -7,9 +7,14 @@
 
 import UIKit
 
+protocol AppointmentActionCollectionViewCellDelegate: AnyObject {
+  func onAppointmentBtnTapped()
+}
+
 class AppointmentActionCollectionViewCell: UICollectionViewCell {
     
   static let identifier = "AppointmentActionCollectionViewCell"
+  weak var delegate: AppointmentActionCollectionViewCellDelegate?
   
   let appointmentBtn = UIButton()
   
@@ -51,7 +56,7 @@ class AppointmentActionCollectionViewCell: UICollectionViewCell {
   
   @objc
   func dipTapAppointment() {
-    print("Deseas agendar cita")
+    delegate?.onAppointmentBtnTapped()
   }
   
 }
