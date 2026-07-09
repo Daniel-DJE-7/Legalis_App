@@ -10,12 +10,31 @@ import UIKit
 private enum SectionMyAccount: Int, CaseIterable {
   case profilePhoto
   case personalConfiguation
+  case settings
+  case logout
 }
 
 
 class MyAccountLawyerTableViewController: CoreCollectionViewController {
 
- 
+  private var titleHeaderMenu = ["INFORMACIÓN PERSONAL", "CONFIGURACIÓN"]
+
+  private let logout = CategoriesModel(
+    leftIcon: UIImage(named: "logoutRed"),
+    name: "Cerrar Sesión"
+  )
+  
+  private let person = [
+    CategoriesModel(leftIcon: UIImage(named: "personCircleBlue"), name: "Mi cuenta"),
+    CategoriesModel(leftIcon: UIImage(named: "infoBlue"), name: "Acerca de")
+  ]
+  
+  private let settings = [
+    CategoriesModel(leftIcon: UIImage(named: "bellBlue"), name: "Notificaciones"),
+    CategoriesModel(leftIcon: UIImage(named: "helpBlue"), name: "Ayuda"),
+    CategoriesModel(leftIcon: UIImage(named: "shieldBlue"), name: "Seguridad"),
+    CategoriesModel(leftIcon: UIImage(named: "personCircleBlue"), name: "idioma")
+  ]
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -70,6 +89,8 @@ class MyAccountLawyerTableViewController: CoreCollectionViewController {
     collectionView.register(MyAccountLawyerCollectionViewCell.self, forCellWithReuseIdentifier: MyAccountLawyerCollectionViewCell.identifier)
    
     collectionView.register(LawCategoriesCollectionViewCell.self, forCellWithReuseIdentifier: LawCategoriesCollectionViewCell.identifier)
+    
+    collectionView.register(HeaderSecondSectionCollectionViewCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderSecondSectionCollectionViewCell.identifier)
   }
   
   //MARK: - LAYOUT OF COLLECTION VIEW
@@ -81,17 +102,69 @@ class MyAccountLawyerTableViewController: CoreCollectionViewController {
     
   }
   
+  func createMenuSection(itemCount: Int) -> NSCollectionLayoutSection {
+
+      let item = NSCollectionLayoutItem(
+          layoutSize: NSCollectionLayoutSize(
+              widthDimension: .fractionalWidth(1),
+              heightDimension: .absolute(44)
+          )
+      )
+
+      let group = NSCollectionLayoutGroup.vertical(
+          layoutSize: NSCollectionLayoutSize(
+              widthDimension: .fractionalWidth(1),
+              heightDimension: .absolute(CGFloat(itemCount) * 44)
+          ),
+          subitem: item,
+          count: itemCount
+      )
+
+      group.contentInsets = NSDirectionalEdgeInsets(
+          top: 0,
+          leading: 15,
+          bottom: 0,
+          trailing: 15
+      )
+
+      let section = NSCollectionLayoutSection(group: group)
+      section.contentInsets = NSDirectionalEdgeInsets(
+          top: 0,
+          leading: 0,
+          bottom: 20,
+          trailing: 0
+      )
+
+      return section
+  }
+  
+  
   func createSectionLayout(section: Int) -> NSCollectionLayoutSection {
+    
+    let header = [
+      NSCollectionLayoutBoundarySupplementaryItem(
+        layoutSize: NSCollectionLayoutSize(
+          widthDimension: .fractionalWidth(1),
+          heightDimension: .absolute(25)
+        ),
+        elementKind: UICollectionView.elementKindSectionHeader,
+        alignment: .topLeading
+      )
+    ]
+    
+    guard let section = SectionMyAccount(rawValue: section) else {
+      return createSectionLayout(section: 1)
+    }
     
     switch section {
       
-      //MARK: - Header section
-      case 0:
+      //MARK: - Profile photo section
+    case .profilePhoto:
         //firstItem
           let firstItem = NSCollectionLayoutItem(
             layoutSize: NSCollectionLayoutSize(
               widthDimension: .fractionalWidth(1),
-              heightDimension: .estimated(300)
+              heightDimension: .estimated(240)
             )
           )
         //firstGroup
@@ -104,66 +177,24 @@ class MyAccountLawyerTableViewController: CoreCollectionViewController {
           let firstSection = NSCollectionLayoutSection(group: firstGroup)
           return firstSection
     
-      //MARK: - Payment summary section
-      case 1:
-        //second Item
-        let secondItem = NSCollectionLayoutItem(
-          layoutSize: NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1),
-            heightDimension: .absolute(370)
-          )
-        )
-        //second group
-        let secondGroup = NSCollectionLayoutGroup.vertical(
-          layoutSize: secondItem.layoutSize,
-          subitems: [secondItem]
-        )
-        
-        secondGroup.contentInsets = .init(top: 0, leading: 15, bottom: 0, trailing: 15)
-        //second section
-        let secondSection = NSCollectionLayoutSection(group: secondGroup)
-        return secondSection
-     
-      //MARK: - Button section
-      case 2:
-        //second Item
-        let thirdItem = NSCollectionLayoutItem(
-          layoutSize: NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1),
-            heightDimension: .absolute(54)
-          )
-        )
-        //second group
-        let thirdGroup = NSCollectionLayoutGroup.vertical(
-          layoutSize: thirdItem.layoutSize,
-          subitems: [thirdItem]
-        )
-  
-        //second section
-        let thirdSection = NSCollectionLayoutSection(group: thirdGroup)
-            thirdSection.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 16, bottom: 0, trailing: 16)
-        return thirdSection
+      //MARK: - Configuration Menu
+    case .personalConfiguation:
+      let section = createMenuSection(itemCount: 2)
+      section.boundarySupplementaryItems = header
       
-    //MARK: - Default section
-    default:
+      return section
+      //MARK: - configuration section
+    case .settings:
+        let section = createSectionLayout(section: 3)
       
-        //item
-        let defautltItem = NSCollectionLayoutItem(
-          layoutSize: NSCollectionLayoutSize(
-            widthDimension: .estimated(140),
-            heightDimension: .absolute(200)
-          )
-        )
-        //group
-        let defaultGroup = NSCollectionLayoutGroup.vertical(
-          layoutSize: defautltItem.layoutSize,
-          subitem: defautltItem,
-          count: 23
-        )
-        //section
-        let defaultSection = NSCollectionLayoutSection(group: defaultGroup)
-            
-        return defaultSection
+      section.boundarySupplementaryItems = header
+      return section
+      //MARK: - logout section
+    case .logout:
+
+      let section =  createMenuSection(itemCount: 1)
+      
+      return section
       
     }//end switch
   }
@@ -185,9 +216,13 @@ extension MyAccountLawyerTableViewController: UICollectionViewDelegateFlowLayout
     guard let section = SectionMyAccount(rawValue: section) else { return 0 }
     switch section {
     case .profilePhoto:
-     return 1
+      return 1
     case .personalConfiguation:
-     return 1
+      return 2
+    case .settings:
+      return 4
+    case .logout:
+      return 1
     }
   }
   
@@ -199,23 +234,71 @@ extension MyAccountLawyerTableViewController: UICollectionViewDelegateFlowLayout
     switch section {
     case .profilePhoto:
       guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyAccountLawyerCollectionViewCell.identifier, for: indexPath) as? MyAccountLawyerCollectionViewCell else {
-        return UICollectionViewCell()
+          return UICollectionViewCell()
       }
-      cell.backgroundColor = .systemGray3
+      
       return cell
    
-    case .personalConfiguation:
+    case .personalConfiguation, .settings, .logout:
       guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LawCategoriesCollectionViewCell.identifier, for: indexPath) as? LawCategoriesCollectionViewCell else {
         return UICollectionViewCell()
       }
       cell.backgroundColor = .white
-      cell.layer.cornerRadius = 12
       cell.layer.borderColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
       cell.layer.borderWidth = 1
-      return cell
+      
     
+      switch section {
+      case .personalConfiguation:
+        
+        cell.configure(categories: person[indexPath.row])
+        
+      case .settings:
+
+        cell.configure(categories: settings[indexPath.row])
+        
+      case .logout:
+        let logout = CategoriesModel(
+          leftIcon: UIImage(named: "logoutRed"),
+          name: "Cerrar Sesión"
+        )
+        
+        cell.configure(categories: logout)
+      
+      case .profilePhoto:
+        break
+      }
+      return cell
     }
+    
   }
+  
+  override func collectionView(_ collectionView: UICollectionView,
+                               viewForSupplementaryElementOfKind kind: String,
+                               at indexPath: IndexPath) -> UICollectionReusableView {
+    
+    guard let header = collectionView.dequeueReusableSupplementaryView(
+      ofKind: kind,
+      withReuseIdentifier: HeaderSecondSectionCollectionViewCell.identifier,
+      for: indexPath) as? HeaderSecondSectionCollectionViewCell, kind == UICollectionView.elementKindSectionHeader else {
+      return UICollectionReusableView()
+    }
+    guard let section = SectionMyAccount(rawValue: indexPath.section) else {
+      return header
+    }
+    
+    switch section {
+      
+    case .personalConfiguation:
+      header.configure(with: titleHeaderMenu[0])
+    case .settings:
+      header.configure(with: titleHeaderMenu[1])
+    default:
+      break
+    }
+    return header
+  }
+  
 }
 
 

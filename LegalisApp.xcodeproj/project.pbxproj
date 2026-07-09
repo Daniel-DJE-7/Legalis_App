@@ -401,7 +401,6 @@
 				8D18D0822FA28EB50038AB85 /* HomeViewController */,
 				8D18D0802FA28DC50038AB85 /* SingUpViewController */,
 				8D18D0812FA28DD10038AB85 /* LoginViewController */,
-				8DC2A2DE2FFEE1F6004AC3B1 /* MyAccountLawyerTableViewControllerViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -556,6 +555,7 @@
 		8D18D08C2FA290B80038AB85 /* MyAccountViewController */ = {
 			isa = PBXGroup;
 			children = (
+				8DC2A2DE2FFEE1F6004AC3B1 /* MyAccountLawyerTableViewControllerViewController.swift */,
 			);
 			path = MyAccountViewController;
 			sourceTree = "<group>";

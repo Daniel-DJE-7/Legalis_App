@@ -18,9 +18,9 @@ class MyAccountLawyerCollectionViewCell: UICollectionViewCell {
     img.contentMode = .scaleAspectFill
     img.clipsToBounds = true
     img.tintColor = #colorLiteral(red: 0.3645370603, green: 0.3682664633, blue: 0.3890590072, alpha: 1)
-    img.widthAnchor.constraint(equalToConstant: 90).isActive = true
-    img.heightAnchor.constraint(equalToConstant: 90).isActive = true
-    img.layer.cornerRadius = 45
+    img.widthAnchor.constraint(equalToConstant: 96).isActive = true
+    img.heightAnchor.constraint(equalToConstant: 96).isActive = true
+    img.layer.cornerRadius = 48
     img.translatesAutoresizingMaskIntoConstraints = false
     return img
   }()
@@ -31,7 +31,7 @@ class MyAccountLawyerCollectionViewCell: UICollectionViewCell {
     label.text = "Pedro Martinez"
     label.numberOfLines = 1
     label.font = UIFont(name: "Inter-Regular_Bold", size: 34)
-    label.textColor = .systemBackground
+    label.textColor = #colorLiteral(red: 0.1017038003, green: 0.1096047685, blue: 0.1221101061, alpha: 1)
     label.translatesAutoresizingMaskIntoConstraints = false
     return label
   }()
@@ -41,7 +41,7 @@ class MyAccountLawyerCollectionViewCell: UICollectionViewCell {
     let label = UILabel()
     label.text = "ralarcon@legalyasociados.com"
     label.numberOfLines = 0
-    label.font = UIFont(name: "Inter-Regular_SemiBold", size: 15)
+    label.font = UIFont(name: "Inter-Regular", size: 15)
     label.textColor = #colorLiteral(red: 0.3842505217, green: 0.3839372396, blue: 0.4047031403, alpha: 1)
     label.translatesAutoresizingMaskIntoConstraints = false
     return label
@@ -85,33 +85,28 @@ class MyAccountLawyerCollectionViewCell: UICollectionViewCell {
   
   private func setUpUI() {
     
-    let photoStack = UIStackView(arrangedSubviews: [
-      userImage,
-      editImageBtn
-    ])
-    photoStack.axis = .vertical
-    photoStack.spacing = -10
-    photoStack.translatesAutoresizingMaskIntoConstraints = false
-    
     let labelStack = UIStackView(arrangedSubviews: [
       lawyerNameLabel,
       lawyerMailLbl
     ])
     labelStack.axis = .vertical
-    labelStack.spacing = 5
+    labelStack.alignment = .center
     labelStack.translatesAutoresizingMaskIntoConstraints = false
     
     contentView.addSubview(userImage)
-//    contentView.addSubview(editImageBtn)
+    contentView.addSubview(editImageBtn)
+    contentView.addSubview(labelStack)
     
     NSLayoutConstraint.activate([
       userImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 44),
-      userImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 120),
-      userImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -120),
-     
-//      editImageBtn.topAnchor.constraint(equalTo: userImage.bottomAnchor, constant: -10),
-//      editImageBtn.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 160),
-//      editImageBtn.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -100),
+      userImage.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+//      userImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -120),
+      editImageBtn.topAnchor.constraint(equalTo: userImage.bottomAnchor, constant: -25),
+      editImageBtn.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 217),
+      labelStack.topAnchor.constraint(equalTo: userImage.bottomAnchor, constant: 16),
+      labelStack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -32),
+      labelStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 17),
+      labelStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -17)
       
     ])
   }
