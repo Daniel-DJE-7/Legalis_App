@@ -123,7 +123,15 @@ class MainTabBarItemNavigationController: UITabBarController {
           selectedImage: UIImage(named: "heartBlue"),
           navTabBarItemtitle: "Favoritos",
           navHeaderTitle: "Favoritos",
-          largeTitle: true)
+          largeTitle: true),
+        
+        creatingTabBarController(
+          MyAccountLawyerTableViewController(),
+          image: UIImage(named: "personGray"),
+          selectedImage: UIImage(named: "personBlue"),
+          navTabBarItemtitle: "Mi cuenta",
+          navHeaderTitle: nil,
+          largeTitle: false),
         
     ]
     
