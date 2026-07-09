@@ -93,7 +93,7 @@ class Utilities {
                                 cornerRadius: CGFloat,
                                 cornerStyle: UIButton.Configuration.CornerStyle?,
                                 backgroundColor: UIColor?,
-                                baseForeground: UIColor,
+                                baseForeground: UIColor?,
                                 width: CGFloat?,
                                 height: CGFloat?,
                                 target: Any?,
