@@ -108,7 +108,7 @@ class Utilities {
     button.configuration?.imagePlacement = imagePlacement ?? .leading
     button.configuration?.imagePadding = imagePadding ?? 0
     button.layer.cornerRadius = cornerRadius
-    button.backgroundColor = backgroundColor ?? .systemBackground
+    button.backgroundColor = backgroundColor ?? .none
     button.configuration?.baseForegroundColor = baseForeground
     button.addTarget(target, action: action, for: .touchUpInside)
     if let width = width {

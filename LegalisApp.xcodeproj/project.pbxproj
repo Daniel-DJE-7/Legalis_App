@@ -112,6 +112,8 @@
 		8D94643E2FF6F34000284A20 /* CardDetailsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D94643D2FF6F34000284A20 /* CardDetailsCollectionViewController.swift */; };
 		8D9464402FF6F3E600284A20 /* SuccessPaymentAppointmentCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D94643F2FF6F3E600284A20 /* SuccessPaymentAppointmentCollectionViewController.swift */; };
 		8D9651012FF41AB500EB9D09 /* PaymentSummaryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9651002FF41AB500EB9D09 /* PaymentSummaryCollectionViewCell.swift */; };
+		8D9B880A300147F800F496CF /* LoginCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9B8809300147F800F496CF /* LoginCollectionViewController.swift */; };
+		8D9B880C3001492900F496CF /* LoginCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9B880B3001492900F496CF /* LoginCollectionViewCell.swift */; };
 		8D9C4E932FE4A8B0008F4C3D /* LegalisAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9C4E922FE4A8B0008F4C3D /* LegalisAppUITests.swift */; };
 		8D9C4E952FE4A8B0008F4C3D /* LegalisAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9C4E942FE4A8B0008F4C3D /* LegalisAppUITestsLaunchTests.swift */; };
 		8D9C4E9F2FE4AA0B008F4C3D /* LawyersSignUpViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9C4E9E2FE4AA0B008F4C3D /* LawyersSignUpViewTest.swift */; };
@@ -128,7 +130,6 @@
 		8DC2A2DD2FFEAA34004AC3B1 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC2A2DC2FFEAA34004AC3B1 /* MainCoordinator.swift */; };
 		8DC2A2DF2FFEE1F6004AC3B1 /* MyAccountLawyerTableViewControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC2A2DE2FFEE1F6004AC3B1 /* MyAccountLawyerTableViewControllerViewController.swift */; };
 		8DC2A2E12FFEE4C6004AC3B1 /* MyAccountLawyerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC2A2E02FFEE4C6004AC3B1 /* MyAccountLawyerTableViewCell.swift */; };
-		8DC2A2E42FFEE634004AC3B1 /* MyAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC2A2E32FFEE634004AC3B1 /* MyAccount.swift */; };
 		8DC8A4C12FD7199F005AD39C /* iOSDropDown in Frameworks */ = {isa = PBXBuildFile; productRef = 8DC8A4C02FD7199F005AD39C /* iOSDropDown */; };
 		8DC8A4C32FD746AA005AD39C /* HTMLText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC8A4C22FD746AA005AD39C /* HTMLText.swift */; };
 		8DE9898C2FE43D39001973E3 /* LawyersListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE9898B2FE43D39001973E3 /* LawyersListCollectionViewCell.swift */; };
@@ -256,6 +257,8 @@
 		8D94643D2FF6F34000284A20 /* CardDetailsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailsCollectionViewController.swift; sourceTree = "<group>"; };
 		8D94643F2FF6F3E600284A20 /* SuccessPaymentAppointmentCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessPaymentAppointmentCollectionViewController.swift; sourceTree = "<group>"; };
 		8D9651002FF41AB500EB9D09 /* PaymentSummaryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentSummaryCollectionViewCell.swift; sourceTree = "<group>"; };
+		8D9B8809300147F800F496CF /* LoginCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCollectionViewController.swift; sourceTree = "<group>"; };
+		8D9B880B3001492900F496CF /* LoginCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCollectionViewCell.swift; sourceTree = "<group>"; };
 		8D9C4E902FE4A8B0008F4C3D /* LegalisAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LegalisAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D9C4E922FE4A8B0008F4C3D /* LegalisAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalisAppUITests.swift; sourceTree = "<group>"; };
 		8D9C4E942FE4A8B0008F4C3D /* LegalisAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalisAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -273,7 +276,6 @@
 		8DC2A2DC2FFEAA34004AC3B1 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		8DC2A2DE2FFEE1F6004AC3B1 /* MyAccountLawyerTableViewControllerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountLawyerTableViewControllerViewController.swift; sourceTree = "<group>"; };
 		8DC2A2E02FFEE4C6004AC3B1 /* MyAccountLawyerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountLawyerTableViewCell.swift; sourceTree = "<group>"; };
-		8DC2A2E32FFEE634004AC3B1 /* MyAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccount.swift; sourceTree = "<group>"; };
 		8DC8A4C22FD746AA005AD39C /* HTMLText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTMLText.swift; sourceTree = "<group>"; };
 		8DE9898B2FE43D39001973E3 /* LawyersListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LawyersListCollectionViewCell.swift; sourceTree = "<group>"; };
 		8DE9898E2FE451ED001973E3 /* LawyerCardsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LawyerCardsModel.swift; sourceTree = "<group>"; };
@@ -352,7 +354,6 @@
 		8D18D0772FA28C1E0038AB85 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				8DC2A2E22FFEE61B004AC3B1 /* MyAccountRows */,
 				8DE9898D2FE451CA001973E3 /* LawyersCards */,
 				8D844CCB2FDB5F13007E5B5F /* CategoriesModel */,
 				8D3944482FAFAF0000CED997 /* RegisterModel */,
@@ -448,6 +449,7 @@
 		8D18D07F2FA28DB40038AB85 /* LoginView */ = {
 			isa = PBXGroup;
 			children = (
+				8D9B880B3001492900F496CF /* LoginCollectionViewCell.swift */,
 			);
 			path = LoginView;
 			sourceTree = "<group>";
@@ -464,6 +466,7 @@
 		8D18D0812FA28DD10038AB85 /* LoginViewController */ = {
 			isa = PBXGroup;
 			children = (
+				8D9B8809300147F800F496CF /* LoginCollectionViewController.swift */,
 			);
 			path = LoginViewController;
 			sourceTree = "<group>";
@@ -837,14 +840,6 @@
 			path = "UIView+Layout";
 			sourceTree = "<group>";
 		};
-		8DC2A2E22FFEE61B004AC3B1 /* MyAccountRows */ = {
-			isa = PBXGroup;
-			children = (
-				8DC2A2E32FFEE634004AC3B1 /* MyAccount.swift */,
-			);
-			path = MyAccountRows;
-			sourceTree = "<group>";
-		};
 		8DE9898D2FE451CA001973E3 /* LawyersCards */ = {
 			isa = PBXGroup;
 			children = (
@@ -1037,7 +1032,6 @@
 				8D3960E82FEC6E6F00ECE276 /* AppointmentCollectionViewController.swift in Sources */,
 				8D3960EA2FEC94DB00ECE276 /* CalendarCollectionViewCell.swift in Sources */,
 				8DB4B3A12FE9C99D00F744CA /* DescriptionCollectionViewCell.swift in Sources */,
-				8DC2A2E42FFEE634004AC3B1 /* MyAccount.swift in Sources */,
 				8D40DFE62FEF4FEC009373A9 /* ContinueButtonCollectionViewCell.swift in Sources */,
 				8D04F9A32FFBFFB40029A37D /* AppointmentDetailsCollectionViewCell.swift in Sources */,
 				8D04F9A52FFC00220029A37D /* AnotherConsultsCollectionViewCell.swift in Sources */,
@@ -1046,12 +1040,14 @@
 				8DB701422FDB104E0068E552 /* HeaderSecondSectionCollectionViewCell.swift in Sources */,
 				8D50D2472FEB4077005040D4 /* AppointmentActionCollectionViewCell.swift in Sources */,
 				8DB159202FF2BCD100EC6B14 /* PaymentHeaderCollectionViewCell.swift in Sources */,
+				8D9B880A300147F800F496CF /* LoginCollectionViewController.swift in Sources */,
 				8DA577642FE05D6D000EC1C4 /* LawyersListHeaderCollectionViewCell.swift in Sources */,
 				8D44E4662FAAB80300AC5242 /* ClientsSignUpViewController.swift in Sources */,
 				8D18D0682FA28B6E0038AB85 /* ViewController.swift in Sources */,
 				8D496CC92FF818AE004AD901 /* CardDetailsCollectionViewCell.swift in Sources */,
 				8D8D3E512FEDDDF60021BFE0 /* HoursCollectionViewCell.swift in Sources */,
 				8D18D0982FA2BBA10038AB85 /* WelcomeViewController.swift in Sources */,
+				8D9B880C3001492900F496CF /* LoginCollectionViewCell.swift in Sources */,
 				8D04F9A12FFBFF550029A37D /* SuccessCheckPointCollectionViewCell.swift in Sources */,
 				8DF0C6FF2FFDBEE200647129 /* Coordinator.swift in Sources */,
 				8D0C89DF2FCF933200B8C306 /* ClientsSignUpView.swift in Sources */,
