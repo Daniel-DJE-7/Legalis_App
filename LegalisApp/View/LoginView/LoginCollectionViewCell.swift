@@ -114,7 +114,9 @@ class LoginCollectionViewCell: UICollectionViewCell {
   
   private func setUpTxtField() {
     
-    let padding = UIView(frame: CGRect(x: 0, y: 0, width: 16, height: 45))
+    let paddingEmail = UIView(frame: CGRect(x: 0, y: 0, width: 16, height: 45))
+    let paddingPassword = UIView(frame: CGRect(x: 0, y: 0, width: 16, height: 45))
+
     
     //emailTextField
     Utilities.clientTextFieldStyle(
@@ -133,7 +135,7 @@ class LoginCollectionViewCell: UICollectionViewCell {
     emailTxtField.textColor = .white
     emailTxtField.translatesAutoresizingMaskIntoConstraints = false
     
-    emailTxtField.leftView = padding
+    emailTxtField.leftView = paddingEmail
     emailTxtField.leftViewMode = .always
     
     emailTxtField.attributedPlaceholder = NSAttributedString(
@@ -169,7 +171,7 @@ class LoginCollectionViewCell: UICollectionViewCell {
         ]
     )
     
-    passwordTxtField.leftView = padding
+    passwordTxtField.leftView = paddingPassword
     passwordTxtField.leftViewMode = .always
     
   }
@@ -197,7 +199,7 @@ class LoginCollectionViewCell: UICollectionViewCell {
                                 width: nil,
                                 height: nil,
                                 target: self,
-                                action: #selector(diptapLoginBtn))
+                                action: #selector(dipTapLoginBtn))
 
     loginBtn.translatesAutoresizingMaskIntoConstraints = false
     
@@ -228,7 +230,7 @@ class LoginCollectionViewCell: UICollectionViewCell {
     emailStack.axis = .vertical
     emailStack.spacing = 8
     emailStack.translatesAutoresizingMaskIntoConstraints = false
-    
+
     let passwordStack = UIStackView(arrangedSubviews: [
      passwordFormLabel,
      passwordTxtField
@@ -236,7 +238,7 @@ class LoginCollectionViewCell: UICollectionViewCell {
     passwordStack.axis = .vertical
     passwordStack.spacing = 8
     passwordStack.translatesAutoresizingMaskIntoConstraints = false
-    
+
     let buttonStack = UIStackView(arrangedSubviews: [
       loginBtn,
       changePasswordBtn
@@ -245,14 +247,16 @@ class LoginCollectionViewCell: UICollectionViewCell {
     buttonStack.spacing = 16
     buttonStack.distribution = .fill
     buttonStack.translatesAutoresizingMaskIntoConstraints = false
-    
+
     contentView.addSubview(backgroundImage)
     contentView.addSubview(logoImage)
     contentView.addSubview(appDescriptionLabel)
     contentView.addSubview(emailStack)
     contentView.addSubview(passwordStack)
+//    contentView.addSubview(passwordFormLabel)
+//    contentView.addSubview(passwordTxtField)
     contentView.addSubview(buttonStack)
-    
+//
     NSLayoutConstraint.activate([
       //background image
       backgroundImage.topAnchor.constraint(equalTo: contentView.topAnchor),
@@ -283,7 +287,7 @@ class LoginCollectionViewCell: UICollectionViewCell {
     ])
   }
   
-  @objc func diptapLoginBtn() {
+  @objc func dipTapLoginBtn() {
     print("ok")
   }
   
