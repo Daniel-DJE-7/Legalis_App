@@ -38,7 +38,7 @@ class MainTabBarItemNavigationController: UITabBarController {
       navBarItemController.tabBarItem.image = image
       navBarItemController.tabBarItem.selectedImage = selectedImage?.withRenderingMode(.alwaysOriginal)
       navBarItemController.tabBarItem.title = navTabBarItemtitle//title for navTabBar to bottom
-      navBarItemController.navigationBar.backgroundColor = .systemBackground
+      navBarItemController.navigationBar.backgroundColor = #colorLiteral(red: 0.9489575028, green: 0.9486498237, blue: 0.9694228768, alpha: 1)
       navBarItemController.navigationBar.layer.shadowColor = #colorLiteral(red: 0.6642242074, green: 0.6642400622, blue: 0.6642315388, alpha: 1)
       navBarItemController.navigationBar.layer.shadowOffset = CGSize(width: 0, height: 1)
       navBarItemController.navigationBar.layer.shadowRadius = 4
@@ -100,12 +100,12 @@ class MainTabBarItemNavigationController: UITabBarController {
         ),
         
         creatingTabBarController(
-          ChatsCollectionViewController(),
+          ConversationsTableViewController(),
           image: UIImage(named: "chatGrey"),
           selectedImage: UIImage(named: "chatsBlue"),
           navTabBarItemtitle: "Chats",
           navHeaderTitle: "Chats",
-          largeTitle: false
+          largeTitle: true
         ),
         
         creatingTabBarController(

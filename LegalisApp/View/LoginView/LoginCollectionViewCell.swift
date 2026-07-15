@@ -127,7 +127,7 @@ class LoginCollectionViewCell: UICollectionViewCell {
       clearButtonMode: .whileEditing,
       keyboardType: .emailAddress,
       inputAccessoryView: emailToolBar,
-      backgroundColor: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.3),
+      backgroundColor: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.4),
       leftIcon: nil)
     
     emailTxtField.layer.cornerRadius = 12
@@ -155,7 +155,7 @@ class LoginCollectionViewCell: UICollectionViewCell {
       clearButtonMode: .whileEditing,
       keyboardType: .default,
       inputAccessoryView: passwordToolBar,
-      backgroundColor: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.3),
+      backgroundColor: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.4),
       leftIcon: nil)
     
     passwordTxtField.layer.cornerRadius = 12

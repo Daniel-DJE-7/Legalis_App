@@ -35,6 +35,12 @@
 		8D44E4632FAAB3F700AC5242 /* LawyersSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D44E4622FAAB3F700AC5242 /* LawyersSignUpViewController.swift */; };
 		8D44E4662FAAB80300AC5242 /* ClientsSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D44E4652FAAB80300AC5242 /* ClientsSignUpViewController.swift */; };
 		8D496CC92FF818AE004AD901 /* CardDetailsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D496CC82FF818AE004AD901 /* CardDetailsCollectionViewCell.swift */; };
+		8D4EA18A3005526200AAB230 /* NewConversationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4EA1893005526200AAB230 /* NewConversationsViewController.swift */; };
+		8D4EA18C3005533700AAB230 /* PhotosViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4EA18B3005533700AAB230 /* PhotosViewerViewController.swift */; };
+		8D4EA18E3005539E00AAB230 /* AudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4EA18D3005539E00AAB230 /* AudioViewController.swift */; };
+		8D4EA190300554A600AAB230 /* DocumentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4EA18F300554A600AAB230 /* DocumentsViewController.swift */; };
+		8D4EA192300592E500AAB230 /* ConversationsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4EA191300592E500AAB230 /* ConversationsTableViewCell.swift */; };
+		8D4EA194300596F400AAB230 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4EA193300596F400AAB230 /* ChatViewController.swift */; };
 		8D50D2472FEB4077005040D4 /* AppointmentActionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D50D2462FEB4077005040D4 /* AppointmentActionCollectionViewCell.swift */; };
 		8D60637A2FD0D48600E36252 /* Inter-Italic-VariableFont_opsz,wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8D60633F2FD0D48500E36252 /* Inter-Italic-VariableFont_opsz,wght.ttf */; };
 		8D60637B2FD0D48600E36252 /* Inter_28pt-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8D6063412FD0D48500E36252 /* Inter_28pt-LightItalic.ttf */; };
@@ -130,12 +136,13 @@
 		8DC2A2DD2FFEAA34004AC3B1 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC2A2DC2FFEAA34004AC3B1 /* MainCoordinator.swift */; };
 		8DC2A2DF2FFEE1F6004AC3B1 /* MyAccountLawyerTableViewControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC2A2DE2FFEE1F6004AC3B1 /* MyAccountLawyerTableViewControllerViewController.swift */; };
 		8DC2A2E12FFEE4C6004AC3B1 /* MyAccountLawyerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC2A2E02FFEE4C6004AC3B1 /* MyAccountLawyerTableViewCell.swift */; };
+		8DC8916B30068CD10005B156 /* MessageKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8DC8916A30068CD10005B156 /* MessageKit */; };
 		8DC8A4C12FD7199F005AD39C /* iOSDropDown in Frameworks */ = {isa = PBXBuildFile; productRef = 8DC8A4C02FD7199F005AD39C /* iOSDropDown */; };
 		8DC8A4C32FD746AA005AD39C /* HTMLText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC8A4C22FD746AA005AD39C /* HTMLText.swift */; };
 		8DE9898C2FE43D39001973E3 /* LawyersListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE9898B2FE43D39001973E3 /* LawyersListCollectionViewCell.swift */; };
 		8DE9898F2FE451ED001973E3 /* LawyerCardsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE9898E2FE451ED001973E3 /* LawyerCardsModel.swift */; };
 		8DEB0AFE2FD9ADC800873DB2 /* MainTabBarItemNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEB0AFD2FD9ADC800873DB2 /* MainTabBarItemNavigationViewController.swift */; };
-		8DEB0B002FD9DBC700873DB2 /* ChatsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEB0AFF2FD9DBC700873DB2 /* ChatsCollectionViewController.swift */; };
+		8DEB0B002FD9DBC700873DB2 /* ConversationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEB0AFF2FD9DBC700873DB2 /* ConversationsTableViewController.swift */; };
 		8DF0C6FF2FFDBEE200647129 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF0C6FE2FFDBEE200647129 /* Coordinator.swift */; };
 /* End PBXBuildFile section */
 
@@ -180,6 +187,12 @@
 		8D44E4622FAAB3F700AC5242 /* LawyersSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LawyersSignUpViewController.swift; sourceTree = "<group>"; };
 		8D44E4652FAAB80300AC5242 /* ClientsSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientsSignUpViewController.swift; sourceTree = "<group>"; };
 		8D496CC82FF818AE004AD901 /* CardDetailsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailsCollectionViewCell.swift; sourceTree = "<group>"; };
+		8D4EA1893005526200AAB230 /* NewConversationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewConversationsViewController.swift; sourceTree = "<group>"; };
+		8D4EA18B3005533700AAB230 /* PhotosViewerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewerViewController.swift; sourceTree = "<group>"; };
+		8D4EA18D3005539E00AAB230 /* AudioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioViewController.swift; sourceTree = "<group>"; };
+		8D4EA18F300554A600AAB230 /* DocumentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentsViewController.swift; sourceTree = "<group>"; };
+		8D4EA191300592E500AAB230 /* ConversationsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsTableViewCell.swift; sourceTree = "<group>"; };
+		8D4EA193300596F400AAB230 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		8D50D2462FEB4077005040D4 /* AppointmentActionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentActionCollectionViewCell.swift; sourceTree = "<group>"; };
 		8D60633F2FD0D48500E36252 /* Inter-Italic-VariableFont_opsz,wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Italic-VariableFont_opsz,wght.ttf"; sourceTree = "<group>"; };
 		8D6063412FD0D48500E36252 /* Inter_28pt-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter_28pt-LightItalic.ttf"; sourceTree = "<group>"; };
@@ -280,7 +293,7 @@
 		8DE9898B2FE43D39001973E3 /* LawyersListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LawyersListCollectionViewCell.swift; sourceTree = "<group>"; };
 		8DE9898E2FE451ED001973E3 /* LawyerCardsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LawyerCardsModel.swift; sourceTree = "<group>"; };
 		8DEB0AFD2FD9ADC800873DB2 /* MainTabBarItemNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarItemNavigationViewController.swift; sourceTree = "<group>"; };
-		8DEB0AFF2FD9DBC700873DB2 /* ChatsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsCollectionViewController.swift; sourceTree = "<group>"; };
+		8DEB0AFF2FD9DBC700873DB2 /* ConversationsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsTableViewController.swift; sourceTree = "<group>"; };
 		8DF0C6FE2FFDBEE200647129 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -290,6 +303,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DC8A4C12FD7199F005AD39C /* iOSDropDown in Frameworks */,
+				8DC8916B30068CD10005B156 /* MessageKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -395,7 +409,7 @@
 				8D18D08E2FA291DD0038AB85 /* ProfileLawyersViewController */,
 				8D18D08C2FA290B80038AB85 /* MyAccountViewController */,
 				8D18D08A2FA290670038AB85 /* AppointmentViewController */,
-				8D18D0892FA290000038AB85 /* ChatsViewController */,
+				8D18D0892FA290000038AB85 /* MessengerViewController */,
 				8D18D0862FA28FB60038AB85 /* FavoritesViewController */,
 				8D18D0842FA28F7F0038AB85 /* LawyersListViewController */,
 				8D18D07A2FA28C630038AB85 /* WelcomeViewController */,
@@ -524,16 +538,22 @@
 		8D18D0882FA28FF80038AB85 /* ChatsViewCell */ = {
 			isa = PBXGroup;
 			children = (
+				8D4EA191300592E500AAB230 /* ConversationsTableViewCell.swift */,
 			);
 			path = ChatsViewCell;
 			sourceTree = "<group>";
 		};
-		8D18D0892FA290000038AB85 /* ChatsViewController */ = {
+		8D18D0892FA290000038AB85 /* MessengerViewController */ = {
 			isa = PBXGroup;
 			children = (
-				8DEB0AFF2FD9DBC700873DB2 /* ChatsCollectionViewController.swift */,
+				8DEB0AFF2FD9DBC700873DB2 /* ConversationsTableViewController.swift */,
+				8D4EA1893005526200AAB230 /* NewConversationsViewController.swift */,
+				8D4EA18B3005533700AAB230 /* PhotosViewerViewController.swift */,
+				8D4EA18D3005539E00AAB230 /* AudioViewController.swift */,
+				8D4EA18F300554A600AAB230 /* DocumentsViewController.swift */,
+				8D4EA193300596F400AAB230 /* ChatViewController.swift */,
 			);
-			path = ChatsViewController;
+			path = MessengerViewController;
 			sourceTree = "<group>";
 		};
 		8D18D08A2FA290670038AB85 /* AppointmentViewController */ = {
@@ -875,6 +895,7 @@
 			name = LegalisApp;
 			packageProductDependencies = (
 				8DC8A4C02FD7199F005AD39C /* iOSDropDown */,
+				8DC8916A30068CD10005B156 /* MessageKit */,
 			);
 			productName = LegalisApp;
 			productReference = 8D18D0602FA28B6E0038AB85 /* LegalisApp.app */;
@@ -928,6 +949,7 @@
 			mainGroup = 8D18D0572FA28B6E0038AB85;
 			packageReferences = (
 				8DC8A4BF2FD7199F005AD39C /* XCRemoteSwiftPackageReference "iOSDropDown" */,
+				8DC8916930068CD10005B156 /* XCRemoteSwiftPackageReference "MessageKit" */,
 			);
 			productRefGroup = 8D18D0612FA28B6E0038AB85 /* Products */;
 			projectDirPath = "";
@@ -1044,6 +1066,7 @@
 				8DA577642FE05D6D000EC1C4 /* LawyersListHeaderCollectionViewCell.swift in Sources */,
 				8D44E4662FAAB80300AC5242 /* ClientsSignUpViewController.swift in Sources */,
 				8D18D0682FA28B6E0038AB85 /* ViewController.swift in Sources */,
+				8D4EA190300554A600AAB230 /* DocumentsViewController.swift in Sources */,
 				8D496CC92FF818AE004AD901 /* CardDetailsCollectionViewCell.swift in Sources */,
 				8D8D3E512FEDDDF60021BFE0 /* HoursCollectionViewCell.swift in Sources */,
 				8D18D0982FA2BBA10038AB85 /* WelcomeViewController.swift in Sources */,
@@ -1054,11 +1077,14 @@
 				8D9651012FF41AB500EB9D09 /* PaymentSummaryCollectionViewCell.swift in Sources */,
 				8D40DFE42FEF2D98009373A9 /* ModalityCollectionViewCell.swift in Sources */,
 				8DA2F9EF2FCE2D2500E8E324 /* HomeLawyerViewController.swift in Sources */,
-				8DEB0B002FD9DBC700873DB2 /* ChatsCollectionViewController.swift in Sources */,
+				8DEB0B002FD9DBC700873DB2 /* ConversationsTableViewController.swift in Sources */,
 				8DC2A2DF2FFEE1F6004AC3B1 /* MyAccountLawyerTableViewControllerViewController.swift in Sources */,
+				8D4EA18E3005539E00AAB230 /* AudioViewController.swift in Sources */,
 				8D7FF25D2FF58F9900B53B87 /* MethodCollectionViewCell.swift in Sources */,
 				8D7A5E7B2FD862E700ACD94A /* RegexParametersValidation.swift in Sources */,
 				8D7FF2592FF585B000B53B87 /* PaymentHeaderMethodCollectionViewCell.swift in Sources */,
+				8D4EA194300596F400AAB230 /* ChatViewController.swift in Sources */,
+				8D4EA18A3005526200AAB230 /* NewConversationsViewController.swift in Sources */,
 				8DB540402FA56CEE00D8DB72 /* UIView+Layout.swift in Sources */,
 				8DC2A2E12FFEE4C6004AC3B1 /* MyAccountLawyerTableViewCell.swift in Sources */,
 				8D3960E62FEC6E0700ECE276 /* AppointmentCollectionViewCell.swift in Sources */,
@@ -1075,6 +1101,7 @@
 				8D3960E42FEC2C0100ECE276 /* HeaderSectionsCollectionViewCell.swift in Sources */,
 				8D3960EE2FEC960300ECE276 /* AppointmentScheduleCollectionViewController.swift in Sources */,
 				8D18D0662FA28B6E0038AB85 /* SceneDelegate.swift in Sources */,
+				8D4EA18C3005533700AAB230 /* PhotosViewerViewController.swift in Sources */,
 				8DC8A4C32FD746AA005AD39C /* HTMLText.swift in Sources */,
 				8D8153412FD9FA6C002F8A06 /* HomeClientCollectionViewCell.swift in Sources */,
 				8D887EBB2FE2ED3600C7E40D /* LawyersFilter.swift in Sources */,
@@ -1082,6 +1109,7 @@
 				8DE9898C2FE43D39001973E3 /* LawyersListCollectionViewCell.swift in Sources */,
 				8D7497662FB2721A009D6AD7 /* CoreCollectionViewController.swift in Sources */,
 				8D94643E2FF6F34000284A20 /* CardDetailsCollectionViewController.swift in Sources */,
+				8D4EA192300592E500AAB230 /* ConversationsTableViewCell.swift in Sources */,
 				8D859F922FE5E1BF004AA443 /* ProfileLawyersCollectionViewCell.swift in Sources */,
 				8D3944472FAF752700CED997 /* Utilities.swift in Sources */,
 				8D844CCA2FDB3BAB007E5B5F /* LawCategoriesCollectionViewCell.swift in Sources */,
@@ -1367,6 +1395,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		8DC8916930068CD10005B156 /* XCRemoteSwiftPackageReference "MessageKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MessageKit/MessageKit.git";
+			requirement = {
+				kind = exactVersion;
+				version = 4.2.0;
+			};
+		};
 		8DC8A4BF2FD7199F005AD39C /* XCRemoteSwiftPackageReference "iOSDropDown" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/jriosdev/iOSDropDown";
@@ -1378,6 +1414,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		8DC8916A30068CD10005B156 /* MessageKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8DC8916930068CD10005B156 /* XCRemoteSwiftPackageReference "MessageKit" */;
+			productName = MessageKit;
+		};
 		8DC8A4C02FD7199F005AD39C /* iOSDropDown */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 8DC8A4BF2FD7199F005AD39C /* XCRemoteSwiftPackageReference "iOSDropDown" */;
