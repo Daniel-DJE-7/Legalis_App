@@ -109,7 +109,7 @@ class MainTabBarItemNavigationController: UITabBarController {
         ),
         
         creatingTabBarController(
-          AppointmentCollectionViewController(),
+          AppointmentNavItemCollectionViewController(),
           image: UIImage(named: "calendarGray"),
           selectedImage: UIImage(named: "calendarBlue"),
           navTabBarItemtitle: "Citas",
