@@ -33,7 +33,7 @@ class MyAccountLawyerTableViewController: CoreCollectionViewController {
     CategoriesModel(leftIcon: UIImage(named: "bellBlue"), name: "Notificaciones"),
     CategoriesModel(leftIcon: UIImage(named: "helpBlue"), name: "Ayuda"),
     CategoriesModel(leftIcon: UIImage(named: "shieldBlue"), name: "Seguridad"),
-    CategoriesModel(leftIcon: UIImage(named: "personCircleBlue"), name: "idioma")
+    CategoriesModel(leftIcon: UIImage(named: "worldBlue"), name: "idioma")
   ]
   
   override func viewDidLoad() {

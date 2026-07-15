@@ -105,10 +105,10 @@ class LawyersListCollectionViewCell: UICollectionViewCell {
                                 imagePadding: nil,
                                 cornerRadius: 10,
                                 cornerStyle: nil,
-                                backgroundColor: UIColor(
+                                backgroundColor: #colorLiteral(
                                   red: 0,
-                                  green: 0.09493184835,
-                                  blue: 0.2154307365,
+                                  green: 0.1370561421,
+                                  blue: 0.2949633002,
                                   alpha: 1),
                                 baseForeground: .white,
                                 width: nil,
