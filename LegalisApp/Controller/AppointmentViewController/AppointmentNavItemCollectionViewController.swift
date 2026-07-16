@@ -182,7 +182,7 @@ extension AppointmentNavItemCollectionViewController: UICollectionViewDelegateFl
     case .calendar:
       return 1
     case .appointments:
-      return 1
+      return 3
     }
   }
   
@@ -220,7 +220,7 @@ extension AppointmentNavItemCollectionViewController: UICollectionViewDelegateFl
       return UICollectionReusableView()
     }
     header.configure(with: headerTitle)
-    header.backgroundColor = .yellow
+    
     return header
   }
 }

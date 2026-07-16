@@ -34,12 +34,22 @@ class ListOfAppointmentsCollectionViewCell: UICollectionViewCell {
     return label
   }()
   
+  private let specialityLabel: UILabel = {
+    let label = UILabel()
+    label.text = "Especialista en"
+    label.numberOfLines = 1
+    label.font = UIFont(name: "Inter-Regular", size: 12)
+    label.textColor = #colorLiteral(red: 0.5370872021, green: 0.5408190489, blue: 0.5616160631, alpha: 1)
+    label.translatesAutoresizingMaskIntoConstraints = false
+    return label
+  }()
+  
   private let lawCategoryLabel: UILabel = {
     let label = UILabel()
     label.text = "Derecho civil"
     label.numberOfLines = 1
     label.font = UIFont(name: "Inter-Regular", size: 12)
-    label.textColor = #colorLiteral(red: 0, green: 0.1370561421, blue: 0.2949633002, alpha: 1)
+    label.textColor = #colorLiteral(red: 0.5370872021, green: 0.5408190489, blue: 0.5616160631, alpha: 1)
     label.translatesAutoresizingMaskIntoConstraints = false
     return label
   }()
@@ -66,7 +76,7 @@ class ListOfAppointmentsCollectionViewCell: UICollectionViewCell {
     return img
   }()
   
-  lazy var menuBtn = UIButton()
+  lazy var menuBtn = UIButton(type: .system)
   
   lazy var loginMeetBtn = UIButton()
   
@@ -115,6 +125,7 @@ class ListOfAppointmentsCollectionViewCell: UICollectionViewCell {
                                 height: nil,
                                 target: self,
                                 action: #selector(dipTapLoginVideoConference))
+    loginMeetBtn.isHidden = true
     loginMeetBtn.translatesAutoresizingMaskIntoConstraints = false
     
     Utilities.customButtonStyle(menuBtn,
@@ -135,15 +146,48 @@ class ListOfAppointmentsCollectionViewCell: UICollectionViewCell {
     menuBtn.layer.borderColor = #colorLiteral(red: 0.7682896852, green: 0.7757481933, blue: 0.817332685, alpha: 1)
     menuBtn.translatesAutoresizingMaskIntoConstraints = false
     
+    menuBtn.menu = UIMenu(children: [
+      UIAction(title: "Cancelar cita",
+               image: UIImage(systemName: "xmark"),
+               attributes: .destructive
+              ) { _ in
+        print("Cancelaste cita")
+      },
+      
+      UIAction(title: "Reagendar cita",
+               image: UIImage(named: "calendarBlue")) { _ in
+        print("re-agendaste cita")
+      },
+      
+      UIAction(title: "Agendar cita nueva",
+               image: UIImage(systemName: "calendar.badge.plus")) { _ in
+        print("Agendaste nueva cita")
+      }
+    ])
+    
+    menuBtn.showsMenuAsPrimaryAction = true
   }
   
   private func setUpUI() {
     
-    let nameScpecialityStack = UIStackView(arrangedSubviews: [
-      userNameLabel,
+    let specialityStack = UIStackView(arrangedSubviews: [
+      specialityLabel,
       lawCategoryLabel
     ])
+    specialityStack.axis = .horizontal
+    specialityStack.spacing = 3
+    specialityStack.distribution = .fillProportionally
+    specialityStack.alignment = .center
+    specialityStack.translatesAutoresizingMaskIntoConstraints = false
+    
+    
+    let nameScpecialityStack = UIStackView(arrangedSubviews: [
+      userNameLabel,
+      specialityStack
+    ])
     nameScpecialityStack.axis = .vertical
+    nameScpecialityStack.alignment = .leading
+    nameScpecialityStack.spacing = 4
     nameScpecialityStack.translatesAutoresizingMaskIntoConstraints = false
     
     let dateStack = UIStackView(arrangedSubviews: [
@@ -164,21 +208,10 @@ class ListOfAppointmentsCollectionViewCell: UICollectionViewCell {
     timeStack.alignment = .center
     timeStack.translatesAutoresizingMaskIntoConstraints = false
     
-    let btnStack = UIStackView(arrangedSubviews: [
-      loginMeetBtn,
-      menuBtn
-    ])
-    btnStack.axis = .horizontal
-    btnStack.spacing = 6
-    btnStack.alignment = .center
-    btnStack.translatesAutoresizingMaskIntoConstraints = false
-    
-    
     contentView.addSubview(userImage)
     contentView.addSubview(nameScpecialityStack)
     contentView.addSubview(dateStack)
     contentView.addSubview(timeStack)
-    //contentView.addSubview(btnStack)
     contentView.addSubview(loginMeetBtn)
     contentView.addSubview(menuBtn)
     
@@ -200,11 +233,6 @@ class ListOfAppointmentsCollectionViewCell: UICollectionViewCell {
       timeStack.topAnchor.constraint(equalTo: nameScpecialityStack.bottomAnchor, constant: 20),
       timeStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
       timeStack.leadingAnchor.constraint(equalTo: dateStack.trailingAnchor, constant: 16),
-      
-//      btnStack.topAnchor.constraint(equalTo: dateStack.bottomAnchor, constant: 20),
-//      btnStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-//      btnStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-//      btnStack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
       
       loginMeetBtn.topAnchor.constraint(equalTo: dateStack.bottomAnchor, constant: 16),
       loginMeetBtn.trailingAnchor.constraint(equalTo: menuBtn.leadingAnchor, constant: -8),
