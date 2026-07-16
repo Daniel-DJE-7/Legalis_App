@@ -35,7 +35,7 @@
 		8D44E4632FAAB3F700AC5242 /* LawyersSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D44E4622FAAB3F700AC5242 /* LawyersSignUpViewController.swift */; };
 		8D44E4662FAAB80300AC5242 /* ClientsSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D44E4652FAAB80300AC5242 /* ClientsSignUpViewController.swift */; };
 		8D496CC92FF818AE004AD901 /* CardDetailsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D496CC82FF818AE004AD901 /* CardDetailsCollectionViewCell.swift */; };
-		8D4CA5D03007DF5A00F8D949 /* ListOfAppointmentsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4CA5CF3007DF5A00F8D949 /* ListOfAppointmentsCollectionViewCell.swift */; };
+		8D4CA5D03007DF5A00F8D949 /* ListClientsAppointmentsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4CA5CF3007DF5A00F8D949 /* ListClientsAppointmentsCollectionViewCell.swift */; };
 		8D4EA18A3005526200AAB230 /* NewConversationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4EA1893005526200AAB230 /* NewConversationsViewController.swift */; };
 		8D4EA18C3005533700AAB230 /* PhotosViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4EA18B3005533700AAB230 /* PhotosViewerViewController.swift */; };
 		8D4EA18E3005539E00AAB230 /* AudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4EA18D3005539E00AAB230 /* AudioViewController.swift */; };
@@ -141,6 +141,8 @@
 		8DC8A4C12FD7199F005AD39C /* iOSDropDown in Frameworks */ = {isa = PBXBuildFile; productRef = 8DC8A4C02FD7199F005AD39C /* iOSDropDown */; };
 		8DC8A4C32FD746AA005AD39C /* HTMLText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC8A4C22FD746AA005AD39C /* HTMLText.swift */; };
 		8DD5E373300930610093DA03 /* HeaderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD5E372300930610093DA03 /* HeaderCollectionViewCell.swift */; };
+		8DD5E375300995AE0093DA03 /* GreetingsHeaderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD5E374300995AE0093DA03 /* GreetingsHeaderCollectionViewCell.swift */; };
+		8DD5E37730099C900093DA03 /* ListeLawyersAppointmentsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD5E37630099C900093DA03 /* ListeLawyersAppointmentsCollectionViewCell.swift */; };
 		8DE9898C2FE43D39001973E3 /* LawyersListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE9898B2FE43D39001973E3 /* LawyersListCollectionViewCell.swift */; };
 		8DE9898F2FE451ED001973E3 /* LawyerCardsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE9898E2FE451ED001973E3 /* LawyerCardsModel.swift */; };
 		8DEB0AFE2FD9ADC800873DB2 /* MainTabBarItemNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEB0AFD2FD9ADC800873DB2 /* MainTabBarItemNavigationViewController.swift */; };
@@ -189,7 +191,7 @@
 		8D44E4622FAAB3F700AC5242 /* LawyersSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LawyersSignUpViewController.swift; sourceTree = "<group>"; };
 		8D44E4652FAAB80300AC5242 /* ClientsSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientsSignUpViewController.swift; sourceTree = "<group>"; };
 		8D496CC82FF818AE004AD901 /* CardDetailsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailsCollectionViewCell.swift; sourceTree = "<group>"; };
-		8D4CA5CF3007DF5A00F8D949 /* ListOfAppointmentsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfAppointmentsCollectionViewCell.swift; sourceTree = "<group>"; };
+		8D4CA5CF3007DF5A00F8D949 /* ListClientsAppointmentsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListClientsAppointmentsCollectionViewCell.swift; sourceTree = "<group>"; };
 		8D4EA1893005526200AAB230 /* NewConversationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewConversationsViewController.swift; sourceTree = "<group>"; };
 		8D4EA18B3005533700AAB230 /* PhotosViewerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewerViewController.swift; sourceTree = "<group>"; };
 		8D4EA18D3005539E00AAB230 /* AudioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioViewController.swift; sourceTree = "<group>"; };
@@ -294,6 +296,8 @@
 		8DC2A2E02FFEE4C6004AC3B1 /* MyAccountLawyerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountLawyerTableViewCell.swift; sourceTree = "<group>"; };
 		8DC8A4C22FD746AA005AD39C /* HTMLText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTMLText.swift; sourceTree = "<group>"; };
 		8DD5E372300930610093DA03 /* HeaderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCollectionViewCell.swift; sourceTree = "<group>"; };
+		8DD5E374300995AE0093DA03 /* GreetingsHeaderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreetingsHeaderCollectionViewCell.swift; sourceTree = "<group>"; };
+		8DD5E37630099C900093DA03 /* ListeLawyersAppointmentsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListeLawyersAppointmentsCollectionViewCell.swift; sourceTree = "<group>"; };
 		8DE9898B2FE43D39001973E3 /* LawyersListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LawyersListCollectionViewCell.swift; sourceTree = "<group>"; };
 		8DE9898E2FE451ED001973E3 /* LawyerCardsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LawyerCardsModel.swift; sourceTree = "<group>"; };
 		8DEB0AFD2FD9ADC800873DB2 /* MainTabBarItemNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarItemNavigationViewController.swift; sourceTree = "<group>"; };
@@ -399,6 +403,7 @@
 				8D18D07E2FA28DA60038AB85 /* SignUpView */,
 				8D18D07B2FA28C700038AB85 /* WelcomeView */,
 				8DC2A2E02FFEE4C6004AC3B1 /* MyAccountLawyerTableViewCell.swift */,
+				8DD5E374300995AE0093DA03 /* GreetingsHeaderCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -700,8 +705,9 @@
 		8D4CA5CE3007DEF300F8D949 /* ListOfAppointments */ = {
 			isa = PBXGroup;
 			children = (
-				8D4CA5CF3007DF5A00F8D949 /* ListOfAppointmentsCollectionViewCell.swift */,
+				8D4CA5CF3007DF5A00F8D949 /* ListClientsAppointmentsCollectionViewCell.swift */,
 				8DD5E372300930610093DA03 /* HeaderCollectionViewCell.swift */,
+				8DD5E37630099C900093DA03 /* ListeLawyersAppointmentsCollectionViewCell.swift */,
 			);
 			path = ListOfAppointments;
 			sourceTree = "<group>";
@@ -1060,6 +1066,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D44E4632FAAB3F700AC5242 /* LawyersSignUpViewController.swift in Sources */,
+				8DD5E375300995AE0093DA03 /* GreetingsHeaderCollectionViewCell.swift in Sources */,
 				8D859F8E2FE588E7004AA443 /* FavoriteTableViewController.swift in Sources */,
 				8DE9898F2FE451ED001973E3 /* LawyerCardsModel.swift in Sources */,
 				8D436B872FBE6A9000429E60 /* NSMutableAttributedString.swift in Sources */,
@@ -1094,6 +1101,7 @@
 				8DEB0B002FD9DBC700873DB2 /* ConversationsTableViewController.swift in Sources */,
 				8DC2A2DF2FFEE1F6004AC3B1 /* MyAccountLawyerTableViewControllerViewController.swift in Sources */,
 				8D4EA18E3005539E00AAB230 /* AudioViewController.swift in Sources */,
+				8DD5E37730099C900093DA03 /* ListeLawyersAppointmentsCollectionViewCell.swift in Sources */,
 				8D7FF25D2FF58F9900B53B87 /* MethodCollectionViewCell.swift in Sources */,
 				8D7A5E7B2FD862E700ACD94A /* RegexParametersValidation.swift in Sources */,
 				8D7FF2592FF585B000B53B87 /* PaymentHeaderMethodCollectionViewCell.swift in Sources */,
@@ -1124,7 +1132,7 @@
 				8D7497662FB2721A009D6AD7 /* CoreCollectionViewController.swift in Sources */,
 				8D94643E2FF6F34000284A20 /* CardDetailsCollectionViewController.swift in Sources */,
 				8DD5E373300930610093DA03 /* HeaderCollectionViewCell.swift in Sources */,
-				8D4CA5D03007DF5A00F8D949 /* ListOfAppointmentsCollectionViewCell.swift in Sources */,
+				8D4CA5D03007DF5A00F8D949 /* ListClientsAppointmentsCollectionViewCell.swift in Sources */,
 				8D4EA192300592E500AAB230 /* ConversationsTableViewCell.swift in Sources */,
 				8D859F922FE5E1BF004AA443 /* ProfileLawyersCollectionViewCell.swift in Sources */,
 				8D3944472FAF752700CED997 /* Utilities.swift in Sources */,

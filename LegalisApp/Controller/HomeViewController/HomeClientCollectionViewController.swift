@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum SectionType: Int, CaseIterable {
+private enum SectionType: Int, CaseIterable {
   case detailsOfappoinment
   case categories
 }
