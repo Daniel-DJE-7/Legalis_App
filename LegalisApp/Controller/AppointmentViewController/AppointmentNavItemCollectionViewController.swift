@@ -13,7 +13,9 @@ private enum SectionAppointment: Int, CaseIterable {
 }
 
 class AppointmentNavItemCollectionViewController: CoreCollectionViewController {
-
+  
+  private let headerTitle = "PRÓXIMAS CITAS"
+  
   //MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,6 +73,7 @@ class AppointmentNavItemCollectionViewController: CoreCollectionViewController {
     
     collectionView.register(ListOfAppointmentsCollectionViewCell.self, forCellWithReuseIdentifier: ListOfAppointmentsCollectionViewCell.identifier)
     
+    collectionView.register(HeaderCollectionViewCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderCollectionViewCell.identifier)
   }
   
   //MARK: - ConfigureLayout
@@ -87,7 +90,7 @@ class AppointmentNavItemCollectionViewController: CoreCollectionViewController {
       NSCollectionLayoutBoundarySupplementaryItem(
         layoutSize: NSCollectionLayoutSize(
           widthDimension: .fractionalWidth(1),
-          heightDimension: .estimated(22)),
+          heightDimension: .estimated(30)),
         elementKind: UICollectionView.elementKindSectionHeader,
         alignment: .topLeading)
     ]
@@ -140,7 +143,7 @@ class AppointmentNavItemCollectionViewController: CoreCollectionViewController {
       //secondSection
         let secondSection = NSCollectionLayoutSection(group: secondVerticalGroup)
             secondSection.interGroupSpacing = 10
-       
+            secondSection.boundarySupplementaryItems = header
         return secondSection
       
     //MARK: - DEFAULT SECTION
@@ -179,7 +182,7 @@ extension AppointmentNavItemCollectionViewController: UICollectionViewDelegateFl
     case .calendar:
       return 1
     case .appointments:
-      return 3
+      return 1
     }
   }
   
@@ -207,5 +210,17 @@ extension AppointmentNavItemCollectionViewController: UICollectionViewDelegateFl
     }
   }
   
-  
+  override func collectionView(_ collectionView: UICollectionView,
+                               viewForSupplementaryElementOfKind kind: String,
+                               at indexPath: IndexPath) -> UICollectionReusableView {
+    guard let header = collectionView.dequeueReusableSupplementaryView(
+      ofKind: kind,
+      withReuseIdentifier: HeaderCollectionViewCell.identifier,
+      for: indexPath) as? HeaderCollectionViewCell, kind == UICollectionView.elementKindSectionHeader else {
+      return UICollectionReusableView()
+    }
+    header.configure(with: headerTitle)
+    header.backgroundColor = .yellow
+    return header
+  }
 }
