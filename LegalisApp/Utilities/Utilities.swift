@@ -90,7 +90,7 @@ class Utilities {
                                 image: UIImage?,
                                 imagePlacement: NSDirectionalRectEdge?,
                                 imagePadding: CGFloat?,
-                                cornerRadius: CGFloat,
+                                cornerRadius: CGFloat?,
                                 cornerStyle: UIButton.Configuration.CornerStyle?,
                                 backgroundColor: UIColor?,
                                 baseForeground: UIColor?,
@@ -107,7 +107,7 @@ class Utilities {
     button.configuration?.image = image
     button.configuration?.imagePlacement = imagePlacement ?? .leading
     button.configuration?.imagePadding = imagePadding ?? 0
-    button.layer.cornerRadius = cornerRadius
+    button.layer.cornerRadius = cornerRadius ?? 0
     button.backgroundColor = backgroundColor ?? .none
     button.configuration?.baseForegroundColor = baseForeground
     button.addTarget(target, action: action, for: .touchUpInside)
