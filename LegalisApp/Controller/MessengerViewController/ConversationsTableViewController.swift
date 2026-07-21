@@ -15,6 +15,7 @@ class ConversationsTableViewController: UIViewController {
   private let conversationsTableView: UITableView = {
     let table = UITableView()
     table.isHidden = true
+    table.showsVerticalScrollIndicator = false
     table.register(ConversationsTableViewCell.self, forCellReuseIdentifier: ConversationsTableViewCell.identifier)
     table.translatesAutoresizingMaskIntoConstraints = false
     return table

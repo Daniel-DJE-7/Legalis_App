@@ -143,7 +143,7 @@ class MainTabBarItemNavigationController: UITabBarController {
           largeTitle: true),
         
         creatingTabBarController(
-          MyAccountLawyerTableViewController(),
+          ClientMyAccountViewController(),
           image: UIImage(named: "personGray"),
           selectedImage: UIImage(named: "personBlue"),
           navTabBarItemtitle: "Mi cuenta",

@@ -19,6 +19,8 @@
 		8D18D0702FA28B700038AB85 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D18D06E2FA28B700038AB85 /* LaunchScreen.storyboard */; };
 		8D18D0962FA2A9CE0038AB85 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D18D0952FA2A9CE0038AB85 /* WelcomeView.swift */; };
 		8D18D0982FA2BBA10038AB85 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D18D0972FA2BBA10038AB85 /* WelcomeViewController.swift */; };
+		8D362F47300A7B4A00A5E867 /* ClientMyAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D362F46300A7B4A00A5E867 /* ClientMyAccountViewController.swift */; };
+		8D362F49300A7E3400A5E867 /* MyAccountStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D362F48300A7E3400A5E867 /* MyAccountStyle.swift */; };
 		8D3944472FAF752700CED997 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3944462FAF752700CED997 /* Utilities.swift */; };
 		8D39444A2FAFAF2B00CED997 /* RegisterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3944492FAFAF2B00CED997 /* RegisterModel.swift */; };
 		8D3960E42FEC2C0100ECE276 /* HeaderSectionsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3960E32FEC2C0100ECE276 /* HeaderSectionsCollectionViewCell.swift */; };
@@ -175,6 +177,8 @@
 		8D18D0712FA28B700038AB85 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D18D0952FA2A9CE0038AB85 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		8D18D0972FA2BBA10038AB85 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		8D362F46300A7B4A00A5E867 /* ClientMyAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientMyAccountViewController.swift; sourceTree = "<group>"; };
+		8D362F48300A7E3400A5E867 /* MyAccountStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountStyle.swift; sourceTree = "<group>"; };
 		8D3944462FAF752700CED997 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		8D3944492FAFAF2B00CED997 /* RegisterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterModel.swift; sourceTree = "<group>"; };
 		8D3960E32FEC2C0100ECE276 /* HeaderSectionsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderSectionsCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -589,6 +593,7 @@
 			isa = PBXGroup;
 			children = (
 				8DC2A2DE2FFEE1F6004AC3B1 /* MyAccountLawyerTableViewControllerViewController.swift */,
+				8D362F46300A7B4A00A5E867 /* ClientMyAccountViewController.swift */,
 			);
 			path = MyAccountViewController;
 			sourceTree = "<group>";
@@ -666,6 +671,7 @@
 			isa = PBXGroup;
 			children = (
 				8D3944462FAF752700CED997 /* Utilities.swift */,
+				8D362F48300A7E3400A5E867 /* MyAccountStyle.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -1097,6 +1103,7 @@
 				8D0C89DF2FCF933200B8C306 /* ClientsSignUpView.swift in Sources */,
 				8D9651012FF41AB500EB9D09 /* PaymentSummaryCollectionViewCell.swift in Sources */,
 				8D40DFE42FEF2D98009373A9 /* ModalityCollectionViewCell.swift in Sources */,
+				8D362F47300A7B4A00A5E867 /* ClientMyAccountViewController.swift in Sources */,
 				8DA2F9EF2FCE2D2500E8E324 /* HomeLawyerViewController.swift in Sources */,
 				8DEB0B002FD9DBC700873DB2 /* ConversationsTableViewController.swift in Sources */,
 				8DC2A2DF2FFEE1F6004AC3B1 /* MyAccountLawyerTableViewControllerViewController.swift in Sources */,
@@ -1139,6 +1146,7 @@
 				8D844CCA2FDB3BAB007E5B5F /* LawCategoriesCollectionViewCell.swift in Sources */,
 				8D9464402FF6F3E600284A20 /* SuccessPaymentAppointmentCollectionViewController.swift in Sources */,
 				8D18D0962FA2A9CE0038AB85 /* WelcomeView.swift in Sources */,
+				8D362F49300A7E3400A5E867 /* MyAccountStyle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
