@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MyAccountLawyerCollectionViewCell: UICollectionViewCell {
+class MyAccountPhotoCollectionViewCell: UICollectionViewCell {
 
     static let identifier = "MyAccountLawyerCollectionViewCell"
   
