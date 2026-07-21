@@ -71,7 +71,7 @@ class AppointmentNavItemCollectionViewController: CoreCollectionViewController {
   private func registerCells() {
     collectionView.register(CalendarCollectionViewCell.self, forCellWithReuseIdentifier: CalendarCollectionViewCell.identifier)
     
-    collectionView.register(ListOfAppointmentsCollectionViewCell.self, forCellWithReuseIdentifier: ListOfAppointmentsCollectionViewCell.identifier)
+    collectionView.register(ListClientsAppointmentsCollectionViewCell.self, forCellWithReuseIdentifier: ListClientsAppointmentsCollectionViewCell.identifier)
     
     collectionView.register(HeaderCollectionViewCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderCollectionViewCell.identifier)
   }
@@ -199,7 +199,7 @@ extension AppointmentNavItemCollectionViewController: UICollectionViewDelegateFl
       return cell
       
     case .appointments:
-      guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ListOfAppointmentsCollectionViewCell.identifier, for: indexPath) as? ListOfAppointmentsCollectionViewCell else {
+      guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ListClientsAppointmentsCollectionViewCell.identifier, for: indexPath) as? ListClientsAppointmentsCollectionViewCell else {
         return UICollectionViewCell()
       }
       cell.layer.cornerRadius = 12

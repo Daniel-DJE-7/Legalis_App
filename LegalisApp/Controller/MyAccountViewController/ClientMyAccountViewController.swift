@@ -1,30 +1,30 @@
 //
-//  ProfileLawyersViewController.swift
+//  ClientMyAccountViewController.swift
 //  LegalisApp
 //
-//  Created by Daniel Figueredo on 8/7/26.
+//  Created by Daniel Figueredo on 17/7/26.
 //
 
 import UIKit
 
-
-class MyAccountLawyerTableViewController: CoreCollectionViewController {
+class ClientMyAccountViewController: CoreCollectionViewController {
 
   
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    collectionView.backgroundColor = .systemGray6
+    override func viewDidLoad() {
+        super.viewDidLoad()
+      collectionView.backgroundColor = .systemGray6
+      
+      setUpNavBar()
+      registerCells()
+      configureLayout()
+    }
     
-    setUpNavBar()
-    registerCells()
-    configureLayout()
-  }
-  
   override func viewDidLayoutSubviews() {
     super.viewDidLayoutSubviews()
+    
     collectionView.frame = view.bounds
   }
-  
+
   //MARK: - SET UP NAVIGATION BAR
   private func setUpNavBar() {
    
@@ -33,30 +33,12 @@ class MyAccountLawyerTableViewController: CoreCollectionViewController {
     logoImageNav.contentMode = .scaleAspectFit
     logoImageNav.translatesAutoresizingMaskIntoConstraints = false
     
-    
     navigationItem.leftBarButtonItem = UIBarButtonItem(customView: logoImageNav)
-    
-    let rightBellBtn = UIButton(type: .system)
-    rightBellBtn.setImage(UIImage(named: "personGray"), for: .normal)
-    rightBellBtn.imageView?.contentMode = .scaleAspectFit
-    rightBellBtn.addTarget(self, action: #selector(onPersonBtnTapped), for: .touchUpInside)
-    rightBellBtn.translatesAutoresizingMaskIntoConstraints = false
-    
-    navigationItem.rightBarButtonItem = UIBarButtonItem(customView: rightBellBtn)
-    //navigationController?.navigationBar.backgroundColor =
-    
     
     NSLayoutConstraint.activate([
       logoImageNav.widthAnchor.constraint(equalToConstant: 120),
       logoImageNav.heightAnchor.constraint(equalToConstant: 40),
-      rightBellBtn.widthAnchor.constraint(equalToConstant: 32),
-      rightBellBtn.heightAnchor.constraint(equalToConstant: 32),
-      
     ])
-    }
-  
-  @objc func onPersonBtnTapped() {
-    print("ok")
   }
   
   //MARK: - REGISTER CELLS
@@ -175,12 +157,9 @@ class MyAccountLawyerTableViewController: CoreCollectionViewController {
   }
   
 }
-
-
-  
-
-
-extension MyAccountLawyerTableViewController: UICollectionViewDelegateFlowLayout {
+   
+//MARK: - DELEGATES
+extension ClientMyAccountViewController: UICollectionViewDelegateFlowLayout {
   
   override func numberOfSections(in collectionView: UICollectionView) -> Int {
     return SectionMyAccount.allCases.count
@@ -208,14 +187,18 @@ extension MyAccountLawyerTableViewController: UICollectionViewDelegateFlowLayout
     }
     switch section {
     case .profilePhoto:
-      guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyAccountPhotoCollectionViewCell.identifier, for: indexPath) as? MyAccountPhotoCollectionViewCell else {
+      guard let cell = collectionView.dequeueReusableCell(
+        withReuseIdentifier: MyAccountPhotoCollectionViewCell.identifier,
+        for: indexPath) as? MyAccountPhotoCollectionViewCell else {
           return UICollectionViewCell()
       }
       
       return cell
    
     case .personalConfiguation, .settings, .logout:
-      guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LawCategoriesCollectionViewCell.identifier, for: indexPath) as? LawCategoriesCollectionViewCell else {
+      guard let cell = collectionView.dequeueReusableCell(
+        withReuseIdentifier: LawCategoriesCollectionViewCell.identifier,
+        for: indexPath) as? LawCategoriesCollectionViewCell else {
         return UICollectionViewCell()
       }
       cell.backgroundColor = .white
@@ -224,6 +207,7 @@ extension MyAccountLawyerTableViewController: UICollectionViewDelegateFlowLayout
       
     
       switch section {
+      
       case .personalConfiguation:
         
         cell.configure(categories: person[indexPath.row])
@@ -251,7 +235,8 @@ extension MyAccountLawyerTableViewController: UICollectionViewDelegateFlowLayout
     guard let header = collectionView.dequeueReusableSupplementaryView(
       ofKind: kind,
       withReuseIdentifier: HeaderSecondSectionCollectionViewCell.identifier,
-      for: indexPath) as? HeaderSecondSectionCollectionViewCell, kind == UICollectionView.elementKindSectionHeader else {
+      for: indexPath) as? HeaderSecondSectionCollectionViewCell,
+            kind == UICollectionView.elementKindSectionHeader else {
       return UICollectionReusableView()
     }
     guard let section = SectionMyAccount(rawValue: indexPath.section) else {
@@ -271,8 +256,3 @@ extension MyAccountLawyerTableViewController: UICollectionViewDelegateFlowLayout
   }
   
 }
-
-
-
-
-

@@ -81,9 +81,26 @@ class MainTabBarItemNavigationController: UITabBarController {
             image: UIImage(named: "homeSymbolGray"),
            selectedImage: UIImage(named: "HomeSymbolBlue"),
             navTabBarItemtitle: "Inicio",
-            navHeaderTitle: nil,
+            navHeaderTitle: "Citas",
             largeTitle: false
-        )
+        ),
+        
+        creatingTabBarController(
+          ConversationsTableViewController(),
+          image: UIImage(named: "chatGrey"),
+          selectedImage: UIImage(named: "chatsBlue"),
+          navTabBarItemtitle: "Chats",
+          navHeaderTitle: "Chats",
+          largeTitle: true
+        ),
+        
+        creatingTabBarController(
+          MyAccountLawyerTableViewController(),
+          image: UIImage(named: "personGray"),
+          selectedImage: UIImage(named: "personBlue"),
+          navTabBarItemtitle: "Mi cuenta",
+          navHeaderTitle: nil,
+          largeTitle: false)
     ]
   }
   
@@ -126,7 +143,7 @@ class MainTabBarItemNavigationController: UITabBarController {
           largeTitle: true),
         
         creatingTabBarController(
-          MyAccountLawyerTableViewController(),
+          ClientMyAccountViewController(),
           image: UIImage(named: "personGray"),
           selectedImage: UIImage(named: "personBlue"),
           navTabBarItemtitle: "Mi cuenta",
@@ -142,6 +159,6 @@ class MainTabBarItemNavigationController: UITabBarController {
 
 //Abelardo Pineda
 //2578096310
-//Nuevocar0-2
+//Nuevocar02-
 //2154865236
 //daniel@gmail.com

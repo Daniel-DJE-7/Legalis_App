@@ -1,19 +1,19 @@
 //
-//  ListOfAppointmentsCollectionViewCell.swift
+//  ListeLawyersAppointmentsCollectionViewCell.swift
 //  LegalisApp
 //
-//  Created by Daniel Figueredo on 15/7/26.
+//  Created by Daniel Figueredo on 16/7/26.
 //
 
 import UIKit
 
-class ListOfAppointmentsCollectionViewCell: UICollectionViewCell {
+class ListeLawyersAppointmentsCollectionViewCell: UICollectionViewCell {
     
-  static let identifier = "ListOfAppointmentsCollectionViewCell"
+  static let identifier = "ListeLawyersAppointmentsCollectionViewCell"
   
   private let userImage: UIImageView = {
     let img = UIImageView()
-    img.image = UIImage(named: "f")
+    img.image = UIImage(named: "abog")
     img.contentMode = .scaleAspectFill
     img.clipsToBounds = true
     img.tintColor = #colorLiteral(red: 0.3645370603, green: 0.3682664633, blue: 0.3890590072, alpha: 1)
@@ -30,26 +30,6 @@ class ListOfAppointmentsCollectionViewCell: UICollectionViewCell {
     label.numberOfLines = 0
     label.textColor = #colorLiteral(red: 0.1017038003, green: 0.1096047685, blue: 0.1221101061, alpha: 1)
     label.font = UIFont(name: "Inter-Regular_SemiBold", size: 17)
-    label.translatesAutoresizingMaskIntoConstraints = false
-    return label
-  }()
-  
-  private let specialityLabel: UILabel = {
-    let label = UILabel()
-    label.text = "Especialista en"
-    label.numberOfLines = 1
-    label.font = UIFont(name: "Inter-Regular", size: 12)
-    label.textColor = #colorLiteral(red: 0.5370872021, green: 0.5408190489, blue: 0.5616160631, alpha: 1)
-    label.translatesAutoresizingMaskIntoConstraints = false
-    return label
-  }()
-  
-  private let lawCategoryLabel: UILabel = {
-    let label = UILabel()
-    label.text = "Derecho civil"
-    label.numberOfLines = 1
-    label.font = UIFont(name: "Inter-Regular", size: 12)
-    label.textColor = #colorLiteral(red: 0.5370872021, green: 0.5408190489, blue: 0.5616160631, alpha: 1)
     label.translatesAutoresizingMaskIntoConstraints = false
     return label
   }()
@@ -170,26 +150,6 @@ class ListOfAppointmentsCollectionViewCell: UICollectionViewCell {
   
   private func setUpUI() {
     
-    let specialityStack = UIStackView(arrangedSubviews: [
-      specialityLabel,
-      lawCategoryLabel
-    ])
-    specialityStack.axis = .horizontal
-    specialityStack.spacing = 3
-    specialityStack.distribution = .fillProportionally
-    specialityStack.alignment = .center
-    specialityStack.translatesAutoresizingMaskIntoConstraints = false
-    
-    
-    let nameScpecialityStack = UIStackView(arrangedSubviews: [
-      userNameLabel,
-      specialityStack
-    ])
-    nameScpecialityStack.axis = .vertical
-    nameScpecialityStack.alignment = .leading
-    nameScpecialityStack.spacing = 4
-    nameScpecialityStack.translatesAutoresizingMaskIntoConstraints = false
-    
     let dateStack = UIStackView(arrangedSubviews: [
       iconCalendar,
       dateLabel
@@ -209,7 +169,7 @@ class ListOfAppointmentsCollectionViewCell: UICollectionViewCell {
     timeStack.translatesAutoresizingMaskIntoConstraints = false
     
     contentView.addSubview(userImage)
-    contentView.addSubview(nameScpecialityStack)
+    contentView.addSubview(userNameLabel)
     contentView.addSubview(dateStack)
     contentView.addSubview(timeStack)
     contentView.addSubview(loginMeetBtn)
@@ -221,16 +181,16 @@ class ListOfAppointmentsCollectionViewCell: UICollectionViewCell {
       userImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
       
       
-      nameScpecialityStack.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
-      nameScpecialityStack.leadingAnchor.constraint(equalTo: userImage.trailingAnchor, constant: 16),
-      nameScpecialityStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+      userNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
+      userNameLabel.leadingAnchor.constraint(equalTo: userImage.trailingAnchor, constant: 16),
+      userNameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
       
       
-      dateStack.topAnchor.constraint(equalTo: nameScpecialityStack.bottomAnchor, constant: 20),
+      dateStack.topAnchor.constraint(equalTo: userNameLabel.bottomAnchor, constant: 20),
       dateStack.leadingAnchor.constraint(equalTo: userImage.leadingAnchor, constant: 75),
       
       
-      timeStack.topAnchor.constraint(equalTo: nameScpecialityStack.bottomAnchor, constant: 20),
+      timeStack.topAnchor.constraint(equalTo: userNameLabel.bottomAnchor, constant: 25),
       timeStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
       timeStack.leadingAnchor.constraint(equalTo: dateStack.trailingAnchor, constant: 16),
       
