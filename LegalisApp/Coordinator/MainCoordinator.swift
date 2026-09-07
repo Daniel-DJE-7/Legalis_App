@@ -10,11 +10,17 @@ import UIKit
 class MainCoordinator: Coordinator {
   var navigationController: UINavigationController?
   
-  func eventOccured(with type: Event) {
-    
+  //inicializamos la var
+  init(navigationController: UINavigationController? = nil) {
+    self.navigationController = navigationController
   }
   
   func start() {
+    let vc = WelcomeViewController()
+    navigationController?.pushViewController(vc, animated: true)
+  }
+  
+  func eventOccured(with type: Event) {
     
   }
   

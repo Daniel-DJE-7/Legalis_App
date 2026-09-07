@@ -13,13 +13,19 @@ enum Event {
 
 protocol Coordinator {
   
-  var navigationController: UINavigationController? {get set}//to show views
+  var navigationController: UINavigationController? { get set }//This will be used when I used push(NavControler)
+  var viewController: UIViewController? { get } //This will be used when I used present(VC) 
   
-  func eventOccured(with type: Event)
   func start()//start method it will be to take app's control
 }
 
 //it transmits the event
 protocol Coordinating {
   var coordinator: Coordinator? { get set }
+}
+
+extension Coordinator {
+  //damos un valor por defecto a las variables de protocolo
+  var viewController: UIViewController? { nil }
+  var navigationController: UINavigationController? { nil }
 }

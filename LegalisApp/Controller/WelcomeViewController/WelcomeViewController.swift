@@ -9,6 +9,9 @@ import UIKit
 
 class WelcomeViewController: UIViewController, welcomeViewDelegate {
 
+  var clientCoordinator: ClientCoordinator?
+  var lawyerCoordinator: LawyerCoordinator?
+  
     override func loadView() {
       let welcomView = WelcomeView()
       welcomView.delegate = self
@@ -27,18 +30,15 @@ class WelcomeViewController: UIViewController, welcomeViewDelegate {
   }
   
   func clientSignUp() {
-    let vc = ClientsSignUpViewController()
     
-    vc.modalPresentationStyle = .fullScreen
-    vc.modalTransitionStyle = .coverVertical
-    present(vc, animated: true)
+    self.clientCoordinator = ClientCoordinator(viewController: self)
+    self.clientCoordinator?.start()
+
   }
   
   func lawyerSignUp() {
-    let vc = LawyersSignUpViewController()
-    vc.modalTransitionStyle = .flipHorizontal
-    vc.modalPresentationStyle = .fullScreen
-    present(vc, animated: true)
+    self.lawyerCoordinator = LawyerCoordinator(viewController: self)
+    self.lawyerCoordinator?.start()
   }
   
 }
