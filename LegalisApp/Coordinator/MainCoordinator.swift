@@ -20,9 +20,4 @@ class MainCoordinator: Coordinator {
     navigationController?.pushViewController(vc, animated: true)
   }
   
-  func eventOccured(with type: Event) {
-    
-  }
-  
-  
 }
