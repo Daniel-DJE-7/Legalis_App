@@ -15,11 +15,12 @@ enum UserType {
 class MainTabBarItemNavigationController: UITabBarController {
   
   var typeViewController: UserType?
+  let bottomLine = UIView()
 
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    userTypeModuls()
+//    userTypeModuls()
   }
   
   fileprivate func creatingTabBarController(
@@ -29,7 +30,7 @@ class MainTabBarItemNavigationController: UITabBarController {
     navTabBarItemtitle: String?,
     navHeaderTitle: String?,
     largeTitle: Bool
-    ) -> UIViewController {
+    ) -> UINavigationController {
     
       let navBarItemController = UINavigationController(rootViewController: viewController)
       
@@ -53,27 +54,32 @@ class MainTabBarItemNavigationController: UITabBarController {
       return navBarItemController
   }
   
-  func userTypeModuls() {
-
-      switch typeViewController {
-        case .lawyer:
-          viewControllers = configureLawyersModuls()
-
-        case .client:
-            viewControllers = configureClientModuls()
-
-        case .none:
-            viewControllers = []
-      }
+  private func configureLine() {
+    
+    
   }
   
-  func updateUserType(_ type: UserType) {
-      typeViewController = type
-      userTypeModuls()
-  }
+//  func userTypeModuls() {
+//
+//      switch typeViewController {
+//        case .lawyer:
+//          viewControllers = configureLawyersModuls()
+//
+//        case .client:
+//            viewControllers = configureClientModuls()
+//
+//        case .none:
+//            viewControllers = []
+//      }
+//  }
+//  
+//  func updateUserType(_ type: UserType) {
+//      typeViewController = type
+//      userTypeModuls()
+//  }
   
-  
-  func configureLawyersModuls() -> [UIViewController] {
+  //MARK: - Módulos abogados
+  func configureLawyersModuls() -> [UINavigationController] {
     
      return [
         creatingTabBarController(
@@ -104,7 +110,8 @@ class MainTabBarItemNavigationController: UITabBarController {
     ]
   }
   
-  func configureClientModuls() -> [UIViewController] {
+  //MARK: - Módulos clientes
+  func configureClientModuls() -> [UINavigationController] {
     
     return [
         creatingTabBarController(

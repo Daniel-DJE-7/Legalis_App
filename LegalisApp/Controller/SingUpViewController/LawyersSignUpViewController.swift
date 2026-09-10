@@ -19,11 +19,15 @@ enum TextFieldValidation {
 }
 
 class LawyersSignUpViewController: CoreCollectionViewController {
-    
+  
+  //AGREGAMOS LA REFERENCIA AL COORDINADOR AQUÍ
+  weak var coordinator: LawyerCoordinator?
+  
   private let gendersOptions = ["Ninguno","Masculino", "Femenino"]
   private let practiceType = ["Ninguno","Independiente", "Bufete o Empresa"]
   
   let lawyersSignUpView = LawyersSignUpView()
+  
   
   override func loadView() {
     super.loadView()
@@ -317,13 +321,14 @@ extension LawyersSignUpViewController: LawyersSignUpViewDelegate {
       
       if userType == .lawyer {
         
-        let mainTabBar = MainTabBarItemNavigationController()
-       // mainTabBar.selectedViewController = mainTabBar.viewControllers?[0]
-        // mainTabBar.selectedIndex = 0
-        mainTabBar.updateUserType(.lawyer)
-        mainTabBar.modalPresentationStyle = .fullScreen
-        mainTabBar.modalTransitionStyle = .crossDissolve
-        present(mainTabBar, animated: true)
+        coordinator?.userDidSignUpSuccessfully()
+//        let mainTabBar = MainTabBarItemNavigationController()
+//       // mainTabBar.selectedViewController = mainTabBar.viewControllers?[0]
+//        // mainTabBar.selectedIndex = 0
+//        mainTabBar.updateUserType(.lawyer)
+//        mainTabBar.modalPresentationStyle = .fullScreen
+//        mainTabBar.modalTransitionStyle = .crossDissolve
+//        present(mainTabBar, animated: true)
       }
     }//switch end
   }//func onSignUp end

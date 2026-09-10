@@ -503,6 +503,7 @@ class LawyersSignUpView: UIView {
   
   //MARK: - SignUp btn
  @objc private func onSignUpTapped() {
+   
    delegate?.onSignUpBtnTapped(with: .lawyer)
   }
     

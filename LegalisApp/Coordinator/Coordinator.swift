@@ -7,10 +7,6 @@
 
 import UIKit
 
-enum Event {
-  case buttonTapped
-}
-
 protocol Coordinator {
   
   var navigationController: UINavigationController? { get set }//This will be used when I used push(NavControler)

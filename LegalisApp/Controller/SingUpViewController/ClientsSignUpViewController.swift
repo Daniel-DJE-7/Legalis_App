@@ -10,6 +10,8 @@ import SafariServices
 
 class ClientsSignUpViewController: UIViewController {
 
+  //Agregamos la referencia del coordinator
+  weak var coordinator: ClientCoordinator?
   let clientsSignUpView = ClientsSignUpView()
   
     override func loadView() {
@@ -100,11 +102,7 @@ extension ClientsSignUpViewController: ClientsSignUpViewDelegate {
   //SIGN UP BTN
   func onSignUpBtnPressed(accepted: Bool, with userType: UserType) {
     if accepted && userType == .client {
-      let mainTabBar = MainTabBarItemNavigationController()
-      mainTabBar.updateUserType(.client)
-      mainTabBar.modalPresentationStyle = .fullScreen
-      mainTabBar.modalTransitionStyle = .crossDissolve
-      present(mainTabBar, animated: true)
+      coordinator?.userDidSingUpSuccessfully()
     } else {
       
       let acceptTermsAlert = Utilities.creatingAlerts(
