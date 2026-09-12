@@ -16,7 +16,7 @@ class LawyersCategoriesListCollectionViewController: CoreCollectionViewControlle
 
   var categories: CategoriesModel?
   var lawyersCard: [LawyersCardsModel] = []
-  
+  weak var coordinator: BookingCoordinator?
     
   override func viewDidLoad() {
         super.viewDidLoad()
@@ -237,9 +237,7 @@ extension LawyersCategoriesListCollectionViewController: FilterSectionCollection
 extension LawyersCategoriesListCollectionViewController: LawyersListCollectionViewCellDelegate {
   
   func DipTapWatchLawyerProfile() {
-    let vc = ProfileLawyerCollectionViewController()
-    navigationController?.modalTransitionStyle = .crossDissolve
-    navigationController?.pushViewController(vc, animated: true)
+    coordinator?.goToLawyerDescriptionProfile()
   }
   
   

@@ -12,7 +12,7 @@ class MainLawyerTabBarCoordinator: Coordinator {
   var childCoordinators: [Coordinator] = []
   var navigationController: UINavigationController?
   let tabBarController = MainTabBarItemNavigationController()
-  weak var parentCoordinator: MainCoordinator?
+  weak var parentCoordinator: AppCoordinator?
   
   init(navigationController: UINavigationController = UINavigationController()) {
     self.navigationController = navigationController
@@ -53,9 +53,6 @@ class MainLawyerTabBarCoordinator: Coordinator {
       chatNav,
       profileNav
     ]
-    
-    // 7. Insertamos el TabBar en el flujo de navegación principal sustituyendo el Welcome
-//    navigationController?.setViewControllers([tabBarController], animated: true)
     
   }
   

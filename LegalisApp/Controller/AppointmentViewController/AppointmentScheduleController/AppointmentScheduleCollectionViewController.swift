@@ -16,6 +16,7 @@ enum SectionTypeAppointment: Int, CaseIterable {
 
 class AppointmentScheduleCollectionViewController: CoreCollectionViewController {
 
+  weak var coordinator: BookingCoordinator?
   var selectedDate: DateComponents?
   
   let hours: [String] = [
@@ -278,21 +279,23 @@ extension AppointmentScheduleCollectionViewController: CalendarCollectionViewCel
 extension AppointmentScheduleCollectionViewController: ContinueButtonCollectionViewCellDelegate {
  
   func onContinueBtnTapped() {
-    let vc = PaymentSummaryCollectionViewController()
-    let nav = UINavigationController(rootViewController: vc)
     
-    nav.modalPresentationStyle = .pageSheet
-    //get the sheet
-    if let sheet = nav.sheetPresentationController{
-      sheet.detents = [.custom { context in
-        return context.maximumDetentValue * 0.8}
-      ]
-      sheet.prefersScrollingExpandsWhenScrolledToEdge = true
-      sheet.prefersGrabberVisible = true
-      sheet.preferredCornerRadius = 30
-    }
-    
-    navigationController?.present(nav, animated: true)
+    coordinator?.goToPaymentSummary()
+//    let vc = PaymentSummaryCollectionViewController()
+//    let nav = UINavigationController(rootViewController: vc)
+//
+//    nav.modalPresentationStyle = .pageSheet
+//    //get the sheet
+//    if let sheet = nav.sheetPresentationController{
+//      sheet.detents = [.custom { context in
+//        return context.maximumDetentValue * 0.8}
+//      ]
+//      sheet.prefersScrollingExpandsWhenScrolledToEdge = true
+//      sheet.prefersGrabberVisible = true
+//      sheet.preferredCornerRadius = 30
+//    }
+//
+//    navigationController?.present(nav, animated: true)
   }
   
   

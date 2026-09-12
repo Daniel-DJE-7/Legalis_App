@@ -20,6 +20,7 @@ class ProfileLawyerCollectionViewController: CoreCollectionViewController {
   let rating = "4.9"
   let sectionTitles: [String] = ["PERFIL PROFESIONAL", "CONTACTO Y TARIFA", "RESEÑAS Y CALIFICACIONES"]
   var personalInformation: LawyersPersonalProfile?
+  weak var coordinator: BookingCoordinator?
   
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -312,8 +313,7 @@ extension ProfileLawyerCollectionViewController: UICollectionViewDelegateFlowLay
 extension ProfileLawyerCollectionViewController: AppointmentActionCollectionViewCellDelegate {
   
   func onAppointmentBtnTapped() {
-    let vc = AppointmentScheduleCollectionViewController()
-    navigationController?.pushViewController(vc, animated: true)
+    coordinator?.goToSelectDate()
   }
   
   

@@ -23,6 +23,8 @@ class CardDetailsCollectionViewController: CoreCollectionViewController {
   let titleBtn = "Pagar Ahora"
   let titleHeaderCardDetails = "DETALLES DE LA TARJETA"
   
+  weak var coordinator: BookingCoordinator?
+  
     override func viewDidLoad() {
         super.viewDidLoad()
       collectionView.backgroundColor = .systemGray6
@@ -261,8 +263,7 @@ extension CardDetailsCollectionViewController: UICollectionViewDelegateFlowLayou
 extension CardDetailsCollectionViewController: ContinueButtonCollectionViewCellDelegate {
   
   func onContinueBtnTapped() {
-    let vc = SuccessPaymentAppointmentCollectionViewController()
-    navigationController?.pushViewController(vc, animated: true)
+    coordinator?.goToPayWithYourCardNowSuccessfull()
   }
   
   

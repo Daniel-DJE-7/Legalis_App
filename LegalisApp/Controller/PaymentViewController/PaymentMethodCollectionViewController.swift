@@ -17,6 +17,9 @@ class PaymentMethodCollectionViewController: CoreCollectionViewController {
 
   private let titleMethodPayment = "MÉTODOS DE PAGO"
   private let methods = ["Crédito", "Débito"]
+  
+  weak var coordinator: BookingCoordinator?
+  
     override func viewDidLoad() {
         super.viewDidLoad()
       collectionView.backgroundColor = .systemGray6
@@ -287,24 +290,11 @@ extension PaymentMethodCollectionViewController: PaymentButtonsCollectionViewCel
   
   func onVirtualPaymentPressed() {
     
-    let vc = CardDetailsCollectionViewController()
-//    let nav = UINavigationController(rootViewController: vc)
-//
-//    nav.modalPresentationStyle = .fullScreen
-//    if let sheet = nav.sheetPresentationController {
-//      sheet.detents = [.custom { context in
-//        return context.maximumDetentValue * 1 }
-//      ]
-//      sheet.prefersGrabberVisible = true
-//    }
-//
-    navigationController?.pushViewController(vc, animated: true)
+    coordinator?.goToFillCardInformationPaymentMethod()
   }
   
   func onPhysicalPaymentPressed() {
-    let vc = SuccessPaymentAppointmentCollectionViewController()
-    
-    navigationController?.pushViewController(vc, animated: true)
+    coordinator?.goToCashPaymentMethod()
   }
   
   

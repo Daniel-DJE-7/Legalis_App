@@ -7,10 +7,14 @@
 
 import UIKit
 
+protocol AnotherConsultsCollectionViewCellDelegate: AnyObject {
+  func goToMyAppointments()
+}
+
 class AnotherConsultsCollectionViewCell: UICollectionViewCell {
     
   static let identifier = "AnotherConsultsCollectionViewCell"
-  weak var delegate: ContinueButtonCollectionViewCellDelegate?
+  weak var delegate: AnotherConsultsCollectionViewCellDelegate?
   
   let downloadVoucher = UIButton()
   let myConsultsBtn = UIButton()
@@ -46,7 +50,7 @@ class AnotherConsultsCollectionViewCell: UICollectionViewCell {
       
       Utilities.customButtonStyle(myConsultsBtn,
                                   appearance: .plain(),
-                                  title: "Ir a mis consultas",
+                                  title: "Ir a mis citas",
                                   image: nil,
                                   imagePlacement: nil,
                                   imagePadding: nil,
@@ -92,6 +96,6 @@ class AnotherConsultsCollectionViewCell: UICollectionViewCell {
   }
   
   @objc func dipTapOtherConsultsTapped() {
-    delegate?.onContinueBtnTapped()
+    delegate?.goToMyAppointments()
   }
 }

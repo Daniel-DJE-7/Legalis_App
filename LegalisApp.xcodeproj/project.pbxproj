@@ -11,6 +11,7 @@
 		8D04F9A32FFBFFB40029A37D /* AppointmentDetailsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D04F9A22FFBFFB40029A37D /* AppointmentDetailsCollectionViewCell.swift */; };
 		8D04F9A52FFC00220029A37D /* AnotherConsultsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D04F9A42FFC00220029A37D /* AnotherConsultsCollectionViewCell.swift */; };
 		8D0C89DF2FCF933200B8C306 /* ClientsSignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0C89DE2FCF933200B8C306 /* ClientsSignUpView.swift */; };
+		8D1334333054A95F00A3B952 /* BookingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1334323054A95F00A3B952 /* BookingCoordinator.swift */; };
 		8D182875304F64B900F8A101 /* ClientCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D182874304F64B900F8A101 /* ClientCoordinator.swift */; };
 		8D182878304F6AA900F8A101 /* LawyerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D182877304F6AA900F8A101 /* LawyerCoordinator.swift */; };
 		8D18D0642FA28B6E0038AB85 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D18D0632FA28B6E0038AB85 /* AppDelegate.swift */; };
@@ -144,7 +145,7 @@
 		8DB4B3A32FE9F25900F744CA /* ProfileDataCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB4B3A22FE9F25900F744CA /* ProfileDataCollectionViewCell.swift */; };
 		8DB540402FA56CEE00D8DB72 /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB5403F2FA56CEE00D8DB72 /* UIView+Layout.swift */; };
 		8DB701422FDB104E0068E552 /* HeaderSecondSectionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB701412FDB104E0068E552 /* HeaderSecondSectionCollectionViewCell.swift */; };
-		8DC2A2DD2FFEAA34004AC3B1 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC2A2DC2FFEAA34004AC3B1 /* MainCoordinator.swift */; };
+		8DC2A2DD2FFEAA34004AC3B1 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC2A2DC2FFEAA34004AC3B1 /* AppCoordinator.swift */; };
 		8DC2A2DF2FFEE1F6004AC3B1 /* MyAccountLawyerTableViewControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC2A2DE2FFEE1F6004AC3B1 /* MyAccountLawyerTableViewControllerViewController.swift */; };
 		8DC2A2E12FFEE4C6004AC3B1 /* MyAccountLawyerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC2A2E02FFEE4C6004AC3B1 /* MyAccountLawyerTableViewCell.swift */; };
 		8DC8916B30068CD10005B156 /* MessageKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8DC8916A30068CD10005B156 /* MessageKit */; };
@@ -179,6 +180,7 @@
 		8D04F9A22FFBFFB40029A37D /* AppointmentDetailsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentDetailsCollectionViewCell.swift; sourceTree = "<group>"; };
 		8D04F9A42FFC00220029A37D /* AnotherConsultsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnotherConsultsCollectionViewCell.swift; sourceTree = "<group>"; };
 		8D0C89DE2FCF933200B8C306 /* ClientsSignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientsSignUpView.swift; sourceTree = "<group>"; };
+		8D1334323054A95F00A3B952 /* BookingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingCoordinator.swift; sourceTree = "<group>"; };
 		8D182874304F64B900F8A101 /* ClientCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientCoordinator.swift; sourceTree = "<group>"; };
 		8D182877304F6AA900F8A101 /* LawyerCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LawyerCoordinator.swift; sourceTree = "<group>"; };
 		8D18D0602FA28B6E0038AB85 /* LegalisApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LegalisApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -315,7 +317,7 @@
 		8DB4B3A22FE9F25900F744CA /* ProfileDataCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDataCollectionViewCell.swift; sourceTree = "<group>"; };
 		8DB5403F2FA56CEE00D8DB72 /* UIView+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Layout.swift"; sourceTree = "<group>"; };
 		8DB701412FDB104E0068E552 /* HeaderSecondSectionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderSecondSectionCollectionViewCell.swift; sourceTree = "<group>"; };
-		8DC2A2DC2FFEAA34004AC3B1 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
+		8DC2A2DC2FFEAA34004AC3B1 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		8DC2A2DE2FFEE1F6004AC3B1 /* MyAccountLawyerTableViewControllerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountLawyerTableViewControllerViewController.swift; sourceTree = "<group>"; };
 		8DC2A2E02FFEE4C6004AC3B1 /* MyAccountLawyerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountLawyerTableViewCell.swift; sourceTree = "<group>"; };
 		8DC8A4C22FD746AA005AD39C /* HTMLText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTMLText.swift; sourceTree = "<group>"; };
@@ -359,6 +361,23 @@
 				8D0C89DE2FCF933200B8C306 /* ClientsSignUpView.swift */,
 			);
 			path = Clients;
+			sourceTree = "<group>";
+		};
+		8D1334303054A8A600A3B952 /* HomeClientCoordinator */ = {
+			isa = PBXGroup;
+			children = (
+				8D75F2443050C95000871A02 /* HomeClientCoordinator.swift */,
+				8D1334313054A8D400A3B952 /* BookingCoordinator */,
+			);
+			path = HomeClientCoordinator;
+			sourceTree = "<group>";
+		};
+		8D1334313054A8D400A3B952 /* BookingCoordinator */ = {
+			isa = PBXGroup;
+			children = (
+				8D1334323054A95F00A3B952 /* BookingCoordinator.swift */,
+			);
+			path = BookingCoordinator;
 			sourceTree = "<group>";
 		};
 		8D182873304F649C00F8A101 /* ClientCoordinator */ = {
@@ -878,7 +897,7 @@
 		8D75F2433050C92900871A02 /* ClientViewsCoordinator */ = {
 			isa = PBXGroup;
 			children = (
-				8D75F2443050C95000871A02 /* HomeClientCoordinator.swift */,
+				8D1334303054A8A600A3B952 /* HomeClientCoordinator */,
 				8D75F2463050CDEF00871A02 /* ClientChatsCoordinator.swift */,
 				8D75F2483050D0AA00871A02 /* AppointmentClientCoordinator.swift */,
 				8D75F24A3050D17600871A02 /* FavoritesClientCoordinator.swift */,
@@ -964,7 +983,7 @@
 				8D182876304F6A8000F8A101 /* LawyerCoordinator */,
 				8D182873304F649C00F8A101 /* ClientCoordinator */,
 				8DF0C6FE2FFDBEE200647129 /* Coordinator.swift */,
-				8DC2A2DC2FFEAA34004AC3B1 /* MainCoordinator.swift */,
+				8DC2A2DC2FFEAA34004AC3B1 /* AppCoordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -1158,6 +1177,7 @@
 				8DF4DADB30533687008D1038 /* ChatLawyerCoordinator.swift in Sources */,
 				8D3960E82FEC6E6F00ECE276 /* AppointmentNavItemCollectionViewController.swift in Sources */,
 				8D75F2493050D0AA00871A02 /* AppointmentClientCoordinator.swift in Sources */,
+				8D1334333054A95F00A3B952 /* BookingCoordinator.swift in Sources */,
 				8D75F24D3050D1F900871A02 /* MyAccountClientCoordinator.swift in Sources */,
 				8D3960EA2FEC94DB00ECE276 /* CalendarCollectionViewCell.swift in Sources */,
 				8D182875304F64B900F8A101 /* ClientCoordinator.swift in Sources */,
@@ -1166,7 +1186,7 @@
 				8D04F9A32FFBFFB40029A37D /* AppointmentDetailsCollectionViewCell.swift in Sources */,
 				8D04F9A52FFC00220029A37D /* AnotherConsultsCollectionViewCell.swift in Sources */,
 				8DEB0AFE2FD9ADC800873DB2 /* MainTabBarItemNavigationViewController.swift in Sources */,
-				8DC2A2DD2FFEAA34004AC3B1 /* MainCoordinator.swift in Sources */,
+				8DC2A2DD2FFEAA34004AC3B1 /* AppCoordinator.swift in Sources */,
 				8DB701422FDB104E0068E552 /* HeaderSecondSectionCollectionViewCell.swift in Sources */,
 				8D50D2472FEB4077005040D4 /* AppointmentActionCollectionViewCell.swift in Sources */,
 				8DB159202FF2BCD100EC6B14 /* PaymentHeaderCollectionViewCell.swift in Sources */,

@@ -7,18 +7,18 @@
 
 import UIKit
 
-protocol Coordinator {
+protocol Coordinator: AnyObject {
   
   var navigationController: UINavigationController? { get set }//This will be used when I used push(NavControler)
   var viewController: UIViewController? { get } //This will be used when I used present(VC) 
   
-  func start()//start method it will be to take app's control
+  func start()//begins the coordinator's flow
 }
 
 //it transmits the event
-protocol Coordinating {
-  var coordinator: Coordinator? { get set }
-}
+//protocol Coordinating {
+//  var coordinator: Coordinator? { get set }
+//}
 
 extension Coordinator {
   //damos un valor por defecto a las variables de protocolo

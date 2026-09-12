@@ -134,6 +134,7 @@ class PaymentButtonsCollectionViewCell: UICollectionViewCell {
   
   @objc func dipTapVirtualPaymentBtn() {
     delegate?.onVirtualPaymentPressed()
+    print("Hola")
     
   }
   

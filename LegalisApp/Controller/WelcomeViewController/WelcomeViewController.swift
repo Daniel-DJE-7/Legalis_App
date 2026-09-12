@@ -9,7 +9,7 @@ import UIKit
 
 class WelcomeViewController: UIViewController, welcomeViewDelegate, ClientCoordinatorDelegate, LawyerCoordinatorDelegate {
 
-  var mainCoordinator: MainCoordinator?
+  var mainCoordinator: AppCoordinator?
   var clientCoordinator: ClientCoordinator?
   var lawyerCoordinator: LawyerCoordinator?
   
@@ -49,15 +49,15 @@ class WelcomeViewController: UIViewController, welcomeViewDelegate, ClientCoordi
   // MARK: - ClientCoordinatorDelegate
   // Esta función se ejecuta automáticamente cuando el modal termina de cerrarse
   func clientCoordinatorDidSignUpSuccessfully(_ coordinator: ClientCoordinator) {
-      // Le ordenamos al coordinador raíz que cambie al TabBar del Cliente
-      mainCoordinator?.switchToFlow(for: .client)
+    // Le ordenamos al coordinador raíz que cambie al TabBar del Cliente
+    mainCoordinator?.switchToFlow(for: .client)
     self.clientCoordinator = nil
    }
   
   // MARK: - LawyerCoordinatorDelegate
    func lawyerCoordinatorDidSignUpSuccessfully(_ coordinator: LawyerCoordinator) {
      //aqui estamos switcheando para que se vean las vistas de los abogados
-       mainCoordinator?.switchToFlow(for: .lawyer)
+      mainCoordinator?.switchToFlow(for: .lawyer)
      //Limpiamos la referencia para liberar memoria
      self.lawyerCoordinator = nil
    }

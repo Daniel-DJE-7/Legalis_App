@@ -14,6 +14,8 @@ private enum SectionType: Int, CaseIterable {
 
 class HomeClientCollectionViewController: CoreCollectionViewController {
 
+  weak var coordinator: HomeClientCoordinator?
+  
   private let titleSecondSection = "ESPECIALIDADES"
   
   var categories: [CategoriesModel] = []
@@ -275,13 +277,16 @@ extension HomeClientCollectionViewController: UICollectionViewDelegateFlowLayout
   
   override func collectionView(_ collectionView: UICollectionView,
                                didSelectItemAt indexPath: IndexPath) {
-    let categories = categories[indexPath.row]
-    let vc = LawyersCategoriesListCollectionViewController()
-    //vc.navigationItem.title = categories.name
-    vc.categories = categories
     
-    self.navigationController?.pushViewController(vc, animated: true)
+    guard let section = SectionType(rawValue: indexPath.section) else { return }
+    
+    let categories = categories[indexPath.row]
+    
+    if section == .categories {
+      let categorySelected = categories
+      //REEMPLAZAMOS EL PUSH MANUAL: Delegamos la navegación por completo al coordinador
+      coordinator?.didSelectLawCategory(categorySelected)
+    }
   }
-  
 }//Extension end
 

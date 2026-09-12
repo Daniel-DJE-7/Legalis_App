@@ -15,6 +15,8 @@ private enum SectionSuccessDetails: Int, CaseIterable {
 
 class SuccessPaymentAppointmentCollectionViewController: CoreCollectionViewController {
 
+  weak var coordinator: BookingCoordinator?
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     collectionView.backgroundColor = .systemGray6
@@ -203,4 +205,13 @@ extension SuccessPaymentAppointmentCollectionViewController: UICollectionViewDel
       return cell
     }
   }
+}
+
+extension SuccessPaymentAppointmentCollectionViewController: AnotherConsultsCollectionViewCellDelegate {
+  
+  func goToMyAppointments() {
+    coordinator?.userDidTapGoToMyAppointments()
+  }
+  
+  
 }
