@@ -198,9 +198,14 @@ extension SuccessPaymentAppointmentCollectionViewController: UICollectionViewDel
       return cell
     
     case .btns:
-      guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AnotherConsultsCollectionViewCell.identifier, for: indexPath) as? AnotherConsultsCollectionViewCell else {
-        return UICollectionViewCell()
-      }
+      guard let cell = collectionView.dequeueReusableCell(
+           withReuseIdentifier: AnotherConsultsCollectionViewCell.identifier,
+           for: indexPath
+       ) as? AnotherConsultsCollectionViewCell else {
+           return UICollectionViewCell()
+       }
+
+       cell.delegate = self
      
       return cell
     }

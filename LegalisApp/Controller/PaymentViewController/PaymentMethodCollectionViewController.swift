@@ -294,7 +294,7 @@ extension PaymentMethodCollectionViewController: PaymentButtonsCollectionViewCel
   }
   
   func onPhysicalPaymentPressed() {
-    coordinator?.goToCashPaymentMethod()
+    coordinator?.goToCashSuccesPayment()
   }
   
   

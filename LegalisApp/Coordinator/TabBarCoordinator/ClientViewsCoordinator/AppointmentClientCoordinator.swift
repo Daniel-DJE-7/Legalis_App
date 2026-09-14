@@ -18,7 +18,7 @@ class AppointmentClientCoordinator: Coordinator {
   
   func start() {
 //    let appointmentVC = AppointmentNavItemCollectionViewController()
-//    navigationController?.pushViewController(appointmentVC, animated: true)
+//    navigationController?.setViewControllers([appointmentVC], animated: false)
   }
   
 }

@@ -7,11 +7,16 @@
 
 import UIKit
 
+protocol HomeClientCoordinatorDelegate: AnyObject {
+  func homeCoordinatorDidRequestAppointmentsTab(_ coordinator: HomeClientCoordinator)
+}
+
 class HomeClientCoordinator: Coordinator, BookingCoordinatorDelegate {
   var childCoordinators: [Coordinator] = []
   var navigationController: UINavigationController?
   weak var parentCoordinator: AppCoordinator?
 
+  weak var tabBarDelegate: HomeClientCoordinatorDelegate?
   
   // Necesitamos una referencia al TabBar padre para poder cambiar de pestaña por código
   weak var tabBarController: MainTabBarItemNavigationController?
@@ -36,7 +41,8 @@ class HomeClientCoordinator: Coordinator, BookingCoordinatorDelegate {
     
     bookingCoordinator.categorySelected = category
     bookingCoordinator.delegate = self
-    childCoordinators.append(bookingCoordinator)
+    
+    self.childCoordinators.append(bookingCoordinator)
     bookingCoordinator.start()
   }
   
@@ -45,11 +51,12 @@ class HomeClientCoordinator: Coordinator, BookingCoordinatorDelegate {
     // 1. Regresamos el Navigation de la pestaña Home a la vista principal (limpia el flujo de compra)
     navigationController?.popToRootViewController(animated: false)
     
-    //2. cambia a la pestaña 2 en el array, que seria appointments
-    tabBarController?.selectedIndex = 2
-    
-    childCoordinators.removeAll { $0 === coordinator }
-    
+    DispatchQueue.main.async { [weak self] in
+      guard let self = self else { return }
+      
+      self.tabBarDelegate?.homeCoordinatorDidRequestAppointmentsTab(self)
+      self.childCoordinators.removeAll { $0 === coordinator }
+    }
   }
-
 }
+

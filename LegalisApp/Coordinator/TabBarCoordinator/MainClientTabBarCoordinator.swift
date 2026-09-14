@@ -7,12 +7,20 @@
 
 import UIKit
 
+protocol MainClientTabBarCoordinatorDelegate: AnyObject {
+  func tabBarCoordinatorRequestSwitchToAppointmets(_ coordinator: MainClientTabBarCoordinator)
+}
+
 class MainClientTabBarCoordinator: Coordinator {
   
   var childCoordinators: [Coordinator] = []
   var navigationController: UINavigationController?
   let tabBarController = MainTabBarItemNavigationController()
   weak var parentCoordinator: AppCoordinator?
+  
+  
+  private var homeCoordinator: HomeClientCoordinator?
+  private var appointmentCoordinator: AppointmentClientCoordinator?
   
   init(navigationController: UINavigationController = UINavigationController()) {
     self.navigationController = navigationController
@@ -31,12 +39,19 @@ class MainClientTabBarCoordinator: Coordinator {
     let appointmentNav = clientModules[2]
     let favoritesNav = clientModules[3]
     let myAccountNav = clientModules[4]
-          
+    
     // 3. Inicializamos los coordinadores hijos inyectándoles SU PROPIO NavigationController
     let homeCoordinator = HomeClientCoordinator(navigationController: homeNav, tabBarController: tabBarController)
+    homeCoordinator.tabBarDelegate = self
+    self.homeCoordinator = homeCoordinator
+    
     let chatCoordinator = ClientChatsCoordinator(navigationController: chatNav)
+    
     let appointmentCoordinator = AppointmentClientCoordinator(navigationController: appointmentNav)
+    self.appointmentCoordinator = appointmentCoordinator
+    
     let favoritesCoordinator = FavoritesClientCoordinator(navigationController: favoritesNav)
+    favoritesCoordinator.delegate = self
     let myAccountCoordinator = MyAccountClientCoordinator(navigationController: myAccountNav)
     
     //4. guardamos referencias en memoria
@@ -64,6 +79,29 @@ class MainClientTabBarCoordinator: Coordinator {
       myAccountNav
     ]
     
+  }
+  
+  func switchToAppointmentsTab() {
+    DispatchQueue.main.async {
+          self.tabBarController.selectedIndex = 2
+      }
+  }
+  
+}
+
+extension MainClientTabBarCoordinator: HomeClientCoordinatorDelegate, FavoritesClientCoordinatorDelegate {
+
+  
+  func homeCoordinatorDidRequestAppointmentsTab(_ coordinator: HomeClientCoordinator) {
+    switchToAppointmentsTab()
+  }
+  
+  func favoritesCoordinatorDidRequestAppointmentsTab(_ coordinator: FavoritesClientCoordinator) {
+    switchToAppointmentsTab()
+    
+    DispatchQueue.main.async {
+      coordinator.navigationController?.popToRootViewController(animated: false)
+    }
   }
   
 }

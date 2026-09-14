@@ -249,10 +249,7 @@ extension PaymentSummaryCollectionViewController: ContinueButtonCollectionViewCe
  
   func onContinueBtnTapped() {
     
-    let vc = PaymentMethodCollectionViewController()
-    
-
-    navigationController?.pushViewController(vc, animated: true)
+    coordinator?.goToSelectPaymentMethod()
   }
   
   

@@ -16,6 +16,8 @@ class FavoriteCollectionViewController: CoreCollectionViewController {
   var categories: CategoriesModel?
   var lawyersCard: [LawyersCardsModel] = []
   
+  weak var coordinator: FavoritesClientCoordinator?
+  
     override func viewDidLoad() {
         super.viewDidLoad()
       collectionView.backgroundColor = .systemGray6
@@ -105,8 +107,17 @@ extension FavoriteCollectionViewController: UICollectionViewDelegateFlowLayout {
     
     let cards = lawyersCard[indexPath.row]
     cell.configure(with: cards, and: categories)
+    cell.delegate = self
     return cell
   }
+  
+}
+
+extension FavoriteCollectionViewController: LawyersListCollectionViewCellDelegate {
+  func DipTapWatchLawyerProfile() {
+    coordinator?.goToLawyerDescriptionProfile()
+  }
+  
   
 }
 

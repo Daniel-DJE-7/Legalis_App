@@ -123,6 +123,7 @@ class BookingCoordinator: Coordinator {
     
   }
   
+  // MARK: - IR A MIS CITAS
   //cuando el usuario selecciona ir a mis citas, lo redirecciona al TabBar Appointments
   func userDidTapGoToMyAppointments() {
     
