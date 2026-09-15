@@ -48,8 +48,6 @@ class HomeClientCoordinator: Coordinator, BookingCoordinatorDelegate {
   
   // MARK: - BookingCoordinatorDelegate
   func bookingCoordinatorDidFinishWithSuccess(_ coordinator: BookingCoordinator) {
-    // 1. Regresamos el Navigation de la pestaña Home a la vista principal (limpia el flujo de compra)
-    navigationController?.popToRootViewController(animated: false)
     
     DispatchQueue.main.async { [weak self] in
       guard let self = self else { return }

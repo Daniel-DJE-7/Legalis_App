@@ -48,6 +48,7 @@ class MainClientTabBarCoordinator: Coordinator {
     let chatCoordinator = ClientChatsCoordinator(navigationController: chatNav)
     
     let appointmentCoordinator = AppointmentClientCoordinator(navigationController: appointmentNav)
+    appointmentCoordinator.delegate = self
     self.appointmentCoordinator = appointmentCoordinator
     
     let favoritesCoordinator = FavoritesClientCoordinator(navigationController: favoritesNav)
@@ -89,19 +90,34 @@ class MainClientTabBarCoordinator: Coordinator {
   
 }
 
-extension MainClientTabBarCoordinator: HomeClientCoordinatorDelegate, FavoritesClientCoordinatorDelegate {
+extension MainClientTabBarCoordinator: HomeClientCoordinatorDelegate,
+                                       FavoritesClientCoordinatorDelegate,
+                                       AppointmentClientCoordinatorDelegate {
 
-  
+
+  //MARK: - FROM HOME COORDINATOR TO TABBAR
   func homeCoordinatorDidRequestAppointmentsTab(_ coordinator: HomeClientCoordinator) {
     switchToAppointmentsTab()
+    
+    DispatchQueue.main.async {
+      // 1. Regresamos el Navigation de la pestaña Home a la vista principal (limpia el flujo de compra)
+      coordinator.navigationController?.popToRootViewController(animated: false)
+    }
   }
   
+  //MARK: - FROM FAVORITES COORDINATOR TO APPOINTMENT TABBAR
   func favoritesCoordinatorDidRequestAppointmentsTab(_ coordinator: FavoritesClientCoordinator) {
     switchToAppointmentsTab()
     
     DispatchQueue.main.async {
       coordinator.navigationController?.popToRootViewController(animated: false)
     }
+  }
+  
+  func appointmentsCoordinatorDidRequestReSchedule(_ coordinator: AppointmentClientCoordinator) {
+    switchToAppointmentsTab()
+    
+    coordinator.navigationController?.popToRootViewController(animated: false)
   }
   
 }

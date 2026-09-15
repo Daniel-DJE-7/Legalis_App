@@ -15,6 +15,7 @@ private enum SectionAppointment: Int, CaseIterable {
 class AppointmentNavItemCollectionViewController: CoreCollectionViewController {
   
   private let headerTitle = "PRÓXIMAS CITAS"
+  weak var coordinator: AppointmentClientCoordinator?
   
   //MARK: - viewDidLoad
     override func viewDidLoad() {
@@ -206,6 +207,7 @@ extension AppointmentNavItemCollectionViewController: UICollectionViewDelegateFl
       cell.layer.borderColor = #colorLiteral(red: 0.7682896852, green: 0.7757481933, blue: 0.817332685, alpha: 1)
       cell.layer.borderWidth = 1
       cell.backgroundColor = .white
+      cell.delegate = self
       return cell
     }
   }
@@ -222,5 +224,19 @@ extension AppointmentNavItemCollectionViewController: UICollectionViewDelegateFl
     header.configure(with: headerTitle)
     
     return header
+  }
+}
+
+extension AppointmentNavItemCollectionViewController: ListClientsAppointmentsCollectionViewCellDelegate {
+  func didTapOnCancelAppointmentBtn() {
+    print("Cita cancelada")
+  }
+  
+  func didTapOnRescheduleAppointmentBtn() {
+    coordinator?.goToSelectDate()
+  }
+  
+  func didTapOnScheduleANewAppointmentBtn() {
+    coordinator?.goToSelectDate()
   }
 }

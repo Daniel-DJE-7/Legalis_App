@@ -7,9 +7,16 @@
 
 import UIKit
 
+protocol ListClientsAppointmentsCollectionViewCellDelegate: AnyObject {
+  func didTapOnCancelAppointmentBtn()
+  func didTapOnRescheduleAppointmentBtn()
+  func didTapOnScheduleANewAppointmentBtn()
+}
+
 class ListClientsAppointmentsCollectionViewCell: UICollectionViewCell {
     
   static let identifier = "ListOfAppointmentsCollectionViewCell"
+  weak var delegate: ListClientsAppointmentsCollectionViewCellDelegate?
   
   private let userImage: UIImageView = {
     let img = UIImageView()
@@ -103,6 +110,7 @@ class ListClientsAppointmentsCollectionViewCell: UICollectionViewCell {
   override init(frame: CGRect) {
     super.init(frame: frame)
     setUpBtn()
+    configureActionOfMenuBtnOptions()
     setUpUI()
   }
   
@@ -146,25 +154,48 @@ class ListClientsAppointmentsCollectionViewCell: UICollectionViewCell {
     menuBtn.layer.borderColor = #colorLiteral(red: 0.7682896852, green: 0.7757481933, blue: 0.817332685, alpha: 1)
     menuBtn.translatesAutoresizingMaskIntoConstraints = false
     
-    menuBtn.menu = UIMenu(children: [
-      UIAction(title: "Cancelar cita",
-               image: UIImage(systemName: "xmark"),
-               attributes: .destructive
-              ) { _ in
-        print("Cancelaste cita")
-      },
-      
-      UIAction(title: "Reagendar cita",
-               image: UIImage(named: "calendarBlue")) { _ in
-        print("re-agendaste cita")
-      },
-      
-      UIAction(title: "Agendar cita nueva",
-               image: UIImage(systemName: "calendar.badge.plus")) { _ in
-        print("Agendaste nueva cita")
-      }
-    ])
+  }
+  
+  func configureActionOfMenuBtnOptions() {
     
+//        menuBtn.menu = UIMenu(children: [
+//          UIAction(title: "Cancelar cita",
+//                   image: UIImage(systemName: "xmark"),
+//                   attributes: .destructive
+//                  ) { _ in
+//            print("Cancelaste cita")
+//          },
+//
+//          UIAction(title: "Reagendar cita",
+//                   image: UIImage(named: "calendarBlue")) { _ in
+//            print("re-agendaste cita")
+//          },
+//
+//          UIAction(title: "Agendar cita nueva",
+//                   image: UIImage(systemName: "calendar.badge.plus")) { _ in
+//            print("Agendaste nueva cita")
+//          }
+//        ])
+//
+//        menuBtn.showsMenuAsPrimaryAction = true
+    
+    let cancelAppointment = UICommand(title: "Cancelar cita",
+                                      image: UIImage(systemName: "xmark"),
+                                      action: #selector(didpTapAppoinmentCancelled),
+                                      attributes: .destructive)
+
+    let reSchedule = UICommand(title:"Reagendar cita",
+                               image: UIImage(named: "calendarBlue"),
+                               action: #selector(dipTapRescheduleAppointment))
+
+    let scheduleNewAppointment = UICommand(title:"Agendar nueva cita",
+                                           image: UIImage(systemName: "calendar.badge.plus"),
+                                           action: #selector(dipTapScheduleAppointment))
+
+    menuBtn.menu = UIMenu(children: [reSchedule,
+                                     scheduleNewAppointment,
+                                     cancelAppointment])
+
     menuBtn.showsMenuAsPrimaryAction = true
   }
   
@@ -242,8 +273,6 @@ class ListClientsAppointmentsCollectionViewCell: UICollectionViewCell {
       menuBtn.topAnchor.constraint(equalTo: dateStack.bottomAnchor, constant:16),
       menuBtn.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
       menuBtn.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -32),
-      
-
     
     ])
   }
@@ -252,8 +281,21 @@ class ListClientsAppointmentsCollectionViewCell: UICollectionViewCell {
     print("ok")
   }
   
+  @objc func didpTapAppoinmentCancelled() {
+    delegate?.didTapOnCancelAppointmentBtn()
+  }
+  
+  @objc func dipTapRescheduleAppointment() {
+    delegate?.didTapOnRescheduleAppointmentBtn()
+  }
+  
+  @objc func dipTapScheduleAppointment() {
+    delegate?.didTapOnScheduleANewAppointmentBtn()
+  }
+ 
+  
   @objc func dipTapMenuTapped() {
-    print("ok")
+    ""
   }
   
 }

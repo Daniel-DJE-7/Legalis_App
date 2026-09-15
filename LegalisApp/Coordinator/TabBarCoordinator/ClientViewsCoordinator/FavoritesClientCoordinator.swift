@@ -48,7 +48,6 @@ extension FavoritesClientCoordinator: BookingCoordinatorDelegate {
   
   //aqui FavoritesClientCoordinator le avisa a MainClientTabBarCoordinator que quiere ir a citas en el tabar
   func bookingCoordinatorDidFinishWithSuccess(_ coordinator: BookingCoordinator) {
-//    navigationController?.popToRootViewController(animated: false)
     delegate?.favoritesCoordinatorDidRequestAppointmentsTab(self)
   }
   
