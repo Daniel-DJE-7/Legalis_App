@@ -295,7 +295,7 @@ class ListClientsAppointmentsCollectionViewCell: UICollectionViewCell {
  
   
   @objc func dipTapMenuTapped() {
-    ""
+    
   }
   
 }

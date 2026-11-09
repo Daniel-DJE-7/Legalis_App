@@ -24,6 +24,8 @@ class HomeLawyerViewController: CoreCollectionViewController {
       configureNavBar()
       registerCells()
       configureLayout()
+      
+      testAPIConnection()
     }
   
   
@@ -225,5 +227,30 @@ extension HomeLawyerViewController: UICollectionViewDelegateFlowLayout {
     header.configure(with: headerTitle)
     
     return header
+  }
+}
+
+extension HomeLawyerViewController {
+  private func testAPIConnection() {
+
+      Task {
+
+          do {
+
+            let users = try await APICaller.shared.getUser()
+
+              print("Conexión exitosa con Legalis API")
+
+              for user in users {
+
+                  print("Usuario: \(user.name)")
+                  print("Correo: \(user.email)")
+              }
+
+          } catch {
+
+              print("Error: \(error.localizedDescription)")
+          }
+      }
   }
 }
