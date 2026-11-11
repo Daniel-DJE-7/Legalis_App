@@ -30,8 +30,8 @@ protocol LawyersSignUpViewDelegate: AnyObject {
   func onCancelPasswordBtnTapped()
   
   //Type of practice
-  func onDoneBtnTypeOfPracticePressed()
-  func onCancelBtnTypeOfPracticePressed()
+//  func onDoneBtnTypeOfPracticePressed()
+//  func onCancelBtnTypeOfPracticePressed()
   
   //SignUpBtn
   func onSignUpBtnTapped(with userType: UserType)
@@ -51,8 +51,8 @@ class LawyersSignUpView: UIView {
     RegisterModel(leftImage: UIImage(systemName: "iphone"), placeholder: "Celular", rightImage: nil),
     RegisterModel(leftImage: UIImage(named: "email"), placeholder: "Correo", rightImage: nil),
     RegisterModel(leftImage: UIImage(systemName: "key.fill"), placeholder: "Contraseña", rightImage: nil),
-    RegisterModel(leftImage: UIImage(named: "sexIcon"), placeholder: "Seleccione sexo", rightImage: UIImage(systemName: "chevron.down")),
-    RegisterModel(leftImage: UIImage(named: "work_work_symbol"), placeholder: "Independiente o Dependiente", rightImage: UIImage(systemName: "chevron.down"))
+    RegisterModel(leftImage: UIImage(named: "sexIcon"), placeholder: "Seleccione sexo", rightImage: UIImage(systemName: "chevron.down"))
+    //RegisterModel(leftImage: UIImage(named: "work_work_symbol"), placeholder: "Independiente o Dependiente", rightImage: UIImage(systemName: "chevron.down"))
   ]
   
   let htmlHelper = HTMLText()
@@ -71,7 +71,7 @@ class LawyersSignUpView: UIView {
   
   //MARK: - PickerViews
   public let sexPickerView = UIPickerView()
-  public let practiceTypePickerView = UIPickerView()
+//  public let practiceTypePickerView = UIPickerView()
   
   
   
@@ -163,16 +163,16 @@ class LawyersSignUpView: UIView {
   }()
   
   
-  lazy var toolBarForTypeOfPractice: UIToolbar = {
-    let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
-    let doneSixBtn = Utilities.createBtnForThePickerView(title: "Hecho", image: nil, target: self, action: #selector(onDoneTypeOfPracticePressed), color: #colorLiteral(red: 0.003979303874, green: 0.137050271, blue: 0.2949559987, alpha: 1))
-    let spaceSixBtn = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-    let cancelSixBtn = Utilities.createBtnForThePickerView(title: "Cancelar", image: nil, target: self, action: #selector(onCancelTypeOfPracticePressed), color: #colorLiteral(red: 0.7241197066, green: 0.1285783471, blue: 0, alpha: 1))
-    toolbar.setItems([cancelSixBtn, spaceSixBtn, doneSixBtn], animated: false)
-    toolbar.sizeToFit()
-    
-    return toolbar
-  }()
+//  lazy var toolBarForTypeOfPractice: UIToolbar = {
+//    let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
+//    let doneSixBtn = Utilities.createBtnForThePickerView(title: "Hecho", image: nil, target: self, action: #selector(onDoneTypeOfPracticePressed), color: #colorLiteral(red: 0.003979303874, green: 0.137050271, blue: 0.2949559987, alpha: 1))
+//    let spaceSixBtn = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+//    let cancelSixBtn = Utilities.createBtnForThePickerView(title: "Cancelar", image: nil, target: self, action: #selector(onCancelTypeOfPracticePressed), color: #colorLiteral(red: 0.7241197066, green: 0.1285783471, blue: 0, alpha: 1))
+//    toolbar.setItems([cancelSixBtn, spaceSixBtn, doneSixBtn], animated: false)
+//    toolbar.sizeToFit()
+//
+//    return toolbar
+//  }()
   
   let color: UIColor = #colorLiteral(red: 0.9724870324, green: 0.9721793532, blue: 0.9929525256, alpha: 1)
   
@@ -267,11 +267,11 @@ class LawyersSignUpView: UIView {
         txtField.inputAccessoryView = toolBarForSelectSex
       }
       
-      if index == 6 {
-        txtField.tintColor = .clear//hide the cursor of the textfield
-        txtField.inputView = practiceTypePickerView
-        txtField.inputAccessoryView = toolBarForTypeOfPractice
-      }
+//      if index == 6 { oscar@g.com
+//        txtField.tintColor = .clear//hide the cursor of the textfield
+//        txtField.inputView = practiceTypePickerView
+//        txtField.inputAccessoryView = toolBarForTypeOfPractice
+//      }
       
       //adding the txtfield to the array of textfield
       textFields.append(txtField)
@@ -493,14 +493,14 @@ class LawyersSignUpView: UIView {
   }
   
   //selecting type of practice
-  @objc func onDoneTypeOfPracticePressed() {
-    delegate?.onDoneBtnTypeOfPracticePressed()
-  }
-  
-  @objc func onCancelTypeOfPracticePressed() {
-    delegate?.onCancelBtnTypeOfPracticePressed()
-  }
-  
+//  @objc func onDoneTypeOfPracticePressed() {
+//    delegate?.onDoneBtnTypeOfPracticePressed()
+//  }
+//
+//  @objc func onCancelTypeOfPracticePressed() {
+//    delegate?.onCancelBtnTypeOfPracticePressed()
+//  }
+//
   //MARK: - SignUp btn
  @objc private func onSignUpTapped() {
    

@@ -268,13 +268,11 @@ class WelcomeView: UIView {
   
     @objc
     func clientsSingUp() {
-      print("Hello client")
       delegate?.clientSignUp()
     }
   
   @objc
   func lawyersSignUp() {
-    print("Hello lawyer")
     delegate?.lawyerSignUp()
   }
   

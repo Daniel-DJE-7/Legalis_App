@@ -745,18 +745,6 @@ class ClientsSignUpView: UIView {
   
   //MARK: - SignUpBtn
   @objc func diptapSignUpBtn() {
-      
-    print("btn is working")
-    
-    //poner una alerta cuando el usuario no acepto los terminos
-    /*
-     si usario seleccionó térms {
-     recibir el evento del checbox
-     entonces mandalo al homeView
-     } else {
-     muestra la alerta: "para ingresar debes aceptar los terms"
-     }
-     */
     delegate?.onSignUpBtnPressed(accepted: checkboxBtn.isSelected, with: .client)
   }
   

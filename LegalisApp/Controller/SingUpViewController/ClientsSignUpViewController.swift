@@ -38,8 +38,6 @@ class ClientsSignUpViewController: UIViewController {
     //html delegate
     clientsSignUpView.htmlTextView.delegate = self
   }
-  
-
 }
 
 extension ClientsSignUpViewController: ClientsSignUpViewDelegate {
@@ -99,12 +97,11 @@ extension ClientsSignUpViewController: ClientsSignUpViewDelegate {
     clientsSignUpView.passwordTextField.endEditing(true)
   }
 
-  //SIGN UP BTN
+  //MARK: - SIGN UP BTN
   func onSignUpBtnPressed(accepted: Bool, with userType: UserType) {
-    if accepted && userType == .client {
-      coordinator?.userDidSingUpSuccessfully()
-    } else {
-      
+    
+    // Primero verificamos la aceptación de términos
+    guard accepted else {
       let acceptTermsAlert = Utilities.creatingAlerts(
         style: .default,
         titleAction: "Activar términos y condiciones",
@@ -113,12 +110,171 @@ extension ClientsSignUpViewController: ClientsSignUpViewDelegate {
         preferredStyle: .alert)
       
       self.present(acceptTermsAlert, animated: true)
+      return
+    }
+    
+    // Extraemos la información del formulario
+    let credentials = extractionOfCredentials()
+    
+    // Validamos los campos con los regex
+    let validation = validateCredentials(credentials: credentials)
+    
+    guard validation == .success else {
+          showValidationError(validation)
+          return
+      }
+    
+    // Registramos al cliente
+    if userType == .client {
+      registerClient(credentials: credentials, userType: userType)
     }
   }
   
+  // MARK: - Extraction of credentials
+  private func extractionOfCredentials() -> ExtractingCredentialsModel {
+
+        let name = clientsSignUpView.nameTextField.text?
+            .trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+
+        let numberOfDocument = clientsSignUpView.idDocumentTextField.text?
+            .trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+
+        let mobileNumber = clientsSignUpView.phoneNumberTextField.text?
+            .trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+
+        let email = clientsSignUpView.emailTextField.text?
+            .trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+
+        let password = clientsSignUpView.passwordTextField.text ?? ""
+
+        // Sexo opcional
+        let selectedSex = clientsSignUpView.sexDropDownBtn.text?
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+
+        let sex: Sex?
+
+        switch selectedSex {
+        case "Masculino":
+            sex = .male
+
+        case "Femenino":
+            sex = .female
+
+        default:
+            // "Ninguno", campo vacío o sin selección
+            sex = nil
+        }
+
+        return ExtractingCredentialsModel(
+            name: name,
+            numberOfDocument: numberOfDocument,
+            mobileNumber: mobileNumber,
+            email: email,
+            password: password,
+            sex: sex
+        )
+    }
+  
+  // MARK: - Validation
+  private func validateCredentials(credentials: ExtractingCredentialsModel) -> TextFieldValidation {
+
+      return CredentialsValidator.validateCredentials(credentials: credentials)
+  }
+  
+  private func showValidationError(_ validation: TextFieldValidation) {
+    let message: String
+    
+    switch validation {
+      case .emptyFields:
+          message = "Debes completar todos los campos obligatorios."
+
+      case .invalidName:
+          message = "El nombre no tiene un formato válido."
+
+      case .invalidEmail:
+          message = "El correo electrónico no tiene un formato válido."
+
+      case .invalidPassword:
+          message = "La contraseña debe tener mínimo 8 caracteres, una mayúscula, una minúscula, un número y un carácter especial."
+
+      case .invalidNumberOfDocument:
+          message = "El número de documento no tiene un formato válido."
+
+      case .invalidNumberOfCellPhone:
+          message = "El número de celular no tiene un formato válido."
+
+      case .success:
+          return
+    }
+    
+    let alert = Utilities.creatingAlerts(style: .default,
+                                         titleAction: "Entendido",
+                                         titleAlert: "Verifica tus datos",
+                                         message: message,
+                                         preferredStyle: .alert)
+    
+    present(alert, animated: true)
+  
+  }
   
 }
 
+extension ClientsSignUpViewController {
+  
+  // MARK: - Register client
+  private func registerClient(credentials: ExtractingCredentialsModel, userType: UserType) {
+    
+    let sexValue: String?
+    
+    switch credentials.sex {
+      case .male:
+          sexValue = "male"
+
+      case .female:
+          sexValue = "female"
+
+      case .none:
+          sexValue = nil
+    }
+    
+    let accountType = "client"
+    
+    let newClient = UserRegistrationModel(name: credentials.name,
+                                          email: credentials.email,
+                                          password: credentials.password,
+                                          identityCard: credentials.numberOfDocument,
+                                          phoneNumber: credentials.mobileNumber,
+                                          sex: sexValue,
+                                          accountType: accountType)
+    
+    Task {
+      
+      do {
+        let registeredUser = try await APICaller.shared.registerUser(user: newClient)
+        print("Cliente registrado correctamente")
+        print("ID: \(registeredUser.id)")
+        print("Nombre: \(registeredUser.name)")
+        print("Correo: \(registeredUser.email)")
+        await MainActor.run {
+          self.coordinator?.userDidSingUpSuccessfully()
+        }
+  
+      } catch {
+        print("Error al registrar cliente: \(error.localizedDescription)")
+        await MainActor.run {
+          let alert = Utilities.creatingAlerts(style: .default,
+                                               titleAction: "Entendido",
+                                               titleAlert: "Error en el registro",
+                                               message: error.localizedDescription,
+                                               preferredStyle: .alert)
+          self.present(alert, animated: true)
+        }
+      }
+    }
+  }
+}
+
+//MARK: - TEXTVIEW DELEGATE
 extension ClientsSignUpViewController: UITextViewDelegate {
   
   func textView(_ textView: UITextView,

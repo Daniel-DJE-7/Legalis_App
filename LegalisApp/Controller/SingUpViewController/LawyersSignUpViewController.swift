@@ -24,7 +24,7 @@ class LawyersSignUpViewController: CoreCollectionViewController {
   weak var coordinator: LawyerCoordinator?
   
   private let gendersOptions = ["Ninguno","Masculino", "Femenino"]
-  private let practiceType = ["Ninguno","Independiente", "Bufete o Empresa"]
+  //private let practiceType = ["Ninguno","Independiente", "Bufete o Empresa"]
   
   let lawyersSignUpView = LawyersSignUpView()
   
@@ -53,12 +53,12 @@ class LawyersSignUpViewController: CoreCollectionViewController {
     lawyersSignUpView.sexPickerView.delegate = self
     lawyersSignUpView.sexPickerView.dataSource = self
     
-    lawyersSignUpView.practiceTypePickerView.delegate = self
-    lawyersSignUpView.practiceTypePickerView.dataSource = self
+//    lawyersSignUpView.practiceTypePickerView.delegate = self
+//    lawyersSignUpView.practiceTypePickerView.dataSource = self
     
     // TextFields to block manual typing
     lawyersSignUpView.textFields[5].delegate = self
-    lawyersSignUpView.textFields[6].delegate = self
+//    lawyersSignUpView.textFields[6].delegate = self
     
     //html delegate
     lawyersSignUpView.htmlTextView.delegate = self
@@ -85,20 +85,20 @@ extension LawyersSignUpViewController: UIPickerViewDelegate, UIPickerViewDataSou
   
   //Returns the numbers of rows that should be displayed in the columns
   func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-    if pickerView == lawyersSignUpView.sexPickerView {
+    //if pickerView == lawyersSignUpView.sexPickerView {
       return gendersOptions.count
-    }
-    return practiceType.count
+    //}
+    //return practiceType.count 
   }
   
   //MARK: - DELEGATES
   
   func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
     //gendersOptions[row]
-    if pickerView == lawyersSignUpView.sexPickerView {
+    //if pickerView == lawyersSignUpView.sexPickerView {
       return gendersOptions[row]
-    }
-    return practiceType[row]
+    //}
+    //return practiceType[row]
   }
   
   func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
@@ -107,9 +107,9 @@ extension LawyersSignUpViewController: UIPickerViewDelegate, UIPickerViewDataSou
       
     }
     
-    if pickerView == lawyersSignUpView.practiceTypePickerView {
-      lawyersSignUpView.textFields[6].text = practiceType[row]
-    }
+//    if pickerView == lawyersSignUpView.practiceTypePickerView {
+//      lawyersSignUpView.textFields[6].text = practiceType[row]
+//    }
   }
 }
 
@@ -207,14 +207,14 @@ extension LawyersSignUpViewController: LawyersSignUpViewDelegate {
   }
   
   //MARK: - Actions for the type Of practice pickerView
-  func onDoneBtnTypeOfPracticePressed() {
-    self.lawyersSignUpView.textFields[6].endEditing(true)
-  }
-  
-  func onCancelBtnTypeOfPracticePressed() {
-    self.lawyersSignUpView.textFields[6].text = nil
-    self.lawyersSignUpView.textFields[6].endEditing(true)
-  }
+//  func onDoneBtnTypeOfPracticePressed() {
+//    self.lawyersSignUpView.textFields[6].endEditing(true)
+//  }
+//  
+//  func onCancelBtnTypeOfPracticePressed() {
+//    self.lawyersSignUpView.textFields[6].text = nil
+//    self.lawyersSignUpView.textFields[6].endEditing(true)
+//  }
  
   //MARK: - SignUp Btn
   func onSignUpBtnTapped(with userType: UserType) {
@@ -228,7 +228,7 @@ extension LawyersSignUpViewController: LawyersSignUpViewDelegate {
         //4) validate the password as min 1 lowercase, 1 uppercase, one number, 1 special character, min 8 characters
       //validate optional field sex and typeOfpractice as optionals, there is not obligation to select them
     let credentialsExtracted = extractionOfCredentials()
-    let credentialsValidation = validateCredentials(credentials: credentialsExtracted)
+    let credentialsValidation = CredentialsValidator.validateCredentials(credentials: credentialsExtracted)
     
     switch credentialsValidation {
       case .emptyFields:
@@ -320,15 +320,7 @@ extension LawyersSignUpViewController: LawyersSignUpViewDelegate {
       case .success:
       
       if userType == .lawyer {
-        
-        coordinator?.userDidSignUpSuccessfully()
-//        let mainTabBar = MainTabBarItemNavigationController()
-//       // mainTabBar.selectedViewController = mainTabBar.viewControllers?[0]
-//        // mainTabBar.selectedIndex = 0
-//        mainTabBar.updateUserType(.lawyer)
-//        mainTabBar.modalPresentationStyle = .fullScreen
-//        mainTabBar.modalTransitionStyle = .crossDissolve
-//        present(mainTabBar, animated: true)
+        registerLawyer(credentials: credentialsExtracted, userType: userType)
       }
     }//switch end
   }//func onSignUp end
@@ -366,73 +358,88 @@ extension LawyersSignUpViewController: LawyersSignUpViewDelegate {
       sex = .female
     }
     
-    let selectionOfpracticeType = lawyersSignUpView.practiceTypePickerView.selectedRow(inComponent: 0)
-    
-    var practiceType: PracticeType? = nil
-    
-    switch selectionOfpracticeType {
-      case 0:
-        practiceType = PracticeType.none
-      case 1:
-        practiceType = .independent
-      case 2:
-        practiceType = .employee
-      default:
-        practiceType = nil
-    }
+//    let selectionOfpracticeType = lawyersSignUpView.practiceTypePickerView.selectedRow(inComponent: 0)
+//
+//    var practiceType: PracticeType? = nil
+//
+//    switch selectionOfpracticeType {
+//      case 0:
+//        practiceType = PracticeType.none
+//      case 1:
+//        practiceType = .independent
+//      case 2:
+//        practiceType = .employee
+//      default:
+//        practiceType = nil
+//    }
     
    return ExtractingCredentialsModel(name: name,
                                      numberOfDocument: documentNumber,
                                      mobileNumber: mobileNumber,
                                      email: email,
                                      password: password,
-                                     sex: sex,
-                                     practiceType: practiceType)
+                                     sex: sex
+                                     //practiceType: practiceType
+                                    )
   }
   
-  
-  //MARK: - Validation of credentials
-  func validateCredentials(credentials: ExtractingCredentialsModel) -> TextFieldValidation {
+}
+
+extension LawyersSignUpViewController {
+  private func registerLawyer(credentials: ExtractingCredentialsModel, userType: UserType) {
+
+      // Convertir el sexo al formato que espera FastAPI
+      let sexValue: String?
+
+      switch credentials.sex {
+        case .male:
+            sexValue = "male"
+        case .female:
+            sexValue = "female"
+        case .none:
+            sexValue = nil
+      }
+
+    let accountType: String = "lawyer"
     
-    let validateName = RegexParametersValidation.isValidName(credentials.name)
-    let validateEmail = RegexParametersValidation.isValidEmail(credentials.email)
-    let validatePassword = RegexParametersValidation.isPasswordValid(credentials.password)
-    let validateNumberOfDocument = RegexParametersValidation.isValidNumber(credentials.numberOfDocument)
-    let validateCellphoneNumber = RegexParametersValidation.isValidNumber(credentials.mobileNumber)
     
-    //MARK: - Empty fields
-    
-    if credentials.name.isEmpty || credentials.numberOfDocument.isEmpty || credentials.mobileNumber.isEmpty || credentials.email.isEmpty || credentials.password.isEmpty {
-      return .emptyFields
-    }
-    
-    //MARK: - Name validation
-    if !validateName {
-      return .invalidName
-    }
-    
-    //MARK: - Email validation
-    
-    if !validateEmail {
-      return .invalidEmail
-    }
-    
-    //MARK: - Password validation
-    if !validatePassword {
-      return .invalidPassword
-    }
-    
-    //MARK: - Number of document validation
-    if !validateNumberOfDocument {
-      return .invalidNumberOfDocument
-    }
-    
-    //MARK: - cellphone number validation
-    if !validateCellphoneNumber {
-      return .invalidNumberOfCellPhone
-    }
-    
-    return .success
+      // Crear el modelo que enviaremos al backend miriam@g.com
+      let newLawyer = UserRegistrationModel(
+          name: credentials.name,
+          email: credentials.email,
+          password: credentials.password,
+          identityCard: credentials.numberOfDocument,
+          phoneNumber: credentials.mobileNumber,
+          sex: sexValue,
+          accountType: accountType
+      )
+
+      // Enviar los datos a la API
+      Task {
+          do {
+              let registeredUser = try await APICaller.shared.registerUser(user: newLawyer)
+
+              print("Abogado registrado correctamente")
+              print("ID: \(registeredUser.id)")
+              print("Nombre: \(registeredUser.name)")
+              print("Correo: \(registeredUser.email)")
+
+              // Navegar solamente cuando el backend confirme el registro
+              self.coordinator?.userDidSignUpSuccessfully()
+
+          } catch {
+              print("Error al registrar abogado: \(error.localizedDescription)")
+
+              let alert = Utilities.creatingAlerts(
+                  style: .default,
+                  titleAction: "Aceptar",
+                  titleAlert: "ERROR AL REGISTRAR",
+                  message: error.localizedDescription,
+                  preferredStyle: .alert
+              )
+
+              self.present(alert, animated: true)
+          }
+      }
   }
-  
 }

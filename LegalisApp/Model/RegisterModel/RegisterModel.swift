@@ -33,5 +33,5 @@ struct ExtractingCredentialsModel {
   let email: String
   let password: String
   let sex: Sex?
-  let practiceType: PracticeType?
+  //let practiceType: PracticeType?
 }

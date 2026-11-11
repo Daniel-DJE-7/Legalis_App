@@ -68,7 +68,7 @@ final class APICaller {
       return try decoder.decode([UserModel].self, from: data)
       
     } catch let error as APIError {
-        throw error
+      throw error
     } catch let error as DecodingError {
       print("Error de decodificación: \(error)")
       throw APIError.decodingError
@@ -79,7 +79,56 @@ final class APICaller {
     
   }
   
+  func registerUser(user: UserRegistrationModel) async throws -> UserModel {
+    
+    guard let url = URL(string: APIEndopoint.users) else {
+      throw APIError.invalidURL
+    }
+    
+    var request = URLRequest(url: url)
+    request.httpMethod = "POST"
+    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+    
+    do {
+      // Convertir el modelo Swift a JSON
+      let encoder = JSONEncoder()
+      encoder.keyEncodingStrategy = .convertToSnakeCase
+      request.httpBody = try encoder.encode(user)
+      
+      // Enviar la petición al backend
+      let (data, response) = try await URLSession.shared.data(for: request)
+      
+      guard let httpResponse = response as? HTTPURLResponse else {
+        throw APIError.invalidResponse
+      }
+      
+      // Comprobar la respuesta del servidor
+      guard (200...299).contains(httpResponse.statusCode) else {
+        print("Error del servidor:")
+        print(String(data: data, encoding: .utf8) ?? "Sin información")
+        throw APIError.serverError(httpResponse.statusCode)
+      }
+      
+      // Convertir la respuesta JSON a UserModel
+      let decoder = JSONDecoder()
+      decoder.keyDecodingStrategy = .convertFromSnakeCase
+      
+      return try decoder.decode(UserModel.self, from: data)
+      
+    } catch let error as APIError {
+      throw error
+    } catch let error as EncodingError {
+      print("Error al convertir los datos: \(error)")
+      throw APIError.decodingError
+    } catch let error as DecodingError {
+      print("Error al interpretar la respuesta: \(error)")
+      throw APIError.decodingError
+    } catch {
+      print("Error de conexión: \(error)")
+      throw APIError.networkError
+    }
+    
+  }
+  
+  
 }
-
-
-
