@@ -181,6 +181,7 @@ extension ClientsSignUpViewController: ClientsSignUpViewDelegate {
       return CredentialsValidator.validateCredentials(credentials: credentials)
   }
   
+  //MARK: - SHOW ALERTS ERRORS
   private func showValidationError(_ validation: TextFieldValidation) {
     let message: String
     
@@ -198,10 +199,10 @@ extension ClientsSignUpViewController: ClientsSignUpViewDelegate {
           message = "La contraseña debe tener mínimo 8 caracteres, una mayúscula, una minúscula, un número y un carácter especial."
 
       case .invalidNumberOfDocument:
-          message = "El número de documento no tiene un formato válido."
+          message = "El número de documento debe contener 10 digitos."
 
       case .invalidNumberOfCellPhone:
-          message = "El número de celular no tiene un formato válido."
+          message = "El número de celular debe contener 10 digitos."
 
       case .success:
           return
@@ -256,7 +257,7 @@ extension ClientsSignUpViewController {
         print("Nombre: \(registeredUser.name)")
         print("Correo: \(registeredUser.email)")
         await MainActor.run {
-          self.coordinator?.userDidSingUpSuccessfully()
+          self.coordinator?.userDidSingUpSuccessfully(userID: registeredUser.id)
         }
   
       } catch {

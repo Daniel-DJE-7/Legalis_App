@@ -14,8 +14,11 @@ class MainLawyerTabBarCoordinator: Coordinator {
   let tabBarController = MainTabBarItemNavigationController()
   weak var parentCoordinator: AppCoordinator?
   
-  init(navigationController: UINavigationController = UINavigationController()) {
+  let userID: Int
+  
+  init(navigationController: UINavigationController = UINavigationController(), userID: Int) {
     self.navigationController = navigationController
+    self.userID = userID
   }
   
   
@@ -31,7 +34,7 @@ class MainLawyerTabBarCoordinator: Coordinator {
     let profileNav = lawyerModuls[2]
     
     // 3. Inicializamos los coordinadores hijos del Abogado (debes crear estas clases similares a las del cliente)
-    let homeCoordinator = HomeLawyerCoordinator(navigationController: homeNav)
+    let homeCoordinator = HomeLawyerCoordinator(navigationController: homeNav, userID: userID)
     let chatCoordinator = ChatLawyerCoordinator(navigationController: chatNav)
     let profileCoordinator = ProfileLawyerCoordinator(navigationController: profileNav)
     

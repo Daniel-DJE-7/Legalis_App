@@ -22,8 +22,12 @@ class MainClientTabBarCoordinator: Coordinator {
   private var homeCoordinator: HomeClientCoordinator?
   private var appointmentCoordinator: AppointmentClientCoordinator?
   
-  init(navigationController: UINavigationController = UINavigationController()) {
+  let userID: Int
+  
+  init(navigationController: UINavigationController = UINavigationController(),
+       userID: Int) {
     self.navigationController = navigationController
+    self.userID = userID
   }
   
   func start() {
@@ -41,7 +45,9 @@ class MainClientTabBarCoordinator: Coordinator {
     let myAccountNav = clientModules[4]
     
     // 3. Inicializamos los coordinadores hijos inyectándoles SU PROPIO NavigationController
-    let homeCoordinator = HomeClientCoordinator(navigationController: homeNav, tabBarController: tabBarController)
+    let homeCoordinator = HomeClientCoordinator(navigationController: homeNav,
+                                                tabBarController: tabBarController,
+                                                userID: userID)
     homeCoordinator.tabBarDelegate = self
     self.homeCoordinator = homeCoordinator
     

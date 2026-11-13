@@ -24,7 +24,7 @@ class AppCoordinator: Coordinator {
   }
   
   //MARK: - Switching the tabBar according to user's role
-  func switchToFlow(for userType: UserType) {
+  func switchToFlow(for userType: UserType, userID: Int? = nil) {
     //limpiamos memoria en el array
     childCoordinators.removeAll()
     
@@ -33,7 +33,14 @@ class AppCoordinator: Coordinator {
     switch userType {
       
     case .client:
-      let clientTabBarCoordinator = MainClientTabBarCoordinator(navigationController: navigationController ?? UINavigationController())
+      
+      guard let userID = userID else {
+        print("Error: no se recibió el ID del cliente.")
+        return
+      }
+      
+      let clientTabBarCoordinator = MainClientTabBarCoordinator(navigationController: navigationController ?? UINavigationController(), userID: userID)
+      
       clientTabBarCoordinator.parentCoordinator = self
       childCoordinators.append(clientTabBarCoordinator)
       clientTabBarCoordinator.start()
@@ -42,7 +49,13 @@ class AppCoordinator: Coordinator {
       configureTabBar = clientTabBarCoordinator.tabBarController
       
     case .lawyer:
-      let lawyerTabBarCoordinator = MainLawyerTabBarCoordinator(navigationController: navigationController ?? UINavigationController())
+      
+      guard let userID = userID  else {
+        print("Error: no se recibió el ID del abogado.")
+        return
+      }
+      let lawyerTabBarCoordinator = MainLawyerTabBarCoordinator(navigationController: navigationController ?? UINavigationController(), userID: userID)
+      
       lawyerTabBarCoordinator.parentCoordinator = self
       childCoordinators.append(lawyerTabBarCoordinator)
       lawyerTabBarCoordinator.start()

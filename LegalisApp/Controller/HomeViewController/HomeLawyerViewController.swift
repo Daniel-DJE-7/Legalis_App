@@ -15,6 +15,8 @@ private enum SectionAppointment: Int, CaseIterable {
 class HomeLawyerViewController: CoreCollectionViewController {
   
   private let headerTitle = "PRÓXIMAS CITAS"
+  var userID: Int?
+  private var currentUserName = "Usuario"
   
   //MARK: - viewDidLoad
     override func viewDidLoad() {
@@ -25,7 +27,7 @@ class HomeLawyerViewController: CoreCollectionViewController {
       registerCells()
       configureLayout()
       
-      testAPIConnection()
+      fetchUserName()
     }
   
   
@@ -200,6 +202,7 @@ extension HomeLawyerViewController: UICollectionViewDelegateFlowLayout {
         return UICollectionViewCell()
       }
       
+      cell.configure(name: currentUserName)
       return cell
       
     case .appointments:
@@ -231,25 +234,40 @@ extension HomeLawyerViewController: UICollectionViewDelegateFlowLayout {
 }
 
 extension HomeLawyerViewController {
-  private func testAPIConnection() {
+  private func fetchUserName() {
+
+    guard let userID = userID else {
+      print("No se recibió el ID del usuario")
+      return
+    }
 
       Task {
-
           do {
 
             let users = try await APICaller.shared.getUser()
+            
+            guard let currentUser = users.first(where: {$0.id == userID}) else {
+              print("No se encontró el usuario con ID: \(userID)")
+              return
+            }
+            
+            print("Conexión exitosa con Legalis API")
+            print("Nombre: \(currentUser.name)")
+            print("ID: \(currentUser.id)")
+            
+            await MainActor.run {
+              self.currentUserName = currentUser.name
+              
+              let indexPath = IndexPath(item: 0, section: 0)
+              
+              self.collectionView.reloadItems(at: [indexPath])
+            }
 
-              print("Conexión exitosa con Legalis API")
-
-              for user in users {
-
-                  print("Usuario: \(user.name)")
-                  print("Correo: \(user.email)")
-              }
+              
 
           } catch {
 
-              print("Error: \(error.localizedDescription)")
+              print("Error al obtener el usuario: \(error.localizedDescription)")
           }
       }
   }

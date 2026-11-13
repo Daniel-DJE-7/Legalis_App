@@ -79,6 +79,8 @@ class GreetingsHeaderCollectionViewCell: UICollectionViewCell {
     ])
   }
   
-
+  func configure(name: String) {
+    usernameLabel.text = name
+  }
   
 }

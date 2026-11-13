@@ -8,7 +8,7 @@
 import UIKit
 
 protocol ClientCoordinatorDelegate: AnyObject {
-  func clientCoordinatorDidSignUpSuccessfully(_ coordinator: ClientCoordinator)
+  func clientCoordinatorDidSignUpSuccessfully(_ coordinator: ClientCoordinator, userID: Int)
 }
 
 class ClientCoordinator: Coordinator {
@@ -32,9 +32,9 @@ class ClientCoordinator: Coordinator {
   
   
   // Esta función es llamada por el ClientsSignUpViewController cuando el registro es exitoso
-  func userDidSingUpSuccessfully() {
+  func userDidSingUpSuccessfully(userID: Int) {
     // Notificamos al delegado (WelcomeViewController) que el flujo terminó con éxito
-    self.delegate?.clientCoordinatorDidSignUpSuccessfully(self)
+    self.delegate?.clientCoordinatorDidSignUpSuccessfully(self, userID: userID)
     viewController?.dismiss(animated: false)
     
   }

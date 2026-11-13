@@ -79,6 +79,8 @@ final class APICaller {
     
   }
   
+  
+  //MARK: - REGISTRAR USUARIO
   func registerUser(user: UserRegistrationModel) async throws -> UserModel {
     
     guard let url = URL(string: APIEndopoint.users) else {

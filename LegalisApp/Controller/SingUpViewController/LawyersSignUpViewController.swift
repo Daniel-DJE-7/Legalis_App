@@ -425,7 +425,7 @@ extension LawyersSignUpViewController {
               print("Correo: \(registeredUser.email)")
 
               // Navegar solamente cuando el backend confirme el registro
-              self.coordinator?.userDidSignUpSuccessfully()
+            self.coordinator?.userDidSignUpSuccessfully(userID: registeredUser.id)
 
           } catch {
               print("Error al registrar abogado: \(error.localizedDescription)")

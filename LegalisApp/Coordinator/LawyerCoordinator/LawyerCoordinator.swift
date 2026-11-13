@@ -8,7 +8,7 @@
 import UIKit
 
 protocol LawyerCoordinatorDelegate: AnyObject {
-  func lawyerCoordinatorDidSignUpSuccessfully(_ coordinator: LawyerCoordinator)
+  func lawyerCoordinatorDidSignUpSuccessfully(_ coordinator: LawyerCoordinator, userID: Int)
 }
 
 class LawyerCoordinator: Coordinator {
@@ -29,9 +29,9 @@ class LawyerCoordinator: Coordinator {
     viewController?.present(vc, animated: true)
   }
   
-  func userDidSignUpSuccessfully() {
+  func userDidSignUpSuccessfully(userID: Int) {
     // 1. Primero le avisamos al delegado para que el MainCoordinator cambie la raíz al TabBar de inmediato
-    self.delegate?.lawyerCoordinatorDidSignUpSuccessfully(self)
+    self.delegate?.lawyerCoordinatorDidSignUpSuccessfully(self, userID: userID)
     // 2. Luego cerramos el modal sin animación en segundo plano, para que no se vea de vuelta la welcomeview
     viewController?.dismiss(animated: false )
     

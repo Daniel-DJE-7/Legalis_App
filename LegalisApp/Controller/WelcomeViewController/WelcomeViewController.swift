@@ -48,16 +48,16 @@ class WelcomeViewController: UIViewController, welcomeViewDelegate, ClientCoordi
   
   // MARK: - ClientCoordinatorDelegate
   // Esta función se ejecuta automáticamente cuando el modal termina de cerrarse
-  func clientCoordinatorDidSignUpSuccessfully(_ coordinator: ClientCoordinator) {
+  func clientCoordinatorDidSignUpSuccessfully(_ coordinator: ClientCoordinator, userID: Int) {
     // Le ordenamos al coordinador raíz que cambie al TabBar del Cliente
-    mainCoordinator?.switchToFlow(for: .client)
+    mainCoordinator?.switchToFlow(for: .client, userID: userID)
     self.clientCoordinator = nil
    }
   
   // MARK: - LawyerCoordinatorDelegate
-   func lawyerCoordinatorDidSignUpSuccessfully(_ coordinator: LawyerCoordinator) {
+  func lawyerCoordinatorDidSignUpSuccessfully(_ coordinator: LawyerCoordinator, userID: Int) {
      //aqui estamos switcheando para que se vean las vistas de los abogados
-      mainCoordinator?.switchToFlow(for: .lawyer)
+      mainCoordinator?.switchToFlow(for: .lawyer, userID: userID)
      //Limpiamos la referencia para liberar memoria
      self.lawyerCoordinator = nil
    }

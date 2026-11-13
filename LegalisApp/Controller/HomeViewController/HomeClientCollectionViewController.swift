@@ -14,6 +14,9 @@ private enum SectionType: Int, CaseIterable {
 
 class HomeClientCollectionViewController: CoreCollectionViewController {
 
+  var userID: Int?
+  private var currentUserName = "Usuario"
+  
   weak var coordinator: HomeClientCoordinator?
   
   private let titleSecondSection = "ESPECIALIDADES"
@@ -28,7 +31,7 @@ class HomeClientCollectionViewController: CoreCollectionViewController {
       registerCells()
       configLayout()
       configureItemsInCells()
-      
+      fetchUserName()
     }
   
   override func viewDidLayoutSubviews() {
@@ -247,6 +250,7 @@ extension HomeClientCollectionViewController: UICollectionViewDelegateFlowLayout
         return UICollectionViewCell()
       }
       
+      cell.configure(name: currentUserName)
       return cell
       
       case .categories:
@@ -290,3 +294,35 @@ extension HomeClientCollectionViewController: UICollectionViewDelegateFlowLayout
   }
 }//Extension end
 
+extension HomeClientCollectionViewController {
+
+    private func fetchUserName() {
+
+        guard let userId = userID else {
+            print("No se recibió el ID del usuario")
+            return
+        }
+
+        Task {
+            do {
+                let users = try await APICaller.shared.getUser()
+
+                guard let currentUser = users.first(where: {$0.id == userId}) else {
+                    print("No se encontró el usuario con ID: \(userId)")
+                    return
+                }
+
+                await MainActor.run {
+                    self.currentUserName = currentUser.name
+
+                    let indexPath = IndexPath(item: 0, section: 0)
+
+                    self.collectionView.reloadItems(at: [indexPath])
+                }
+
+            } catch {
+                print("Error al obtener el usuario: \(error)")
+            }
+        }
+    }
+}

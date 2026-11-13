@@ -172,7 +172,9 @@ class HomeClientCollectionViewCell: UICollectionViewCell {
     ])
   }
   
-  
+  func configure(name: String) {
+    usernameLabel.text = name
+  }
   
 }
 

@@ -21,16 +21,21 @@ class HomeClientCoordinator: Coordinator, BookingCoordinatorDelegate {
   // Necesitamos una referencia al TabBar padre para poder cambiar de pestaña por código
   weak var tabBarController: MainTabBarItemNavigationController?
   
-  init(navigationController: UINavigationController? = nil, tabBarController: MainTabBarItemNavigationController) {
+  let userID: Int
+  
+  init(navigationController: UINavigationController? = nil,
+       tabBarController: MainTabBarItemNavigationController,
+       userID: Int) {
     self.navigationController = navigationController
     self.tabBarController = tabBarController
-    
+    self.userID = userID
   }
   
   func start() {
     
     if let homeVC = navigationController?.viewControllers.first as? HomeClientCollectionViewController {
       homeVC.coordinator = self
+      homeVC.userID = userID
     }
     
   }
