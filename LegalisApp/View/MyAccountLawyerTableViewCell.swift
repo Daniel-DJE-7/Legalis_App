@@ -111,6 +111,9 @@ class MyAccountPhotoCollectionViewCell: UICollectionViewCell {
     ])
   }
 
-  
+  func configure(name: String, email: String) {
+    lawyerNameLabel.text = name
+    lawyerMailLbl.text = email
+  }
   
 }

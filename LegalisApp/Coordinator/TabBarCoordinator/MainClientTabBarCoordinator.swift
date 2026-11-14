@@ -59,7 +59,7 @@ class MainClientTabBarCoordinator: Coordinator {
     
     let favoritesCoordinator = FavoritesClientCoordinator(navigationController: favoritesNav)
     favoritesCoordinator.delegate = self
-    let myAccountCoordinator = MyAccountClientCoordinator(navigationController: myAccountNav)
+    let myAccountCoordinator = MyAccountClientCoordinator(navigationController: myAccountNav, userID: userID)
     
     //4. guardamos referencias en memoria
     childCoordinators = [

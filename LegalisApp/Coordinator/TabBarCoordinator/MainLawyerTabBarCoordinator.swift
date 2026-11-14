@@ -36,7 +36,7 @@ class MainLawyerTabBarCoordinator: Coordinator {
     // 3. Inicializamos los coordinadores hijos del Abogado (debes crear estas clases similares a las del cliente)
     let homeCoordinator = HomeLawyerCoordinator(navigationController: homeNav, userID: userID)
     let chatCoordinator = ChatLawyerCoordinator(navigationController: chatNav)
-    let profileCoordinator = ProfileLawyerCoordinator(navigationController: profileNav)
+    let profileCoordinator = ProfileLawyerCoordinator(navigationController: profileNav, userID: userID)
     
     // 4. Guardamos las referencias de los flujos en memoria
     childCoordinators = [

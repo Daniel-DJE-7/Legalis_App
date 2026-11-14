@@ -251,10 +251,6 @@ extension HomeLawyerViewController {
               return
             }
             
-            print("Conexión exitosa con Legalis API")
-            print("Nombre: \(currentUser.name)")
-            print("ID: \(currentUser.id)")
-            
             await MainActor.run {
               self.currentUserName = currentUser.name
               
@@ -262,8 +258,6 @@ extension HomeLawyerViewController {
               
               self.collectionView.reloadItems(at: [indexPath])
             }
-
-              
 
           } catch {
 

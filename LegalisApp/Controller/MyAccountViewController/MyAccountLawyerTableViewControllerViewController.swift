@@ -10,6 +10,9 @@ import UIKit
 
 class MyAccountLawyerTableViewController: CoreCollectionViewController {
 
+  var userID: Int?
+  var currentUserName = "Usuario"
+  var currentUserEmail = ""
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -208,10 +211,12 @@ extension MyAccountLawyerTableViewController: UICollectionViewDelegateFlowLayout
     }
     switch section {
     case .profilePhoto:
+      
       guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyAccountPhotoCollectionViewCell.identifier, for: indexPath) as? MyAccountPhotoCollectionViewCell else {
           return UICollectionViewCell()
       }
       
+      cell.configure(name: currentUserName, email: currentUserEmail)
       return cell
    
     case .personalConfiguation, .settings, .logout:
@@ -272,7 +277,42 @@ extension MyAccountLawyerTableViewController: UICollectionViewDelegateFlowLayout
   
 }
 
+extension MyAccountLawyerTableViewController {
+  // MARK: - USER INFORMATION
+  func configure(userID: Int) {
+    self.userID = userID
+    fetchUserInformation()
+  }
+  
+  private func fetchUserInformation() {
+      guard let userID = userID else {
+          print("No se recibió el ID del usuario")
+          return
+      }
 
+      Task {
+          do {
+              let users = try await APICaller.shared.getUser()
 
+              guard let currentUser = users.first(where: {$0.id == userID}) else {
+                  print("No se encontró el usuario con ID: \(userID)")
+                  return
+              }
+
+              await MainActor.run {
+                  self.currentUserName = currentUser.name
+                  self.currentUserEmail = currentUser.email
+
+                  let indexPath = IndexPath(item: 0, section: 0)
+                  self.collectionView.reloadItems(at: [indexPath])
+              }
+
+          } catch {
+              print("Error al obtener los datos: \(error.localizedDescription)")
+          }
+      }
+  }
+                                            
+}
 
 
