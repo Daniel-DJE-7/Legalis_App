@@ -132,5 +132,96 @@ final class APICaller {
     
   }
   
+  // MARK: - REGISTRAR PAGO
+  func registerPayment(payment: PaymentCreateModel) async throws -> PaymentResponseModel {
+
+      guard let url = URL(string: APIEndopoint.payments) else {
+          throw APIError.invalidURL
+      }
+
+      var request = URLRequest(url: url)
+      request.httpMethod = "POST"
+      request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+
+      do {
+          let encoder = JSONEncoder()
+          encoder.keyEncodingStrategy = .convertToSnakeCase
+
+          request.httpBody = try encoder.encode(payment)
+
+          let (data, response) = try await URLSession.shared.data(for: request)
+
+          guard let httpResponse = response as? HTTPURLResponse else {
+              throw APIError.invalidResponse
+          }
+
+          guard httpResponse.statusCode == 201 else {
+              print("Error del servidor:", String(data: data, encoding: .utf8) ?? "")
+
+              throw APIError.serverError(httpResponse.statusCode)
+          }
+
+          let decoder = JSONDecoder()
+          decoder.keyDecodingStrategy = .convertFromSnakeCase
+
+          return try decoder.decode(PaymentResponseModel.self, from: data)
+
+      } catch let error as APIError {
+          throw error
+
+      } catch let error as DecodingError {
+          print("Error de decodificación: \(error)")
+          throw APIError.decodingError
+
+      } catch let error as EncodingError {
+          print("Error de codificación: \(error)")
+          throw APIError.decodingError
+
+      } catch {
+          print("Error de conexión: \(error)")
+          throw APIError.networkError
+      }
+  }
   
+  // MARK: - DISPONIBILIDAD DEL ABOGADO
+  func getLawyerAvailability(lawyerId: Int, date: String) async throws -> LawyerAvailabilityModel {
+
+      guard let url = URL(
+          string: APIEndopoint.lawyerAvailability(lawyerId: lawyerId,date: date)
+      ) else {
+          throw APIError.invalidURL
+      }
+
+      do {
+          let (data, response) = try await URLSession.shared.data(
+              from: url
+          )
+
+          guard let httpResponse = response as? HTTPURLResponse else {
+              throw APIError.invalidResponse
+          }
+
+          guard (200...299).contains(httpResponse.statusCode) else {
+              throw APIError.serverError(httpResponse.statusCode)
+          }
+
+          let decoder = JSONDecoder()
+          decoder.keyDecodingStrategy = .convertFromSnakeCase
+          decoder.dateDecodingStrategy = .iso8601
+
+          return try decoder.decode(
+              LawyerAvailabilityModel.self,
+              from: data
+          )
+
+      } catch let error as APIError {
+          throw error
+      } catch let error as DecodingError {
+          print("Error decodificando disponibilidad: \(error)")
+          throw APIError.decodingError
+      } catch {
+          print("Error consultando disponibilidad: \(error)")
+          throw APIError.networkError
+      }
+  }
 }

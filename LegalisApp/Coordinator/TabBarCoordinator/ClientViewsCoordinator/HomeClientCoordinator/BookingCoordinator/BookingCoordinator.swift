@@ -87,24 +87,6 @@ class BookingCoordinator: Coordinator {
   }
   
   
-  //MARK: - Escoger metodo en efectivo
-  func goToCashPaymentMethod() {
-    
-    let cashPaymentSuccesdVC = SuccessPaymentAppointmentCollectionViewController()
-    cashPaymentSuccesdVC.coordinator = self
-    paymentSheetNavigation?.pushViewController(cashPaymentSuccesdVC, animated: true)
-    
-  }
-  
-  //despues de seleccionar metodo en efectivo, lanza al agendamiento de cita exitoso
-  func goToCashSuccesPayment() {
-    //cambiar la vista de cash success payment porque no puede aparecer pago exitoso, sino solo agendamiento de cita y pago pendiente
-    let cashPaymentSuccesdVC = SuccessPaymentAppointmentCollectionViewController()
-    cashPaymentSuccesdVC.coordinator = self
-    paymentSheetNavigation?.pushViewController(cashPaymentSuccesdVC, animated: true)
-    
-  }
-  
   //llenar formulario de la tarjeta débito o crédito
   func goToFillCardInformationPaymentMethod() {
     
@@ -137,6 +119,16 @@ class BookingCoordinator: Coordinator {
     
   }
   
+  func goToPendingCashPayment(appointmentId: Int, pendingAmount: Int) {
+
+      let vc = PendingCashPaymentCollectionViewController()
+
+      vc.coordinator = self
+      vc.appointmentId = appointmentId
+      vc.pendingAmount = pendingAmount
+
+    paymentSheetNavigation?.pushViewController(vc, animated: true)
+  }
   
 }
 

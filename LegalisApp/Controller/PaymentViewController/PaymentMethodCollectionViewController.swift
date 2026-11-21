@@ -13,12 +13,16 @@ private enum SectionPayment: Int, CaseIterable {
   case continueBtn
 }
 
+@MainActor
 class PaymentMethodCollectionViewController: CoreCollectionViewController {
 
   private let titleMethodPayment = "MÉTODOS DE PAGO"
   private let methods = ["Crédito", "Débito"]
   
   weak var coordinator: BookingCoordinator?
+  
+  var appointmentId: Int = 0
+  private var isCreatingCashPayment = false
   
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -289,13 +293,79 @@ extension PaymentMethodCollectionViewController: UICollectionViewDelegateFlowLay
 extension PaymentMethodCollectionViewController: PaymentButtonsCollectionViewCellDelegate {
   
   func onVirtualPaymentPressed() {
-    
     coordinator?.goToFillCardInformationPaymentMethod()
   }
   
   func onPhysicalPaymentPressed() {
-    coordinator?.goToCashSuccesPayment()
+    //coordinator?.
+    registerCashPayment()
   }
   
+  @MainActor
+  private func registerCashPayment() {
+
+      guard !isCreatingCashPayment else { return }
+
+      guard appointmentId > 0 else {
+          showPaymentError("No se encontró la cita.")
+          return
+      }
+
+      isCreatingCashPayment = true
+
+      let payment = PaymentCreateModel(
+          appointmentId: appointmentId,
+          paymentMethod: "efectivo"
+      )
+
+      Task { @MainActor [weak self] in
+
+          guard let self else { return }
+
+          do {
+              let response = try await APICaller.shared.registerPayment(
+                  payment: payment
+              )
+
+              self.isCreatingCashPayment = false
+
+              guard response.paymentStatus ==
+                      "pendiente de pago presencial" else {
+
+                  self.showPaymentError(
+                      "El servidor devolvió un estado de pago inesperado."
+                  )
+                  return
+              }
+
+              self.coordinator?.goToPendingCashPayment(
+                  appointmentId: response.appointmentId,
+                  pendingAmount: Int(response.amount)
+              )
+
+          } catch {
+              self.isCreatingCashPayment = false
+              self.showPaymentError(error.localizedDescription)
+          }
+      }
+  }
+
+     private func showPaymentError(_ message: String) {
+
+         let alert = UIAlertController(
+             title: "Pago presencial",
+             message: message,
+             preferredStyle: .alert
+         )
+
+         alert.addAction(
+             UIAlertAction(
+                 title: "Aceptar",
+                 style: .default
+             )
+         )
+
+         present(alert, animated: true)
+     }
   
 }

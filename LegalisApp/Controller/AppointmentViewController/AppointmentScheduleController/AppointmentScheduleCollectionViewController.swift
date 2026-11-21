@@ -19,16 +19,18 @@ class AppointmentScheduleCollectionViewController: CoreCollectionViewController 
   weak var coordinator: BookingCoordinator?
   var selectedDate: DateComponents?
   
-  let hours: [String] = [
-    "8:30 AM",
-    "9:30 AM",
-    "10:30 AM",
-    "11:30 AM",
-    "1:30 PM",
-    "2:30 PM",
-    "3:30 PM",
-    "4:30 PM"
-  ]
+  var lawyerId: Int = 0
+  private var selectedSlot: LawyerAvailableSlotModel?
+  private var selectedModality: AppointmentModality?
+
+  private var displayedMonth = Date()
+
+  private var dayStates: [String: CalendarDayState] = [:]
+  private var availableSlots: [LawyerAvailableSlotModel] = []
+
+  private var isLoadingAvailability = false
+
+  private let colombiaTimeZone = TimeZone(identifier: "America/Bogota")!
   
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -200,6 +202,74 @@ class AppointmentScheduleCollectionViewController: CoreCollectionViewController 
     }
   }
 
+  private func loadAvailability(for date: String) {
+
+      guard lawyerId > 0 else {
+          showScheduleError("No se encontró el abogado.")
+          return
+      }
+
+      isLoadingAvailability = true
+
+      Task { @MainActor [weak self] in
+
+          guard let self = self else { return }
+
+          do {
+              let response = try await APICaller.shared.getLawyerAvailability(
+                  lawyerId: self.lawyerId,
+                  date: date
+              )
+
+              self.isLoadingAvailability = false
+
+              self.availableSlots = response.availableSlots
+
+              self.dayStates[date] = response.isHoliday
+                  ? .holiday
+                  : response.availableSlots.isEmpty
+                      ? .unavailable
+                      : .available
+
+              self.collectionView.reloadSections(
+                  IndexSet([
+                      SectionTypeAppointment.calendar.rawValue,
+                      SectionTypeAppointment.hours.rawValue
+                  ])
+              )
+
+          } catch {
+              self.isLoadingAvailability = false
+              self.showScheduleError(error.localizedDescription)
+          }
+      }
+  }
+
+  private func formatHour(_ date: Date) -> String {
+
+      let formatter = DateFormatter()
+      formatter.locale = Locale(identifier: "es_CO")
+      formatter.timeZone = colombiaTimeZone
+      formatter.dateFormat = "h:mm a"
+
+      return formatter.string(from: date)
+  }
+
+  private func showScheduleError(_ message: String) {
+
+      let alert = UIAlertController(
+          title: "Disponibilidad",
+          message: message,
+          preferredStyle: .alert
+      )
+
+      alert.addAction(
+          UIAlertAction(title: "Aceptar", style: .default)
+      )
+
+      present(alert, animated: true)
+  }
+  
 }
 
 extension AppointmentScheduleCollectionViewController: UICollectionViewDelegateFlowLayout {
@@ -215,7 +285,7 @@ extension AppointmentScheduleCollectionViewController: UICollectionViewDelegateF
     case .calendar:
       return 1
     case .hours:
-      return 8
+      return availableSlots.count
     case .modality:
       return 1
     case .continueBtn:
@@ -230,29 +300,43 @@ extension AppointmentScheduleCollectionViewController: UICollectionViewDelegateF
     switch section {
     case .calendar:
       guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CalendarCollectionViewCell.identifier, for: indexPath) as? CalendarCollectionViewCell else {
-        return UICollectionViewCell()
+          return UICollectionViewCell()
       }
+
       cell.delegate = self
-      
+
+      cell.configure(
+          month: displayedMonth,
+          selectedDate: selectedDate,
+          dayStates: dayStates
+      )
+
       return cell
       
     case .hours:
-      guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HoursCollectionViewCell.identifier, for: indexPath) as? HoursCollectionViewCell else {
-        return UICollectionViewCell()
+      guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HoursCollectionViewCell.identifier,for: indexPath) as? HoursCollectionViewCell else {
+          return UICollectionViewCell()
       }
-      cell.layer.cornerRadius = 8
-      cell.layer.borderColor = #colorLiteral(red: 0.7212437391, green: 0.7287658453, blue: 0.7661984563, alpha: 1)
-      cell.layer.borderWidth = 1
-      cell.backgroundColor = .white
-      cell.hourLabel.text = hours[indexPath.item]
+
+      let slot = availableSlots[indexPath.item]
+
+      cell.configure(
+          hour: formatHour(slot.startTime),
+          isAvailable: true,
+          isSelected: selectedSlot?.startTime == slot.startTime
+      )
+
       return cell
       
     case .modality:
       
       guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ModalityCollectionViewCell.identifier, for: indexPath) as? ModalityCollectionViewCell else {
-        return UICollectionViewCell()
+          return UICollectionViewCell()
       }
-      
+
+      cell.delegate = self
+      cell.configure(selected: selectedModality)
+
       return cell
     
     case .continueBtn:
@@ -265,38 +349,94 @@ extension AppointmentScheduleCollectionViewController: UICollectionViewDelegateF
     }
   }
   
+  override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    guard indexPath.section == SectionTypeAppointment.hours.rawValue,
+          availableSlots.indices.contains(indexPath.item) else {
+        return
+    }
+
+    selectedSlot = availableSlots[indexPath.item]
+
+    collectionView.reloadSections(
+        IndexSet(integer: SectionTypeAppointment.hours.rawValue)
+    )
+  }
+  
   
 }
 
 extension AppointmentScheduleCollectionViewController: CalendarCollectionViewCellDelegate {
-  
-  func calendar(cell: CalendarCollectionViewCell, didSelect date: DateComponents?) {
-    print(date)
-  }
+
+    func calendar(cell: CalendarCollectionViewCell, didSelect date: DateComponents?) {
+
+        selectedDate = date
+        selectedSlot = nil
+        availableSlots = []
+
+        collectionView.reloadSections(
+            IndexSet(integer: SectionTypeAppointment.hours.rawValue)
+        )
+
+        guard let date = date else { return }
+
+        let dateString = String(
+            format: "%04d-%02d-%02d",
+            date.year ?? 0,
+            date.month ?? 0,
+            date.day ?? 0
+        )
+
+        loadAvailability(for: dateString)
+    }
+
+    func calendar(cell: CalendarCollectionViewCell,didChangeMonth date: Date) {
+
+        displayedMonth = date
+
+        // Aquí consultaremos las fechas disponibles del mes.
+        // El endpoint actual devuelve disponibilidad por día.
+    }
+}
+
+extension AppointmentScheduleCollectionViewController: ModalityCollectionViewCellDelegate {
+
+    func modalityCell(_ cell: ModalityCollectionViewCell,didSelect modality: AppointmentModality) {
+
+        selectedModality = modality
+
+        collectionView.reloadSections(
+            IndexSet(integer: SectionTypeAppointment.modality.rawValue)
+        )
+    }
 }
 
 
 extension AppointmentScheduleCollectionViewController: ContinueButtonCollectionViewCellDelegate {
- 
-  func onContinueBtnTapped() {
-    
-    coordinator?.goToPaymentSummary()
-//    let vc = PaymentSummaryCollectionViewController()
-//    let nav = UINavigationController(rootViewController: vc)
-//
-//    nav.modalPresentationStyle = .pageSheet
-//    //get the sheet
-//    if let sheet = nav.sheetPresentationController{
-//      sheet.detents = [.custom { context in
-//        return context.maximumDetentValue * 0.8}
-//      ]
-//      sheet.prefersScrollingExpandsWhenScrolledToEdge = true
-//      sheet.prefersGrabberVisible = true
-//      sheet.preferredCornerRadius = 30
-//    }
-//
-//    navigationController?.present(nav, animated: true)
-  }
-  
-  
+
+    func onContinueBtnTapped() {
+
+        guard selectedDate != nil else {
+            showScheduleError("Selecciona una fecha.")
+            return
+        }
+
+        guard let slot = selectedSlot else {
+            showScheduleError("Selecciona una hora disponible.")
+            return
+        }
+
+        guard let modality = selectedModality else {
+            showScheduleError("Selecciona una modalidad.")
+            return
+        }
+
+        print("Inicio UTC:", slot.startTime)
+        print("Final UTC:", slot.endTime)
+        print("Modalidad:", modality.rawValue)
+
+        // Siguiente integración:
+        // POST /appointments/
+        // Guardar id_appointment en BookingCoordinator.
+        // Abrir PaymentSummary.
+    }
 }

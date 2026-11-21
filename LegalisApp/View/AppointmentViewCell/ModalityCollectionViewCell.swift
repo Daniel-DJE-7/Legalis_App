@@ -7,84 +7,136 @@
 
 import UIKit
 
-class ModalityCollectionViewCell: UICollectionViewCell {
-  
-  static let identifier = "ModalityCollectionViewCell"
-  
-  let virtualBtn = UIButton()
-  let physicalBtn = UIButton()
-  
-  override init(frame: CGRect) {
-    super.init(frame: frame)
-    setUpBtn()
-    setUpUI()
-  }
-  
-  required init?(coder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
-  
-  private func setUpBtn() {
-    Utilities.customButtonStyle(virtualBtn,
-                                appearance: .plain(),
-                                title: "Virtual",
-                                image: UIImage(systemName: "video.fill"),
-                                imagePlacement: .top,
-                                imagePadding: 8,
-                                cornerRadius: 12,
-                                cornerStyle: nil,
-                                backgroundColor: UIColor(red: 0, green: 0.1063321754, blue: 0.2393084168, alpha: 1),
-                                baseForeground: .systemBackground,
-                                width: nil,
-                                height: 91,
-                                target: self,
-                                action: #selector(dipTapModalityAppointment))
-    virtualBtn.translatesAutoresizingMaskIntoConstraints = false
-    
-    Utilities.customButtonStyle(physicalBtn,
-                                appearance: .plain(),
-                                title: "Presencial",
-                                image: UIImage(systemName: "person.2.wave.2.fill"),
-                                imagePlacement: .top,
-                                imagePadding: 8,
-                                cornerRadius: 12,
-                                cornerStyle: nil,
-                                backgroundColor: #colorLiteral(red: 0.8862124085, green: 0.8859043121, blue: 0.9066769481, alpha: 1),
-                                baseForeground: .darkGray,
-                                width: nil,
-                                height: 91,
-                                target: self,
-                                action: #selector(dipTapModalityAppointment))
-    
-    physicalBtn.layer.borderColor = #colorLiteral(red: 0.7682896852, green: 0.7757481933, blue: 0.817332685, alpha: 1)
-    physicalBtn.layer.borderWidth = 1
-    
-    
-    physicalBtn.translatesAutoresizingMaskIntoConstraints = false
-  }
-  
-  private func setUpUI() {
-    
-    let btnStack = UIStackView(arrangedSubviews: [
-      virtualBtn,
-      physicalBtn
-    ])
-    btnStack.axis = .horizontal
-    btnStack.spacing = 5
-    btnStack.translatesAutoresizingMaskIntoConstraints = false
-    
-    contentView.addSubview(btnStack)
-    
-    NSLayoutConstraint.activate([
-      btnStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-      btnStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-      btnStack.topAnchor.constraint(equalTo: contentView.topAnchor),
-      btnStack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-    ])
-  }
-  
-  @objc func dipTapModalityAppointment() {
-    print("ok")
-  }
-  
+enum AppointmentModality: String {
+    case virtual = "VIRTUAL"
+    case inPerson = "IN_PERSON"
+}
+
+protocol ModalityCollectionViewCellDelegate: AnyObject {
+    func modalityCell(
+        _ cell: ModalityCollectionViewCell,
+        didSelect modality: AppointmentModality
+    )
+}
+
+final class ModalityCollectionViewCell: UICollectionViewCell {
+
+    static let identifier = "ModalityCollectionViewCell"
+
+    weak var delegate: ModalityCollectionViewCellDelegate?
+
+    private let virtualBtn = UIButton(type: .system)
+    private let physicalBtn = UIButton(type: .system)
+
+    private let selectedColor = UIColor(
+        red: 0,
+        green: 0.106,
+        blue: 0.239,
+        alpha: 1
+    )
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupUI()
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    private func setupUI() {
+
+        virtualBtn.addTarget(
+            self,
+            action: #selector(virtualTapped),
+            for: .touchUpInside
+        )
+
+        physicalBtn.addTarget(
+            self,
+            action: #selector(physicalTapped),
+            for: .touchUpInside
+        )
+
+        let stack = UIStackView(
+            arrangedSubviews: [
+                virtualBtn,
+                physicalBtn
+            ]
+        )
+
+        stack.axis = .horizontal
+        stack.spacing = 5
+        stack.distribution = .fillEqually
+        stack.translatesAutoresizingMaskIntoConstraints = false
+
+        contentView.addSubview(stack)
+
+        NSLayoutConstraint.activate([
+            stack.topAnchor.constraint(
+                equalTo: contentView.topAnchor
+            ),
+            stack.bottomAnchor.constraint(
+                equalTo: contentView.bottomAnchor
+            ),
+            stack.leadingAnchor.constraint(
+                equalTo: contentView.leadingAnchor
+            ),
+            stack.trailingAnchor.constraint(
+                equalTo: contentView.trailingAnchor
+            )
+        ])
+    }
+
+    func configure(selected: AppointmentModality?) {
+
+        styleButton(
+            virtualBtn,
+            title: "Virtual",
+            symbol: "video.fill",
+            selected: selected == .virtual
+        )
+
+        styleButton(
+            physicalBtn,
+            title: "Presencial",
+            symbol: "person.2.fill",
+            selected: selected == .inPerson
+        )
+    }
+
+    private func styleButton(
+        _ button: UIButton,
+        title: String,
+        symbol: String,
+        selected: Bool
+    ) {
+
+        var configuration = UIButton.Configuration.plain()
+
+        configuration.title = title
+        configuration.image = UIImage(systemName: symbol)
+        configuration.imagePlacement = .top
+        configuration.imagePadding = 8
+
+        configuration.baseForegroundColor = selected
+            ? .white
+            : .darkGray
+
+        configuration.background.backgroundColor = selected
+            ? selectedColor
+            : UIColor.systemGray5
+
+        configuration.background.cornerRadius = 12
+
+        button.configuration = configuration
+    }
+
+    @objc private func virtualTapped() {
+        delegate?.modalityCell(self, didSelect: .virtual)
+    }
+
+    @objc private func physicalTapped() {
+        delegate?.modalityCell(self, didSelect: .inPerson)
+    }
 }
