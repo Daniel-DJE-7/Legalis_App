@@ -224,4 +224,102 @@ final class APICaller {
           throw APIError.networkError
       }
   }
+  
+  // MARK: - HORARIOS SEMANALES DEL ABOGADO
+  func getLawyerSchedules(lawyerId: Int) async throws -> [LawyerScheduleModel] {
+
+      guard let url = URL(string: APIEndopoint.lawyerSchedules(lawyerId: lawyerId)) else {
+          throw APIError.invalidURL
+      }
+
+      do {
+          let (data, response) = try await URLSession.shared.data(from: url)
+
+          guard let httpResponse = response as? HTTPURLResponse else {
+              throw APIError.invalidResponse
+          }
+
+          guard (200...299).contains(httpResponse.statusCode) else {
+              throw APIError.serverError(httpResponse.statusCode)
+          }
+
+          let decoder = JSONDecoder()
+          decoder.keyDecodingStrategy = .convertFromSnakeCase
+
+          return try decoder.decode(
+              [LawyerScheduleModel].self,
+              from: data
+          )
+
+      } catch let error as APIError {
+          throw error
+
+      } catch let error as DecodingError {
+          print("Error decodificando horarios: \(error)")
+          throw APIError.decodingError
+
+      } catch {
+          print("Error consultando horarios: \(error)")
+          throw APIError.networkError
+      }
+  }
+  
+  
+// MARK: - CONSULTAR TODOS LOS ABOGADOS
+  func getLawyers() async throws -> [LawyerResponseModel] {
+
+      guard let url = URL(string: APIEndopoint.lawyers) else {
+          throw APIError.invalidURL
+      }
+
+      do {
+
+          let (data, response) = try await URLSession.shared.data(
+              from: url
+          )
+
+          guard let httpResponse = response as? HTTPURLResponse else {
+              throw APIError.invalidResponse
+          }
+
+          guard (200...299).contains(httpResponse.statusCode) else {
+
+              print(
+                  "Error del servidor:",
+                  String(data: data, encoding: .utf8) ?? ""
+              )
+
+              throw APIError.serverError(httpResponse.statusCode)
+          }
+
+          let decoder = JSONDecoder()
+
+          decoder.keyDecodingStrategy = .convertFromSnakeCase
+
+          return try decoder.decode(
+              [LawyerResponseModel].self,
+              from: data
+          )
+
+      } catch let error as APIError {
+
+          throw error
+
+      } catch let error as DecodingError {
+
+          print("Error decodificando abogados:", error)
+
+          throw APIError.decodingError
+
+      } catch {
+
+          print("Error consultando abogados:", error)
+
+          throw APIError.networkError
+
+      }
+  }
+
+
+  
 }

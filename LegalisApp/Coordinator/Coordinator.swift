@@ -7,6 +7,7 @@
 
 import UIKit
 
+@MainActor
 protocol Coordinator: AnyObject {
   
   var navigationController: UINavigationController? { get set }//This will be used when I used push(NavControler)

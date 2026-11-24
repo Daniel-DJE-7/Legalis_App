@@ -114,7 +114,20 @@ extension FavoriteCollectionViewController: UICollectionViewDelegateFlowLayout {
 }
 
 extension FavoriteCollectionViewController: LawyersListCollectionViewCellDelegate {
-  func DipTapWatchLawyerProfile() {
+  
+  func dipTapWatchLawyerProfile(_ cell: LawyersListCollectionViewCell)  {
+    guard let indexPath = collectionView.indexPath(for: cell) else {
+        return
+    }
+
+    guard lawyersCard.indices.contains(indexPath.item) else {
+        return
+    }
+
+    let selectedLawyer = lawyersCard[indexPath.item]
+
+    print("Abogado seleccionado:", selectedLawyer.name)
+    
     coordinator?.goToLawyerDescriptionProfile()
   }
   

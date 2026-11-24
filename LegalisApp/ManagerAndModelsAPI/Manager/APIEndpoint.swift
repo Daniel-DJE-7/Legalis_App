@@ -19,4 +19,8 @@ enum APIEndopoint {
   static func lawyerAvailability(lawyerId: Int, date: String) -> String {
       "\(baseURL)/lawyer-schedules/availability/\(lawyerId)?target_date=\(date)"
   }
+  
+  static func lawyerSchedules(lawyerId: Int) -> String {
+      "\(baseURL)/lawyer-schedules/lawyer/\(lawyerId)"
+  }
 }

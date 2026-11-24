@@ -31,9 +31,12 @@ final class CalendarCollectionViewCell: UICollectionViewCell {
 
     weak var delegate: CalendarCollectionViewCellDelegate?
 
-    private let calendar = Calendar(
-        identifier: .gregorian
-    )
+  private let calendar: Calendar = {
+      var calendar = Calendar(identifier: .gregorian)
+      calendar.timeZone = TimeZone(identifier: "America/Bogota")!
+      calendar.firstWeekday = 2
+      return calendar
+  }()
 
     private var displayedMonth = Date()
     private var selectedDate: DateComponents?
@@ -213,6 +216,7 @@ final class CalendarCollectionViewCell: UICollectionViewCell {
     private func renderCalendar() {
 
         let formatter = DateFormatter()
+        formatter.timeZone = calendar.timeZone
         formatter.locale = Locale(identifier: "es_CO")
         formatter.dateFormat = "LLLL yyyy"
 

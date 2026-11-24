@@ -7,8 +7,11 @@
 
 import UIKit
 
+@MainActor
 protocol LawyersListCollectionViewCellDelegate: AnyObject {
-  func DipTapWatchLawyerProfile()
+
+    func didTapWatchLawyerProfile(_ cell: LawyersListCollectionViewCell)
+  
 }
 
 class LawyersListCollectionViewCell: UICollectionViewCell {
@@ -206,7 +209,7 @@ class LawyersListCollectionViewCell: UICollectionViewCell {
   
   @objc func onProfileBtnTapped() {
     
-    delegate?.DipTapWatchLawyerProfile()
+    delegate?.didTapWatchLawyerProfile(self)
     print("You want to see the profile of the lawyer")
   }
   

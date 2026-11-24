@@ -22,6 +22,9 @@ class ProfileLawyerCollectionViewController: CoreCollectionViewController {
   var personalInformation: LawyersPersonalProfile?
   weak var coordinator: BookingCoordinator?
   
+  var lawyerId: Int?
+  var hourlyRate: Int?
+  
     override func viewDidLoad() {
         super.viewDidLoad()
       collectionView.backgroundColor = .systemGray6
@@ -310,11 +313,59 @@ extension ProfileLawyerCollectionViewController: UICollectionViewDelegateFlowLay
   
 }
 
+
+// MARK: - Agendar cita
 extension ProfileLawyerCollectionViewController: AppointmentActionCollectionViewCellDelegate {
-  
-  func onAppointmentBtnTapped() {
-    coordinator?.goToSelectDate()
-  }
-  
-  
+
+    func onAppointmentBtnTapped() {
+
+        guard let lawyerId = lawyerId,
+              lawyerId > 0 else {
+
+            let alert = UIAlertController(
+                title: "Agendar cita",
+                message: "No se encontró el abogado.",
+                preferredStyle: .alert
+            )
+
+            alert.addAction(
+                UIAlertAction(
+                    title: "Aceptar",
+                    style: .default
+                )
+            )
+
+            present(alert, animated: true)
+
+            return
+
+        }
+
+        guard let hourlyRate = hourlyRate,
+              hourlyRate >= 0 else {
+
+            let alert = UIAlertController(
+                title: "Agendar cita",
+                message: "El abogado todavía no ha configurado su tarifa.",
+                preferredStyle: .alert
+            )
+
+            alert.addAction(
+                UIAlertAction(
+                    title: "Aceptar",
+                    style: .default
+                )
+            )
+
+            present(alert, animated: true)
+
+            return
+
+        }
+
+        coordinator?.goToSelectDate(lawyerId: lawyerId)
+
+    }
+
 }
+

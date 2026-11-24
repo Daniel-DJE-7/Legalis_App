@@ -32,6 +32,23 @@ class AppointmentScheduleCollectionViewController: CoreCollectionViewController 
 
   private let colombiaTimeZone = TimeZone(identifier: "America/Bogota")!
   
+  private var lawyerSchedules: [LawyerScheduleModel] = []
+
+  private var isLoadingSchedules = false
+
+  private var requestedAvailabilityDate: String?
+
+  private var bookingCalendar: Calendar {
+
+      var calendar = Calendar(identifier: .gregorian)
+
+      calendar.timeZone = colombiaTimeZone
+      calendar.firstWeekday = 2
+      calendar.minimumDaysInFirstWeek = 4
+
+      return calendar
+  }
+  
     override func viewDidLoad() {
         super.viewDidLoad()
       collectionView.backgroundColor = .systemGray6
@@ -41,6 +58,7 @@ class AppointmentScheduleCollectionViewController: CoreCollectionViewController 
       navigationController?.navigationBar.topItem?.backButtonTitle = "Volver"
       registerCells()
       configureLayout()
+      loadLawyerSchedules()
     }
 
   override func viewDidLayoutSubviews() {
@@ -202,13 +220,125 @@ class AppointmentScheduleCollectionViewController: CoreCollectionViewController 
     }
   }
 
-  private func loadAvailability(for date: String) {
+  
+  private func loadLawyerSchedules() {
 
       guard lawyerId > 0 else {
           showScheduleError("No se encontró el abogado.")
           return
       }
 
+      isLoadingSchedules = true
+      dayStates = [:]
+
+      Task { @MainActor [weak self] in
+
+          guard let self = self else { return }
+
+          do {
+              let schedules = try await APICaller.shared.getLawyerSchedules(
+                  lawyerId: self.lawyerId
+              )
+
+              self.lawyerSchedules = schedules
+              self.isLoadingSchedules = false
+
+              self.updateCalendarDays()
+
+          } catch {
+              self.isLoadingSchedules = false
+              self.showScheduleError(error.localizedDescription)
+          }
+      }
+  }
+
+  private func updateCalendarDays() {
+
+      let calendar = bookingCalendar
+      let today = calendar.startOfDay(for: Date())
+
+      // Semana actual: lunes a domingo
+      guard let currentWeek = calendar.dateInterval(
+          of: .weekOfYear,
+          for: today
+      ) else {
+          return
+      }
+
+      // Inicio de la semana posterior a la siguiente.
+      // Es el límite exclusivo de nuestra ventana.
+      guard let bookingEnd = calendar.date(
+          byAdding: .day,
+          value: 14,
+          to: currentWeek.start
+      ) else {
+          return
+      }
+
+      let workingDays = Set(
+          lawyerSchedules
+              .filter { $0.isActive }
+              .map { $0.weekday }
+      )
+
+      var states: [String: CalendarDayState] = [:]
+
+      var date = today
+
+      while date < bookingEnd {
+
+          // Calendar.weekday: domingo = 1, lunes = 2...
+          // Backend.weekday: lunes = 0, domingo = 6
+          let calendarWeekday = calendar.component(.weekday, from: date)
+          let backendWeekday = (calendarWeekday + 5) % 7
+
+          let components = calendar.dateComponents(
+              [.year, .month, .day],
+              from: date
+          )
+
+          let key = String(
+              format: "%04d-%02d-%02d",
+              components.year ?? 0,
+              components.month ?? 0,
+              components.day ?? 0
+          )
+
+          states[key] = workingDays.contains(backendWeekday)
+              ? .available
+              : .unavailable
+
+          guard let nextDate = calendar.date(
+              byAdding: .day,
+              value: 1,
+              to: date
+          ) else {
+              break
+          }
+
+          date = nextDate
+      }
+
+      dayStates = states
+
+      collectionView.reloadSections(
+          IndexSet(integer: SectionTypeAppointment.calendar.rawValue)
+      )
+  }
+  
+
+  private func loadAvailability(for date: String) {
+
+    guard case .available? = dayStates[date] else {
+        return
+    }
+    
+    guard lawyerId > 0 else {
+        showScheduleError("No se encontró el abogado.")
+        return
+    }
+
+      requestedAvailabilityDate = date
       isLoadingAvailability = true
 
       Task { @MainActor [weak self] in
@@ -221,15 +351,32 @@ class AppointmentScheduleCollectionViewController: CoreCollectionViewController 
                   date: date
               )
 
+              // Ignorar respuestas de fechas seleccionadas anteriormente.
+              guard self.requestedAvailabilityDate == date else {
+                  return
+              }
+
               self.isLoadingAvailability = false
 
-              self.availableSlots = response.availableSlots
+              let now = Date()
 
-              self.dayStates[date] = response.isHoliday
-                  ? .holiday
-                  : response.availableSlots.isEmpty
-                      ? .unavailable
-                      : .available
+              self.availableSlots = response.availableSlots
+                  .filter { $0.startTime > now }
+                  .sorted { $0.startTime < $1.startTime }
+
+              if self.availableSlots.isEmpty {
+
+                  self.dayStates[date] = .unavailable
+                  self.selectedDate = nil
+                  self.selectedSlot = nil
+
+                  self.showScheduleError(
+                      "No hay horarios disponibles para esta fecha."
+                  )
+
+              } else {
+                  self.dayStates[date] = .available
+              }
 
               self.collectionView.reloadSections(
                   IndexSet([
@@ -239,11 +386,17 @@ class AppointmentScheduleCollectionViewController: CoreCollectionViewController 
               )
 
           } catch {
+
+              guard self.requestedAvailabilityDate == date else {
+                  return
+              }
+
               self.isLoadingAvailability = false
               self.showScheduleError(error.localizedDescription)
           }
       }
   }
+
 
   private func formatHour(_ date: Date) -> String {
 
@@ -350,6 +503,8 @@ extension AppointmentScheduleCollectionViewController: UICollectionViewDelegateF
   }
   
   override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    guard !isLoadingAvailability else { return }
+    
     guard indexPath.section == SectionTypeAppointment.hours.rawValue,
           availableSlots.indices.contains(indexPath.item) else {
         return
@@ -367,35 +522,44 @@ extension AppointmentScheduleCollectionViewController: UICollectionViewDelegateF
 
 extension AppointmentScheduleCollectionViewController: CalendarCollectionViewCellDelegate {
 
-    func calendar(cell: CalendarCollectionViewCell, didSelect date: DateComponents?) {
 
-        selectedDate = date
-        selectedSlot = nil
-        availableSlots = []
+  func calendar(cell: CalendarCollectionViewCell, didSelect date: DateComponents?) {
 
-        collectionView.reloadSections(
-            IndexSet(integer: SectionTypeAppointment.hours.rawValue)
-        )
+      guard !isLoadingSchedules else { return }
 
-        guard let date = date else { return }
+      guard let date = date else { return }
 
-        let dateString = String(
-            format: "%04d-%02d-%02d",
-            date.year ?? 0,
-            date.month ?? 0,
-            date.day ?? 0
-        )
+      let dateString = String(
+          format: "%04d-%02d-%02d",
+          date.year ?? 0,
+          date.month ?? 0,
+          date.day ?? 0
+      )
 
-        loadAvailability(for: dateString)
-    }
+      // Solo permitir fechas habilitadas.
+      guard case .available? = dayStates[dateString] else {
+          return
+      }
 
-    func calendar(cell: CalendarCollectionViewCell,didChangeMonth date: Date) {
+      selectedDate = date
+      selectedSlot = nil
+      availableSlots = []
 
-        displayedMonth = date
+      collectionView.reloadSections(
+          IndexSet(integer: SectionTypeAppointment.hours.rawValue)
+      )
 
-        // Aquí consultaremos las fechas disponibles del mes.
-        // El endpoint actual devuelve disponibilidad por día.
-    }
+      loadAvailability(for: dateString)
+  }
+
+  func calendar(cell: CalendarCollectionViewCell, didChangeMonth date: Date) {
+
+      displayedMonth = date
+
+      // No necesitamos consultar un endpoint mensual.
+      // Los estados se calcularon a partir del horario semanal.
+  }
+
 }
 
 extension AppointmentScheduleCollectionViewController: ModalityCollectionViewCellDelegate {
@@ -415,6 +579,11 @@ extension AppointmentScheduleCollectionViewController: ContinueButtonCollectionV
 
     func onContinueBtnTapped() {
 
+      guard !isLoadingSchedules && !isLoadingAvailability else {
+          showScheduleError("Espera a que termine la consulta de disponibilidad.")
+          return
+      }
+      
         guard selectedDate != nil else {
             showScheduleError("Selecciona una fecha.")
             return
@@ -422,6 +591,16 @@ extension AppointmentScheduleCollectionViewController: ContinueButtonCollectionV
 
         guard let slot = selectedSlot else {
             showScheduleError("Selecciona una hora disponible.")
+            return
+        }
+      
+        guard slot.startTime > Date() else {
+            selectedSlot = nil
+
+            showScheduleError(
+                "La hora seleccionada ya no está disponible. Selecciona otra."
+            )
+
             return
         }
 

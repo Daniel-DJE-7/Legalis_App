@@ -7,12 +7,13 @@
 
 import UIKit
 
-
+@MainActor
 protocol BookingCoordinatorDelegate: AnyObject {
   // Método para avisarle al Home que el pago fue exitoso y queremos ir a Mis Citas
   func bookingCoordinatorDidFinishWithSuccess(_ coordinator: BookingCoordinator)
 }
 
+@MainActor
 class BookingCoordinator: Coordinator {
 
   var chilCoordinators: [Coordinator] = []
@@ -23,6 +24,8 @@ class BookingCoordinator: Coordinator {
   
   //variable interna que guarda el Navigation de la tarjeta flotante de pago
   private var paymentSheetNavigation: UINavigationController?
+  
+  var appointmentId: Int?
   
   init(navigationController: UINavigationController?) {
     self.navigationController = navigationController
@@ -38,20 +41,78 @@ class BookingCoordinator: Coordinator {
     navigationController?.pushViewController(lawyerListVC, animated: true)
   }
   
-  func goToLawyerDescriptionProfile() {
-    
-    let profileVC = ProfileLawyerCollectionViewController()
-    profileVC.coordinator = self
-    navigationController?.pushViewController(profileVC, animated: true)
-    
+  // MARK: - Mostrar perfil del abogado seleccionado
+
+  func goToLawyerDescriptionProfile(lawyer: LawyerResponseModel) {
+
+      let profileVC = ProfileLawyerCollectionViewController()
+
+      profileVC.coordinator = self
+
+      // Identificador real del abogado
+      profileVC.lawyerId = lawyer.idLawyer
+
+      // Tarifa real del abogado
+      profileVC.hourlyRate = lawyer.hourlyRate
+
+      // Formatear la tarifa para mostrarla en pantalla
+      let formatter = NumberFormatter()
+
+      formatter.numberStyle = .currency
+      formatter.locale = Locale(identifier: "es_CO")
+      formatter.currencyCode = "COP"
+      formatter.maximumFractionDigits = 0
+      formatter.minimumFractionDigits = 0
+
+      let price: String
+
+      if let hourlyRate = lawyer.hourlyRate {
+
+          let formattedPrice = formatter.string(
+              from: NSNumber(value: hourlyRate)
+          ) ?? "\(hourlyRate) COP"
+
+          price = "\(formattedPrice) / hora"
+
+      } else {
+
+          price = "Tarifa no configurada"
+
+      }
+
+      // Modelo utilizado exclusivamente para la interfaz
+      profileVC.personalInformation = LawyersPersonalProfile(
+          card: LawyersCardsModel(
+              profileImage: UIImage(named: "abog"),
+              name: lawyer.user.name,
+              qualification: nil
+          ),
+          description: lawyer.schooling ?? "Información no disponible",
+          email: lawyer.user.email,
+          price: price
+      )
+
+      navigationController?.pushViewController(
+          profileVC,
+          animated: true
+      )
+
   }
   
-  func goToSelectDate() {
-    
-    let scheduleVC = AppointmentScheduleCollectionViewController()
-    scheduleVC.coordinator = self
-    navigationController?.pushViewController(scheduleVC, animated: true)
-    
+  // MARK: - Mostrar calendario del abogado
+  func goToSelectDate(lawyerId: Int) {
+
+      let scheduleVC = AppointmentScheduleCollectionViewController()
+
+      scheduleVC.coordinator = self
+
+      scheduleVC.lawyerId = lawyerId
+
+      navigationController?.pushViewController(
+          scheduleVC,
+          animated: true
+      )
+
   }
   
   //MARK: - Resumen del pago
@@ -79,11 +140,18 @@ class BookingCoordinator: Coordinator {
   
   //MARK: - seleccionar metodo de pago para pagar (efectivo-tarjeta)
   func goToSelectPaymentMethod() {
-    
-    let selectPaymentMethodVC = PaymentMethodCollectionViewController()
-    selectPaymentMethodVC.coordinator = self
-    paymentSheetNavigation?.pushViewController(selectPaymentMethodVC, animated: true)
-    
+
+      guard let appointmentId = appointmentId, appointmentId > 0 else {
+          print("Error: No se encontró el ID de la cita.")
+          return
+      }
+
+      let selectPaymentMethodVC = PaymentMethodCollectionViewController()
+
+      selectPaymentMethodVC.coordinator = self
+      selectPaymentMethodVC.appointmentId = appointmentId
+
+      paymentSheetNavigation?.pushViewController(selectPaymentMethodVC, animated: true)
   }
   
   
