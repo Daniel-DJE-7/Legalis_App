@@ -7,12 +7,12 @@
 
 import Foundation
 
-//modelo que representa los horarios semanales por el abogado
+// MARK: - Horarios semanales registrados por el abogado
 struct LawyerScheduleModel: Decodable {
+
     let idSchedule: Int
     let weekday: Int
-    let startTime: String
-    let endTime: String
-    let isActive: Bool
     let idLawyer: Int
+    let hours: [String]
+
 }

@@ -320,6 +320,123 @@ final class APICaller {
       }
   }
 
+  // MARK: - CREAR CITA
 
+  func createAppointment(appointment: AppointmentCreateModel) async throws -> AppointmentResponseModel {
+
+      guard let url = URL( string: APIEndopoint.appointments) else {
+          throw APIError.invalidURL
+      }
+
+      var request = URLRequest(url: url)
+
+      request.httpMethod = "POST"
+
+      request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+
+      do {
+
+          // Convertir los datos de Swift al formato de FastAPI
+          let encoder = JSONEncoder()
+
+          encoder.keyEncodingStrategy = .convertToSnakeCase
+          encoder.dateEncodingStrategy = .iso8601
+
+          request.httpBody = try encoder.encode(appointment)
+
+          let (data, response) = try await URLSession.shared.data(
+              for: request
+          )
+
+          guard let httpResponse = response as? HTTPURLResponse else {
+              throw APIError.invalidResponse
+          }
+
+          guard httpResponse.statusCode == 201 else {
+
+              // Mostrar el motivo real del rechazo de FastAPI
+              if let errorResponse = try? JSONDecoder().decode(
+                  AppointmentAPIErrorResponse.self,
+                  from: data
+              ) {
+
+                  throw NSError(
+                      domain: "LegalisApp.Appointments",
+                      code: httpResponse.statusCode,
+                      userInfo: [
+                          NSLocalizedDescriptionKey: errorResponse.detail
+                      ]
+                  )
+
+              }
+
+              throw APIError.serverError(httpResponse.statusCode)
+
+          }
+
+          let decoder = JSONDecoder()
+
+          decoder.keyDecodingStrategy = .convertFromSnakeCase
+
+          // Admitir fechas ISO 8601 con y sin segundos fraccionarios
+          decoder.dateDecodingStrategy = .custom { decoder in
+
+              let container = try decoder.singleValueContainer()
+              let value = try container.decode(String.self)
+
+              let formatter = ISO8601DateFormatter()
+
+              formatter.formatOptions = [
+                  .withInternetDateTime,
+                  .withFractionalSeconds
+              ]
+
+              if let date = formatter.date(from: value) {
+                  return date
+              }
+
+              formatter.formatOptions = [.withInternetDateTime]
+
+              if let date = formatter.date(from: value) {
+                  return date
+              }
+
+              throw DecodingError.dataCorruptedError(
+                  in: container,
+                  debugDescription: "Fecha inválida: \(value)"
+              )
+
+          }
+
+          return try decoder.decode(
+              AppointmentResponseModel.self,
+              from: data
+          )
+
+      } catch let error as APIError {
+
+          throw error
+
+      } catch let error as DecodingError {
+
+          print("Error decodificando cita:", error)
+
+          throw APIError.decodingError
+
+      } catch {
+
+          print("Error creando cita:", error)
+
+          throw error
+
+      }
+
+  }
   
+}
+
+// MARK: - Mensajes de error de FastAPI
+
+private struct AppointmentAPIErrorResponse: Decodable {
+    let detail: String
 }

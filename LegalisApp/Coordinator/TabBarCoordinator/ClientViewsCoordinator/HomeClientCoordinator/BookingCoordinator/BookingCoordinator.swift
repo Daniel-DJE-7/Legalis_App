@@ -26,6 +26,11 @@ class BookingCoordinator: Coordinator {
   private var paymentSheetNavigation: UINavigationController?
   
   var appointmentId: Int?
+  // Identificador del cliente durante la sesión
+  var clientId: Int?
+  
+  // Datos de la cita registrada en PostgreSQL
+  private(set) var createdAppointment: AppointmentResponseModel?
   
   init(navigationController: UINavigationController?) {
     self.navigationController = navigationController
@@ -105,8 +110,8 @@ class BookingCoordinator: Coordinator {
       let scheduleVC = AppointmentScheduleCollectionViewController()
 
       scheduleVC.coordinator = self
-
       scheduleVC.lawyerId = lawyerId
+      scheduleVC.clientId = clientId
 
       navigationController?.pushViewController(
           scheduleVC,
@@ -196,6 +201,14 @@ class BookingCoordinator: Coordinator {
       vc.pendingAmount = pendingAmount
 
     paymentSheetNavigation?.pushViewController(vc, animated: true)
+  }
+  
+  // MARK: - Registrar cita y abrir resumen del pago
+  func didCreateAppointment(_ appointment: AppointmentResponseModel) {
+
+      createdAppointment = appointment
+      appointmentId = appointment.idAppointment
+      goToPaymentSummary()
   }
   
 }

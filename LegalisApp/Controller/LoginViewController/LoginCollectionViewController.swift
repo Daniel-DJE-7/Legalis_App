@@ -7,10 +7,16 @@
 
 import UIKit
 
+@MainActor
+protocol LoginCollectionViewControllerDelegate: AnyObject {
 
+    func loginDidFinish( with profile: AuthenticatedProfileModel)
+}
 
 class LoginCollectionViewController: CoreCollectionViewController {
 
+  weak var delegate: LoginCollectionViewControllerDelegate?
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     collectionView.backgroundColor = .systemGray6

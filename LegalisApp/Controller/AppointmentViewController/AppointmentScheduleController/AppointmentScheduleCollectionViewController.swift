@@ -20,6 +20,11 @@ class AppointmentScheduleCollectionViewController: CoreCollectionViewController 
   var selectedDate: DateComponents?
   
   var lawyerId: Int = 0
+  var clientId: Int?
+
+  private var isCreatingAppointment = false
+
+  private var registeredAppointment: AppointmentResponseModel?
   private var selectedSlot: LawyerAvailableSlotModel?
   private var selectedModality: AppointmentModality?
 
@@ -39,13 +44,10 @@ class AppointmentScheduleCollectionViewController: CoreCollectionViewController 
   private var requestedAvailabilityDate: String?
 
   private var bookingCalendar: Calendar {
-
       var calendar = Calendar(identifier: .gregorian)
-
       calendar.timeZone = colombiaTimeZone
       calendar.firstWeekday = 2
       calendar.minimumDaysInFirstWeek = 4
-
       return calendar
   }
   
@@ -252,32 +254,26 @@ class AppointmentScheduleCollectionViewController: CoreCollectionViewController 
       }
   }
 
+  // MARK: - Actualizar días disponibles del calendario
   private func updateCalendarDays() {
 
       let calendar = bookingCalendar
       let today = calendar.startOfDay(for: Date())
 
-      // Semana actual: lunes a domingo
-      guard let currentWeek = calendar.dateInterval(
-          of: .weekOfYear,
-          for: today
-      ) else {
+      // Obtener la semana actual
+      guard let currentWeek = calendar.dateInterval(of: .weekOfYear, for: today) else {
           return
       }
 
-      // Inicio de la semana posterior a la siguiente.
-      // Es el límite exclusivo de nuestra ventana.
-      guard let bookingEnd = calendar.date(
-          byAdding: .day,
-          value: 14,
-          to: currentWeek.start
-      ) else {
+      // Permitir reservas durante la semana actual y la siguiente semana
+      guard let bookingEnd = calendar.date(byAdding: .day, value: 14, to: currentWeek.start) else {
           return
       }
 
+      // Obtener los días que tienen horas registradas
       let workingDays = Set(
           lawyerSchedules
-              .filter { $0.isActive }
+              .filter { !$0.hours.isEmpty }
               .map { $0.weekday }
       )
 
@@ -287,15 +283,13 @@ class AppointmentScheduleCollectionViewController: CoreCollectionViewController 
 
       while date < bookingEnd {
 
-          // Calendar.weekday: domingo = 1, lunes = 2...
-          // Backend.weekday: lunes = 0, domingo = 6
+          // UIKit: domingo = 1, sábado = 7
           let calendarWeekday = calendar.component(.weekday, from: date)
+
+          // FastAPI: lunes = 0, domingo = 6
           let backendWeekday = (calendarWeekday + 5) % 7
 
-          let components = calendar.dateComponents(
-              [.year, .month, .day],
-              from: date
-          )
+          let components = calendar.dateComponents([.year, .month, .day], from: date)
 
           let key = String(
               format: "%04d-%02d-%02d",
@@ -304,26 +298,25 @@ class AppointmentScheduleCollectionViewController: CoreCollectionViewController 
               components.day ?? 0
           )
 
-          states[key] = workingDays.contains(backendWeekday)
-              ? .available
-              : .unavailable
+          // Habilitar únicamente días con horarios registrados
+          states[key] = workingDays.contains(backendWeekday) ? .available : .unavailable
 
-          guard let nextDate = calendar.date(
-              byAdding: .day,
-              value: 1,
-              to: date
-          ) else {
+          guard let nextDate = calendar.date(byAdding: .day, value: 1, to: date) else {
               break
           }
 
           date = nextDate
+
       }
 
       dayStates = states
 
       collectionView.reloadSections(
-          IndexSet(integer: SectionTypeAppointment.calendar.rawValue)
+          IndexSet(
+              integer: SectionTypeAppointment.calendar.rawValue
+          )
       )
+
   }
   
 
@@ -423,6 +416,19 @@ class AppointmentScheduleCollectionViewController: CoreCollectionViewController 
       present(alert, animated: true)
   }
   
+  // MARK: - Restablecer interfaz después del registro
+  @MainActor
+  private func finishCreatingAppointment() {
+
+      isCreatingAppointment = false
+
+      navigationItem.hidesBackButton = false
+
+      navigationController?
+          .interactivePopGestureRecognizer?.isEnabled = true
+
+  }
+  
 }
 
 extension AppointmentScheduleCollectionViewController: UICollectionViewDelegateFlowLayout {
@@ -503,7 +509,11 @@ extension AppointmentScheduleCollectionViewController: UICollectionViewDelegateF
   }
   
   override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    guard !isLoadingAvailability else { return }
+    guard !isLoadingAvailability,
+          !isCreatingAppointment,
+          registeredAppointment == nil else {
+        return
+    }
     
     guard indexPath.section == SectionTypeAppointment.hours.rawValue,
           availableSlots.indices.contains(indexPath.item) else {
@@ -525,7 +535,11 @@ extension AppointmentScheduleCollectionViewController: CalendarCollectionViewCel
 
   func calendar(cell: CalendarCollectionViewCell, didSelect date: DateComponents?) {
 
-      guard !isLoadingSchedules else { return }
+    guard !isLoadingSchedules,
+          !isCreatingAppointment,
+          registeredAppointment == nil else {
+        return
+    }
 
       guard let date = date else { return }
 
@@ -565,25 +579,52 @@ extension AppointmentScheduleCollectionViewController: CalendarCollectionViewCel
 extension AppointmentScheduleCollectionViewController: ModalityCollectionViewCellDelegate {
 
     func modalityCell(_ cell: ModalityCollectionViewCell,didSelect modality: AppointmentModality) {
-
-        selectedModality = modality
-
-        collectionView.reloadSections(
-            IndexSet(integer: SectionTypeAppointment.modality.rawValue)
-        )
+      guard !isCreatingAppointment,
+            registeredAppointment == nil else {
+          return
+      }
+      selectedModality = modality
+      collectionView.reloadSections(IndexSet(integer: SectionTypeAppointment.modality.rawValue))
     }
 }
 
 
+// MARK: - Registrar cita y continuar al pago
 extension AppointmentScheduleCollectionViewController: ContinueButtonCollectionViewCellDelegate {
 
     func onContinueBtnTapped() {
 
-      guard !isLoadingSchedules && !isLoadingAvailability else {
-          showScheduleError("Espera a que termine la consulta de disponibilidad.")
-          return
-      }
-      
+        // Evitar solicitudes simultáneas
+        guard !isCreatingAppointment else {
+            return
+        }
+
+        guard let coordinator = coordinator else {
+            showScheduleError("No se encontró el coordinador.")
+            return
+        }
+
+        // Si la cita ya fue creada, volver al resumen sin registrar una segunda cita.
+        if let appointment = registeredAppointment {
+            coordinator.didCreateAppointment(appointment)
+            return
+        }
+
+        guard !isLoadingSchedules, !isLoadingAvailability else {
+            showScheduleError( "Espera a que termine la consulta de disponibilidad.")
+            return
+        }
+
+        guard lawyerId > 0 else {
+            showScheduleError("No se encontró el abogado.")
+            return
+        }
+
+        guard let clientId = clientId, clientId > 0 else {
+            showScheduleError("No se encontró el identificador del cliente.")
+            return
+        }
+
         guard selectedDate != nil else {
             showScheduleError("Selecciona una fecha.")
             return
@@ -593,14 +634,12 @@ extension AppointmentScheduleCollectionViewController: ContinueButtonCollectionV
             showScheduleError("Selecciona una hora disponible.")
             return
         }
-      
+
         guard slot.startTime > Date() else {
             selectedSlot = nil
+            collectionView.reloadSections(IndexSet(integer: SectionTypeAppointment.hours.rawValue))
 
-            showScheduleError(
-                "La hora seleccionada ya no está disponible. Selecciona otra."
-            )
-
+            showScheduleError("La hora seleccionada ya no está disponible.")
             return
         }
 
@@ -609,13 +648,61 @@ extension AppointmentScheduleCollectionViewController: ContinueButtonCollectionV
             return
         }
 
-        print("Inicio UTC:", slot.startTime)
-        print("Final UTC:", slot.endTime)
-        print("Modalidad:", modality.rawValue)
+        // Construir la solicitud para FastAPI
 
-        // Siguiente integración:
-        // POST /appointments/
-        // Guardar id_appointment en BookingCoordinator.
-        // Abrir PaymentSummary.
+        let appointment = AppointmentCreateModel(
+            startTime: slot.startTime,
+            durationHours: 1,
+            modality: modality.rawValue,
+            idLawyer: lawyerId,
+            idClient: clientId
+        )
+
+        isCreatingAppointment = true
+
+        navigationItem.hidesBackButton = true
+
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+
+      // Registrar la cita en PostgreSQL
+      Task { @MainActor [weak self] in
+
+          guard let self = self else {
+              return
+          }
+
+          do {
+
+              let response = try await APICaller.shared.createAppointment(
+                  appointment: appointment
+              )
+
+              // Conservar la cita para evitar duplicados
+              self.registeredAppointment = response
+
+              print("Cita registrada:", response.idAppointment)
+              print("Precio total:", response.price)
+              print("Estado:", response.appointmentStatus)
+
+              // Restablecer la interfaz
+              self.finishCreatingAppointment()
+
+              // Guardar la cita y abrir el resumen de pago
+              coordinator.didCreateAppointment(response)
+
+          } catch {
+
+              // Restablecer la interfaz si ocurre un error
+              self.finishCreatingAppointment()
+
+              self.showScheduleError(
+                  error.localizedDescription
+              )
+
+          }
+
+      }
+
     }
+
 }

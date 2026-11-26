@@ -19,6 +19,10 @@ class PaymentSummaryCollectionViewController: CoreCollectionViewController {
   private let titleHeader: String = "Resumen del pago"
   private let descriptionPage: String = "Confirma los detalles de tu contratación"
   weak var coordinator: BookingCoordinator?
+  // Obtener la cita registrada desde el coordinador
+  private var appointment: AppointmentResponseModel? {
+      return coordinator?.createdAppointment
+  }
   
     override func viewDidLoad() {
         super.viewDidLoad()
